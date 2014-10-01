@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/bsm/protected/views/proposal/_form.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/models/proposalKartuKeluarga.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/models/Kolektabilitas.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/models/proposalBukuNikah.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/views/proposal/create.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/controllers/ProposalController.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/extensions/DynamicTabularForm/DynamicTabularForm.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/models/proposalKtp.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/views/proposal/_form_kk.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/config/main.php</file>
+        </group>
+    </open-files>
+</project-private>

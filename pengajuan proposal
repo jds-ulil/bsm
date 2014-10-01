@@ -1,0 +1,51 @@
+Tabel dataKK
+- No Kartu Keluarga
+- Nama
+- Tanggal Lahir
+- No KTP 
+
+Tabel Buku Nikah
+- No Buku Nikah
+- Tgl Buku Nikah
+
+Tabel KTP
+- No KTP
+- Tempat Lahir
+- TGL Lahir
+- Alamat
+- Agama
+- Status Perkawinan
+- Pekerjaaan
+- Kewarganegaraan
+- Masa Berlaku
+
+
+Tabel Proposal
+- Tanggal Pengajuan
+- Plafon Pengajuan
+- Segmen (PK) ke tabel segmen
+- Jenis Usaha
+- Marketing (PK) ke tabel pegawai
+- Jenis Nasabah (PK) 
+- Id Proposal
+- Plafon Existing
+- OS/ Pokok Existing (Rp)
+- Angsuran/Bulan Existing (Rp)
+- Kolektabilitas Existing
+- Nama Pemberi Referal
+- Alamat Pemberi Referal
+- No. Telp Pemberi Referal
+- Sektor Usaha Pemberi Referal
+- Fasilitas Pemberi Referal (Rp)
+- Koletabilitas Pemberi Referal
+- No Kartu Keluarga
+- No Buku Nikah
+- No KTP
+- No Proposal
+- Status
+
+
+
+
+
+

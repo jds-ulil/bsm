@@ -1,0 +1,3 @@
+<h2>Gagal Mengirim Email Notif</h2>
+Proses apply tidak dapat dilanjutkan...
+Silahkan Periksa Kembali Jaringan Dan Configurasi Email

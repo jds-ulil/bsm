@@ -1,0 +1,146 @@
+<?php
+
+/**
+ * This is the model class for table "tolak".
+ *
+ * The followings are the available columns in table 'tolak':
+ * @property integer $tolak_id
+ * @property string $no_proposal
+ * @property string $tanggal_tolak
+ * @property string $alasan_ditolak
+ * @property string $tahap_penolakan
+ */
+class tolak extends CActiveRecord
+{
+    public $mode = 'create';
+    public $tempLL;
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'tolak';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+                        array('no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required'),
+			array('no_proposal', 'length', 'max'=>50),
+			array('no_proposal', 'check_proposal',),
+			array('mode, tempLL', 'safe'),
+                        array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('tolak_id, no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'tolak_id' => 'Tolak',
+			'no_proposal' => 'No Proposal',
+			'tanggal_tolak' => 'Tanggal Tolak',
+			'alasan_ditolak' => 'Alasan Ditolak',
+			'tahap_penolakan' => 'Tahap Penolakan',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('tolak_id',$this->tolak_id);
+		$criteria->compare('no_proposal',$this->no_proposal,true);
+		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
+		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);
+		$criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+        public function check_proposal($attribute_name, $params)
+        {             
+            $query1 = "SELECT COUNT(proposal_id) FROM proposal                        
+                        WHERE del_flag = 0 and status_pengajuan = 0 and 
+                        no_proposal = '".$this->$attribute_name."'";                        
+            $count=Yii::app()->db->createCommand($query1)->queryScalar();                        
+            if($count == null || $count == 0){
+                $this->addError($attribute_name, Yii::t('user', $label.' No Proposal Tidak Ditemukan'));
+                return false;
+            }
+            return true;
+        }
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return tolak the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+        public function sendNotif() {
+//            $message = new YiiMailMessage();
+//            $message->view = 'input';        
+//            $message->subject    = 'Input Data Nasabah';
+//            
+//            foreach ($listEmail as $key => $data) {                    
+//             $message->addTo($data->email_address);       
+//            }
+//                $param = array ('nasabah'=>$model,'inputer'=>Yii::app()->user->name);
+//                $message->setBody($param, 'text/html');                
+//                $message->from = 'oelhil@gmail.com';   
+//
+//            try
+//            {            
+//                Yii::app()->mail->send($message);                
+//                $model->status = 4;
+//                $model->save();
+//                $this->redirect(array('view','id'=>$model->nasabah_id));
+//            }
+//            catch (Exception $exc)
+//            {
+//                $this->render('error',array(			
+//                ));
+//            }             
+//            
+        return false;
+    }
+}
