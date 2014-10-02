@@ -28,15 +28,25 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create'),
+				'actions'=>array('create','complete'),
 				'roles'=>array('admin', 'inputter'),
+			),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('report'),
+				'roles'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}       
-    public function actionCreate (){             
+    public function actionReport(){
+        $model_tolak = new tolak('search');
+        $this->render('report', array(
+            'model_tolak' => $model_tolak, 
+        ));
+    }
+    public function actionCreate (){         
         $model_tolak = new tolak;
         $model_tolak->tahap_penolakan = 'BI Checking';
         $listTahapan = CHtml::listData(tolakTahapan::model()->findAll(),'nama','nama');
@@ -114,21 +124,24 @@ class TolakController extends Controller
                     'model_kartu_keluarga'=>$model_kartu_keluarga,
                 ));
                 break;
-            case 'complete':   
-                if($model_tolak->sendNotif()) {
+            case 'complete':                    
+              //  if($model_tolak->sendNotif()) {
                     if($model_tolak->save()){
                         $model_proposal->status_pengajuan =  vC::APP_status_proposal_tolak;
                         $model_proposal->save();
-                        $this->render('complete',array(     
-                    ));
+                        $this->redirect(array('complete'));
                     } else {
                     //  print_r($model_proposal->getErrors());
                     };
-                }
+              //  }
                 break;
             default:
                 break;
         }                                
+    }
+    public function actionComplete(){
+         $this->render('complete',array(     
+                    ));
     }
     public function loadModelProposal($id)
 	{

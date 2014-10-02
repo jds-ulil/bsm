@@ -63,7 +63,7 @@
 							array('label'=>'Laporan', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
 								'items'=>array(
 								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/report',)),								   
-								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('#',)),
+								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/report',)),
                                                      /**
                                                     SELOWWW....
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('#',)),

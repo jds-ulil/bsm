@@ -28,7 +28,7 @@ class ProposalController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','getRowForm'),
+				'actions'=>array('create','getRowForm','complete'),
 				'roles'=>array('admin', 'inputter'),
                     ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -51,11 +51,36 @@ class ProposalController extends Controller
     }
     public function actionDetail($id){
         $model_proposal = $this->loadModel($id);
-        
+        $model_marketing = new pegawai;
+        $model_ktp = new proposalKtp;
+        $model_buku_nikah = new proposalBukuNikah;
+        $model_kartu_keluarga = array(new proposalKartuKeluarga);
         if(!empty($model_proposal)) {
-            
-        }
-        $this->render('detail');
+            $model_marketing = pegawai::model()->findByPk($model_proposal->marketing);
+            $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
+            $model_ktp = proposalKtp::model()->findByAttributes(array(
+                'no_ktp'=>$model_proposal->no_ktp,
+                'no_proposal'=>$model_proposal->no_proposal,                
+            ));
+            $model_buku_nikah_cek = proposalBukuNikah::model()->findByAttributes(array(
+                'no_buku_nikah'=>$model_proposal->no_buku_nikah,
+                'no_proposal'=>$model_proposal->no_proposal,                
+            ));
+            if (!empty($model_buku_nikah_cek)) {
+                $model_buku_nikah = $model_buku_nikah_cek;
+            }
+            $model_kartu_keluarga = proposalKartuKeluarga::model()->findAllByAttributes(array(
+                'no_kartu_keluarga'=>$model_proposal->no_kartu_keluarga,
+                'no_proposal'=>$model_proposal->no_proposal,                
+            ));            
+            }
+        $this->render('detail',array(
+            'model_proposal' => $model_proposal,
+            'model_marketing' => $model_marketing,
+            'model_ktp' => $model_ktp,
+            'model_buku_nikah' => $model_buku_nikah,
+            'model_kartu_keluarga' => $model_kartu_keluarga,
+        ));
     }
 
     public function actionReport(){
@@ -173,8 +198,7 @@ class ProposalController extends Controller
                         foreach ($model_kartu_keluarga as $key => $model_kartu_keluargaEach) {                  
                             $model_kartu_keluargaEach->save();
                         }
-                        $this->render('complete',array(	
-                        ));
+                        $this->redirect(array('complete'));                        
                     }      
                // }
                 } else {
@@ -191,6 +215,10 @@ class ProposalController extends Controller
             default:
                 break;
         }        
+    }
+    public function actionComplete(){
+        $this->render('complete',array(	
+        ));
     }
     public function loadModel($id)
 	{

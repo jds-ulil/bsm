@@ -30,7 +30,7 @@ class tolak extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required'),
+            array('no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required'),
 			array('no_proposal', 'length', 'max'=>50),
 			array('no_proposal', 'check_proposal',),
 			array('mode, tempLL', 'safe'),
@@ -49,6 +49,7 @@ class tolak extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'rCM' => array( self::HAS_ONE, 'proposal', array('no_proposal'=>'no_proposal')),
 		);
 	}
 

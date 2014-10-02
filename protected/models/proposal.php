@@ -87,7 +87,8 @@ class proposal extends CActiveRecord
                     'rKolEx' => array(self::BELONGS_TO, 'Kolektabilitas', 'existing_kolektabilitas'),
                     'rKolRef' => array(self::BELONGS_TO, 'Kolektabilitas', 'referal_kolektabilitas'),
                     'rSeg' => array(self::BELONGS_TO, 'Segmen', 'segmen'),
-                    'rMar' => array(self::BELONGS_TO, 'pegawai', 'marketing')
+                    'rMar' => array(self::BELONGS_TO, 'pegawai', 'marketing'),
+                    'roMar' => array(self::HAS_ONE, 'pegawai', array('pegawai_id'=>'marketing')),
 		);
 	}
 
