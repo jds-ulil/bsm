@@ -39,6 +39,10 @@ class proposal extends CActiveRecord
     public $nasabahError;
     public $proposalError;
     public $percobaanInput;
+    public $from_date;
+    public $to_date;
+    public $from_plafon;
+    public $to_plafon;
     /**
 	 * @return string the associated database table name
 	 */
@@ -68,7 +72,7 @@ class proposal extends CActiveRecord
 			array('referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas', 'referal_required'),            
             // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('proposal_id, tanggal_pengajuan, segmen, jenis_usaha, marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, status_pengajuan, jenis_nasabah, existing_plafon, existing_os, existing_angsuran, existing_kolektabilitas, referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas, del_flag', 'safe', 'on'=>'search'),
+			array('from_plafon, to_plafon, to_date, from_date, proposal_id, tanggal_pengajuan, segmen, jenis_usaha, marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, status_pengajuan, jenis_nasabah, existing_plafon, existing_os, existing_angsuran, existing_kolektabilitas, referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas, del_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,6 +87,7 @@ class proposal extends CActiveRecord
                     'rKolEx' => array(self::BELONGS_TO, 'Kolektabilitas', 'existing_kolektabilitas'),
                     'rKolRef' => array(self::BELONGS_TO, 'Kolektabilitas', 'referal_kolektabilitas'),
                     'rSeg' => array(self::BELONGS_TO, 'Segmen', 'segmen'),
+                    'rMar' => array(self::BELONGS_TO, 'pegawai', 'marketing')
 		);
 	}
 
@@ -116,6 +121,10 @@ class proposal extends CActiveRecord
 			'referal_kolektabilitas' => 'Referal Kolektabilitas',
 			'del_flag' => 'Del Flag',
 			'namaJenisNasabah' => 'Jenis Nasabah',
+                        'from_date' => "Dari Tanggal",
+                        'to_date' => "Sampai Dengan",
+                        'from_plafon' => "Mulai Dari",
+                        'to_plafon' => "Sampai Dengan",
 		);
 	}
 
@@ -136,13 +145,14 @@ class proposal extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+                $criteria->with=array('rMar'); 
+                
 		$criteria->compare('proposal_id',$this->proposal_id);
 		$criteria->compare('tanggal_pengajuan',$this->tanggal_pengajuan,true);
 		$criteria->compare('plafon',$this->plafon);
 		$criteria->compare('segmen',$this->segmen);
 		$criteria->compare('jenis_usaha',$this->jenis_usaha);
-		$criteria->compare('marketing',$this->marketing,true);
+		$criteria->compare('rMar.nama',$this->marketing,true);
 		$criteria->compare('no_kartu_keluarga',$this->no_kartu_keluarga,true);
 		$criteria->compare('no_buku_nikah',$this->no_buku_nikah,true);
 		$criteria->compare('no_ktp',$this->no_ktp,true);
@@ -160,8 +170,25 @@ class proposal extends CActiveRecord
 		$criteria->compare('referal_fasilitas',$this->referal_fasilitas,true);
 		$criteria->compare('referal_kolektabilitas',$this->referal_kolektabilitas,true);
 		$criteria->compare('del_flag',$this->del_flag);
-
+                
+                if (!empty($this->from_date))
+                $criteria->addCondition('tanggal_pengajuan >= "'.$this->from_date.'" ');
+                if (!empty($this->to_date))
+                $criteria->addCondition('tanggal_pengajuan <= "'.$this->to_date.'" ');		
+                if (!empty($this->from_plafon)) {
+                    $this->from_plafon = str_replace('.','', $this->from_plafon);
+                    $criteria->addCondition('plafon >= "'.$this->from_plafon.'" ');
+                }
+                if (!empty($this->to_plafon)) {
+                    $this->to_plafon = str_replace('.','', $this->to_plafon);
+                $criteria->addCondition('plafon <= "'.$this->to_plafon.'" ');		
+                }
+        $criteria->compare('status_pengajuan', vC::APP_status_proposal_new);
+        //$criteria->addCondition('plafon <= "'.$this->to_plafon.'" ');	
 		return new CActiveDataProvider($this, array(
+                        'pagination'=>array(
+                            'pageSize'=>25,
+                        ),
 			'criteria'=>$criteria,
 		));
 	}
@@ -263,6 +290,17 @@ class proposal extends CActiveRecord
                 }                                    
             return true;
         }
+        public function beforeSave()
+	{
+		if(parent::beforeSave())
+		{     
+            if (!empty($this->plafon)) {
+                $this->plafon = str_replace(".","",  $this->plafon);
+            }
+                     
+		}
+	return true;
+	}
         public function sendNotif() {
 //            $message = new YiiMailMessage();
 //            $message->view = 'input';        

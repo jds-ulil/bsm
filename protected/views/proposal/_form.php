@@ -93,13 +93,19 @@ function menuTypeChange(menyType)
             array('class'=>'span5',
                 'readonly'=>true,
                 'maxlength'=>50)); ?>
-    
-    <?php echo $form->textFieldRow($model_marketing,'jabatan',
+    <?php if (!empty($model_marketing->jabatan)) {
+        echo $form->textFieldRow($model_marketing,'jabatan',
             array('class'=>'span5',
                 'readonly'=>true,
                 'value'=>$model_marketing->rJab->nama_jabatan,
-                'maxlength'=>50)); ?>
-    
+                'maxlength'=>50));                    
+    } else {
+        echo $form->textFieldRow($model_marketing,'jabatan',
+            array('class'=>'span5',
+                'readonly'=>true,
+                'value'=>$model_marketing->jabatan,
+                'maxlength'=>50));            
+    } ?> 
     <?php echo $form->textFieldRow($model_marketing,'no_handphone',
             array('class'=>'span5',
                 'readonly'=>true,

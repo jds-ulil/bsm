@@ -30,7 +30,11 @@ class ProposalController extends Controller
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','getRowForm'),
 				'roles'=>array('admin', 'inputter'),
-			),
+                    ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('report','detail'),
+				'roles'=>array('admin'),
+                    ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -45,8 +49,24 @@ class ProposalController extends Controller
             ),
         );
     }
-    public function actionComplete(){
+    public function actionDetail($id){
+        $model_proposal = $this->loadModel($id);
         
+        if(!empty($model_proposal)) {
+            
+        }
+        $this->render('detail');
+    }
+
+    public function actionReport(){
+        $model_proposal = new proposal('search');        
+        $model_proposal->unsetAttributes();  // clear any default values      
+        $model_proposal->proposal_id = 'empty';
+        if(isset($_GET['proposal']))
+                $model_proposal->attributes=$_GET['proposal'];
+        $this->render('report',array(
+            'model_proposal'=>$model_proposal,
+        ));
     }
     public function actionCreate (){
         $model_proposal=new proposal;
@@ -145,7 +165,7 @@ class ProposalController extends Controller
                 break;
             case 'complete':
                 if ($model_proposal->validNasabah($model_kartu_keluarga)){
-                if ($model_proposal->sendNotif()) {   
+                //if ($model_proposal->sendNotif()) {   
                     if ($model_proposal->save()){
                         if(!empty($model_buku_nikah->no_buku_nikah))
                         $model_buku_nikah->save();
@@ -156,7 +176,7 @@ class ProposalController extends Controller
                         $this->render('complete',array(	
                         ));
                     }      
-                }
+               // }
                 } else {
                     if ($model_proposal->nasabahError == vC::APP_nasabah_error_tolak) {
                          errorNasabah::setTotalNasabahTolak($model_proposal->proposalError);

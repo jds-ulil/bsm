@@ -62,7 +62,7 @@
 							),							
 							array('label'=>'Laporan', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
 								'items'=>array(
-								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('#',)),								   
+								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/report',)),								   
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('#',)),
                                                      /**
                                                     SELOWWW....
