@@ -3,7 +3,7 @@
 /* @var $model MtbUser */
 
 $this->breadcrumbs=array(
-	'Report Proposal Pembiayaan Baru',
+	'Laporan Proposal Pembiayaan Baru',
 	//'Report',
 );
 Yii::app()->clientScript->registerScript('search', "
@@ -16,7 +16,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Kriteria Pembiayaan Baru</h1>
+<h1>Kriteria Pencarian</h1>
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model_proposal'=>$model_proposal,

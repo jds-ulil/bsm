@@ -32,7 +32,7 @@ class TolakController extends Controller
 				'roles'=>array('admin', 'inputter'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('report'),
+				'actions'=>array('report','detail'),
 				'roles'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -40,10 +40,20 @@ class TolakController extends Controller
 			),
 		);
 	}       
+    public function actionDetail($id){
+        $model_tolak = $this->loadModel($id);
+        $this->render('detail',array(         
+        ));
+    }
     public function actionReport(){
         $model_tolak = new tolak('search');
+        $model_tolak->unsetAttributes();  // clear any default values              
+        $listTahapan = CHtml::listData(tolakTahapan::model()->findAll(),'nama','nama');                         
+        if(isset($_GET['tolak']))
+                $model_tolak->attributes=$_GET['tolak'];
         $this->render('report', array(
             'model_tolak' => $model_tolak, 
+            'listTahapan' => $listTahapan,
         ));
     }
     public function actionCreate (){         
@@ -143,6 +153,13 @@ class TolakController extends Controller
          $this->render('complete',array(     
                     ));
     }
+    public function loadModel($id)
+	{
+		$model= tolak::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
     public function loadModelProposal($id)
 	{
 		$model=  proposal::model()->findByPk($id);

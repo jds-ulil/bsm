@@ -22,9 +22,9 @@ $this->pageTitle=Yii::app()->name;
 <!--          <p><a class="btn btn-inverse" href="#">Detail &raquo;</a></p>-->
         </div>
         <div class="span4 kotak HijauFlat">
-          <h2 class="headerKotak">Diproses</h2>
-            <span class="jumlahKotakHijau">122</span>
-            <h2 class="footerKotak">TerOtor</h2>
+          <h2 class="headerKotak">Total</h2>
+            <span class="jumlahKotakHijau"><?php echo $total_tolak; ?></span>
+            <h2 class="footerKotak">Nasabah Ditolak</h2>
 <!--          <p><a class="btn btn-inverse" href="#">Detail &raquo;</a></p>-->
        </div>
         <div class="span4 kotak OrangeFlat">

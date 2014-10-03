@@ -1,4 +1,9 @@
+*~
 assets/*
+/nbproject/private/
 /nbproject/*
 protected/config/main.php
 protected/runtime/*
+
+!.gitkeep
+!.gitignore

@@ -90,4 +90,13 @@ class tolakTahapan extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    public static function getArrTahapan(){
+         $arrTahapan = Yii::app()->db->createCommand()
+                            ->setFetchMode(PDO::FETCH_COLUMN,0)
+                            ->select("nama")
+                            ->from("tolak_tahapan")                            
+                            ->where("`nama` <> '".vC::APP_tahapan_lainya."'")
+                            ->queryAll();  
+                    return $arrTahapan;
+    }
 }

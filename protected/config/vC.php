@@ -26,6 +26,8 @@ class vC {
     const APP_status_proposal_tolak = 2;
     
     const APP_nasabah_error_tolak = 1;
+    
+    const APP_tahapan_lainya = 'Lain-lain';
 }
 
 ?>
