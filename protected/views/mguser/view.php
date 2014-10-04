@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Daftar '.$mj, 'url'=>array('index', 'id'=>$model->hak_akses)),
-	array('label'=>'Tambah '.$mj, 'url'=>array('create', 'id'=>$model->hak_akses)),
+	array('label'=>$mj. ' Baru', 'url'=>array('create', 'id'=>$model->hak_akses)),
 	array('label'=>'Edit User', 'url'=>array('update', 'id'=>$model->user_id)),
 	array('label'=>'Hapus User', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->user_id),'confirm'=>'Are you sure you want to delete this item?')),	
 );
@@ -24,8 +24,9 @@ $this->menu=array(
 	'attributes'=>array(
 		//'user_id',
 		'user_name',
-		'email_address',
-		'rJab.nama_jabatan',
+                'NIP',
+            	'rJab.nama_jabatan',
+		'email_address',	
 		//'password',
 		//'rHak.nama_hak_akses',		
 	),

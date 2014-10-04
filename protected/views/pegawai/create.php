@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Pegawai'=>array('index'),
-	'Tambah',
+	'Baru',
 );
 
 $this->menu=array(
@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Tambah Pegawai</h1>
+<h1>Pegawai Baru</h1>
 
 <?php echo $this->renderPartial('_form', 
         array(

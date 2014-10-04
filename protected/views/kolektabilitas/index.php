@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Tambah Kolektabilitas','url'=>array('create')),	
+	array('label'=>'Kolektabilitas Baru','url'=>array('create')),	
 );
 ?>
 <h2>Daftar Kolektabilitas</h2>

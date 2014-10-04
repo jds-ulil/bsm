@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Pegawais'=>array('index'),
-	$model->pegawai_id,
+	'Pegawai'=>array('index'),
+	$model->nama,
 );
 
 $this->menu=array(
 	array('label'=>'List Pegawai','url'=>array('index')),
-	array('label'=>'Tambah Pegawai','url'=>array('create')),
+	array('label'=>'Pegawai Baru','url'=>array('create')),
 	array('label'=>'Edit Pegawai','url'=>array('update','id'=>$model->pegawai_id)),
 	array('label'=>'Hapus Pegawai','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->pegawai_id),'confirm'=>'Are you sure you want to delete this item?')),
 );
@@ -24,7 +24,7 @@ $this->menu=array(
 		'rJab.nama_jabatan',
 		'no_handphone',
 		'email',
-		'unit_kerja',
+		'rUnK.nama',
 		'email_atasan',
 	),
 )); ?>

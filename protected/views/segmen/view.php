@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Segmen','url'=>array('index')),
-	array('label'=>'Tambah Segmen','url'=>array('create')),
+	array('label'=>'Daftar Segmen','url'=>array('index')),
+	array('label'=>'Segmen Baru','url'=>array('create')),
 	array('label'=>'Edit Segmen','url'=>array('update','id'=>$model->segmen_id)),
 	array('label'=>'Delete Segmen','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->segmen_id),'confirm'=>'Are you sure you want to delete this item?')),
 	//array('label'=>'Manage Segmen','url'=>array('admin')),

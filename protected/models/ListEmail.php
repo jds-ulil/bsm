@@ -32,15 +32,16 @@ class ListEmail extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email_address, jabatan_id, nama_pengguna, status', 'required'),
-			array('status', 'numerical', 'integerOnly'=>true),
+			array('NIP, email_address, jabatan_id, nama_pengguna, status', 'required', 'on'=>'create'),
+			array('NIP, email_address, jabatan_id, nama_pengguna, status', 'required', 'on'=>'update'),
+			//array('status', 'numerical', 'integerOnly'=>true),
 			array('email_address', 'length', 'max'=>100),
 			array('email_address', 'email'),
 			array('email_address', 'unique'),
 			array('nama_pengguna, jabatan_id', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_list_email, email_address, nama_pengguna, jabatan_id, status', 'safe', 'on'=>'search'),
+			array('NIP, id_list_email, email_address, nama_pengguna, jabatan_id, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +69,7 @@ class ListEmail extends CActiveRecord
 			'nama_pengguna' => 'Nama Pemilik',
 			'jabatan_id' => 'Jabatan',
 			'status' => 'Email Notif',
+                        'NIP' => 'NIP',
 		);
 	}
 
@@ -95,6 +97,7 @@ class ListEmail extends CActiveRecord
 		$criteria->compare('nama_pengguna',$this->nama_pengguna,true);
 		$criteria->compare('rJab.nama_jabatan',$this->jabatan_id,true);		        
 		$criteria->compare('rNot.nama',$this->status,true);
+		$criteria->compare('NIP',$this->NIP,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

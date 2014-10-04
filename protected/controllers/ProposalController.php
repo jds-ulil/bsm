@@ -29,11 +29,11 @@ class ProposalController extends Controller
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','getRowForm','complete'),
-				'roles'=>array('admin', 'inputter'),
+				'roles'=>array('admin', 'inputter', 'approval'),
                     ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('report','detail'),
-				'roles'=>array('admin'),
+				'roles'=>array('admin','approval'),
                     ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -94,7 +94,7 @@ class ProposalController extends Controller
         ));
     }
     public function actionCreate (){
-        $model_proposal=new proposal;
+        $model_proposal=new proposal('create');
         $model_proposal->jenis_nasabah = 1;
         
         $model_marketing = new pegawai;  

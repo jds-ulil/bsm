@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Unit Kerja','url'=>array('index')),
-	array('label'=>'Tambah Unit Kerja','url'=>array('create')),
+	array('label'=>'Daftar Unit Kerja','url'=>array('index')),
+	array('label'=>'Unit Kerja Baru','url'=>array('create')),
 	array('label'=>'Edit Unit Kerja','url'=>array('update','id'=>$model->unit_kerja_id)),
 	array('label'=>'Hapus Unit Kerja','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->unit_kerja_id),'confirm'=>'Are you sure you want to delete this item?')),	
 );

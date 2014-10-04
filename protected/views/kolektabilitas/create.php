@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Tambah Kolektabilitas</h1>
+<h1>Kolektabilitas Baru</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

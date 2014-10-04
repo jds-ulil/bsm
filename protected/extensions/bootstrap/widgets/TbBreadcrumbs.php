@@ -36,7 +36,7 @@ class TbBreadcrumbs extends CBreadcrumbs
 	 * @throws CException
 	 */
 	public function run()
-	{
+	{            
 		// Hide empty breadcrumbs.
 		if (empty($this->links))
 			return;
@@ -62,7 +62,14 @@ class TbBreadcrumbs extends CBreadcrumbs
 				$links[] = $this->renderItem($this->encodeLabel ? CHtml::encode($url) : $url, true);
 		}
 
-		echo CHtml::tag('ul', $this->htmlOptions, implode('', $links));
+		echo "<div class='row'>
+                            <div class='span9'>                            
+                        ".CHtml::tag('ul', $this->htmlOptions, implode('', $links)).
+                    "</div>
+                        <div class='span2 offset1 text-right'>                            
+                        <img src='images/logo_bsm.jpg' width='120px'>
+                        </div>                    
+                    </div>";
 	}
 
 	/**

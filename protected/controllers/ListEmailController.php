@@ -25,23 +25,15 @@ class ListEmailController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('@'),
-			),
+		return array(			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'sendmail'),
+				'actions'=>array('sendmail'),
 				'roles'=>array('inputter','approval','admin'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update',  'sendmail'),
+				'actions'=>array('view','index','create','update',  'sendmail', 'delete'),
 				'roles'=>array('approval','admin'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('delete'),
-				'roles'=>array('admin'),
-			),
+			),			
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -77,7 +69,7 @@ class ListEmailController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ListEmail;
+		$model=new ListEmail('create');
         $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
         $listNotif = CHtml::listData(EmailNotif::model()->findAll(), 'email_notif_id', 'nama');
 		// Uncomment the following line if AJAX validation is needed

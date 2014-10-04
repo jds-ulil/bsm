@@ -74,18 +74,26 @@ h3 {
 /*    font-size: 2em !important;*/
     color: green !important;
 }
-h1 {
+.help-block {
+   color: grey !important;
+   font-size:12px !important;
+}
+/*h1 {
     font-family: Dekar !important;
     font-size: 3em !important;
     color: grey !important;
-}
+h1.normal {
+    font-family: sans-serif;  
+    color: red !important;
+}*/
 .loginPage {
-    max-width: 500px !important;
-    background-color: #EDE8EA;
+    max-width: 800px !important;
+    min-height:400px !important;    
     padding: 20px !important;
     margin-bottom: 20px !important;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid;
 }
 .selamatDatang {
     font-family: "FLllna2U.ttf";    
@@ -111,8 +119,8 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {    
   border: none !important; ;
-  border-bottom: 1px solid #ddd !important;   
-  background-color: #EEEEEE !important;
+  border: 1px solid #ddd !important;   
+/*  background-color: #EEEEEE !important;*/
   border-radius: 0px !important;
 }
 .form-horizontal .control-group {

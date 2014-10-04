@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Tambah Segmen','url'=>array('create')),	
+	array('label'=>'Segmen Baru','url'=>array('create')),	
 );
 ?>
 

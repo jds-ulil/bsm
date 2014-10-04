@@ -28,7 +28,7 @@ class KolektabilitasController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view','update','delete','create'),
-				'roles'=>array('admin'),
+				'roles'=>array('admin','approval'),
 			),			
 			array('deny',  // deny all users
 				'users'=>array('*'),

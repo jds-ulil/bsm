@@ -1,15 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Kolektabilitases'=>array('index'),
+	'Kolektabilitas'=>array('index'),
 	$model->kolektabilitas_id=>array('view','id'=>$model->kolektabilitas_id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List Kolektabilitas','url'=>array('index')),
-	array('label'=>'Create Kolektabilitas','url'=>array('create')),
-	array('label'=>'View Kolektabilitas','url'=>array('view','id'=>$model->kolektabilitas_id)),
-	array('label'=>'Manage Kolektabilitas','url'=>array('admin')),
+	array('label'=>'Daftar Kolektabilitas','url'=>array('index')),
+	array('label'=>'Kolektabilitas Baru','url'=>array('create')),
+	array('label'=>'Detail Kolektabilitas','url'=>array('view','id'=>$model->kolektabilitas_id)),	
 );
 ?>
 

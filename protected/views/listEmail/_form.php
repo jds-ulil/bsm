@@ -10,6 +10,8 @@
 
 	<?php echo $form->textFieldRow($model,'email_address',array('class'=>'span5','maxlength'=>100)); ?>
 
+	<?php echo $form->textFieldRow($model,'NIP',array('class'=>'span5','maxlength'=>50)); ?>
+        
 	<?php echo $form->textFieldRow($model,'nama_pengguna',array('class'=>'span5','maxlength'=>50)); ?>
 
     <?php echo $form->dropDownListRow($model, 'jabatan_id', $list,

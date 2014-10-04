@@ -3,6 +3,7 @@
 	'method'=>'get',
 )); ?>
 <?php echo $form->textFieldRow($model,'user_name',array('class'=>'span5')); ?>	
+<?php echo $form->textFieldRow($model,'NIP',array('class'=>'span5')); ?>	
 <?php echo $form->textFieldRow($model,'email_address',array('class'=>'span5')); ?>	
 <?php echo $form->dropDownListRow($model,'jabatan_id', $list, array(
 	    'empty'=>'Semua Jabatan',

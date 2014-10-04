@@ -15,10 +15,10 @@ class UserIdentity extends CUserIdentity
 	 * against some persistent user identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
-	private $_id;
+    private $_id;
     public function authenticate()
     {
-        $record=User::model()->findByAttributes(array('email_address'=>$this->username));
+        $record=User::model()->find("SUBSTR(email_address,1,INSTR(email_address, '@')) = '".$this->username."'");
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if(!CPasswordHelper::verifyPassword($this->password, $record->password)){

@@ -52,7 +52,7 @@ class Jabatan extends CActiveRecord
 	{
 		return array(
 			'id_jabatan' => 'Id Jabatan',
-			'nama_jabatan' => 'Nama Jabatan',
+			'nama_jabatan' => 'Jabatan',
 		);
 	}
 

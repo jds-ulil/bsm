@@ -32,7 +32,8 @@ class pegawai extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nama, NIP', 'required'),
+			array('nama, NIP', 'required', 'on'=>'create'),
+			array('nama, NIP', 'required', 'on'=>'update'),
                         array('NIP, no_urut', 'unique'),
 			array('jabatan, unit_kerja', 'numerical', 'integerOnly'=>true),
 			array('no_urut', 'length', 'max'=>10),

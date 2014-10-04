@@ -37,7 +37,7 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			'rememberMe'=>'Remember me next time',
-            'username'=>'Alamat Email',
+                        'username'=>'Username',
 		);
 	}
 
@@ -49,9 +49,11 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
-			$this->_identity=new UserIdentity($this->username,$this->password);
+//                    $parts = explode('@', $this->username);
+//                    $userName = $parts[0].'@';
+			$this->_identity=new UserIdentity($this->username.'@',$this->password);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Email dan Password tidak cocok');
+				$this->addError('password','Username dan Password tidak cocok');
 		}
 	}
 

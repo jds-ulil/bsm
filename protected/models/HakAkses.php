@@ -52,7 +52,7 @@ class HakAkses extends CActiveRecord
 	{
 		return array(
 			'id_hak_akses' => 'Id Hak Akses',
-			'nama_hak_akses' => 'Nama Hak Akses',
+			'nama_hak_akses' => 'Hak Akses',
 		);
 	}
 

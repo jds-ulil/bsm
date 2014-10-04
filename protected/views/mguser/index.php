@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'Daftar User', 'url'=>array('index')),
-	array('label'=>'Tambah '.$mj, 'url'=>array('create','id'=>$model->hak_akses)),
+	array('label'=>$mj.' Baru', 'url'=>array('create','id'=>$model->hak_akses)),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manajemen <?php echo $mj; ?></h1>
+<h1 class="loginHead">User <?php echo $mj; ?></h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -43,13 +43,14 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 	//	'user_id',
 		'user_name',
-		'email_address',
-         array(
+                'NIP',
+                array(
                 'name'=>'jabatan_id',
                 'value'=>'$data->rJab->nama_jabatan',
-            ),        			
+                ),        	
+		'email_address',         		
         array(
-            'header' => 'Proses',
+            'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 			'template'=>'{view}{update}{delete}',
 			'htmlOptions' => array(

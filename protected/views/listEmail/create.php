@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'List Email'=>array('index'),
-	'Tambah',
+	'Baru',
 );
 
 $this->menu=array(

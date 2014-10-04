@@ -6,10 +6,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Segmen','url'=>array('index')),
-	array('label'=>'Create Segmen','url'=>array('create')),
-	array('label'=>'View Segmen','url'=>array('view','id'=>$model->segmen_id)),
-	array('label'=>'Manage Segmen','url'=>array('admin')),
+	array('label'=>'Daftar Segmen','url'=>array('index')),
+	array('label'=>'Segmen Baru','url'=>array('create')),
+	array('label'=>'Detail Segmen','url'=>array('view','id'=>$model->segmen_id)),	
 );
 ?>
 

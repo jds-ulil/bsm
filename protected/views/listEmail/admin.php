@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List ListEmail','url'=>array('index')),
-	array('label'=>'Tambah Email','url'=>array('create')),
+	array('label'=>'Email Baru','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -33,66 +33,6 @@ $('.search-form form').submit(function(){
     'listNotif'=>$listNotif,
 )); ?>
 </div><!-- search-form -->
-<?php 
-    if (Yii::app()->user->checkAccess('inputter')) {
-	?>
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'list-email-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'filterPosition'=>'footer',
-	'columns'=>array(
-		//'id_list_email',
-		'email_address',
-		'nama_pengguna',
-        array(
-                'name'=>'jabatan_id',
-                'value'=>'$data->rJab->nama_jabatan',
-            ),
-        array(
-                'name'=>'status',
-                'value'=>'$data->rNot->nama',
-            ),
-		//'jabatan_id',
-		//'status',
-		array
-		(
-		    'class'=>'bootstrap.widgets.TbButtonColumn',
-		    'template'=>'{view}',
-		)
-	),
-)); ?>	
-<?php	
-    } else if (Yii::app()->user->checkAccess('approval')) {
-?>
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'list-email-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'filterPosition'=>'footer',
-	'columns'=>array(
-		//'id_list_email',
-		'email_address',
-		'nama_pengguna',
-        array(
-                'name'=>'jabatan_id',
-                'value'=>'$data->rJab->nama_jabatan',
-            ),
-        array(
-                'name'=>'status',
-                'value'=>'$data->rNot->nama',
-            ),
-		//'jabatan_id',
-		//'status',
-		array
-		(
-		    'class'=>'bootstrap.widgets.TbButtonColumn',
-		    'template'=>'{view}{update}',
-		)
-	),
-)); ?>
-
-<?php } if (Yii::app()->user->checkAccess('admin')) { ?> 
     <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'list-email-grid',
 	'dataProvider'=>$model->search(),
@@ -102,14 +42,15 @@ $('.search-form form').submit(function(){
 		//'id_list_email',
 		'email_address',
 		'nama_pengguna',
+                'NIP',
         array(
                 'name'=>'jabatan_id',
                 'value'=>'$data->rJab->nama_jabatan',
             ),
-        array(
-                'name'=>'status',
-                'value'=>'$data->rNot->nama',
-            ),
+    //        array(
+    //                'name'=>'status',
+    //                'value'=>'$data->rNot->nama',
+    //            ),
 		//'jabatan_id',
 		//'status',
 		array(
@@ -118,4 +59,4 @@ $('.search-form form').submit(function(){
 		),
 	),
 )); ?>
-    <?php }//end else ?>
+    

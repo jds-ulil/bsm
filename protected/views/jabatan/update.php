@@ -6,9 +6,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-    array('label'=>'List Jabatan','url'=>array('index')),
-	array('label'=>'Create Jabatan','url'=>array('create')),
-	array('label'=>'View Jabatan','url'=>array('view','id'=>$model->id_jabatan)),	
+    array('label'=>'Daftar Jabatan','url'=>array('index')),
+	array('label'=>'Jabatan Baru','url'=>array('create')),
+	array('label'=>'Detail Jabatan','url'=>array('view','id'=>$model->id_jabatan)),	
 );
 ?>
 

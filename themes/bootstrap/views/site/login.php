@@ -1,21 +1,16 @@
-
-<?php
-/* @var $this SiteController */
-/* @var $model LoginForm */
-/* @var $form CActiveForm  */
-
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
-?>
 <div class="loginPage">
-<h1 class="loginHead">Login Form</h1>
-
-<p class="loginText">Silahkan isi kolom dibawah dengan data login anda:</p>
-
-<div class="form">
-
+    <div class="row">
+        <div class="span2"><img src="images/logo_bsm.jpg"></div>
+        <div class="span6">
+            <div class="row">
+                <div class="span6 text-center"><h1>SADar NaDi kAla PenTiNG</h1></div>
+                <div class="span6 text-center"><h5>Sistem Aplikasi Nasabah Ditolak,Menunggak Akhir Bulan & Pelunasan Tidak Normal/<i>Strange</i></h5></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">        
+        <div class="span offset2">
+        
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'login-form',
     'type'=>'horizontal',
@@ -25,36 +20,38 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note loginText">Kolom dengan tanda <span class="required">*</span> harus di isi.</p>
+            <p class="note loginText">&nbsp;</p>                    
 
-	<?php echo $form->textFieldRow($model,'username', array(        
+	<?php echo $form->textFieldRow($model,'username', array(    
+            'hint'=>'Sama dengan username email<br/>
+                    Contoh:<b>alamatemail</b> abc@bsm.co.id, maka username adalah <b>abc</b>',
             'labelOptions' => array(
                 'class'=>'loginTextName'            
           ),
     )); ?>
     <div class="loginText">
 	<?php echo $form->passwordFieldRow($model,'password',array(            
-        'hint'=>'User/Password Case Sensitive',
+       
         'labelOptions' => array (
             'class' => 'loginTextName',
         ),
     )); ?>
-    </div>
-    <div class="loginTextName">
-	<?php echo $form->checkBoxRow($model,'rememberMe', array (            
-            'class' => 'loginTextName',        
-    )); ?>
-        </div>
-
-	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-            'buttonType'=>'submit',
-            'type'=>'primary',
-            'label'=>'Login',
-        )); ?>
-	</div>
-
+    </div>    
+	<?php //echo $form->checkBoxRow($model,'rememberMe', array (            
+          //  'class' => 'loginTextName',        
+   // )); ?>        	
+                    <div class="control-group ">
+                                &nbsp;
+                    <div class="controls">           
+                        <?php $this->widget('bootstrap.widgets.TbButton', array(
+                        'buttonType'=>'submit',
+                        'type'=>'danger',
+                        'label'=>'LOGIN',
+                    )); ?>	
+                    </div>
+                    </div>
+            
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
+        </div>
+    </div>
 </div>

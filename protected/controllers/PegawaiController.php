@@ -28,7 +28,7 @@ class PegawaiController extends Controller
 		return array(			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create', 'update', 'index', 'view', 'delete', 'autocompletePegawai'),
-				'roles'=>array('admin'),
+				'roles'=>array('admin','approval'),
 			),			
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -61,7 +61,7 @@ class PegawaiController extends Controller
     }
 	public function actionCreate()
 	{
-		$model=new pegawai;
+		$model=new pegawai('create');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -90,7 +90,7 @@ class PegawaiController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+               // $model->scenario = 'update';
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
                 $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');

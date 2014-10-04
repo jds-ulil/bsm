@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Tambah Unit Kerja','url'=>array('create')),	
+	array('label'=>'Unit Kerja Baru','url'=>array('create')),	
 );
 ?>
 

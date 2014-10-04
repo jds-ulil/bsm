@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Tambah Pegawai','url'=>array('create')),	
+	array('label'=>'Pegawai Baru','url'=>array('create')),	
 );
 
 Yii::app()->clientScript->registerScript('search', "

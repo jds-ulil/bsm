@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Tambah Email Address','url'=>array('create')),
+	array('label'=>'Email Baru','url'=>array('create')),
 	array('label'=>'Manajemen Email Address','url'=>array('admin')),
 );
 ?>

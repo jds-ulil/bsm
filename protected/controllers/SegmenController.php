@@ -28,7 +28,7 @@ class SegmenController extends Controller
 		return array(			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update','index','view','delete'),
-				'roles'=>array('admin'),
+				'roles'=>array('admin','approval'),
 			),			
 			array('deny',  // deny all users
 				'users'=>array('*'),

@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-    array('label'=>'List Jabatan','url'=>array('index')),
-	array('label'=>'Buat Jabatan','url'=>array('create')),
+    array('label'=>'Daftar Jabatan','url'=>array('index')),
+	array('label'=>'Jabatan Baru','url'=>array('create')),
 	array('label'=>'Edit Jabatan','url'=>array('update','id'=>$model->id_jabatan)),
 	array('label'=>'Hapus Jabatan','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_jabatan),'confirm'=>'Are you sure you want to delete this item?')),	
 );

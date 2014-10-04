@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs=array(
 	'Unitkerja'=>array('index'),
-	'Tambah',
+	'Baru',
 );
 
 $this->menu=array(
-	array('label'=>'List Unit Kerja','url'=>array('index')),	
+	array('label'=>'Daftar Unit Kerja','url'=>array('index')),	
 );
 ?>
 

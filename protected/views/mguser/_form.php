@@ -17,6 +17,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
     <?php echo $form->textFieldRow($model,'user_name',array('class'=>'span3')); ?>
+    <?php echo $form->textFieldRow($model,'NIP',array('class'=>'span3')); ?>
 <?php if ($model->isNewRecord) {    ?>
           <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span3')); ?>
             <?php echo $form->passwordFieldRow($model,'confirmPass',array('class'=>'span3')); ?>    

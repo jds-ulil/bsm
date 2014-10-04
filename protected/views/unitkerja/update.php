@@ -6,9 +6,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Unit Kerja','url'=>array('index')),
-	array('label'=>'Tambah Unit Kerja','url'=>array('create')),
-	array('label'=>'Lihat Unit Kerja','url'=>array('view','id'=>$model->unit_kerja_id)),	
+	array('label'=>'Daftar Unit Kerja','url'=>array('index')),
+	array('label'=>'Unit Kerja Baru','url'=>array('create')),
+	array('label'=>'Detail Unit Kerja','url'=>array('view','id'=>$model->unit_kerja_id)),	
 );
 ?>
 

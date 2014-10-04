@@ -59,14 +59,15 @@ class proposal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('segmen,plafon, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, no_proposal, jenis_usaha', 'required'),
+			array('nama_nasabah, segmen,plafon, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'create'),
+			array('nama_nasabah, segmen,plafon, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'update'),
 			array('segmen, jenis_nasabah, existing_kolektabilitas, del_flag', 'numerical', 'integerOnly'=>true),
 			array('marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, existing_plafon, referal_nama, referal_sektor_usaha', 'length', 'max'=>50),
-			array('no_proposal', 'unique'),
+			//array('no_proposal', 'unique'),
 			array('status_pengajuan', 'length', 'max'=>3),
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
-			array('tanggal_pengajuan, referal_alamat, mode', 'safe'),
+			array('tanggal_pengajuan,no_proposal, referal_alamat, mode', 'safe'),
                         array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
 			array('existing_os, existing_angsuran, existing_kolektabilitas, existing_plafon', 'existing_required'),
 			array('referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas', 'referal_required'),            

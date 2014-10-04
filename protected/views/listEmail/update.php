@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Email','url'=>array('index')),
-	array('label'=>'Tambah Email','url'=>array('create')),
+	array('label'=>'Email Baru','url'=>array('create')),
 	array('label'=>'Lihat Detail','url'=>array('view','id'=>$model->id_list_email)),
 	//array('label'=>'Manajemen List Email','url'=>array('admin')),
 );

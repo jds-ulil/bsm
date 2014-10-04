@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
         array('label'=>'Daftar '.$mj, 'url'=>array('index', 'id'=>$model->hak_akses)),
-	array('label'=>'Tambah '.$mj, 'url'=>array('create', 'id'=>$model->hak_akses)),
+	array('label'=>$mj.' Baru', 'url'=>array('create', 'id'=>$model->hak_akses)),
 	array('label'=>'Detail User', 'url'=>array('view', 'id'=>$model->user_id)),		
 );
 ?>

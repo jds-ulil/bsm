@@ -10,7 +10,7 @@
         <div id="sidebar">
         <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
-                'title'=>'Operations',
+                'title'=>'ACTION',
             ));
             $this->widget('bootstrap.widgets.TbMenu', array(
                 'items'=>$this->menu,

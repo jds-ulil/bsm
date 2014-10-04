@@ -15,7 +15,7 @@ class vC {
     const APP_id_hak_akses_approval = 2;    
     const APP_id_hak_akses_admin = 1;    
     const APP_label_admin = "Admin";
-    const APP_label_inputer = "Inputter";
+    const APP_label_inputer = "Inputer";
     const APP_label_approval = "Approval";
     
     const APP_jenis_nasabah_WIC = 1;
