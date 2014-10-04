@@ -16,7 +16,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Kriteria Pencarian</h1>
+<h1 class="loginHead">Kriteria Pencarian</h1>
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model_proposal'=>$model_proposal,

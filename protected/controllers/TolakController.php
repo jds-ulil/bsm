@@ -85,7 +85,7 @@ class TolakController extends Controller
                     
                     if ($model_tolak->validate()) {                        
                         $model_proposal = 
-                            proposal::model()->find("del_flag = 0 AND status_pengajuan = 0 AND no_proposal ='".$model_tolak->no_proposal."'");                            
+                            proposal::model()->find("del_flag = 0 AND status_pengajuan = 0 AND proposal_id ='".$model_tolak->proposal_id."'");                            
                         $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
                         if(empty($model_proposal)){
                             $model_proposal = new proposal;
@@ -97,17 +97,17 @@ class TolakController extends Controller
                             $model_marketing = new pegawai;
                         }                        
                         $model_ktp =
-                        proposalKtp::model()->find("no_proposal='".$model_proposal->no_proposal."'");
+                        proposalKtp::model()->find("proposal_id='".$model_proposal->proposal_id."'");
                         if(empty($model_ktp)){
                             $model_ktp = new proposalKtp;
                         }                        
                         $model_buku_nikah =
-                        proposalBukuNikah::model()->find("no_proposal='".$model_proposal->no_proposal."'");
+                        proposalBukuNikah::model()->find("proposal_id='".$model_proposal->proposal_id."'");
                         if(empty($model_buku_nikah)){
                             $model_buku_nikah = new proposalBukuNikah;
                         }   
                         $model_kartu_keluarga =
-                                proposalKartuKeluarga::model()->findAll("no_proposal='".$model_proposal->no_proposal."'");
+                                proposalKartuKeluarga::model()->findAll("proposal_id='".$model_proposal->proposal_id."'");
                         if(empty($model_kartu_keluarga)){
                             $model_kartu_keluarga = array(new proposalKartuKeluarga);
                         }

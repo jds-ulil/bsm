@@ -17,6 +17,7 @@ $this->menu=array(
             'listSegmen'=>$listSegmen,
             'listAgama'=>$listAgama,
             'listKolektabilitas'=>$listKolektabilitas,
+            'listJenisIdentitas'=>$listJenisIdentitas,
             'model_marketing'=>$model_marketing,
             'model_kartu_keluarga'=>$model_kartu_keluarga,  
             'model_kartu_keluarga'=>$model_kartu_keluarga,

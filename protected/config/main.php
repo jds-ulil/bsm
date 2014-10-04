@@ -91,6 +91,10 @@ return array(
                 'class' => 'ext.yii-mail.YiiMail',
                 'transportType' => 'smtp',
                 'transportOptions' => array(
+//                    'host' => 'webmail.bsm.co.id',
+//                    'username' => 'rnur1780',
+//                    'password' => 'yaarabbku01',
+//                    'port' => '465',
                     'host' => 'ssl://smtp.gmail.com',
                     'username' => 'oelhil@gmail.com',
                     'password' => 'j4mg4d4ngsa',

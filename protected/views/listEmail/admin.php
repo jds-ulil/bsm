@@ -22,7 +22,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Daftar List Email</h1>
+<h1 class="loginHead">Daftar List Email</h1>
 
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>

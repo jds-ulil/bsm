@@ -9,25 +9,11 @@
           font-family: sans-serif;
       }
     .tableData tbody tr:nth-child(odd) {
-        background-color: #ccc;
+/*        background-color: #ccc;*/
     }   
     table.main {
         min-width: 800px;        
-    }
-    @media (max-width: 980px) {
-        table.main {
-            min-width: 600px;
-        }
-    }
-    @media (max-width: 640px) {
-        table.main {
-            min-width: 400px;
-        }
-    }
-    td.tableName {
-      text-align: right; padding-right: 5px;  
-      width: 30%;
-    }
+    }    
   </style>
 </head>
     
@@ -35,62 +21,50 @@
  <table border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
    <td>
-       <table class="main" align="center" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-         <td>
-             <table align="center" cellpadding="0" cellspacing="0" width="100%">
-                 <tr>
-                     <td style="text-align: right">
-                     <span style="font-size: 14px;"><i><?php echo date("Y").'/'.date("m").'/'.date("d");?></i></span>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td>
-                         <span style="font-size: 16px;"><i>Laporan Proses Input</i></span>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td>
-                         <span style="font-size: 24px;color: green;"><b>Inputan Nasabah</b></span>
-                         <hr></hr>
-                     </td>
-                 </tr>
-             </table>          
-         </td>
-        </tr>
-        <tr>
+       <table class="main" align="center" border="0" cellpadding="0" cellspacing="0">       
          <td bgcolor="#ffffff">
-             <p>Berikut adalah data nasabah yang diinputkan :</p>
-             <table class="tableData" width="100%" style="border:1px solid #A7C942;">
+             <p>Asalamualaikum wr wb,</p>
+             <p>Bapak /Ibu, berikut proposal baru pada KCP  <?php echo $nasabah->nama_kcp; ?>,dengan data sebagai berikut :</p>
+             <table class="tableData" width="100%">
                  <thead>
-                 <tr style="background-color:#A7C942;">                                              
-                     <td class="tableName">Nama</td>
-                     <td><?php echo $nasabah->nama; ?></td>
+                 <tr>                                              
+                     <td class="tableName" style="width: 30%;text-align: right; padding-right: 5px; ">Nama Marketing:</td>
+                     <td><?php echo $marketing->nama; ?></td>
                  </tr>
                 </thead>
                  <tbody>
                  <tr>
-                     <td class="tableName">No KK</td>
-                     <td><?php echo $nasabah->kartukeluarga_id; ?></td>
+                     <td class="tableName" style="width: 30%;text-align: right; padding-right: 5px; ">Tanggal Pengajuan:</td>
+                     <td><?php echo $proposal->tanggal_pengajuan; ?></td>
                  </tr>
                  <tr>
-                     <td class="tableName">Alamat</td>
-                     <td><?php echo $nasabah->alamat; ?></td>
+                     <td class="tableName" style="width: 30%;text-align: right; padding-right: 5px; ">Nama Calon Nasabah:</td>
+                     <td><?php echo $proposal->nama_nasabah; ?></td>
+                 </tr>                 
+                 <tr>
+                     <td class="tableName" style="width: 30%;text-align: right; padding-right: 5px; ">Plafon:</td>
+                     <td>Rp<?php echo $proposal->plafon; ?></td>
+                 </tr>                 
+                 <tr>
+                     <td class="tableName" style="width: 30%;text-align: right; padding-right: 5px; ">Segmen:</td>
+                     <td><?php echo $proposal->rSeg->nama; ?></td>
+                 </tr>                 
+                 <tr>
+                     <td class="tableName" style="width: 30%;text-align: right; padding-right: 5px; ">Jenis Usaha:</td>
+                     <td><?php echo $proposal->jenis_usaha; ?></td>
                  </tr>                 
                 </tbody>
              </table>             
              <p>
-             Input dilakukan oleh : <?php echo $inputer; ?>
+             Demikian yang dapat disampaikan. Semoga pemberitahuan ini bermanfaat dan dapat dipergunakan demi kemajuan 
+             PT Bank Syariah Mandiri.
+             </p>
+             <p>
+                 Wassalamualaikum Wr Wb
              </p>
          </td>
         </tr>
-        <tr>
-         <td>
-             <p>
-             Demikian Pemberitahuan ini kami sampaikan. <br />
-             Terima Kasih.
-             </p>
-         </td>
+        <tr>        
         </tr>
        </table>
    </td>

@@ -31,9 +31,9 @@ class tolak extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required'),
-			array('no_proposal', 'length', 'max'=>50),
-			array('no_proposal', 'check_proposal',),
+            array('proposal_id, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required'),
+			array('proposal_id', 'length', 'max'=>50),
+			array('proposal_id', 'check_proposal',),
 			array('mode, tempLL', 'safe'),
                         array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
@@ -61,7 +61,7 @@ class tolak extends CActiveRecord
 	{
 		return array(
 			'tolak_id' => 'Tolak',
-			'no_proposal' => 'No Proposal',
+			'proposal_id' => 'No Proposal ID',
 			'tanggal_tolak' => 'Tanggal Tolak',
 			'alasan_ditolak' => 'Alasan Ditolak',
 			'tahap_penolakan' => 'Tahap Penolakan',

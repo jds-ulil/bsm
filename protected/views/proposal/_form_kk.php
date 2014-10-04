@@ -10,6 +10,11 @@ Data Anggota Kartu Keluarga
             <?php echo $form->textField($model, "[$key]nama", array('class'=>'span5'));?>   
             <?php echo $form->error($model,"[$key]nama"); ?>
         </div>             
+        <?php echo $form->labelEx($model, "[$key]tempat_lahir",  array('class'=>'control-label'));?>
+        <div class="controls">
+            <?php echo $form->textField($model, "[$key]tempat_lahir", array('class'=>'span5'));?>   
+            <?php echo $form->error($model,"[$key]tempat_lahir"); ?>
+        </div>             
         <?php echo $form->labelEx($model, "[$key]tanggal_lahir",  array('class'=>'control-label'));?>
         <div class="controls">            
         <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
@@ -19,7 +24,7 @@ Data Anggota Kartu Keluarga
 	    'mode'=>'date', //use "time","date" or "datetime" (default)
 	    'options'=>
                 array(
-                    'dateFormat'=>'yy-mm-dd',
+                    'dateFormat'=>'dd/mm/yy',
                     'changeMonth'=>true,
                     'changeYear'=>true,
                     'yearRange'=>'1950:2050',

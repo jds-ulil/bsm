@@ -1,25 +1,14 @@
 <?php
 
 $this->breadcrumbs=array(	
-	'Failed Insert Proposal',
-);
-
-$this->menu=array(
-	//array('label'=>'List Pegawai','url'=>array('index')),	
+	'Failed Input Proposal',
 );
 ?>
 <div class="alert alert-danger">
-  Proposal Tidak Dapat di Proses
+  Proposal Tidak Dapat di disimpan
   <br />
-  <?php 
-    if($model_proposal->nasabahError == vC::APP_nasabah_error_tolak) {
-        ?>
-  <b>Error Code:</b>Termasuk Nasabah Ditolak<br/>
-  <b>No proposal ditolak:</b><?php echo $model_proposal->proposalError; ?><br/>
-  <b>Percobaan Pengajuan:</b><?php echo $model_proposal->percobaanInput; ?><br/>
-        <?php
-    }
-  ?>
+  <b>Gagal Mengirim Email Notif</b>
+  <b>Silahkan Periksa Kembali Jaringan Dan Configurasi Email</b>   
 </div>
 <div class="form-actions">
     <?php echo CHtml::link('Input Proposal',array('proposal/create'), array('class'=>'btn btn-primary')); ?>        

@@ -35,7 +35,8 @@ class NasabahTolakController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}    
+	}
+        
     public function actions() {
         return array(
             'getRowForm' => array(

@@ -1,6 +1,6 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'list-email-form',
-	'enableAjaxValidation'=>true,    
+	'enableAjaxValidation'=>false,    
 	'type'=>'horizontal',
 )); ?>
 
@@ -25,7 +25,7 @@
                 $listNotif,
                 array(
                     'empty'=>'Pilih Notif Email',
-                    'class'=>'span5'
+                    'class'=>'span6'
                     )
             ); ?>    
 

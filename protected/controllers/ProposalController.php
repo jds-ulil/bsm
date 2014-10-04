@@ -18,7 +18,18 @@ class ProposalController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
-
+        public function init() {
+        parent::init();
+        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+        }
+        public function handleError(CEvent $event)
+            {            
+            if($event instanceof CErrorEvent)
+            {       
+            $this->redirect(array('Error'));
+          }
+            $event->handled = TRUE;
+        }
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -28,7 +39,7 @@ class ProposalController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','getRowForm','complete'),
+				'actions'=>array('create','getRowForm','complete','error','tes'),
 				'roles'=>array('admin', 'inputter', 'approval'),
                     ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -48,7 +59,12 @@ class ProposalController extends Controller
                 'modelClass' => 'proposalKartuKeluarga'
             ),
         );
-    }
+    }   
+    public function actionError()
+	{        
+    $this->render('error',array(			
+		));    
+	}
     public function actionDetail($id){
         $model_proposal = $this->loadModel($id);
         $model_marketing = new pegawai;
@@ -86,7 +102,7 @@ class ProposalController extends Controller
     public function actionReport(){
         $model_proposal = new proposal('search');        
         $model_proposal->unsetAttributes();  // clear any default values      
-        $model_proposal->proposal_id = 'empty';
+       //$model_proposal->proposal_id = 'empty';
         if(isset($_GET['proposal']))
                 $model_proposal->attributes=$_GET['proposal'];
         $this->render('report',array(
@@ -105,9 +121,15 @@ class ProposalController extends Controller
         $listSegmen = CHtml::listData(Segmen::model()->findAll(),'segmen_id','nama');
         $listAgama = CHtml::listData(agama::model()->findAll(),'agama_id','nama');
         $listKolektabilitas = CHtml::listData(Kolektabilitas::model()->findAll(),'kolektabilitas_id','nama');
+        $listJenisIdentitas = CHtml::listData(jenisIdentitas::model()->findAll(),'identitas_id','nama');
         
         $error = false;
         
+        if(isset($_POST['ajax']) && $_POST['ajax']==='proposal-form')
+            {
+                    echo CActiveForm::validate(array($model_proposal,$model_ktp,$model_buku_nikah));                   
+                    Yii::app()->end();
+            }        
         if(isset($_POST['proposalBukuNikah'])){
             $model_buku_nikah->attributes=$_POST['proposalBukuNikah'];
             if(!$model_buku_nikah->validate()) {                
@@ -146,22 +168,17 @@ class ProposalController extends Controller
                     if ($model_proposal->validate() && !$error) {           
                         $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
                         
-                        $model_ktp->no_ktp = $model_proposal->no_ktp;
-                        $model_ktp->no_proposal = $model_proposal->no_proposal;
+                        $model_ktp->no_ktp = $model_proposal->no_ktp;                    
                         
-                        $model_buku_nikah->no_proposal = $model_proposal->no_proposal;
+                       
                         $model_buku_nikah->no_buku_nikah = $model_proposal->no_buku_nikah;
                         
-                        foreach ($model_kartu_keluarga as $model_kartu_keluargaEach) {
-                            $model_kartu_keluargaEach->no_proposal = $model_proposal->no_proposal;
+                        foreach ($model_kartu_keluarga as $model_kartu_keluargaEach) {                         
                             $model_kartu_keluargaEach->no_kartu_keluarga = $model_proposal->no_kartu_keluarga;
-                        }
-                       // $model_kartu_keluarga->no_proposal = $model_proposal->no_proposal;
+                        }               
                     } else {
                         $model_proposal->mode = 'create';
-                    } 
-                    //if($model->save())
-                    // $this->redirect(array('view','id'=>$model->pegawai_id));
+                    }       
 		}  
         switch ($model_proposal->mode) {
             case 'create':
@@ -170,47 +187,34 @@ class ProposalController extends Controller
                 'listSegmen'=>$listSegmen,
                 'listAgama'=>$listAgama,
                 'listKolektabilitas'=>$listKolektabilitas,
+                'listJenisIdentitas'=>$listJenisIdentitas,
                 'model_marketing'=>$model_marketing,
                 'model_kartu_keluarga'=>$model_kartu_keluarga,
                 'model_buku_nikah'=>$model_buku_nikah,
                 'model_ktp'=>$model_ktp,
                     ));
                 break;
-            case 'confirm':
-                $this->render('confirm',array(
-                'model_proposal'=>$model_proposal, 
-                'listSegmen'=>$listSegmen,
-                'listAgama'=>$listAgama,
-                'listKolektabilitas'=>$listKolektabilitas,
-                'model_marketing'=>$model_marketing,
-                'model_kartu_keluarga'=>$model_kartu_keluarga,
-                'model_buku_nikah'=>$model_buku_nikah,
-                'model_ktp'=>$model_ktp,
-                    ));
-                break;
-            case 'complete':
-                if ($model_proposal->validNasabah($model_kartu_keluarga)){
-                //if ($model_proposal->sendNotif()) {   
-                    if ($model_proposal->save()){
-                        if(!empty($model_buku_nikah->no_buku_nikah))
-                        $model_buku_nikah->save();
-                        $model_ktp->save();
-                        foreach ($model_kartu_keluarga as $key => $model_kartu_keluargaEach) {                  
-                            $model_kartu_keluargaEach->save();
+            case 'confirm': 
+                    if($model_proposal->sendNotif()) {
+                        if ($model_proposal->save()){
+                            if(!empty($model_buku_nikah->no_buku_nikah)) {                            
+                                $model_buku_nikah->proposal_id = $model_proposal->proposal_id;
+                                $model_buku_nikah->save();
+                            }
+
+                            $model_ktp->proposal_id = $model_proposal->proposal_id;
+                            $model_ktp->save();
+                            foreach ($model_kartu_keluarga as $key => $model_kartu_keluargaEach) {   
+                                $model_kartu_keluargaEach->proposal_id = $model_proposal->proposal_id;
+                                if(!empty($model_kartu_keluargaEach->nama)||!empty($model_kartu_keluargaEach->no_ktp)
+                                        ||!empty($model_kartu_keluargaEach->tanggal_lahir))
+                                $model_kartu_keluargaEach->save();
+                            }
+                            $this->redirect(array('complete'));                        
                         }
-                        $this->redirect(array('complete'));                        
-                    }      
-               // }
-                } else {
-                    if ($model_proposal->nasabahError == vC::APP_nasabah_error_tolak) {
-                         errorNasabah::setTotalNasabahTolak($model_proposal->proposalError);
-                         $model_proposal->percobaanInput = errorNasabah::getTotalNasabahTolak($model_proposal->proposalError);
+                    } else {
+                         $this->redirect(array('error'));   
                     }
-                   
-                    $this->render('error',array(	
-                        "model_proposal" => $model_proposal,
-                    ));                    
-                }
                 break;
             default:
                 break;
@@ -239,5 +243,30 @@ class ProposalController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
+	} 
+         public function actionTes() {
+            $message = new YiiMailMessage();            
+            $message->view = 'input_proposal';        
+            $message->subject    = 'Proposal Baru KCP'.vC::APP_nama_KCP;
+            
+            $message->addTo('oelhil@gmail.com');                                
+            
+                $param = array ();
+                $message->setBody($param, 'text/html');                
+                $message->from = vc::APP_from_email;   
+
+            try
+            {            
+                Yii::app()->mail->send($message);                
+                //$model->status = 4;
+                //$model->save();
+                //$this->redirect(array('view','id'=>$model->nasabah_id));
+            }
+            catch (Exception $exc)
+            {                                        
+                return false;
+            }             
+            
+            return true;
+        }
 }

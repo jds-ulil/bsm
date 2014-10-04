@@ -34,7 +34,7 @@ function menuTypeChange(menyType)
     <?php echo $form->error($model_tolak,'tanggal_tolak'); ?>
     </div>   
     </div>   
-    <?php echo $form->textFieldRow($model_tolak,'no_proposal',array('class'=>'span5','maxlength'=>10)); ?>
+    <?php echo $form->textFieldRow($model_tolak,'proposal_id',array('class'=>'span5','maxlength'=>10)); ?>
     <?php echo $form->textAreaRow($model_tolak,'alasan_ditolak',array('class'=>'span5', 'rows'=>2)); ?> 
     <?php echo $form->labelEx($model_tolak,'tahap_penolakan', array('class'=>'control-label')); ?>
     <div class="controls">   

@@ -27,8 +27,8 @@ class proposalBukuNikah extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('no_buku_nikah', 'required'),
-			array('no_proposal, no_buku_nikah', 'length', 'max'=>50),
-                        array('tgl_buku_nikah', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
+			array('proposal_id, no_buku_nikah', 'length', 'max'=>50),
+                        array('tgl_buku_nikah', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/MM/yyyy'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('no_proposal, no_buku_nikah, tgl_buku_nikah', 'safe', 'on'=>'search'),
@@ -52,9 +52,9 @@ class proposalBukuNikah extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'no_proposal' => 'No Proposal',
-			'no_buku_nikah' => 'No Buku Nikah',
-			'tgl_buku_nikah' => 'Tgl Buku Nikah',
+			'proposal_id' => 'No ID Proposal',
+			'no_buku_nikah' => 'Nomor',
+			'tgl_buku_nikah' => 'Tanggal',
 		);
 	}
 
@@ -76,7 +76,7 @@ class proposalBukuNikah extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('no_proposal',$this->no_proposal,true);
+		$criteria->compare('proposal_id',$this->proposal_id,true);
 		$criteria->compare('no_buku_nikah',$this->no_buku_nikah,true);
 		$criteria->compare('tgl_buku_nikah',$this->tgl_buku_nikah,true);
 
@@ -94,5 +94,17 @@ class proposalBukuNikah extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+        
+        public function beforeSave()
+	{
+            if(parent::beforeSave())
+            {  
+                if(!empty($this->tgl_buku_nikah)){
+                    $data = explode('/' ,$this->tgl_buku_nikah);                
+                    $this->tgl_buku_nikah = $data[2].'-'.$data[1].'-'.$data[0];
+                }                                
+            }
+	return true;
 	}
 }

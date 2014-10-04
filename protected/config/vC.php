@@ -23,11 +23,19 @@ class vC {
     const APP_jenis_nasabah_refferal = 3;
     
     const APP_status_proposal_new = 0;
-    const APP_status_proposal_tolak = 2;
-    
-    const APP_nasabah_error_tolak = 1;
+    const APP_status_proposal_tolak = 2;     
     
     const APP_tahapan_lainya = 'Lain-lain';
+    
+    const APP_status_email_semua = 1;
+    const APP_status_email_input_proposal = 2;
+    const APP_status_email_aproval = 3;
+    const APP_status_email_nasabah_tolak = 4;
+    const APP_status_email_tidak_aktif = 5;
+    
+    const APP_nama_KCP = "LUBUK SIKAPING";
+    
+    const APP_from_email = "oelhil@gmail.com";        
 }
 
 ?>

@@ -35,9 +35,9 @@ class proposalKtp extends CActiveRecord
 		return array(
 			array('tanggal_lahir, masa_berlaku, agama', 'required'),
 			array('agama', 'numerical', 'integerOnly'=>true),
-			array('no_ktp, tempat_lahir, pekerjaan, kewarganegaraan, no_proposal', 'length', 'max'=>50),
+			array('no_ktp, tempat_lahir, pekerjaan, kewarganegaraan, proposal_id', 'length', 'max'=>50),
 			array('tanggal_lahir, alamat, masa_berlaku, desa, status_perkawinan', 'safe'),
-                        array('tanggal_lahir, masa_berlaku', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
+                        array('tanggal_lahir, masa_berlaku', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('no_ktp, tempat_lahir, tanggal_lahir, alamat, agama, status_perkawinan, pekerjaan, kewarganegaraan, masa_berlaku, no_proposal', 'safe', 'on'=>'search'),
@@ -71,7 +71,7 @@ class proposalKtp extends CActiveRecord
 			'pekerjaan' => 'Pekerjaan',
 			'kewarganegaraan' => 'Kewarganegaraan',
 			'masa_berlaku' => 'Masa Berlaku',
-			'no_proposal' => 'No Proposal',
+			'proposal_id' => 'No Proposal ID',
 			'desa' => 'Desa/Kelurahan',
 		);
 	}
@@ -103,7 +103,7 @@ class proposalKtp extends CActiveRecord
 		$criteria->compare('pekerjaan',$this->pekerjaan,true);
 		$criteria->compare('kewarganegaraan',$this->kewarganegaraan,true);
 		$criteria->compare('masa_berlaku',$this->masa_berlaku,true);
-		$criteria->compare('no_proposal',$this->no_proposal,true);
+		$criteria->compare('proposal_id',$this->proposal_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -119,5 +119,20 @@ class proposalKtp extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+        public function beforeSave()
+	{
+            if(parent::beforeSave())
+            {  
+                if(!empty($this->tanggal_lahir)){
+                    $data = explode('/' ,$this->tanggal_lahir);                
+                    $this->tanggal_lahir = $data[2].'-'.$data[1].'-'.$data[0];
+                }                                
+                if(!empty($this->masa_berlaku)){
+                    $data = explode('/' ,$this->masa_berlaku);                
+                    $this->masa_berlaku = $data[2].'-'.$data[1].'-'.$data[0];
+                }                                
+            }
+	return true;
 	}
 }

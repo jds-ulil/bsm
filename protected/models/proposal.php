@@ -59,21 +59,24 @@ class proposal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nama_nasabah, segmen,plafon, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'create'),
-			array('nama_nasabah, segmen,plafon, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'update'),
+			array('jenis_identitas, nama_nasabah, segmen, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'create'),
+			array('jenis_identitas, nama_nasabah, segmen, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'update'),
 			array('segmen, jenis_nasabah, existing_kolektabilitas, del_flag', 'numerical', 'integerOnly'=>true),
 			array('marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, existing_plafon, referal_nama, referal_sektor_usaha', 'length', 'max'=>50),
 			//array('no_proposal', 'unique'),
+                        array('nama_nasabah', 'checkTolakNama'),
+                        array('no_ktp', 'checkTolakKtp'),
 			array('status_pengajuan', 'length', 'max'=>3),
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
-			array('tanggal_pengajuan,no_proposal, referal_alamat, mode', 'safe'),
-                        array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
+			array('tanggal_pengajuan,no_proposal, referal_alamat, plafon, mode', 'safe'),
+                        array('tanggal_kartu_keluarga', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy'),
+                        array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy'),
 			array('existing_os, existing_angsuran, existing_kolektabilitas, existing_plafon', 'existing_required'),
 			array('referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas', 'referal_required'),            
             // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('from_plafon, to_plafon, to_date, from_date, proposal_id, tanggal_pengajuan, segmen, jenis_usaha, marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, status_pengajuan, jenis_nasabah, existing_plafon, existing_os, existing_angsuran, existing_kolektabilitas, referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas, del_flag', 'safe', 'on'=>'search'),
+			array('jenis_identitas, from_plafon, to_plafon, to_date, from_date, proposal_id, tanggal_pengajuan, segmen, jenis_usaha, marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, status_pengajuan, jenis_nasabah, existing_plafon, existing_os, existing_angsuran, existing_kolektabilitas, referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas, del_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,16 +102,17 @@ class proposal extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'jenis_identitas,' => 'NAMA NASABAH',
 			'proposal_id' => 'Proposal',
-			'tanggal_pengajuan' => 'Tanggal Pengajuan',
+			'tanggal_pengajuan' => 'Tgl. Pengajuan',
 			'segmen' => 'Segmen',
 			'plafon' => 'Plafon Pengajuan (Rp)',
 			'jenis_usaha' => 'Jenis Usaha',
-			'marketing' => 'Marketing',
-			'no_kartu_keluarga' => 'No Kartu Keluarga',
-			'no_buku_nikah' => 'No Buku Nikah',
-			'no_ktp' => 'No Ktp',
-			'no_proposal' => 'No Proposal',
+			'marketing' => 'Nama',
+			'no_kartu_keluarga' => 'Nomor',
+			'no_buku_nikah' => 'Nomor',
+			'no_ktp' => 'No Identitas',
+			'no_proposal' => 'No. Proposal',
 			'status_pengajuan' => 'Status Pengajuan',
 			'jenis_nasabah' => 'Jenis Nasabah',
 			'existing_plafon' => 'Existing Plafon (Rp)',
@@ -127,6 +131,8 @@ class proposal extends CActiveRecord
                         'to_date' => "Sampai Dengan",
                         'from_plafon' => "Mulai Dari",
                         'to_plafon' => "Sampai Dengan",
+                        'jenis_identitas,' => "Jenis Identitas",
+                        'tanggal_kartu_keluarga,' => "Tanggal",
 		);
 	}
 
@@ -171,6 +177,7 @@ class proposal extends CActiveRecord
 		$criteria->compare('referal_sektor_usaha',$this->referal_sektor_usaha,true);
 		$criteria->compare('referal_fasilitas',$this->referal_fasilitas,true);
 		$criteria->compare('referal_kolektabilitas',$this->referal_kolektabilitas,true);
+		$criteria->compare('tanggal_kartu_keluarga',$this->tanggal_kartu_keluarga,true);
 		$criteria->compare('del_flag',$this->del_flag);
                 
                 if (!empty($this->from_date))
@@ -222,6 +229,51 @@ class proposal extends CActiveRecord
                 $this->addError($attribute_name, Yii::t('user', $label.' Tidak Boleh Kosong Untuk Jenis Nasabah Existing'));
                 return false;
                 }
+            return true;
+        }
+        public function checkTolakNama($attribute_name, $params)
+        {
+            $arrNamaTolak = Yii::app()->db->createCommand()
+                            //->setFetchMode(PDO::FETCH_COLUMN,1)
+                            ->select("nama_nasabah,proposal_id")
+                            ->from("proposal")            
+                            ->where("status_pengajuan = '".vC::APP_status_proposal_tolak."'")
+                            ->queryAll();                   
+            foreach ($arrNamaTolak as $key => $value) {
+                        if($value['nama_nasabah'] == $this->$attribute_name) {
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }
+            return true;
+        }
+        public function checkTolakKtp($attribute_name, $params)
+        {
+             $arrKtpKKtolak = Yii::app()->db->createCommand()
+                            //->setFetchMode(PDO::FETCH_COLUMN,0)
+                            ->select("pkk.no_ktp, pro.proposal_id")
+                            ->from("proposal pro")
+                            ->join('proposal_kartu_keluarga pkk', 'pro.proposal_id=pkk.proposal_id')                            
+                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."'")
+                            ->queryAll();             
+            $arrKtptolak = Yii::app()->db->createCommand()
+                           // ->setFetchMode(PDO::FETCH_COLUMN,0)
+                            ->select("pro.no_ktp, pro.proposal_id")
+                            ->from("proposal pro")                            
+                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."'")
+                            ->queryAll();            
+            foreach ($arrKtpKKtolak as $key => $value) {
+                        if($value['no_ktp'] == $this->$attribute_name) {
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }
+            foreach ($arrKtptolak as $key => $value) {
+                        if($value['no_ktp'] == $this->$attribute_name) {
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }
             return true;
         }
         public function getTotalProposal () {
@@ -295,7 +347,11 @@ class proposal extends CActiveRecord
         public function beforeSave()
 	{
 		if(parent::beforeSave())
-		{     
+		{  
+            if(!empty($this->tanggal_pengajuan)){
+                $data = explode('/' ,$this->tanggal_pengajuan);
+                $this->tanggal_pengajuan = $data[2].'-'.$data[1].'-'.$data[0];
+            }
             if (!empty($this->plafon)) {
                 $this->plafon = str_replace(".","",  $this->plafon);
             }
@@ -304,30 +360,36 @@ class proposal extends CActiveRecord
 	return true;
 	}
         public function sendNotif() {
-//            $message = new YiiMailMessage();
-//            $message->view = 'input';        
-//            $message->subject    = 'Input Data Nasabah';
-//            
-//            foreach ($listEmail as $key => $data) {                    
-//             $message->addTo($data->email_address);       
-//            }
-//                $param = array ('nasabah'=>$model,'inputer'=>Yii::app()->user->name);
-//                $message->setBody($param, 'text/html');                
-//                $message->from = 'oelhil@gmail.com';   
-//
-//            try
-//            {            
-//                Yii::app()->mail->send($message);                
-//                $model->status = 4;
-//                $model->save();
-//                $this->redirect(array('view','id'=>$model->nasabah_id));
-//            }
-//            catch (Exception $exc)
-//            {
-//                $this->render('error',array(			
-//                ));
-//            }             
-//            
-            return false;
+            $message = new YiiMailMessage();            
+            $message->view = 'input_proposal';        
+            $message->subject    = 'Proposal Baru KCP'.vC::APP_nama_KCP;
+            $model_marketing = pegawai::model()->findByPk($this->marketing);            
+            $listEmail = ListEmail::model()->findAll("status = '".vC::APP_status_email_semua."' 
+                                        OR status = '".vc::APP_status_email_input_proposal."'");
+            foreach ($listEmail as $key => $data) {                    
+             $message->addTo($data->email_address);                    
+            }
+            if(!empty($model_marketing) && !empty($model_marketing->email_atasan)) {
+                $message->addTo($model_marketing->email_atasan);                    
+            }
+            
+                $param = array ('proposal'=>$this,'marketing'=>$model_marketing);
+                $message->setBody($param, 'text/html');                
+                $message->from = vc::APP_from_email;   
+
+            try
+            {            
+                Yii::app()->mail->send($message);                
+                //$model->status = 4;
+                //$model->save();
+                //$this->redirect(array('view','id'=>$model->nasabah_id));
+            }
+            catch (Exception $exc)
+            {                                        
+                return false;
+            }             
+            
+            return true;
         }
+        
 }

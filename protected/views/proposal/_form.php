@@ -1,6 +1,6 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'proposal-form',
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
     'type'=>'horizontal',
 )); ?>
   <?php
@@ -24,10 +24,11 @@ function menuTypeChange(menyType)
 }
 </script>
 
-	<p class="help-block">Kolom dengan tanda <span class="required">*</span> harus diisi.</p>
+    <p class="help-block">Kolom dengan tanda <span class="required">*</span> harus diisi.</p>
     
-    <div class="control-group">
+    <div class="control-group">        
     <?php echo $form->errorSummary(array($model_proposal,$model_ktp, $model_buku_nikah)); ?>
+    <?php echo $form->textFieldRow($model_proposal,'nama_nasabah',array('class'=>'span5','maxlength'=>50)); ?>
     <?php echo $form->labelEx($model_proposal,'tanggal_pengajuan',array('class'=>'control-label')); ?>
     <div class="controls">
 	<?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
@@ -35,7 +36,7 @@ function menuTypeChange(menyType)
 	    'model'=>$model_proposal, //Model object
 	    'attribute'=>'tanggal_pengajuan', //attribute name
 	    'mode'=>'date', //use "time","date" or "datetime" (default)
-	    'options'=>array('dateFormat'=>'yy-mm-dd'),
+	    'options'=>array('dateFormat'=>'dd/mm/yy'),
 	    'htmlOptions'=>array('class'=>'span3')// jquery plugin options
 	    ));
 	?>
@@ -45,14 +46,13 @@ function menuTypeChange(menyType)
      <?php echo $form->dropDownListRow($model_proposal,'segmen', $listSegmen, array(
 	    'empty'=>'Pilih Segmen',
 		'class'=>'span3',
-		)); ?>  
-	    	
+		)); ?>  	    	    
     <?php echo $form->textFieldRow($model_proposal,'no_proposal',array('class'=>'span5','maxlength'=>50)); ?>
     <?php echo $form->textFieldRow($model_proposal,'plafon',array('class'=>'span5','maxlength'=>20)); ?>
     <?php echo $form->textFieldRow($model_proposal,'jenis_usaha',array('class'=>'span5','maxlength'=>50)); ?>
     
     
-<h3>Marketing</h3>
+<h4>Marketing</h4>
     <div class="control-group">
     <?php echo $form->labelEx($model_proposal,'marketing',array('class'=>'control-label')); ?>
     <div class="controls">
@@ -115,7 +115,7 @@ function menuTypeChange(menyType)
     <?php //echo $form->textFieldRow($model,'marketing',array('class'=>'span5','maxlength'=>10)); ?>
     
     
-    <h3>Jenis Nasabah</h3>
+    <h4>Jenis Nasabah</h4>
     
     <?php echo $form->labelEx($model_proposal,'jenis_nasabah', array('class'=>'control-label')); ?>
     <div class="controls">
@@ -153,10 +153,10 @@ function menuTypeChange(menyType)
     </script>
     
     
-    <h3>Data Nasabah</h3>
-    
-    <h4>Kartu Tanda Penduduk</h4>
-    
+    <h4>Identitas Nasabah</h4>
+    <?php echo $form->dropDownListRow($model_proposal,'jenis_identitas', $listJenisIdentitas, array(	    
+            'class'=>'span3',
+            )); ?> 
     <?php echo $form->textFieldRow($model_proposal,'no_ktp',array('class'=>'span5','maxlength'=>50)); ?>            
     <?php echo $form->textFieldRow($model_ktp,'tempat_lahir',array('class'=>'span5','maxlength'=>50)); ?>            
     <?php echo $form->labelEx($model_ktp, "tanggal_lahir",  array('class'=>'control-label'));?>
@@ -169,7 +169,7 @@ function menuTypeChange(menyType)
 	    'mode'=>'date', //use "time","date" or "datetime" (default)
 	    'options'=>
                 array(
-                    'dateFormat'=>'yy-mm-dd',
+                    'dateFormat'=>'dd/mm/yy',
                     'changeMonth'=>true,
                     'changeYear'=>true,
                     'yearRange'=>'1950:2050',
@@ -198,7 +198,7 @@ function menuTypeChange(menyType)
 	    'mode'=>'date', //use "time","date" or "datetime" (default)
 	    'options'=>
                 array(
-                    'dateFormat'=>'yy-mm-dd',
+                    'dateFormat'=>'dd/mm/yy',
                     'changeMonth'=>true,
                     'changeYear'=>true,
                     'yearRange'=>'1975:2050',
@@ -221,7 +221,7 @@ function menuTypeChange(menyType)
 	    'mode'=>'date', //use "time","date" or "datetime" (default)
 	    'options'=>
                 array(
-                    'dateFormat'=>'yy-mm-dd',
+                    'dateFormat'=>'dd/mm/yy',
                     'changeMonth'=>true,
                     'changeYear'=>true,
                     'yearRange'=>'1950:2050',
@@ -234,6 +234,27 @@ function menuTypeChange(menyType)
         </div>
     <h4>Kartu Keluarga</h4>
     <?php echo $form->textFieldRow($model_proposal,'no_kartu_keluarga',array('class'=>'span5','maxlength'=>50)); ?>        
+    <?php echo $form->labelEx($model_proposal, "tanggal_kartu_keluarga",  array('class'=>'control-label'));?>
+     <div class="control-group">
+        <div class="controls">            
+        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+	    $this->widget('CJuiDateTimePicker',array(
+	    'model'=>$model_proposal, //Model object   
+	    'attribute'=>"tanggal_kartu_keluarga", //attribute name
+	    'mode'=>'date', //use "time","date" or "datetime" (default)
+	    'options'=>
+                array(
+                    'dateFormat'=>'dd/mm/yy',
+                    'changeMonth'=>true,
+                    'changeYear'=>true,
+                    'yearRange'=>'1975:2050',
+                    ),
+	    'htmlOptions'=>array('class'=>'span5')// jquery plugin options                
+	    ));
+            ?>
+        <?php echo $form->error($model_proposal,'tanggal_kartu_keluarga'); ?>
+        </div>
+        </div>
     <?php
     $formDynamic = $this->beginWidget('DynamicTabularForm', array(
         'defaultRowView'=>'_form_kk',
@@ -245,8 +266,8 @@ function menuTypeChange(menyType)
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>$model_proposal->isNewRecord ? 'Konfirmasi' : 'Simpan',
+			'type'=>'danger',
+			'label'=>$model_proposal->isNewRecord ? 'Simpan' : 'Simpan',
 		)); ?>
 	</div>
 <?php $this->endWidget(); ?>

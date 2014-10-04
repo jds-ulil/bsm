@@ -31,7 +31,7 @@ class ListEmailController extends Controller
 				'roles'=>array('inputter','approval','admin'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view','index','create','update',  'sendmail', 'delete'),
+				'actions'=>array('view','index','create','update','sendmail', 'delete'),
 				'roles'=>array('approval','admin'),
 			),			
 			array('deny',  // deny all users
@@ -68,13 +68,19 @@ class ListEmailController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
-	{
-		$model=new ListEmail('create');
-        $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
-        $listNotif = CHtml::listData(EmailNotif::model()->findAll(), 'email_notif_id', 'nama');
+	{     
+		$model=new ListEmail;
+                $model->scenario = 'create';                
+                $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
+                $listNotif = CHtml::listData(EmailNotif::model()->findAll(), 'email_notif_id', 'nama');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+                if(isset($_POST['ajax']) && $_POST['ajax']==='list-email-form')
+                {
+                        echo CActiveForm::validate($model);
+                        Yii::app()->end();
+                }
 		if(isset($_POST['ListEmail']))
 		{
 			$model->attributes=$_POST['ListEmail'];
@@ -95,17 +101,17 @@ class ListEmailController extends Controller
 	 * @param integer $id the ID of the model to be updated
 	 */
 	public function actionUpdate($id)
-	{
+	{    
 		$model=$this->loadModel($id);
-        $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
-        $listNotif = CHtml::listData(EmailNotif::model()->findAll(), 'email_notif_id', 'nama');
+                $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
+                $listNotif = CHtml::listData(EmailNotif::model()->findAll(), 'email_notif_id', 'nama');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['ListEmail']))
 		{
 			$model->attributes=$_POST['ListEmail'];
-			if($model->save())
+			if($model->save())				
 				$this->redirect(array('view','id'=>$model->id_list_email));
 		}
 

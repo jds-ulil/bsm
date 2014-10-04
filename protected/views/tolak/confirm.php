@@ -19,7 +19,7 @@ $('.btn-info').click(function(){
     )); ?>
     
     <?php echo $form->hiddenField($model_tolak, 'tanggal_tolak'); ?>
-    <?php echo $form->hiddenField($model_tolak, 'no_proposal'); ?>
+    <?php echo $form->hiddenField($model_tolak, 'proposal_id'); ?>
     <?php echo $form->hiddenField($model_tolak, 'alasan_ditolak'); ?>
     <?php echo $form->hiddenField($model_tolak, 'tahap_penolakan'); ?>
     <?php echo $form->hiddenField($model_tolak, 'tempLL'); ?>     
@@ -28,7 +28,7 @@ $('.btn-info').click(function(){
 	'data'=>$model_tolak,
 	'attributes'=>array(
 		'tanggal_tolak',		
-		'no_proposal',
+		//'proposal_id',
                 'alasan_ditolak',
 		'tahap_penolakan',		
 	),
