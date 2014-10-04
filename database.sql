@@ -59,7 +59,7 @@ CREATE TABLE `mtb_daftar_nasabah` (
 
 /*Data for the table `mtb_daftar_nasabah` */
 
-insert  into `mtb_daftar_nasabah`(`nasabah_id`,`kartukeluarga_id`,`nama`,`alamat`,`status`) values (1,'35151','Ulil','Malang',3),(2,'351512','Coe Ing','Koto Gadang',4),(3,'351513','Bambang','Suko Lilo',1),(4,'351514','Jacko','Medan',1),(6,'351516','Sandra','Manado',1),(7,'351517','Dita','Kuala Namu',1),(8,'351518','Masa','Graha Bakti',1),(9,'351519','Indah','Makasar',1),(10,'35152','Asshidiq','Jakarta',1),(11,'3515121','Ahmad','Lombok',1);
+insert  into `mtb_daftar_nasabah`(`nasabah_id`,`kartukeluarga_id`,`nama`,`alamat`,`status`) values (1,'35151','Ulil','Malang',3),(2,'351512','Coe Ing','Koto Gadang',4),(3,'351513','Bambang','Suko Lilo',4),(4,'351514','Jacko','Medan',1),(6,'351516','Sandra','Manado',1),(7,'351517','Dita','Kuala Namu',1),(8,'351518','Masa','Graha Bakti',1);
 
 /*Table structure for table `mtb_email_notif` */
 
@@ -67,13 +67,13 @@ DROP TABLE IF EXISTS `mtb_email_notif`;
 
 CREATE TABLE `mtb_email_notif` (
   `email_notif_id` int(2) NOT NULL,
-  `nama` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `nama` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`email_notif_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_email_notif` */
 
-insert  into `mtb_email_notif`(`email_notif_id`,`nama`) values (1,'Semua'),(2,'Approval'),(3,'Tidak Aktif'),(4,'Input');
+insert  into `mtb_email_notif`(`email_notif_id`,`nama`) values (1,'Semua (Email notifikasi saat input proposal, nasabah ditolak dan approval)'),(2,'Proposal (Email notifikasi saat input proposal)'),(3,'Approval (Email notifikasi saat proses approval)'),(4,'Nasabah Tolak (Email notifikasi saat input nasabah di tolak)'),(5,'Tidak Aktif');
 
 /*Table structure for table `mtb_hak_akses` */
 
@@ -87,7 +87,7 @@ CREATE TABLE `mtb_hak_akses` (
 
 /*Data for the table `mtb_hak_akses` */
 
-insert  into `mtb_hak_akses`(`id_hak_akses`,`nama_hak_akses`) values (1,'Admin'),(2,'Approval'),(3,'Inputter'),(4,'User');
+insert  into `mtb_hak_akses`(`id_hak_akses`,`nama_hak_akses`) values (1,'Admin'),(2,'Approval'),(3,'Inputer'),(4,'User');
 
 /*Table structure for table `mtb_jabatan` */
 
@@ -102,6 +102,19 @@ CREATE TABLE `mtb_jabatan` (
 /*Data for the table `mtb_jabatan` */
 
 insert  into `mtb_jabatan`(`id_jabatan`,`nama_jabatan`) values (1,'Kepala Cabang'),(2,'Kepala Divisi'),(3,'Marketing'),(4,'Lainnya'),(7,'Makelar');
+
+/*Table structure for table `mtb_jenis_identitas` */
+
+DROP TABLE IF EXISTS `mtb_jenis_identitas`;
+
+CREATE TABLE `mtb_jenis_identitas` (
+  `identitas_id` int(2) DEFAULT NULL,
+  `nama` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `mtb_jenis_identitas` */
+
+insert  into `mtb_jenis_identitas`(`identitas_id`,`nama`) values (1,'KTP'),(2,'SIM'),(3,'Passport');
 
 /*Table structure for table `mtb_kolektabilitas` */
 
@@ -127,12 +140,13 @@ CREATE TABLE `mtb_list_email` (
   `nama_pengguna` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `jabatan_id` int(3) DEFAULT NULL,
   `status` tinyint(2) NOT NULL,
+  `NIP` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_list_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_list_email` */
 
-insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`) values (3,'oelhil@gmail.com','ulil',1,2),(6,'mingslab@gmail.com','coe ing',3,1),(8,'ulil@jakartadenshi.com','ulil jds',4,1);
+insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`,`NIP`) values (1,'oelhil@gmail.com','Ulil',1,1,'1234'),(2,'oelhil1@gmail.com','Ing',1,3,'1234');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -149,11 +163,11 @@ CREATE TABLE `mtb_pegawai` (
   `unit_kerja` int(2) DEFAULT NULL,
   `email_atasan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`pegawai_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_pegawai` */
 
-insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`) values (1,'1','Budi','11.1',1,'0813330440 817','e@a.com',6,'b@c.com'),(4,'2','Sasha','11.2',2,'081374225436','gery@yahoo.com',2,'tani@bsm.com');
+insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`) values (1,'1','Ulil','12',1,'0813330440 817','mingslab@gmail.com',1,'ulil@jakartadenshi.com');
 
 /*Table structure for table `mtb_segmen` */
 
@@ -191,11 +205,11 @@ CREATE TABLE `mtb_unit_kerja` (
   `unit_kerja_id` int(3) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`unit_kerja_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_unit_kerja` */
 
-insert  into `mtb_unit_kerja`(`unit_kerja_id`,`nama`) values (1,'Modal Mikro '),(2,'Saham Asing'),(6,'Marketing');
+insert  into `mtb_unit_kerja`(`unit_kerja_id`,`nama`) values (1,'IT Konsultan');
 
 /*Table structure for table `mtb_user` */
 
@@ -208,12 +222,13 @@ CREATE TABLE `mtb_user` (
   `jabatan_id` int(2) NOT NULL DEFAULT '0',
   `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `hak_akses` int(2) NOT NULL DEFAULT '0',
+  `NIP` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_user` */
 
-insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`) values (1,'ulil','a@b.com',1,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',1),(10,'approval','ap@b.com',2,'$2a$13$NlxwWAomKqmvW3WC7Ag6sOhc9FEehKq62HwA8uKpbGhtaxZ01HN4i',2),(12,'tes','ip@b.com',1,'$2a$13$cZhH8A3at3yJ0u/II84RjewSy8VwUVg7g5CNfzRWVaU.uKWimiQ9a',3);
+insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`) values (1,'ulil','a@b.com',1,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',1,'123'),(10,'approval','ap@b.com',2,'$2a$13$NlxwWAomKqmvW3WC7Ag6sOhc9FEehKq62HwA8uKpbGhtaxZ01HN4i',2,'123'),(12,'tes','ip@b.com',1,'$2a$13$cZhH8A3at3yJ0u/II84RjewSy8VwUVg7g5CNfzRWVaU.uKWimiQ9a',3,'124');
 
 /*Table structure for table `proposal` */
 
@@ -243,26 +258,29 @@ CREATE TABLE `proposal` (
   `referal_fasilitas` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `referal_kolektabilitas` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
   `del_flag` int(11) DEFAULT '0',
+  `nama_nasabah` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `jenis_identitas` int(2) DEFAULT NULL,
+  `tanggal_kartu_keluarga` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`) values (1,'1.000.000','2014-09-29',5,'Pertanian','4','456','','355132209850006','1','0',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'1200000','0000-00-00',1,'Pertanian','1','1','121214','12345','','0',2,'12','13','14',1,'','','','','','',0,'Zainal',NULL,NULL),(2,'123','2014-10-03',1,'Pertamina','1','2334','1222','1221','2','2',3,'','','',NULL,'ree','ref','081330440817','111','211','1',0,'Joe',NULL,NULL),(3,'23','2014-10-04',1,'21','1','2212','1222','12345','','0',1,'','','',NULL,'','','','','','',0,'codet',NULL,NULL),(4,'','2014-10-04',1,'Pertanian','1','1211','','122.1','','0',1,'','','',NULL,'','','','','','',0,'Joe T',1,'31/10/2014'),(5,'','2014-10-04',1,'11','1','121','','12345','','0',1,'','','',NULL,'','','','','','',0,'GER',1,''),(6,'1211','2014-10-04',1,'Pertanian','1','1212121','','122','1233','0',1,'','','',NULL,'','','','','','',0,'Joe tAS',1,''),(7,'','2014-10-04',1,'12','1','121','','355132209850006','','0',1,'','','',NULL,'','','','','','',0,'23',1,''),(8,'','2014-10-04',1,'12','1','121','','12345','','0',1,'','','',NULL,'','','','','','',0,'122',1,''),(9,'','2014-10-03',4,'12','1','12','','12345','','0',1,'','','',NULL,'','','','','','',0,'23',1,''),(10,'1200000','2014-10-04',6,'Masked','1','1212121','','12211','12','0',1,'','','',NULL,'','','','','','',0,'zainal',1,''),(11,'1200000','2014-10-03',1,'Pertanian','1','221','','12345','2','0',1,'','','',NULL,'','','','','','',0,'dokter D',1,''),(12,'1200000','2014-10-04',7,'Masked','1','1122','','123','21','0',1,'','','',NULL,'','','','','','',0,'fero',1,'');
 
 /*Table structure for table `proposal_buku_nikah` */
 
 DROP TABLE IF EXISTS `proposal_buku_nikah`;
 
 CREATE TABLE `proposal_buku_nikah` (
-  `no_proposal` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `proposal_id` int(5) DEFAULT NULL,
   `no_buku_nikah` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tgl_buku_nikah` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal_buku_nikah` */
 
-insert  into `proposal_buku_nikah`(`no_proposal`,`no_buku_nikah`,`tgl_buku_nikah`) values ('1','','0000-00-00');
+insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (0,'121214','2014-10-04'),(2,'1222','2014-10-02'),(3,'1222','2014-10-10');
 
 /*Table structure for table `proposal_kartu_keluarga` */
 
@@ -273,12 +291,13 @@ CREATE TABLE `proposal_kartu_keluarga` (
   `nama` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
   `no_ktp` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `no_proposal` int(20) DEFAULT NULL
+  `proposal_id` int(5) DEFAULT NULL,
+  `tempat_lahir` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal_kartu_keluarga` */
 
-insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`no_proposal`) values ('456','Ing','2014-09-29','355132209850006',1);
+insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('1','12','0000-00-00','123',NULL,NULL),('2334','1uui','2014-10-30','121',2,NULL),('2334','bbb','2014-10-22','2111',2,NULL),('2212','1221','2014-10-22','122',3,NULL),('1211','nAMA KAKA','2014-10-07','122',4,'AGAM'),('1211','TRT','2014-10-24','121111',4,''),('121','','0000-00-00','',7,''),('12','211','0000-00-00','',9,'');
 
 /*Table structure for table `proposal_ktp` */
 
@@ -295,14 +314,14 @@ CREATE TABLE `proposal_ktp` (
   `pekerjaan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `kewarganegaraan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `masa_berlaku` date DEFAULT NULL,
-  `no_proposal` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `proposal_id` int(5) DEFAULT NULL,
   `desa` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_ktp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal_ktp` */
 
-insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`no_proposal`,`desa`) values (1,'355132209850006','Agam','2014-09-29','Jl Dahlia',1,'Tidak Kawin','Programmer','WNI','2014-09-30','1','Bohar');
+insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'12345','','0000-00-00','',1,'','','','0000-00-00',0,''),(2,'1221','','2014-10-04','',2,'','','','2014-10-14',2,''),(3,'12345','','2014-10-04','',1,'','','','2014-10-01',3,''),(4,'122.1','','2014-10-04','',1,'','','','2014-10-04',4,''),(5,'12345','','2014-10-31','',1,'','','','2014-10-04',5,''),(6,'122','','2014-10-31','',1,'','','','2014-10-28',6,''),(7,'355132209850006','','2014-10-16','',1,'','','','2014-10-08',7,''),(8,'12345','','2014-10-03','',1,'','','','2014-10-03',8,''),(9,'12345','','2014-10-28','',1,'','','','2014-10-29',9,''),(10,'12211','','2014-10-22','Medan',1,'','','','2014-10-31',10,''),(11,'12345','','2014-10-04','',1,'','','','2014-10-03',11,''),(12,'123','','2014-10-04','',1,'','','','2014-10-29',12,'');
 
 /*Table structure for table `tolak` */
 
@@ -310,14 +329,16 @@ DROP TABLE IF EXISTS `tolak`;
 
 CREATE TABLE `tolak` (
   `tolak_id` int(20) NOT NULL AUTO_INCREMENT,
-  `no_proposal` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `proposal_id` int(5) DEFAULT NULL,
   `tanggal_tolak` date DEFAULT NULL,
   `alasan_ditolak` text COLLATE utf8_unicode_ci,
   `tahap_penolakan` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`tolak_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tolak` */
+
+insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (1,2,'2014-10-04','11','BI Checking');
 
 /*Table structure for table `tolak_tahapan` */
 
