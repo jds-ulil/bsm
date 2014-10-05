@@ -361,6 +361,18 @@ class proposal extends CActiveRecord
             if (!empty($this->plafon)) {
                 $this->plafon = str_replace(".","",  $this->plafon);
             }
+            if (!empty($this->existing_plafon)) {
+                $this->existing_plafon = str_replace(".","",  $this->existing_plafon);
+            }
+            if (!empty($this->existing_os)) {
+                $this->existing_os = str_replace(".","",  $this->existing_os);
+            }
+            if (!empty($this->existing_angsuran)) {
+                $this->existing_angsuran = str_replace(".","",  $this->existing_angsuran);
+            }
+            if (!empty($this->referal_fasilitas)) {
+                $this->referal_fasilitas = str_replace(".","",  $this->referal_fasilitas);
+            }
                      
 		}
 	return true;

@@ -17,7 +17,7 @@ $this->breadcrumbs=array(
 		'rSeg.nama',
 		'no_proposal',                
                 array(
-                'name'=>'Tgl Pengajuan',
+                'name'=>'Plafon',
                 'value'=>Yii::app()->numberFormatter->formatCurrency($model_proposal->plafon,'Rp '),
                 ),
 		'jenis_usaha',	               
