@@ -109,8 +109,29 @@ class CNumberFormatter extends CComponent
 	{
 		return $this->format($this->_locale->getCurrencyFormat(),$value,$currency);
 	}
-
-	/**
+        
+        public function formatDate($value){        
+            $data = explode('-',$value);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'/';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+//        
+//            $data = explode('-',$value);
+//            if(!empty($data[0]))
+//                return $data[2].'/'.$data[1].'/'.$data[0];
+//            else
+//                return null;
+        }
+        /**
 	 * Formats a number using the percentage format defined in the locale.
 	 * Note, if the percentage format contains '%', the number will be multiplied by 100 first.
 	 * If the percentage format contains '‰', the number will be multiplied by 1000.

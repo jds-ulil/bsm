@@ -4,15 +4,22 @@ $this->breadcrumbs=array(
     $model_proposal->no_proposal
 );
 ?>
-<h3>Data Proposal</h3>
+<h3>Proposal</h3>
  <?php  $this->widget('bootstrap.widgets.TbDetailView',array(
 	'type'=>'striped',
 	'data'=>$model_proposal,
 	'attributes'=>array(
-		'tanggal_pengajuan',
+                'nama_nasabah',
+		array(
+                'name'=>'Tgl Pengajuan',
+                'value'=>Yii::app()->numberFormatter->formatDate($model_proposal->tanggal_pengajuan),
+                ),
 		'rSeg.nama',
-		'no_proposal',
-                'plafon',
+		'no_proposal',                
+                array(
+                'name'=>'Tgl Pengajuan',
+                'value'=>Yii::app()->numberFormatter->formatCurrency($model_proposal->plafon,'Rp '),
+                ),
 		'jenis_usaha',	               
 	),
         'htmlOptions'=>array(
@@ -24,12 +31,10 @@ $this->breadcrumbs=array(
 	'type'=>'striped',
 	'data'=>$model_marketing,
 	'attributes'=>array(
-		'NIP',
-		'nama',
+                'nama',
+		'NIP',		
                 'rJab.nama_jabatan',
-		'no_handphone',
-                'email',
-                'email_atasan',
+		'no_handphone',                
 	),
         'htmlOptions'=>array(
             'class'=>'detail-view resize-table',
@@ -56,10 +61,19 @@ $this->breadcrumbs=array(
             'type'=>'striped',
             'data'=>$model_proposal,
             'attributes'=>array(
-                    'namaJenisNasabah',	
-                    'existing_plafon',
-                    'existing_os',
-                    'existing_angsuran',
+                    'namaJenisNasabah',
+                     array(
+                    'name'=>'Existing Plafon',
+                    'value'=>Yii::app()->numberFormatter->formatCurrency($model_proposal->existing_plafon,'Rp '),
+                    ),                  
+                    array(
+                    'name'=>'Existing OS/Pokok',
+                    'value'=>Yii::app()->numberFormatter->formatCurrency($model_proposal->existing_os,'Rp '),
+                    ),                    
+                    array(
+                    'name'=>'Existing Angsuran/Bulan',
+                    'value'=>Yii::app()->numberFormatter->formatCurrency($model_proposal->existing_angsuran,'Rp '),
+                    ),                                          
                     'rKolEx.nama'
 	),
             'htmlOptions'=>array(
@@ -77,8 +91,11 @@ $this->breadcrumbs=array(
                     'namaJenisNasabah',		
                     'referal_alamat',		
                     'referal_telp',		
-                    'referal_sektor_usaha',		
-                    'referal_fasilitas',		
+                    'referal_sektor_usaha',	
+                    array(
+                    'name'=>'Fasilitas',
+                    'value'=>Yii::app()->numberFormatter->formatCurrency($model_proposal->referal_fasilitas,'Rp '),
+                    ),	
                     'rKolRef.nama',		
         ),
             'htmlOptions'=>array(
@@ -87,23 +104,32 @@ $this->breadcrumbs=array(
     ));    
     }?>  
 
-<h3>Data Nasabah</h3>
-<h4>Kartu Tanda Penduduk</h4>
+<h3>Identitas Nasabah</h3>
     <?php
     $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
             'data'=>$model_ktp,
             'attributes'=>array(
+                    array(
+                    'name'=>'Jenis Identitas',
+                    'value'=>$model_proposal->rJen->nama,
+                    ),	               
                     'no_ktp',
                     'tempat_lahir',
-                    'tanggal_lahir',
+                    array(
+                    'name'=>'Tanggal Lahir',
+                    'value'=>Yii::app()->numberFormatter->formatDate($model_ktp->tanggal_lahir),
+                    ),        
                     'alamat',                    
                     'desa',                    
                     'rAgama.nama',                    
                     'status_perkawinan',
                     'pekerjaan',
                     'kewarganegaraan',
-                    'masa_berlaku',
+                    array(
+                    'name'=>'Masa Berlaku',
+                    'value'=>Yii::app()->numberFormatter->formatDate($model_ktp->masa_berlaku),
+                    ),         
         ),
             'htmlOptions'=>array(
             'class'=>'detail-view resize-table',
@@ -118,7 +144,10 @@ $this->breadcrumbs=array(
             'data'=>$model_buku_nikah,
             'attributes'=>array(                
                     'no_buku_nikah',
-                    'tgl_buku_nikah',
+                    array(
+                    'name'=>'Tanggal',
+                    'value'=>Yii::app()->numberFormatter->formatDate($model_buku_nikah->tgl_buku_nikah),
+                    ),
         ),
     ));    
     ?>
@@ -138,15 +167,19 @@ $this->breadcrumbs=array(
 ?>
 <?php   
     foreach ($model_kartu_keluarga as $key => $model_kartu_keluargaEach) {    
-    echo "<h4>Data </h4>";
+    $index = $key+1;
+    echo "<h4>Data $index</h4>";
        $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
             'data'=>$model_kartu_keluargaEach,
             'attributes'=>array(
                     //'no_kartu_keluarga',
-                    'nama',                    
-                    'no_ktp',                    
-                    'tanggal_lahir',                    
+                    'nama',  
+                    array(
+                    'name'=>'Tempat/Tgl Lahir',
+                    'value'=>$model_kartu_keluargaEach->tempat_lahir .'  '. Yii::app()->numberFormatter->formatDate($model_kartu_keluargaEach->tanggal_lahir),
+                    ),
+                    'no_ktp',                                        
             ),
             'htmlOptions'=>array(
             'class'=>'detail-view resize-table',

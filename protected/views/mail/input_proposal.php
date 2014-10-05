@@ -24,7 +24,7 @@
        <table class="main" align="center" border="0" cellpadding="0" cellspacing="0">       
          <td bgcolor="#ffffff">
              <p>Asalamualaikum wr wb,</p>
-             <p>Bapak /Ibu, berikut proposal baru pada KCP  <?php echo $nasabah->nama_kcp; ?>,dengan data sebagai berikut :</p>
+             <p>Bapak /Ibu, berikut proposal baru pada KCP  <?php echo vC::APP_nama_KCP; ?>,dengan data sebagai berikut :</p>
              <table class="tableData" width="100%">
                  <thead>
                  <tr>                                              

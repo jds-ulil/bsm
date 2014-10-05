@@ -72,7 +72,7 @@ h4 {
 h3 {
     font-family: Dekar !important;
 /*    font-size: 2em !important;*/
-    color: green !important;
+/*    color: green !important;*/
 }
 .help-block {
    color: grey !important;
@@ -195,5 +195,5 @@ input[type="color"],
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: #D7F5DE !important;
+/*  background-color: #D7F5DE !important;*/
 }

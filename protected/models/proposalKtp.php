@@ -62,7 +62,7 @@ class proposalKtp extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'no_ktp' => 'No Ktp',
+			'no_ktp' => 'No Identitas',
 			'tempat_lahir' => 'Tempat Lahir',
 			'tanggal_lahir' => 'Tanggal Lahir',
 			'alamat' => 'Alamat',

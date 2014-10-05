@@ -16977,3 +16977,1020 @@ Stack trace:
 REQUEST_URI=/bsm/index.php?r=proposal/
 HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
 ---
+2014/10/04 16:58:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "autocompleteUsaha" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('autocompleteUsa...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('autocompleteUsa...')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/autoco...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/autocompleteUsaha&term=u
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 17:00:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "autocompleteUsaha" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('autocompleteUsa...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('autocompleteUsa...')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/autoco...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/autocompleteUsaha&term=p
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 17:00:38 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'nasdo.proposal_pro' doesn't exist. Statement SQL yang dijalankan: SELECT pro.jenis_usaha AS label
+                        FROM proposal_pro WHERE pro.`jenis_usaha` LIKE :nama.
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (78)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/04 17:00:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'nasdo.proposal_pro' doesn't exist. The SQL statement executed was: SELECT pro.jenis_usaha AS label
+                        FROM proposal_pro WHERE pro.`jenis_usaha` LIKE :nama' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(78): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionAutocompleteUsaha()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('autocompleteUsa...')
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/autoco...')
+#13 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/autocompleteUsaha&term=p
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:06:05 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'splafon' in 'where clause'. Statement SQL yang dijalankan: SELECT COUNT(DISTINCT `t`.`proposal_id`) FROM `proposal` `t`  LEFT OUTER JOIN `mtb_pegawai` `rMar` ON (`t`.`marketing`=`rMar`.`pegawai_id`)  WHERE ((splafon >= "24" ) AND (status_pengajuan=:ycp0)).
+in C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in C:\xampp\htdocs\bsm\protected\views\proposal\report.php (63)
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (128)
+2014/10/04 18:06:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'splafon' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT `t`.`proposal_id`) FROM `proposal` `t`  LEFT OUTER JOIN `mtb_pegawai` `rMar` ON (`t`.`marketing`=`rMar`.`pegawai_id`)  WHERE ((splafon >= "24" ) AND (status_pengajuan=:ycp0))' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(433): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(759): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(151): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1605): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CDataProvider.php(168): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CBaseListView.php(111): CDataProvider->getData()
+#9 C:\xampp\htdocs\bsm\yii\framework\zii\widgets\grid\CGridView.php(339): CBaseListView->init()
+#10 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php(49): CGridView->init()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbGridView->init()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#13 C:\xampp\htdocs\bsm\protected\views\proposal\report.php(63): CBaseController->widget('bootstrap.widge...', Array)
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('report', Array, true)
+#18 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(128): CController->render('report', Array)
+#19 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionReport()
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#21 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#22 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#23 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#24 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#25 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#26 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#27 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('report')
+#29 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/report')
+#30 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#31 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#32 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&proposal%5Bmarketing%5D=&proposal%5Bsegmen%5D=&proposal%5Bjenis_usaha%5D=&proposal%5Bfrom_plafon%5D=24&proposal%5Bto_plafon%5D=&proposal%5Bfrom_date%5D=&proposal%5Bto_date%5D=&r=proposal%2Freport
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:12:25 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'splafon' in 'where clause'. Statement SQL yang dijalankan: SELECT COUNT(DISTINCT `t`.`proposal_id`) FROM `proposal` `t`  LEFT OUTER JOIN `mtb_pegawai` `rMar` ON (`t`.`marketing`=`rMar`.`pegawai_id`)  WHERE ((splafon >= 24 ) AND (status_pengajuan=:ycp0)).
+in C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in C:\xampp\htdocs\bsm\protected\views\proposal\report.php (63)
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (128)
+2014/10/04 18:12:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'splafon' in 'where clause'. The SQL statement executed was: SELECT COUNT(DISTINCT `t`.`proposal_id`) FROM `proposal` `t`  LEFT OUTER JOIN `mtb_pegawai` `rMar` ON (`t`.`marketing`=`rMar`.`pegawai_id`)  WHERE ((splafon >= 24 ) AND (status_pengajuan=:ycp0))' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(433): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(759): CDbCommand->queryScalar()
+#2 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(151): CJoinElement->count(Object(CDbCriteria))
+#3 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1605): CActiveFinder->count(Object(CDbCriteria))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CDataProvider.php(168): CActiveDataProvider->fetchData()
+#8 C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CBaseListView.php(111): CDataProvider->getData()
+#9 C:\xampp\htdocs\bsm\yii\framework\zii\widgets\grid\CGridView.php(339): CBaseListView->init()
+#10 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php(49): CGridView->init()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbGridView->init()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#13 C:\xampp\htdocs\bsm\protected\views\proposal\report.php(63): CBaseController->widget('bootstrap.widge...', Array)
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('report', Array, true)
+#18 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(128): CController->render('report', Array)
+#19 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionReport()
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#21 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#22 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#23 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#24 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#25 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#26 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#27 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('report')
+#29 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/report')
+#30 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#31 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#32 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&proposal%5Bmarketing%5D=&proposal%5Bsegmen%5D=&proposal%5Bjenis_usaha%5D=&proposal%5Bfrom_plafon%5D=24&proposal%5Bto_plafon%5D=&proposal%5Bfrom_date%5D=&proposal%5Bto_date%5D=&r=proposal%2Freport
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:23:15 [error] [exception.CDbException] exception 'CDbException' with message 'Table "proposal_ktp" tidak memiliki kolom bernama "no_proposal".' in C:\xampp\htdocs\bsm\yii\framework\db\schema\CDbCommandBuilder.php:694
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1518): CDbCommandBuilder->createColumnCriteria(Object(CMysqlTableSchema), Array, '', Array, '`t`.')
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(93): CActiveRecord->findByAttributes(Array)
+#2 [internal function]: ProposalController->actionDetail('1')
+#3 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#15 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:25:50 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:26:27 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(21): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(108): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:27:15 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:27:43 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:29:19 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:29:29 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:29:54 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:30:48 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:31:04 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(111): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:32:23 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(102): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:33:12 [error] [exception.CException] exception 'CException' with message 'Harap tentukan properti "data"' in C:\xampp\htdocs\bsm\yii\framework\zii\widgets\CDetailView.php:137
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbDetailView.php(38): CDetailView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbDetailView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(102): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(112): CController->render('detail', Array)
+#9 [internal function]: ProposalController->actionDetail('1')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=1
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 18:51:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rJen.' in 'where clause'. Statement SQL yang dijalankan: SELECT `rJen`.`identitas_id` AS `t1_c0`, `rJen`.`nama` AS `t1_c1` FROM `mtb_jenis_identitas` `rJen`  WHERE (`rJen`.``=:ypl0).
+in C:\xampp\htdocs\bsm\protected\views\proposal\detail.php (115)
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (115)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/04 18:51:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rJen.' in 'where clause'. The SQL statement executed was: SELECT `rJen`.`identitas_id` AS `t1_c0`, `rJen`.`nama` AS `t1_c1` FROM `mtb_jenis_identitas` `rJen`  WHERE (`rJen`.``=:ypl0)' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(507): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(163): CJoinElement->lazyFind(Object(proposal))
+#4 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(281): CActiveFinder->lazyFind(Object(proposal))
+#5 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(143): CActiveRecord->getRelated('rJen')
+#6 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(115): CActiveRecord->__get('rJen')
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#11 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(115): CController->render('detail', Array)
+#12 [internal function]: ProposalController->actionDetail('2')
+#13 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#14 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#24 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#25 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#26 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#27 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=2
+---
+2014/10/04 18:52:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rJen.' in 'where clause'. Statement SQL yang dijalankan: SELECT `rJen`.`identitas_id` AS `t1_c0`, `rJen`.`nama` AS `t1_c1` FROM `mtb_jenis_identitas` `rJen`  WHERE (`rJen`.``=:ypl0).
+in C:\xampp\htdocs\bsm\protected\views\proposal\detail.php (115)
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (115)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/04 18:52:13 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rJen.' in 'where clause'. The SQL statement executed was: SELECT `rJen`.`identitas_id` AS `t1_c0`, `rJen`.`nama` AS `t1_c1` FROM `mtb_jenis_identitas` `rJen`  WHERE (`rJen`.``=:ypl0)' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(507): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(163): CJoinElement->lazyFind(Object(proposal))
+#4 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(281): CActiveFinder->lazyFind(Object(proposal))
+#5 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(143): CActiveRecord->getRelated('rJen')
+#6 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(115): CActiveRecord->__get('rJen')
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#11 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(115): CController->render('detail', Array)
+#12 [internal function]: ProposalController->actionDetail('2')
+#13 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#14 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#24 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#25 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#26 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#27 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=2
+---
+2014/10/04 18:53:11 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rJen.' in 'where clause'. Statement SQL yang dijalankan: SELECT `rJen`.`identitas_id` AS `t1_c0`, `rJen`.`nama` AS `t1_c1` FROM `mtb_jenis_identitas` `rJen`  WHERE (`rJen`.``=:ypl0).
+in C:\xampp\htdocs\bsm\protected\views\proposal\detail.php (115)
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (115)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/04 18:53:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rJen.' in 'where clause'. The SQL statement executed was: SELECT `rJen`.`identitas_id` AS `t1_c0`, `rJen`.`nama` AS `t1_c1` FROM `mtb_jenis_identitas` `rJen`  WHERE (`rJen`.``=:ypl0)' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(803): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(507): CJoinElement->runQuery(Object(CJoinQuery))
+#3 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveFinder.php(163): CJoinElement->lazyFind(Object(proposal))
+#4 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(281): CActiveFinder->lazyFind(Object(proposal))
+#5 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(143): CActiveRecord->getRelated('rJen')
+#6 C:\xampp\htdocs\bsm\protected\views\proposal\detail.php(115): CActiveRecord->__get('rJen')
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('detail', Array, true)
+#11 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(115): CController->render('detail', Array)
+#12 [internal function]: ProposalController->actionDetail('2')
+#13 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#14 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('detail')
+#24 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/detail')
+#25 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#26 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#27 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/detail&id=2
+---
+2014/10/04 19:23:32 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Request anda tidak valid' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('print')
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/print')
+#10 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/print
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 19:24:05 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Request anda tidak valid' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('print')
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/print')
+#10 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/print&0=tes
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 19:24:23 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Request anda tidak valid' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('print')
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/print')
+#10 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/print&0=tes
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 19:24:30 [error] [php] fopen(images/logo.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(65): ProposalController->render()
+#8 unknown(0): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#21 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#22 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print&param=tes
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:25:09 [error] [php] fopen(images/logo.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(65): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:26:32 [error] [php] fopen(images/logo.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(70): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:27:18 [error] [php] fopen(images/logo_bsm.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(70): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:27:23 [error] [php] fopen(images/logo_bsm.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(70): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:28:03 [error] [php] fopen(images/logo_bsm.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(70): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:28:17 [error] [php] fopen(images/logo.png) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1232)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(17): PDF->Image()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(348): PDF->Header()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(10): PDF->AddPage()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(70): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1232)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (901)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php (17)
+2014/10/04 19:51:28 [error] [exception.CException] exception 'CException' with message 'Properti "proposal.marketin" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('marketin')
+#1 C:\xampp\htdocs\bsm\protected\views\proposal\report.php(69): CActiveRecord->__get('marketin')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('report', Array, true)
+#6 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(140): CController->render('report', Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionReport()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('report')
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/report')
+#18 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#20 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&proposal%5Bmarketing%5D=Ulil&proposal%5Bsegmen%5D=&proposal%5Bjenis_usaha%5D=&proposal%5Bfrom_plafon%5D=&proposal%5Bto_plafon%5D=&proposal%5Bfrom_date%5D=&proposal%5Bto_date%5D=&r=proposal%2Freport
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 20:38:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "laporan" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('laporan')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('laporan')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/lapora...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/laporan
+---
+2014/10/04 20:38:17 [error] [exception.CException] exception 'CException' with message 'Properti "tolak.no_proposal" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('no_proposal')
+#1 C:\xampp\htdocs\bsm\protected\models\tolak.php(91): CActiveRecord->__get('no_proposal')
+#2 C:\xampp\htdocs\bsm\protected\views\tolak\report.php(17): tolak->search()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('report', Array, true)
+#7 C:\xampp\htdocs\bsm\protected\controllers\TolakController.php(57): CController->render('report', Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): TolakController->actionReport()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('report')
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('tolak/report')
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#21 {main}
+REQUEST_URI=/bsm/index.php?r=tolak/report
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/laporan
+---
+2014/10/04 20:38:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "laporan" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('laporan')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('laporan')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/lapora...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/laporan
+---
+2014/10/04 20:43:27 [error] [exception.CException] exception 'CException' with message 'Properti "proposal.id" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('id')
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(77): CActiveRecord->__get('id')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('print')
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/print')
+#13 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/print
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/04 21:22:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "index" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/
+---
+2014/10/04 21:25:16 [error] [exception.CException] exception 'CException' with message 'Properti "TbActiveForm.target" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('target', '_blank')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ProposalController), 'bootstrap.widge...', Array)
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\proposal\report.php(76): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('report', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(161): CController->render('report', Array)
+#9 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionReport()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('report')
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/report')
+#20 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/report
+---
+2014/10/04 21:35:53 [error] [php] include(C:\xampp\htdocs\bsm\protected\extensions\fpdf/font/helvetica0.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php:1145)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php(532): PDF->AddFont()
+#1 C:\xampp\htdocs\bsm\protected\extensions\fpdf\PDF.php(64): PDF->SetFont()
+#2 C:\xampp\htdocs\bsm\protected\views\proposal\print.php(56): PDF->WriteTable()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): ProposalController->renderInternal()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): ProposalController->renderFile()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): ProposalController->renderPartial()
+#7 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(94): ProposalController->render()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1145)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (1145)
+in C:\xampp\htdocs\bsm\protected\extensions\fpdf\fpdf.php (473)
+2014/10/04 22:10:08 [error] [exception.CException] exception 'CException' with message 'Properti "proposal.rPeg" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('rPeg')
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(87): CActiveRecord->__get('rPeg')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionPrint()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('print')
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/print')
+#13 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/print
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---

@@ -18,6 +18,9 @@ class ProposalController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
+        /**
+         * ttup for debug 
+         
         public function init() {
         parent::init();
         Yii::app()->attachEventHandler('onError',array($this,'handleError'));
@@ -30,6 +33,8 @@ class ProposalController extends Controller
           }
             $event->handled = TRUE;
         }
+         **/ 
+        
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -39,7 +44,8 @@ class ProposalController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','getRowForm','complete','error','tes'),
+				'actions'=>array('create','getRowForm','complete','error','print','tes'
+                                        ,'autocompleteUsaha'),
 				'roles'=>array('admin', 'inputter', 'approval'),
                     ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -60,11 +66,58 @@ class ProposalController extends Controller
             ),
         );
     }   
+    public function actionPrint() {
+        $data = array();
+        $index = 0;
+        $total = 0;
+        $model_proposal = new proposal('search');
+        $model_proposal->unsetAttributes();
+        if(isset($_POST['proposal'])){
+            $model_proposal->attributes = $_POST['proposal'];
+            $dataProv = $model_proposal->search();            
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total = $total + intval($record->plafon);
+                $data[]=array(  'index'=>$index,
+                                'nama_nasabah'=>$record->nama_nasabah,
+                                'tanggal_pengajuan'=>Yii::app()->numberFormatter->formatDate($record->tanggal_pengajuan),
+                                'plafon'=>Yii::app()->numberFormatter->formatCurrency($record->plafon,""),
+                                'jenis_usaha'=>Yii::app()->numberFormatter->formatCurrency($record->jenis_usaha,""),
+                                'marketing'=>$record->rMar->nama,
+                        );
+            }                                  
+        }
+        $model_proposal->marketing = empty($model_proposal->marketing)?'Tidak Ditentukan':$model_proposal->marketing;
+        $model_proposal->segmen = empty($model_proposal->segmen)?'Semua Segmen':$model_proposal->segmen;
+        $model_proposal->jenis_usaha = empty($model_proposal->jenis_usaha)?'Semua Jenis Usaha':$model_proposal->jenis_usaha;
+        $model_proposal->from_plafon = empty($model_proposal->from_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->from_plafon,"");
+        $model_proposal->to_plafon = empty($model_proposal->to_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->to_plafon,"");
+        $model_proposal->from_date = empty($model_proposal->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_proposal->from_date);
+        $model_proposal->to_date = empty($model_proposal->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model_proposal->to_date);        
+        $this->render('print',array(
+            'model_proposal' => $model_proposal,
+            'data' => $data,
+            'total' => Yii::app()->numberFormatter->formatCurrency($total,""),
+        ));
+    }   
     public function actionError()
 	{        
     $this->render('error',array(			
 		));    
 	}
+        
+	public function actionAutocompleteUsaha() {
+            $res =array();
+        if (isset($_GET['term'])) {
+            $sql = 'SELECT pro.jenis_usaha AS label
+                        FROM proposal pro';
+            $sql = $sql . " WHERE pro.`jenis_usaha` LIKE :nama AND pro.status_pengajuan = '".vc::APP_status_proposal_new."' group by pro.jenis_usaha"; // Must be at least 1
+            $command =Yii::app()->db->createCommand($sql);
+            $command->bindValue(":nama", '%'.$_GET['term'].'%', PDO::PARAM_STR);
+            echo json_encode ($command->queryAll());
+        }
+    }
     public function actionDetail($id){
         $model_proposal = $this->loadModel($id);
         $model_marketing = new pegawai;
@@ -74,20 +127,23 @@ class ProposalController extends Controller
         if(!empty($model_proposal)) {
             $model_marketing = pegawai::model()->findByPk($model_proposal->marketing);
             $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
-            $model_ktp = proposalKtp::model()->findByAttributes(array(
+            $model_ktp_cek = proposalKtp::model()->findByAttributes(array(
                 'no_ktp'=>$model_proposal->no_ktp,
-                'no_proposal'=>$model_proposal->no_proposal,                
+                'proposal_id'=>$model_proposal->proposal_id,                
             ));
             $model_buku_nikah_cek = proposalBukuNikah::model()->findByAttributes(array(
                 'no_buku_nikah'=>$model_proposal->no_buku_nikah,
-                'no_proposal'=>$model_proposal->no_proposal,                
+                'proposal_id'=>$model_proposal->proposal_id,                
             ));
             if (!empty($model_buku_nikah_cek)) {
                 $model_buku_nikah = $model_buku_nikah_cek;
             }
+            if (!empty($model_ktp_cek)) {
+                $model_ktp = $model_ktp_cek;
+            }
             $model_kartu_keluarga = proposalKartuKeluarga::model()->findAllByAttributes(array(
                 'no_kartu_keluarga'=>$model_proposal->no_kartu_keluarga,
-                'no_proposal'=>$model_proposal->no_proposal,                
+                'proposal_id'=>$model_proposal->proposal_id,                
             ));            
             }
         $this->render('detail',array(
@@ -101,12 +157,16 @@ class ProposalController extends Controller
 
     public function actionReport(){
         $model_proposal = new proposal('search');        
-        $model_proposal->unsetAttributes();  // clear any default values      
+        $model_proposal->unsetAttributes();  // clear any default values     
+
+        $listSegmen = CHtml::listData(Segmen::model()->findAll(),'segmen_id','nama'); 
        //$model_proposal->proposal_id = 'empty';
-        if(isset($_GET['proposal']))
+        if(isset($_GET['proposal'])){
                 $model_proposal->attributes=$_GET['proposal'];
+                }
         $this->render('report',array(
-            'model_proposal'=>$model_proposal,
+            'model_proposal'=>$model_proposal,            
+            'listSegmen' => $listSegmen,
         ));
     }
     public function actionCreate (){

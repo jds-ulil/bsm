@@ -51,7 +51,7 @@ class jenisIdentitas extends CActiveRecord
 	{
 		return array(
 			'identitas_id' => 'Identitas',
-			'nama' => 'Nama',
+			'nama' => 'Jenis Identitas',
 		);
 	}
 

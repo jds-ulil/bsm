@@ -93,6 +93,7 @@ class proposal extends CActiveRecord
                     'rSeg' => array(self::BELONGS_TO, 'Segmen', 'segmen'),
                     'rMar' => array(self::BELONGS_TO, 'pegawai', 'marketing'),
                     'roMar' => array(self::HAS_ONE, 'pegawai', array('pegawai_id'=>'marketing')),
+                    'rJen' => array(self::BELONGS_TO, 'jenisIdentitas', 'jenis_identitas'),
 		);
 	}
 
@@ -116,8 +117,8 @@ class proposal extends CActiveRecord
 			'status_pengajuan' => 'Status Pengajuan',
 			'jenis_nasabah' => 'Jenis Nasabah',
 			'existing_plafon' => 'Existing Plafon (Rp)',
-			'existing_os' => 'Existing Os (Rp)',
-			'existing_angsuran' => 'Existing Angsuran (Rp)',
+			'existing_os' => 'Existing Os/Pokok (Rp)',
+			'existing_angsuran' => 'Existing Angsuran/Bulan (Rp)',
 			'existing_kolektabilitas' => 'Existing Kolektabilitas',
 			'referal_nama' => 'Referal Nama',
 			'referal_alamat' => 'Referal Alamat',
@@ -180,17 +181,23 @@ class proposal extends CActiveRecord
 		$criteria->compare('tanggal_kartu_keluarga',$this->tanggal_kartu_keluarga,true);
 		$criteria->compare('del_flag',$this->del_flag);
                 
-                if (!empty($this->from_date))
-                $criteria->addCondition('tanggal_pengajuan >= "'.$this->from_date.'" ');
-                if (!empty($this->to_date))
-                $criteria->addCondition('tanggal_pengajuan <= "'.$this->to_date.'" ');		
+                if (!empty($this->from_date)) {                
+                $reFromDate = $this->toDBDate($this->from_date);                
+                $criteria->addCondition('tanggal_pengajuan >= "'.$reFromDate.'" ');                
+                }
+                if (!empty($this->to_date)) {
+                $reToDate = $this->toDBDate($this->to_date);                
+                $criteria->addCondition('tanggal_pengajuan <= "'.$reToDate.'" ');		
+                }
                 if (!empty($this->from_plafon)) {
                     $this->from_plafon = str_replace('.','', $this->from_plafon);
-                    $criteria->addCondition('plafon >= "'.$this->from_plafon.'" ');
+                    $this->from_plafon = intval($this->from_plafon);
+                    $criteria->addCondition("plafon >= $this->from_plafon ");
                 }
                 if (!empty($this->to_plafon)) {
                     $this->to_plafon = str_replace('.','', $this->to_plafon);
-                $criteria->addCondition('plafon <= "'.$this->to_plafon.'" ');		
+                    $this->to_plafon = intval($this->to_plafon);
+                    $criteria->addCondition("plafon <= $this->to_plafon ");		
                 }
         $criteria->compare('status_pengajuan', vC::APP_status_proposal_new);
         //$criteria->addCondition('plafon <= "'.$this->to_plafon.'" ');	
@@ -391,5 +398,19 @@ class proposal extends CActiveRecord
             
             return true;
         }
-        
+        function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        }        
 }

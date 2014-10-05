@@ -51,7 +51,7 @@ class Segmen extends CActiveRecord
 	{
 		return array(
 			'segmen_id' => 'Segmen',
-			'nama' => 'Jenis Segmen',
+			'nama' => 'Segmen',
 		);
 	}
 
