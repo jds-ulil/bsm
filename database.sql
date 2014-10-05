@@ -55,7 +55,7 @@ CREATE TABLE `mtb_daftar_nasabah` (
   `alamat` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(2) DEFAULT '1',
   PRIMARY KEY (`nasabah_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_daftar_nasabah` */
 
@@ -108,8 +108,9 @@ insert  into `mtb_jabatan`(`id_jabatan`,`nama_jabatan`) values (1,'Kepala Cabang
 DROP TABLE IF EXISTS `mtb_jenis_identitas`;
 
 CREATE TABLE `mtb_jenis_identitas` (
-  `identitas_id` int(2) DEFAULT NULL,
-  `nama` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+  `identitas_id` int(2) NOT NULL,
+  `nama` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`identitas_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_jenis_identitas` */
@@ -266,7 +267,7 @@ CREATE TABLE `proposal` (
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'1200000','0000-00-00',1,'Pertanian','1','1','121214','12345','','0',2,'12','13','14',1,'','','','','','',0,'Zainal',NULL,NULL),(2,'123','2014-10-03',1,'Pertamina','1','2334','1222','1221','2','2',3,'','','',NULL,'ree','ref','081330440817','111','211','1',0,'Joe',NULL,NULL),(3,'23','2014-10-04',1,'21','1','2212','1222','12345','','0',1,'','','',NULL,'','','','','','',0,'codet',NULL,NULL),(4,'','2014-10-04',1,'Pertanian','1','1211','','122.1','','0',1,'','','',NULL,'','','','','','',0,'Joe T',1,'31/10/2014'),(5,'','2014-10-04',1,'11','1','121','','12345','','0',1,'','','',NULL,'','','','','','',0,'GER',1,''),(6,'1211','2014-10-04',1,'Pertanian','1','1212121','','122','1233','0',1,'','','',NULL,'','','','','','',0,'Joe tAS',1,''),(7,'','2014-10-04',1,'12','1','121','','355132209850006','','0',1,'','','',NULL,'','','','','','',0,'23',1,''),(8,'','2014-10-04',1,'12','1','121','','12345','','0',1,'','','',NULL,'','','','','','',0,'122',1,''),(9,'','2014-10-03',4,'12','1','12','','12345','','0',1,'','','',NULL,'','','','','','',0,'23',1,''),(10,'1200000','2014-10-04',6,'Masked','1','1212121','','12211','12','0',1,'','','',NULL,'','','','','','',0,'zainal',1,''),(11,'1200000','2014-10-03',1,'Pertanian','1','221','','12345','2','0',1,'','','',NULL,'','','','','','',0,'dokter D',1,''),(12,'1200000','2014-10-04',7,'Masked','1','1122','','123','21','0',1,'','','',NULL,'','','','','','',0,'fero',1,'');
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'1200000','0000-00-00',1,'Pertanian','1','1','121214','12345','','0',2,'12','13','14',1,'','','','','','',0,'Zainal',0,NULL),(2,'123','2014-10-03',1,'Pertamina','1','2334','1222','1221','2','2',3,'','','',NULL,'ree','ref','081330440817','111','211','1',0,'Joe',NULL,NULL),(3,'23','2014-10-04',1,'21','1','2212','1222','12345','','0',1,'','','',NULL,'','','','','','',0,'codet',NULL,NULL),(4,'','2014-10-04',1,'Pertanian','1','1211','','122.1','','0',1,'','','',NULL,'','','','','','',0,'Joe T',1,'31/10/2014'),(5,'','2014-10-04',1,'11','1','121','','12345','','0',1,'','','',NULL,'','','','','','',0,'GER',1,''),(6,'1211','2014-10-04',1,'Pertanian','1','1212121','','122','1233','0',1,'','','',NULL,'','','','','','',0,'Joe tAS',1,''),(7,'','2014-10-04',1,'12','1','121','','355132209850006','','0',1,'','','',NULL,'','','','','','',0,'23',1,''),(8,'','2014-10-04',1,'12','1','121','','12345','','0',1,'','','',NULL,'','','','','','',0,'122',1,''),(9,'','2014-10-03',4,'12','1','12','','12345','','0',1,'','','',NULL,'','','','','','',0,'23',1,''),(10,'1200000','2014-10-04',6,'Masked','1','1212121','','12211','12','0',1,'','','',NULL,'','','','','','',0,'zainal',1,''),(11,'1200000','2014-10-03',1,'Pertanian','1','221','','12345','2','0',1,'','','',NULL,'','','','','','',0,'dokter D',1,''),(12,'1200000','2014-10-04',7,'Masked','1','1122','','123','21','0',1,'','','',NULL,'','','','','','',0,'fero',1,'');
 
 /*Table structure for table `proposal_buku_nikah` */
 

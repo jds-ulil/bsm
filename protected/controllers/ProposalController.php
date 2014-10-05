@@ -17,9 +17,8 @@ class ProposalController extends Controller
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
-	}
-        /**
-         * ttup for debug 
+	}       
+         
          
         public function init() {
         parent::init();
@@ -32,8 +31,7 @@ class ProposalController extends Controller
             $this->redirect(array('Error'));
           }
             $event->handled = TRUE;
-        }
-         **/ 
+        }    
         
 	/**
 	 * Specifies the access control rules.
