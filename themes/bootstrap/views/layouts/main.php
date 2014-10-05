@@ -61,8 +61,8 @@
 							),							
 							array('label'=>'Laporan', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
 								'items'=>array(
-								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/report',)),								   
-								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/report',)),
+								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/report',)),								   								    
+								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('#',)),
                                                      /**
                                                     SELOWWW....
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('#',)),
@@ -90,6 +90,7 @@
 								    array('label'=>'Segmen', 'url'=>array('segmen/index',)),								    
 								    array('label'=>'Jabatan', 'url'=>array('jabatan/index',)),								    
 								    array('label'=>'Unit Kerja', 'url'=>array('unitkerja/index',)),								    
+								    array('label'=>'Mail Setting', 'url'=>array('mailer/set',), 'visible'=> Yii::app()->user->checkAccess('admin')),								    
 								    )
 							),
 //							array('label'=>'User', 'url'=>array('/user/index'), 'visible'=>Yii::app()->user->checkAccess('otor') || Yii::app()->user->checkAccess('admin')),

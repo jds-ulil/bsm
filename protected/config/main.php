@@ -60,7 +60,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=nasdo',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'ul1lul1l',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
@@ -90,17 +90,17 @@ return array(
         'mail' => array(
                 'class' => 'ext.yii-mail.YiiMail',
                 'transportType' => 'smtp',
-                'transportOptions' => array(
+//                'transportOptions' => array(
 //                    'host' => 'webmail.bsm.co.id',
 //                    'username' => 'rnur1780',
 //                    'password' => 'yaarabbku01',
 //                    'port' => '465',
-                    'host' => 'ssl://smtp.gmail.com',
-                    'username' => 'oelhil@gmail.com',
-                    'password' => 'j4mg4d4ngsa',
-                    'port' => '465',
+//                    'host' => 'ssl://smtp.gmail.com',
+//                    'username' => 'oelhil@gmail.com',
+//                    'password' => 'j4mg4d4ngsa',
+//                    'port' => '465',
                     //'encryption'=>'ssl',
-                ),
+//                ),
                 'viewPath' => 'application.views.mail',
                 'logging' => true,
                 'dryRun' => false

@@ -86,7 +86,7 @@ class TolakController extends Controller
                     if ($model_tolak->validate()) {                        
                         $model_proposal = 
                             proposal::model()->find("del_flag = 0 AND status_pengajuan = 0 AND proposal_id ='".$model_tolak->proposal_id."'");                            
-                        $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
+                            $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
                         if(empty($model_proposal)){
                             $model_proposal = new proposal;
                         }
@@ -136,12 +136,12 @@ class TolakController extends Controller
                 break;
             case 'complete':                    
               //  if($model_tolak->sendNotif()) {
-                    if($model_tolak->save()){
+                    if($model_tolak->save()){                            
                         $model_proposal->status_pengajuan =  vC::APP_status_proposal_tolak;
                         $model_proposal->save();
                         $this->redirect(array('complete'));
-                    } else {
-                    //  print_r($model_proposal->getErrors());
+                    } else {           
+                      //print_r($model_proposal->getErrors());
                     };
               //  }
                 break;

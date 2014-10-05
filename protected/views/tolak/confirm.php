@@ -20,6 +20,7 @@ $('.btn-info').click(function(){
     
     <?php echo $form->hiddenField($model_tolak, 'tanggal_tolak'); ?>
     <?php echo $form->hiddenField($model_tolak, 'proposal_id'); ?>
+    <?php echo $form->hiddenField($model_tolak, 'nama_nasabah'); ?>
     <?php echo $form->hiddenField($model_tolak, 'alasan_ditolak'); ?>
     <?php echo $form->hiddenField($model_tolak, 'tahap_penolakan'); ?>
     <?php echo $form->hiddenField($model_tolak, 'tempLL'); ?>     

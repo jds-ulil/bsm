@@ -15,6 +15,7 @@ class tolak extends CActiveRecord
     public $mode = 'create';
     public $tempLL;
     public $marketing_search;
+    public $nama_nasabah;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -31,9 +32,9 @@ class tolak extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('proposal_id, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required'),
+                        array('nama_nasabah, proposal_id, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'required', 'on'=>'insert'),
 			array('proposal_id', 'length', 'max'=>50),
-			array('proposal_id', 'check_proposal',),
+			//array('proposal_id', 'check_proposal',),
 			array('mode, tempLL', 'safe'),
                         array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
@@ -65,6 +66,7 @@ class tolak extends CActiveRecord
 			'tanggal_tolak' => 'Tanggal Tolak',
 			'alasan_ditolak' => 'Alasan Ditolak',
 			'tahap_penolakan' => 'Tahap Penolakan',
+                        'nama_nasabah' => 'NAMA NASABAH'
 		);
 	}
 
@@ -85,24 +87,24 @@ class tolak extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;           
-        $criteria->join= ' LEFT OUTER JOIN `proposal` `rCM` ON (`rCM`.`no_proposal`=`t`.`no_proposal`)  ';
-        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+                $criteria->join= ' LEFT OUTER JOIN `proposal` `rCM` ON (`rCM`.`no_proposal`=`t`.`no_proposal`)  ';
+                $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
 		$criteria->compare('tolak_id',$this->tolak_id);
 		$criteria->compare('no_proposal',$this->no_proposal,true);
 		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
 		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
 		$criteria->compare('mp.nama',$this->marketing_search,true);		
-        if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
-            $arrTahap = tolakTahapan::getArrTahapan();
-            foreach ($arrTahap as $key => $value) {
-                $criteria->addCondition("tahap_penolakan <> '".$value."' ");                 
-            }            
-        } else {
-            $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
-        }
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
+                if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
+                    $arrTahap = tolakTahapan::getArrTahapan();
+                    foreach ($arrTahap as $key => $value) {
+                        $criteria->addCondition("tahap_penolakan <> '".$value."' ");                 
+                    }            
+                } else {
+                    $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
+                }
+                        return new CActiveDataProvider($this, array(
+                                'criteria'=>$criteria,
+                        ));
 	}
         public function check_proposal($attribute_name, $params)
         {             

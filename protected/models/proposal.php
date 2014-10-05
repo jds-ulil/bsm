@@ -70,8 +70,7 @@ class proposal extends CActiveRecord
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
 			array('tanggal_pengajuan,no_proposal, referal_alamat, plafon, mode', 'safe'),
-                        array('tanggal_kartu_keluarga', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy'),
-                        array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy'),
+                        array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
 			array('existing_os, existing_angsuran, existing_kolektabilitas, existing_plafon', 'existing_required'),
 			array('referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas', 'referal_required'),            
             // The following rule is used by search().
@@ -367,6 +366,7 @@ class proposal extends CActiveRecord
 	return true;
 	}
         public function sendNotif() {
+            $mail_set = mailer::model()->findByPk(1);
             $message = new YiiMailMessage();            
             $message->view = 'input_proposal';        
             $message->subject    = 'Proposal Baru KCP'.vC::APP_nama_KCP;
@@ -385,7 +385,13 @@ class proposal extends CActiveRecord
                 $message->from = vc::APP_from_email;   
 
             try
-            {            
+            {  
+                 Yii::app()->mail->transportOptions = array(
+                    'host' => "$mail_set->host",
+                    'username' => "$mail_set->nama",
+                    'password' => "$mail_set->password",
+                    'port' => "$mail_set->port",
+                    );
                 Yii::app()->mail->send($message);                
                 //$model->status = 4;
                 //$model->save();
