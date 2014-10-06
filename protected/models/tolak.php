@@ -16,6 +16,8 @@ class tolak extends CActiveRecord
     public $tempLL;
     public $marketing_search;
     public $nama_nasabah;
+    public $from_date;
+    public $to_date;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,7 +41,7 @@ class tolak extends CActiveRecord
                     array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/MM/yyyy','on'=>'insert'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('marketing_search, tolak_id, no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'safe', 'on'=>'search'),
+			array('nama_nasabah, from_date, to_date, marketing_search, tolak_id, no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +53,7 @@ class tolak extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'rCM' => array( self::HAS_ONE, 'proposal', array('no_proposal'=>'no_proposal')),
+                    'rCM' => array( self::HAS_ONE, 'proposal', array('proposal_id'=>'proposal_id')),
 		);
 	}
 
@@ -66,7 +68,8 @@ class tolak extends CActiveRecord
 			'tanggal_tolak' => 'Tanggal Tolak',
 			'alasan_ditolak' => 'Alasan Ditolak',
 			'tahap_penolakan' => 'Tahap Penolakan',
-                        'nama_nasabah' => 'NAMA NASABAH'
+                        'nama_nasabah' => 'NAMA NASABAH',
+                        'marketing_search' => 'Marketing',
 		);
 	}
 
@@ -87,13 +90,14 @@ class tolak extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;           
-                $criteria->join= ' LEFT OUTER JOIN `proposal` `rCM` ON (`rCM`.`no_proposal`=`t`.`no_proposal`)  ';
+                $criteria->join= ' LEFT OUTER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
                 $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
 		$criteria->compare('tolak_id',$this->tolak_id);
-		$criteria->compare('no_proposal',$this->no_proposal,true);
+		//$criteria->compare('no_proposal',$this->no_proposal,true);
 		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
 		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
 		$criteria->compare('mp.nama',$this->marketing_search,true);		
+		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);		
                 if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
                     $arrTahap = tolakTahapan::getArrTahapan();
                     foreach ($arrTahap as $key => $value) {
@@ -102,6 +106,15 @@ class tolak extends CActiveRecord
                 } else {
                     $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
                 }
+                if (!empty($this->from_date)) {                
+                $reFromDate = $this->toDBDate($this->from_date);                
+                $criteria->addCondition('tanggal_tolak >= "'.$reFromDate.'" ');                
+                }
+                if (!empty($this->to_date)) {
+                $reToDate = $this->toDBDate($this->to_date);                
+                $criteria->addCondition('tanggal_tolak <= "'.$reToDate.'" ');		
+                }
+                
                         return new CActiveDataProvider($this, array(
                                 'criteria'=>$criteria,
                         ));
@@ -185,4 +198,19 @@ class tolak extends CActiveRecord
 
           return true;
       }
+       function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        }  
 }

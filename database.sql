@@ -164,7 +164,7 @@ CREATE TABLE `mtb_mailer` (
 
 /*Data for the table `mtb_mailer` */
 
-insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`) values (1,'ssl://smtp.gmail.com','oelhil@gmail.com','j4mg4d4ngsa','465');
+insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`) values (1,'webmail.syariahmandiri.co.id','rnur1780@bsm.co.id','yaarabbku01','443');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -280,11 +280,11 @@ CREATE TABLE `proposal` (
   `jenis_identitas` int(2) DEFAULT NULL,
   `tanggal_kartu_keluarga` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'12000000','2014-10-05',1,'Dagang','1','12344','22341','12345','','0',1,'','','',NULL,'','','','','','',0,'Zainal',1,NULL),(2,'35000000','2014-10-03',6,'INDUSTRI','1','55555','','12341','','0',2,'5.000.000','600.000','500.000',1,'','','','','','',0,'JONO',3,NULL);
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (4,'1000000','2014-10-01',1,'Pertanian','1','kk1','n1','k1','1','2',1,'','','',NULL,'','','','','','',0,'Akbar',1,NULL),(5,'2000000','2014-10-02',4,'Jagung','1','kk2','n2','k2','2','0',2,'2000000','2500000','300000',6,'','','','','','',0,'Suci',2,NULL);
 
 /*Table structure for table `proposal_buku_nikah` */
 
@@ -298,7 +298,7 @@ CREATE TABLE `proposal_buku_nikah` (
 
 /*Data for the table `proposal_buku_nikah` */
 
-insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (1,'22341','2014-10-31');
+insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (4,'n1','2014-10-14'),(5,'n2','2014-10-02');
 
 /*Table structure for table `proposal_kartu_keluarga` */
 
@@ -315,7 +315,7 @@ CREATE TABLE `proposal_kartu_keluarga` (
 
 /*Data for the table `proposal_kartu_keluarga` */
 
-insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('12344','Danang','2014-10-09','11111',1,'Jakarta'),('55555','Ulil','2014-10-22','11',2,'Koto Gadang');
+insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('kk1','Danang','2014-10-01','k11',4,'Jakarta');
 
 /*Table structure for table `proposal_ktp` */
 
@@ -339,7 +339,7 @@ CREATE TABLE `proposal_ktp` (
 
 /*Data for the table `proposal_ktp` */
 
-insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'12345','','1998-10-01','',1,'','','','2016-10-03',1,''),(2,'12341','Jakarta','2014-10-01','',1,'','','','2014-10-01',2,'');
+insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'k1','','2014-10-08','',1,'','','','2023-10-03',4,''),(2,'k2','Medan','2014-10-02','Jl Medan Merdeka',5,'Menikah','Programmer','WNI','2018-10-03',5,'Sintong');
 
 /*Table structure for table `tolak` */
 
@@ -352,9 +352,11 @@ CREATE TABLE `tolak` (
   `alasan_ditolak` text COLLATE utf8_unicode_ci,
   `tahap_penolakan` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`tolak_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tolak` */
+
+insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (1,4,'2014-10-04','Coba','Terakhir');
 
 /*Table structure for table `tolak_tahapan` */
 

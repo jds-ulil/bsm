@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
 //            'value'=>'Yii::app()->numberFormatter->formatCurrency($data->plafon, "IDR")',
 //        ),
         array(
-        'header' => 'Proses',
+        'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 			'template'=>'{view}',
                         'viewButtonLabel' => "Detail Proposal",

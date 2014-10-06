@@ -51,7 +51,7 @@
 							),																					
 							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
 								'items'=>array(
-								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('#',)),
+								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),
                                                              /**
                                                                 SELOWWW....
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('#',)),								    

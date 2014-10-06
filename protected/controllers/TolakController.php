@@ -40,7 +40,7 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','complete','error'),
+				'actions'=>array('create','complete','error','approval'),
 				'roles'=>array('admin', 'inputter'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,6 +62,19 @@ class TolakController extends Controller
     $this->render('error',array(			
 		));    
 	}
+    // controller approval
+    public function actionApproval() {
+        $model_tolak = new tolak('search');
+        $model_tolak->unsetAttributes(); 
+        $listTahapan = CHtml::listData(tolakTahapan::model()->findAll(),'nama','nama');                         
+        if(isset($_GET['tolak']))
+            $model_tolak->attributes=$_GET['tolak'];
+        
+        $this->render('approval', array(
+            'model_tolak' => $model_tolak,
+            'listTahapan' => $listTahapan,
+        ));
+    }
     public function actionReport(){
         $model_tolak = new tolak('search');
         $model_tolak->unsetAttributes();  // clear any default values              
@@ -152,14 +165,14 @@ class TolakController extends Controller
                 ));
                 break;
             case 'complete':                    
-                if($model_tolak->sendNotif()) {
+           //     if($model_tolak->sendNotif()) {
                     if($model_tolak->save()){                            
                         $model_proposal->status_pengajuan =  vC::APP_status_proposal_tolak;
                         $model_proposal->save();
                         $this->redirect(array('complete'));
-                    } else {           
+          //          } else {           
                       //print_r($model_proposal->getErrors());
-                    };
+           //         };
                 }
                 break;
             default:
