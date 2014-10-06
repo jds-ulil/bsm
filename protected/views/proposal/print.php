@@ -15,7 +15,12 @@ $pdf->Cell(40,0,'Nama Marketing :',0,0,'R');
 $pdf->Cell(0,0,$model_proposal->marketing,0,1,'L');
 
 $pdf->Cell(40,10,'Segmen :',0,0,'R');
-$pdf->Cell(40,10,$model_proposal->rSeg->nama,0,1,'L');
+if(!intval($model_proposal->segmen)){
+    $pdf->Cell(40,10,'Semua Segmen',0,1,'L');    
+} else {
+    $pdf->Cell(40,10,$model_proposal->rSeg->nama,0,1,'L');
+$pdf->Cell(40,10,$model_proposal->segmen,0,1,'L');
+}
 
 $pdf->Cell(40,0,'Jenis Usaha :',0,0,'R');
 $pdf->Cell(40,0,$model_proposal->jenis_usaha,0,1,'L');

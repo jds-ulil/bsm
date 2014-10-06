@@ -1,6 +1,6 @@
 *~
 assets/*
-/nbproject/private/
+/nbproject/private/*
 /nbproject/*
 protected/config/main.php
 protected/runtime/*

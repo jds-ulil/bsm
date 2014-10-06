@@ -22,7 +22,7 @@ class ProposalController extends Controller
          
         public function init() {
         parent::init();
-        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+       // Yii::app()->attachEventHandler('onError',array($this,'handleError'));
         }
         public function handleError(CEvent $event)
             {            
@@ -87,7 +87,7 @@ class ProposalController extends Controller
             }                                  
         }
         $model_proposal->marketing = empty($model_proposal->marketing)?'Tidak Ditentukan':$model_proposal->marketing;
-        $model_proposal->segmen = empty($model_proposal->segmen)?'Semua Segmen':$model_proposal->segmen;
+        //$model_proposal->segmen = empty($model_proposal->segmen)?'Semua Segmen':$model_proposal->segmen;
         $model_proposal->jenis_usaha = empty($model_proposal->jenis_usaha)?'Semua Jenis Usaha':$model_proposal->jenis_usaha;
         $model_proposal->from_plafon = empty($model_proposal->from_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->from_plafon,"");
         $model_proposal->to_plafon = empty($model_proposal->to_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->to_plafon,"");
@@ -317,8 +317,8 @@ class ProposalController extends Controller
             $mail_set = mailer::model()->findByPk(1);
             $message = new YiiMailMessage();   
                         
-            $message->view = 'input_proposal';        
-            $message->subject    = 'Proposal Baru KCP'.vC::APP_nama_KCP;
+            $message->view = 'input';        
+            $message->subject    = 'Proposal Baru KCP '.vC::APP_nama_KCP;
             
             $message->addTo('oelhil@gmail.com');                                
             
@@ -329,10 +329,11 @@ class ProposalController extends Controller
             try
             {            
                 Yii::app()->mail->transportOptions = array(
-                    'host' => "$mail_set->host",
-                    'username' => "$mail_set->nama",
-                    'password' => "$mail_set->password",
-                    'port' => "$mail_set->port",
+                     'host' => 'webmail.bsm.co.id',
+                    'username' => 'rnur1780',
+                    'password' => 'yaarabbku01',
+                    'port' => '443',
+                    'encryption'=>'tls',
                     );
                 Yii::app()->mail->send($message);                
                 //$model->status = 4;

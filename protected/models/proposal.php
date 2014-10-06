@@ -356,6 +356,7 @@ class proposal extends CActiveRecord
 		{  
             if(!empty($this->tanggal_pengajuan)){
                 $data = explode('/' ,$this->tanggal_pengajuan);
+                if(count($data) > 2)
                 $this->tanggal_pengajuan = $data[2].'-'.$data[1].'-'.$data[0];
             }
             if (!empty($this->plafon)) {

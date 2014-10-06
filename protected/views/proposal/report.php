@@ -45,10 +45,10 @@ $('.search-form form').submit(function(){
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->plafon, "Rp ")',
                 ),
                 'jenis_usaha',
-//         array(
-//                'name'=>'Marketing',
-//                'value'=>'$data->rMar->nama',		
-//            ),
+         array(
+                'name'=>'Marketing',
+                'value'=>'$data->rMar->nama',		
+            ),
 //              //  'plafon',
 //        array(
 //            'name'=>'Plafon',
