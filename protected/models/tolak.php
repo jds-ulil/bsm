@@ -36,7 +36,7 @@ class tolak extends CActiveRecord
 			array('proposal_id', 'length', 'max'=>50),
 			//array('proposal_id', 'check_proposal',),
 			array('mode, tempLL', 'safe'),
-                        array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'yyyy-MM-dd'),
+                    array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/MM/yyyy','on'=>'insert'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('marketing_search, tolak_id, no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'safe', 'on'=>'search'),
@@ -127,38 +127,62 @@ class tolak extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-        public function sendNotif() {
-//            $message = new YiiMailMessage();
-//            $message->view = 'input';        
-//            $message->subject    = 'Input Data Nasabah';
-//            
-//            foreach ($listEmail as $key => $data) {                    
-//             $message->addTo($data->email_address);       
-//            }
-//                $param = array ('nasabah'=>$model,'inputer'=>Yii::app()->user->name);
-//                $message->setBody($param, 'text/html');                
-//                $message->from = 'oelhil@gmail.com';   
-//
-//            try
-//            {            
-//                Yii::app()->mail->send($message);                
-//                $model->status = 4;
-//                $model->save();
-//                $this->redirect(array('view','id'=>$model->nasabah_id));
-//            }
-//            catch (Exception $exc)
-//            {
-//                $this->render('error',array(			
-//                ));
-//            }             
-//            
-        return false;
-    }    
+	}          
     
         public function getTotalTolak () {
             $query1 = "SELECT COUNT(tolak_id) FROM tolak";                        
             $count=Yii::app()->db->createCommand($query1)->queryScalar();            
             return $count==null?0:$count;
         }
+        public function beforeSave()
+        {
+                if(parent::beforeSave())
+                {  
+                    if(!empty($this->tanggal_tolak)){
+                        $data = explode('/' ,$this->tanggal_tolak);                
+                        if(count($data) > 2) {
+                        $this->tanggal_tolak = $data[2].'-'.$data[1].'-'.$data[0];
+                        }
+                    }                                
+                }
+        return true;
+        }
+        public function sendNotif() {
+          $mail_set = mailer::model()->findByPk(1);
+          $message = new YiiMailMessage();            
+          $message->view = 'input_nasabah_tolak';        
+          $message->subject    = 'Nasabah Tolak Baru KCP'.vC::APP_nama_KCP;         
+          $listEmail = ListEmail::model()->findAll("status = '".vC::APP_status_email_semua."' 
+                                      OR status = '".vc::APP_status_email_nasabah_tolak ."'");
+          foreach ($listEmail as $key => $data) {                    
+           $message->addTo($data->email_address);                    
+          }
+          if(!empty($model_marketing) && !empty($model_marketing->email_atasan)) {
+              $message->addTo($model_marketing->email_atasan);                    
+          }
+
+              $param = array ('tolak'=>$this);
+              $message->setBody($param, 'text/html');                
+              $message->from = vc::APP_from_email;   
+
+          try
+          {  
+               Yii::app()->mail->transportOptions = array(
+                  'host' => "$mail_set->host",
+                  'username' => "$mail_set->nama",
+                  'password' => "$mail_set->password",
+                  'port' => "$mail_set->port",
+                  );
+              Yii::app()->mail->send($message);                
+              //$model->status = 4;
+              //$model->save();
+              //$this->redirect(array('view','id'=>$model->nasabah_id));
+          }
+          catch (Exception $exc)
+          {                                        
+              return false;
+          }             
+
+          return true;
+      }
 }

@@ -27,7 +27,7 @@ function menuTypeChange(menyType)
 	    'model'=>$model_tolak, //Model object
 	    'attribute'=>'tanggal_tolak', //attribute name
 	    'mode'=>'date', //use "time","date" or "datetime" (default)
-	    'options'=>array('dateFormat'=>'yy-mm-dd'),
+	    'options'=>array('dateFormat'=>'dd/mm/yy'),
 	    'htmlOptions'=>array('class'=>'span3')// jquery plugin options
 	    ));
 	?>

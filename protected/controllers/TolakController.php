@@ -18,7 +18,19 @@ class TolakController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
-
+    
+    public function init() {
+        parent::init();
+       // Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+        }
+        public function handleError(CEvent $event)
+            {            
+            if($event instanceof CErrorEvent)
+            {       
+            $this->redirect(array('Error'));
+          }
+            $event->handled = TRUE;
+        }    
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -28,7 +40,7 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','complete'),
+				'actions'=>array('create','complete','error'),
 				'roles'=>array('admin', 'inputter'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -45,6 +57,11 @@ class TolakController extends Controller
         $this->render('detail',array(         
         ));
     }
+    public function actionError()
+	{        
+    $this->render('error',array(			
+		));    
+	}
     public function actionReport(){
         $model_tolak = new tolak('search');
         $model_tolak->unsetAttributes();  // clear any default values              
@@ -135,7 +152,7 @@ class TolakController extends Controller
                 ));
                 break;
             case 'complete':                    
-              //  if($model_tolak->sendNotif()) {
+                if($model_tolak->sendNotif()) {
                     if($model_tolak->save()){                            
                         $model_proposal->status_pengajuan =  vC::APP_status_proposal_tolak;
                         $model_proposal->save();
@@ -143,7 +160,7 @@ class TolakController extends Controller
                     } else {           
                       //print_r($model_proposal->getErrors());
                     };
-              //  }
+                }
                 break;
             default:
                 break;

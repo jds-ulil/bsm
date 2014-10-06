@@ -129,8 +129,10 @@ class proposalKtp extends CActiveRecord
                     $this->tanggal_lahir = $data[2].'-'.$data[1].'-'.$data[0];
                 }                                
                 if(!empty($this->masa_berlaku)){
-                    $data = explode('/' ,$this->masa_berlaku);                
+                    $data = explode('/' ,$this->masa_berlaku);  
+                    if(count($data) > 2) {
                     $this->masa_berlaku = $data[2].'-'.$data[1].'-'.$data[0];
+                    }
                 }                                
             }
 	return true;

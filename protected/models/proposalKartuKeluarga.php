@@ -110,7 +110,9 @@ class proposalKartuKeluarga extends CActiveRecord
             {  
                 if(!empty($this->tanggal_lahir)){
                     $data = explode('/' ,$this->tanggal_lahir);                
+                    if(count($data) > 2) {
                     $this->tanggal_lahir = $data[2].'-'.$data[1].'-'.$data[0];
+                    }
                 }                                
             }
 	return true;
