@@ -474,3 +474,67 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/bsm/index.php?r=tolak/completeApp
 ---
+2014/10/07 11:07:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "index" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/07 11:08:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "index" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/07 11:13:23 [error] [exception.CException] exception 'CException' with message 'tolak dan behaviornya tidak memiliki method ataupun closure bernama "searchTolak"' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('searchTolak', Array)
+#1 C:\xampp\htdocs\bsm\protected\views\tolak\report.php(26): CActiveRecord->__call('searchTolak', Array)
+#2 C:\xampp\htdocs\bsm\protected\views\tolak\report.php(26): tolak->searchTolak()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('report', Array, true)
+#7 C:\xampp\htdocs\bsm\protected\controllers\TolakController.php(159): CController->render('report', Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): TolakController->actionReport()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('report')
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('tolak/report')
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#21 {main}
+REQUEST_URI=/bsm/index.php?r=tolak/report
+HTTP_REFERER=http://localhost/bsm/index.php?r=tolak/approval
+---
+2014/10/07 11:32:31 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (210)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/07 11:32:35 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (210)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/07 11:36:58 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (210)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/07 11:37:02 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (210)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/07 11:37:06 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (210)
+in C:\xampp\htdocs\bsm\index.php (15)

@@ -85,20 +85,47 @@ class tolak extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
+	public function search() {		
 		$criteria=new CDbCriteria;           
         $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
         $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
-		$criteria->compare('tolak_id',$this->tolak_id);
-		//$criteria->compare('no_proposal',$this->no_proposal,true);
+		$criteria->compare('tolak_id',$this->tolak_id);		
 		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
 		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
 		$criteria->compare('mp.nama',$this->marketing_search,true);		
 		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);
         $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak."' ");   
+        if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
+            $arrTahap = tolakTahapan::getArrTahapan();
+            foreach ($arrTahap as $key => $value) {
+                $criteria->addCondition("tahap_penolakan <> '".$value."' ");                 
+            }            
+        } else {
+            $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
+        }
+        if (!empty($this->from_date)) {                
+        $reFromDate = $this->toDBDate($this->from_date);                
+        $criteria->addCondition('tanggal_tolak >= "'.$reFromDate.'" ');                
+        }
+        if (!empty($this->to_date)) {
+        $reToDate = $this->toDBDate($this->to_date);                
+        $criteria->addCondition('tanggal_tolak <= "'.$reToDate.'" ');		
+        }
+                
+        return new CActiveDataProvider($this, array(
+                'criteria'=>$criteria,
+        ));
+	}
+	public function searchTolak() {		
+		$criteria=new CDbCriteria;           
+        $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
+        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+		$criteria->compare('tolak_id',$this->tolak_id);		
+		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
+		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
+		$criteria->compare('mp.nama',$this->marketing_search,true);		
+		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);
+        $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak_approv."' ");   
         if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
             $arrTahap = tolakTahapan::getArrTahapan();
             foreach ($arrTahap as $key => $value) {

@@ -243,11 +243,13 @@ class proposal extends CActiveRecord
                             //->setFetchMode(PDO::FETCH_COLUMN,1)
                             ->select("nama_nasabah,proposal_id")
                             ->from("proposal")            
-                            ->where("status_pengajuan = '".vC::APP_status_proposal_tolak."'")
+                            ->where("status_pengajuan = '".vC::APP_status_proposal_tolak."' OR "
+                                    . " status_pengajuan = '".vC::APP_status_proposal_tolak_approv ."' ")
                             ->queryAll();                   
             foreach ($arrNamaTolak as $key => $value) {
                         if($value['nama_nasabah'] == $this->$attribute_name) {
-                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
+                            $model_tolak = tolak::model()->find(" proposal_id = " . $value['proposal_id'] );
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('tolak/detail',array('id'=>$model_tolak->tolak_id))."' target='_blank'>Lihat Detail</a>");
                             return false;
                         }
                     }
@@ -260,23 +262,26 @@ class proposal extends CActiveRecord
                             ->select("pkk.no_ktp, pro.proposal_id")
                             ->from("proposal pro")
                             ->join('proposal_kartu_keluarga pkk', 'pro.proposal_id=pkk.proposal_id')                            
-                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."'")
+                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."' OR "
+                                    . " pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak_approv ."' ")
                             ->queryAll();             
             $arrKtptolak = Yii::app()->db->createCommand()
                            // ->setFetchMode(PDO::FETCH_COLUMN,0)
                             ->select("pro.no_ktp, pro.proposal_id")
                             ->from("proposal pro")                            
-                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."'")
+                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."' OR "
+                                    . " pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak_approv ."' ")
                             ->queryAll();            
-            foreach ($arrKtpKKtolak as $key => $value) {
-                        if($value['no_ktp'] == $this->$attribute_name) {
-                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
-                            return false;
-                        }
-                    }
+//            foreach ($arrKtpKKtolak as $key => $value) {
+//                        if($value['no_ktp'] == $this->$attribute_name) {
+//                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
+//                            return false;
+//                        }
+//                    }
             foreach ($arrKtptolak as $key => $value) {
                         if($value['no_ktp'] == $this->$attribute_name) {
-                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('proposal/detail',array('id'=>$value['proposal_id']))."' target='_blank'>Lihat Detail</a>");
+                            $model_tolak = tolak::model()->find(" proposal_id = " . $value['proposal_id'] );
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('tolak/detail',array('id'=>$model_tolak->tolak_id))."' target='_blank'>Lihat Detail</a>");
                             return false;
                         }
                     }

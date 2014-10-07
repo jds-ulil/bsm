@@ -41,7 +41,7 @@ class TolakController extends Controller
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','complete','error','approval','proses',
-                                'toapprove','tocancel','completeApp'),
+                                'toapprove','tocancel','completeApp','detail'),
 				'roles'=>array('admin', 'inputter','approval'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -55,7 +55,48 @@ class TolakController extends Controller
 	}       
     public function actionDetail($id){
         $model_tolak = $this->loadModel($id);
-        $this->render('detail',array(         
+        if(!empty($model_tolak)) {
+            $model_proposal = $this->loadModelProposal($model_tolak->proposal_id);
+            $model_marketing = new pegawai;
+            $model_ktp = new proposalKtp;
+            $model_buku_nikah = new proposalBukuNikah;
+            $model_kartu_keluarga = array(new proposalKartuKeluarga);
+            if(!empty($model_proposal)) {
+                $model_marketing = pegawai::model()->findByPk($model_proposal->marketing);
+                $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
+                $model_ktp_cek = proposalKtp::model()->findByAttributes(array(
+                    'no_ktp'=>$model_proposal->no_ktp,
+                    'proposal_id'=>$model_proposal->proposal_id,                
+                ));
+                $model_buku_nikah_cek = proposalBukuNikah::model()->findByAttributes(array(
+                    'no_buku_nikah'=>$model_proposal->no_buku_nikah,
+                    'proposal_id'=>$model_proposal->proposal_id,                
+                ));
+                if (!empty($model_buku_nikah_cek)) {
+                    $model_buku_nikah = $model_buku_nikah_cek;
+                }
+                if (!empty($model_ktp_cek)) {
+                    $model_ktp = $model_ktp_cek;
+                }
+                $model_kartu_keluarga = proposalKartuKeluarga::model()->findAllByAttributes(array(
+                    'no_kartu_keluarga'=>$model_proposal->no_kartu_keluarga,
+                    'proposal_id'=>$model_proposal->proposal_id,                
+                ));            
+                }
+        } else {
+            $model_proposal = new proposal;
+            $model_marketing = new pegawai;
+            $model_ktp = new proposalKtp;
+            $model_buku_nikah = new proposalBukuNikah;
+            $model_kartu_keluarga = array(new proposalKartuKeluarga);
+        }
+        $this->render('detail',array(
+            'model_tolak' => $model_tolak,
+            'model_proposal' => $model_proposal,
+            'model_marketing' => $model_marketing,
+            'model_ktp' => $model_ktp,
+            'model_buku_nikah' => $model_buku_nikah,
+            'model_kartu_keluarga' => $model_kartu_keluarga,
         ));
     }
     public function actionError()
@@ -148,12 +189,13 @@ class TolakController extends Controller
     }
     public function actionReport(){
         $model_tolak = new tolak('search');
-        $model_tolak->unsetAttributes();  // clear any default values              
+        $model_tolak->unsetAttributes(); 
         $listTahapan = CHtml::listData(tolakTahapan::model()->findAll(),'nama','nama');                         
         if(isset($_GET['tolak']))
-                $model_tolak->attributes=$_GET['tolak'];
+            $model_tolak->attributes=$_GET['tolak'];
+        
         $this->render('report', array(
-            'model_tolak' => $model_tolak, 
+            'model_tolak' => $model_tolak,
             'listTahapan' => $listTahapan,
         ));
     }
