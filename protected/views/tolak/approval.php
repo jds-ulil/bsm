@@ -49,7 +49,7 @@ $('.search-form form').submit(function(){
                         'class'=>'bootstrap.widgets.TbButtonColumn',
                         'template'=>'{update}',
                         'updateButtonLabel' => "Proses Nasabah",
-                        'viewButtonUrl'=>'Yii::app()->createUrl("/proposal/detail", array("id" =>$data[\'proposal_id\']))',
+                        'updateButtonUrl'=>'Yii::app()->createUrl("tolak/proses", array("id" =>$data[\'tolak_id\']))',
                         'htmlOptions' => array(
                         //  'width' => '6%',
                         //  'align' => 'center',

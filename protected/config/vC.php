@@ -24,6 +24,7 @@ class vC {
     
     const APP_status_proposal_new = 0;
     const APP_status_proposal_tolak = 2;     
+    const APP_status_proposal_tolak_approv = 3;     
     
     const APP_tahapan_lainya = 'Lain-lain';
     

@@ -90,34 +90,35 @@ class tolak extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;           
-                $criteria->join= ' LEFT OUTER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
-                $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+        $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
+        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
 		$criteria->compare('tolak_id',$this->tolak_id);
 		//$criteria->compare('no_proposal',$this->no_proposal,true);
 		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
 		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
 		$criteria->compare('mp.nama',$this->marketing_search,true);		
-		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);		
-                if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
-                    $arrTahap = tolakTahapan::getArrTahapan();
-                    foreach ($arrTahap as $key => $value) {
-                        $criteria->addCondition("tahap_penolakan <> '".$value."' ");                 
-                    }            
-                } else {
-                    $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
-                }
-                if (!empty($this->from_date)) {                
-                $reFromDate = $this->toDBDate($this->from_date);                
-                $criteria->addCondition('tanggal_tolak >= "'.$reFromDate.'" ');                
-                }
-                if (!empty($this->to_date)) {
-                $reToDate = $this->toDBDate($this->to_date);                
-                $criteria->addCondition('tanggal_tolak <= "'.$reToDate.'" ');		
-                }
+		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);
+        $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak."' ");   
+        if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
+            $arrTahap = tolakTahapan::getArrTahapan();
+            foreach ($arrTahap as $key => $value) {
+                $criteria->addCondition("tahap_penolakan <> '".$value."' ");                 
+            }            
+        } else {
+            $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
+        }
+        if (!empty($this->from_date)) {                
+        $reFromDate = $this->toDBDate($this->from_date);                
+        $criteria->addCondition('tanggal_tolak >= "'.$reFromDate.'" ');                
+        }
+        if (!empty($this->to_date)) {
+        $reToDate = $this->toDBDate($this->to_date);                
+        $criteria->addCondition('tanggal_tolak <= "'.$reToDate.'" ');		
+        }
                 
-                        return new CActiveDataProvider($this, array(
-                                'criteria'=>$criteria,
-                        ));
+        return new CActiveDataProvider($this, array(
+                'criteria'=>$criteria,
+        ));
 	}
         public function check_proposal($attribute_name, $params)
         {             
@@ -160,6 +161,55 @@ class tolak extends CActiveRecord
                 }
         return true;
         }
+        public function sendMailApprove(){
+            $mail_set = mailer::model()->findByPk(1);
+            $model_proposal = proposal::model()->findByPk($this->proposal_id);
+            $model_marketing = pegawai::model()->findByPk($model_proposal->marketing);
+           
+            $message = new YiiMailMessage();            
+            $message->view = 'approval_nasabah_tolak';        
+            $message->subject    = 'Nasabah Ditolak KCP Lubuk Sikaping  '.vC::APP_nama_KCP.
+                    ' tanggal '.Yii::app()->numberFormatter->formatDate($this->tanggal_tolak)
+                    .' '.$model_marketing->rUnK->nama;    
+            $listEmail = ListEmail::model()->findAll("status = '".vC::APP_status_email_semua."' 
+                                      OR status = '".vc::APP_status_email_aproval ."'");                       
+           foreach ($listEmail as $key => $data) {                    
+            $message->addTo($data->email_address);                    
+            }
+           if(empty($model_proposal)){
+               $model_proposal = new proposal;
+           }
+           if(empty($model_marketing)){
+               $model_marketing = new pegawai;
+           }
+            $param = array (
+                'model_tolak'=>$this,
+                'model_proposal'=>$model_proposal,
+                'model_marketing'=>$model_marketing
+                    );          
+            $message->setBody($param, 'text/html');                
+            $message->from = vc::APP_from_email;   
+
+            try
+            {  
+                 Yii::app()->mail->transportOptions = array(
+                    'host' => "$mail_set->host",
+                    'username' => "$mail_set->nama",
+                    'password' => "$mail_set->password",
+                    'port' => "$mail_set->port",
+                    );
+                Yii::app()->mail->send($message);                
+                //$model->status = 4;
+                //$model->save();
+                //$this->redirect(array('view','id'=>$model->nasabah_id));
+            }
+            catch (Exception $exc)
+            {                                        
+                return false;
+            }             
+
+            return true;
+        }
         public function sendNotif() {
           $mail_set = mailer::model()->findByPk(1);
           $message = new YiiMailMessage();            
@@ -167,6 +217,7 @@ class tolak extends CActiveRecord
           $message->subject    = 'Nasabah Tolak Baru KCP'.vC::APP_nama_KCP;         
           $listEmail = ListEmail::model()->findAll("status = '".vC::APP_status_email_semua."' 
                                       OR status = '".vc::APP_status_email_nasabah_tolak ."'");
+          $model_marketing = pegawai::model()->findByPk("nama = '".$this->nama_nasabah."'"); 
           foreach ($listEmail as $key => $data) {                    
            $message->addTo($data->email_address);                    
           }

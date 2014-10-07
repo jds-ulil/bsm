@@ -40,8 +40,9 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','complete','error','approval'),
-				'roles'=>array('admin', 'inputter'),
+				'actions'=>array('create','complete','error','approval','proses',
+                                'toapprove','tocancel','completeApp'),
+				'roles'=>array('admin', 'inputter','approval'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('report','detail'),
@@ -62,6 +63,30 @@ class TolakController extends Controller
     $this->render('error',array(			
 		));    
 	}
+    // when approve cancel tolak
+    public function actionTocancel($id) {        
+       $model_tolak = $this->loadModel($id);
+       $model_proposal = $this->loadModelProposal($model_tolak->proposal_id);
+       if($model_tolak->delete()){
+           $model_proposal->status_pengajuan = vc::APP_status_proposal_new;
+           $model_proposal->save();
+           //print_r($model_proposal->getErrors());
+           $this->redirect(array('tolak/completeApp'));
+       }
+    }
+    // when approve nasabah tolak
+    public function actionToapprove($id) {
+        $model_tolak = $this->loadModel($id);
+        $model_proposal = $this->loadModelProposal($model_tolak->proposal_id);
+        if($model_tolak->sendMailApprove()){
+            $model_proposal->status_pengajuan = vc::APP_status_proposal_tolak_approv;
+            $model_proposal->save();
+            $this->redirect(array('tolak/completeApp'));
+        }
+    }
+    public function actionCompleteApp(){
+        $this->render('complete_approval');
+    }
     // controller approval
     public function actionApproval() {
         $model_tolak = new tolak('search');
@@ -73,6 +98,52 @@ class TolakController extends Controller
         $this->render('approval', array(
             'model_tolak' => $model_tolak,
             'listTahapan' => $listTahapan,
+        ));
+    }
+    public function actionProses($id){
+        $model_tolak = $this->loadModel($id);
+        if(!empty($model_tolak)) {
+            $model_proposal = $this->loadModelProposal($model_tolak->proposal_id);
+            $model_marketing = new pegawai;
+            $model_ktp = new proposalKtp;
+            $model_buku_nikah = new proposalBukuNikah;
+            $model_kartu_keluarga = array(new proposalKartuKeluarga);
+            if(!empty($model_proposal)) {
+                $model_marketing = pegawai::model()->findByPk($model_proposal->marketing);
+                $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
+                $model_ktp_cek = proposalKtp::model()->findByAttributes(array(
+                    'no_ktp'=>$model_proposal->no_ktp,
+                    'proposal_id'=>$model_proposal->proposal_id,                
+                ));
+                $model_buku_nikah_cek = proposalBukuNikah::model()->findByAttributes(array(
+                    'no_buku_nikah'=>$model_proposal->no_buku_nikah,
+                    'proposal_id'=>$model_proposal->proposal_id,                
+                ));
+                if (!empty($model_buku_nikah_cek)) {
+                    $model_buku_nikah = $model_buku_nikah_cek;
+                }
+                if (!empty($model_ktp_cek)) {
+                    $model_ktp = $model_ktp_cek;
+                }
+                $model_kartu_keluarga = proposalKartuKeluarga::model()->findAllByAttributes(array(
+                    'no_kartu_keluarga'=>$model_proposal->no_kartu_keluarga,
+                    'proposal_id'=>$model_proposal->proposal_id,                
+                ));            
+                }
+        } else {
+            $model_proposal = new proposal;
+            $model_marketing = new pegawai;
+            $model_ktp = new proposalKtp;
+            $model_buku_nikah = new proposalBukuNikah;
+            $model_kartu_keluarga = array(new proposalKartuKeluarga);
+        }
+        $this->render('proses_approval',array(
+            'model_tolak' => $model_tolak,
+            'model_proposal' => $model_proposal,
+            'model_marketing' => $model_marketing,
+            'model_ktp' => $model_ktp,
+            'model_buku_nikah' => $model_buku_nikah,
+            'model_kartu_keluarga' => $model_kartu_keluarga,
         ));
     }
     public function actionReport(){
