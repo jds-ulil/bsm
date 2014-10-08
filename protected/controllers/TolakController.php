@@ -40,7 +40,7 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','complete','error','approval','proses',
+				'actions'=>array('create','complete','error','approval','proses','print',
                                 'toapprove','tocancel','completeApp','detail'),
 				'roles'=>array('admin', 'inputter','approval'),
 			),
@@ -52,7 +52,38 @@ class TolakController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}       
+	}     
+    public function actionPrint() {
+        $data = array();
+        $index = 0;
+        
+        $model_tolak = new tolak('search');
+        $model_tolak->unsetAttributes();
+        if(isset($_POST['tolak'])){            
+            $model_tolak->attributes = $_POST['tolak'];
+            $dataProv = $model_tolak->searchTolak(); 
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;                
+                $data[]=array(  'index'=>$index,
+                                'tanggal_tolak'=>Yii::app()->numberFormatter->formatDate($record->tanggal_tolak),
+                                'tahap_penolakan'=>Yii::app()->numberFormatter->formatDate($record->tahap_penolakan),
+                                'marketing'=>$record->rCM->roMar->nama,
+                                'nama_nasabah'=>$record->rCM->nama_nasabah,                                
+                        );
+            }
+            
+        }
+        $model_tolak->marketing_search = empty($model_tolak->marketing_search)?' - ':$model_tolak->marketing_search;
+        $model_tolak->nama_nasabah = empty($model_tolak->nama_nasabah)?' - ':$model_tolak->nama_nasabah;
+        $model_tolak->from_date = empty($model_tolak->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_tolak->from_date);
+        $model_tolak->to_date = empty($model_tolak->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model_tolak->to_date);        
+        $model_tolak->tahap_penolakan = empty($model_tolak->tahap_penolakan)?' - ':$model_tolak->tahap_penolakan;        
+        $this->render('print',array(
+                'model_tolak' => $model_tolak,
+                'data' => $data,
+        ));
+    }
     public function actionDetail($id){
         $model_tolak = $this->loadModel($id);
         if(!empty($model_tolak)) {
@@ -197,6 +228,7 @@ class TolakController extends Controller
         $this->render('report', array(
             'model_tolak' => $model_tolak,
             'listTahapan' => $listTahapan,
+            'report' => true,
         ));
     }
     public function actionCreate (){         

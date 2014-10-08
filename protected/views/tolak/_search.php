@@ -45,7 +45,7 @@
         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
             'model'=>$model_tolak->nama_nasabah,           
             'name'=>'tolak[nama_nasabah]',
-            'source'=>$this->createUrl('proposal/autocompleteNasabahTolak'),
+            'source'=>$this->createUrl('proposal/autocompleteNasabahTolakApp'),
             'options'=>array(
                 'delay'=>150,
                 'minLength'=>1,
@@ -99,13 +99,21 @@
 	    ));?>
     </div>
 </div>
-
-<div class="form-actions">        	
-        <?php $this->widget('bootstrap.widgets.TbButton', array(
+<div class="form-actions">       
+        <?php if($report){                   
+                $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType'=>'submit',
-                'type'=>'default',
+                'type'=>'danger',
+                'label'=>'Buat Laporan',
+                ));
+        } else {
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'buttonType'=>'submit',
+                'type'=>'Default',
                 'label'=>'Search',
-		)); ?>
+                ));
+        }
+        ?>        
     </div>
 
 <?php $this->endWidget(); ?>

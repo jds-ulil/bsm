@@ -70,19 +70,15 @@
                                                       * 
                                                       */
 								    )
-							),	
-                                                    /**
-                                                    SELOWWW....
+							),	                                                    
 							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
 								'items'=>array(
-								    array('label'=>'Kuisioner', 'url'=>array('#',)),								   
-								    array('label'=>'Kode Merah', 'url'=>array('#',)),
+								    array('label'=>'Kuisioner', 'url'=>array('Question/index',)),								   
+								    //array('label'=>'Kode Merah', 'url'=>array('#',)),
 								    array('label'=>'Rekap Kuisioner', 'url'=>array('#',)),
-								    array('label'=>'Rekap Kode Merah', 'url'=>array('#',)),
+								    //array('label'=>'Rekap Kode Merah', 'url'=>array('#',)),
 								    )
-							),
-                                                     * 
-                                                     */														
+							),													
 							array('label'=>'Master Data', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval'), 
 								'items'=>array(
 								    array('label'=>'Pegawai/Marketing', 'url'=>array('pegawai/index',)),								    

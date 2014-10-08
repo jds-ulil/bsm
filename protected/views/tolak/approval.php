@@ -23,6 +23,7 @@ $('.search-form form').submit(function(){
 <?php $this->renderPartial('_search',array(
     'model_tolak' => $model_tolak,
     'listTahapan' => $listTahapan,
+    'report'=> false,
 )); ?>
 </div><!-- search-form -->
 

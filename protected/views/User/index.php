@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 //);
 ?>
 
-sesattttttttttttttttttt
+
 
 <h1>Daftar User</h1>
 <?php $post_html = '</tbody></table>'; ?>
@@ -22,5 +22,3 @@ sesattttttttttttttttttt
         'template'=>"{summary}\n{sorter}\n{items}</tbody></table>\n{pager}",
 )); ?>
 
-tessssssssssssssss
-   

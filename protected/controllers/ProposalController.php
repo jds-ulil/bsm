@@ -43,7 +43,8 @@ class ProposalController extends Controller
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','getRowForm','complete','error','print','tes'
-                                        ,'autocompleteUsaha', 'autocompleteNasabah', 'autocompleteNasabahTolak'),
+                                        ,'autocompleteUsaha', 'autocompleteNasabah', 'autocompleteNasabahTolak',
+                                        'autocompleteNasabahTolakApp'),
 				'roles'=>array('admin', 'inputter', 'approval'),
                     ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -105,6 +106,17 @@ class ProposalController extends Controller
 		));    
 	}
         
+	public function ActionAutocompleteNasabahTolakApp() {
+            $res =array();
+        if (isset($_GET['term'])) {
+            $sql = 'SELECT pro.nama_nasabah AS label,pro.proposal_id AS proposal_id
+                        FROM proposal pro';
+            $sql = $sql . " WHERE pro.`nama_nasabah` LIKE :nama AND pro.status_pengajuan = '".vc::APP_status_proposal_tolak_approv."' group by pro.jenis_usaha"; // Must be at least 1
+            $command =Yii::app()->db->createCommand($sql);
+            $command->bindValue(":nama", '%'.$_GET['term'].'%', PDO::PARAM_STR);
+            echo json_encode ($command->queryAll());
+        }
+    }
 	public function actionAutocompleteNasabah() {
             $res =array();
         if (isset($_GET['term'])) {

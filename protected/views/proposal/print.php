@@ -61,5 +61,5 @@ $pdf->SetY($pdf->GetY()+5);
 $pdf->WriteTable($columns); 
 
 $pdf->Output();
-$pdf->Output('LaporanGardu.pdf','D');
+$pdf->Output('LaporanProposal.pdf','D');
 ?>

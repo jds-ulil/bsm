@@ -7,10 +7,7 @@ $this->breadcrumbs=array(
 	//'Report',
 );
 Yii::app()->clientScript->registerScript('search', "
-$('.search-form form').submit(function(){
-	$('#mtb-proposal-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
+$('.search-form form').submit(function(){	
 	$('#print_marketing').val($('#proposal_marketing').val());
 	$('#print_segmen').val($('#proposal_segmen').val());
 	$('#print_jenis_usaha').val($('#proposal_jenis_usaha').val());
@@ -18,6 +15,9 @@ $('.search-form form').submit(function(){
 	$('#print_to_plafon').val($('#proposal_to_plafon').val());
 	$('#print_from_date').val($('#proposal_from_date').val());
 	$('#print_to_date').val($('#proposal_to_date').val());
+    $('#mtb-proposal-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
 	return false;
 });
 ");
