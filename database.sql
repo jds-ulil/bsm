@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v9.63 
-MySQL - 5.1.41 : Database - nasdo
+MySQL - 5.5.27 : Database - nasdo
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.1.41 : Database - nasdo
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 
 USE `nasdo`;
 
@@ -164,7 +164,7 @@ CREATE TABLE `mtb_mailer` (
 
 /*Data for the table `mtb_mailer` */
 
-insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`) values (1,'webmail.syariahmandiri.co.id','rnur1780@bsm.co.id','yaarabbku01','443');
+insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`) values (1,'ssl://smtp.gmail.com','oelhil@gmail.com','j4mg4d4ngsa','465');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -284,7 +284,7 @@ CREATE TABLE `proposal` (
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (4,'1000000','2014-10-01',1,'Pertanian','1','kk1','n1','k1','1','2',1,'','','',NULL,'','','','','','',0,'Akbar',1,NULL),(5,'2000000','2014-10-02',4,'Jagung','1','kk2','n2','k2','2','0',2,'2000000','2500000','300000',6,'','','','','','',0,'Suci',2,NULL);
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (4,'1000000','2014-10-01',1,'Pertanian','1','kk1','n1','k1','1','0',1,'','','',NULL,'','','','','','',0,'Akbar',1,NULL),(5,'2000000','2014-10-02',4,'Jagung','1','kk2','n2','k2','2','3',2,'2000000','2500000','300000',6,'','','','','','',0,'Suci',2,NULL);
 
 /*Table structure for table `proposal_buku_nikah` */
 
@@ -352,11 +352,11 @@ CREATE TABLE `tolak` (
   `alasan_ditolak` text COLLATE utf8_unicode_ci,
   `tahap_penolakan` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`tolak_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tolak` */
 
-insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (1,4,'2014-10-04','Coba','Terakhir');
+insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (6,5,'2014-10-01','ass','OTS Usaha');
 
 /*Table structure for table `tolak_tahapan` */
 
@@ -371,6 +371,39 @@ CREATE TABLE `tolak_tahapan` (
 /*Data for the table `tolak_tahapan` */
 
 insert  into `tolak_tahapan`(`tahapan_id`,`nama`) values (1,'BI Checking'),(2,'DHN BI'),(3,'Blacklist PPATK'),(4,'OTS Usaha'),(5,'OTS Agunan'),(6,'Komite'),(7,'Lain-lain');
+
+/*Table structure for table `vote_jawab` */
+
+DROP TABLE IF EXISTS `vote_jawab`;
+
+CREATE TABLE `vote_jawab` (
+  `id_jawab` int(5) NOT NULL AUTO_INCREMENT,
+  `soal_id` int(3) DEFAULT NULL,
+  `jawaban` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `user_id` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id_jawab`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `vote_jawab` */
+
+insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`user_id`) values (1,1,'YA',NULL),(2,2,'TIDAK',NULL),(3,1,'TIDAK',NULL),(4,2,'BISA JADI',NULL),(5,1,'YA',NULL),(6,2,'TIDAK',NULL),(7,1,'TIDAK',NULL),(8,2,'BISA JADI',NULL);
+
+/*Table structure for table `vote_soal` */
+
+DROP TABLE IF EXISTS `vote_soal`;
+
+CREATE TABLE `vote_soal` (
+  `id_soal` int(3) NOT NULL AUTO_INCREMENT,
+  `soal` text COLLATE utf8_bin,
+  `group_soal` int(3) DEFAULT NULL,
+  `rank` int(3) DEFAULT NULL,
+  `pilihan_jawaban` text COLLATE utf8_bin,
+  PRIMARY KEY (`id_soal`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `vote_soal` */
+
+insert  into `vote_soal`(`id_soal`,`soal`,`group_soal`,`rank`,`pilihan_jawaban`) values (1,'Apakah App Ini berguna ?',1,1,'YA,TIDAK'),(2,'Apakah anda sudah makan ?',1,2,'YA,TIDAK,BISA JADI');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
