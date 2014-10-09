@@ -27,11 +27,11 @@ class QuestionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				//'actions'=>array('index','view','create','update','delete'),
-				//'roles'=>array('admin','approval'),
+				'actions'=>array('report'),
+				'roles'=>array('admin'),
 			),			
 			array('allow',  // deny all users
-                'actions'=>array('index'),
+                'actions'=>array('index','complete'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -46,25 +46,62 @@ class QuestionController extends Controller
 	 */
 	public function actionIndex()
 	{        
-//        $model_vote = new votes;
-//        $pertanyaan = votesSoal::model()->search();        
-//        
-//        foreach($pertanyaan->getData() as $record) {
-//              print_r($record);
-//            }
-//        
-//        if(!Yii::app()->user->isGuest) {
-//            $id = Yii::app()->user->id;
-//            $model_user = mguser::model()->findByPk($id);
-//            
-//            $loadVote = votes::model()->find($model_user->user_id);
-//            $model_vote = empty($loadVote)?$model_vote:$loadVote;
-//            if(empty($loadVote)) {
-//                $model_vote->nama_voter = $model_user->user_name;
-//            }            
-//        }       
+        $model_soal = array(new voteSoal); 
+        $model_soal = voteSoal::model()->findAllBySql(
+                'SELECT * FROM vote_soal WHERE group_soal = ? ORDER BY rank ASC',
+                array(1)
+                );            
+        
+        if (isset($_POST['voteSoal'])) {
+            $arrJawaban  = $_POST['voteSoal'];
+            foreach ($arrJawaban as $key => $value) {
+                $voteJawab = new voteJawab;
+                $voteJawab->soal_id = $key;
+                $voteJawab->jawaban = $value;
+                $voteJawab->save();
+            }
+            $this->redirect(array('complete'));
+        }
+        
 		$this->render('index',array(	
-//            'model_vote' => $model_vote, 
+            'model_soal' => $model_soal,
+		));
+	}
+    
+    public function actionReport() {
+        $model_jawab = new voteJawab;        
+        $dataProvider = $model_jawab->search();
+        
+        
+        $model_soal = new voteSoal;
+        $model_soal->group_soal = 1;
+        $soal_provider = $model_soal->search();        
+        
+        $totalVote = intval($dataProvider->getTotalItemCount()/$soal_provider->getTotalItemCount());
+            
+        $arrResult = array();
+        $arrSoal = array();
+        foreach($soal_provider->getData() as $record) {
+            $arrSoal[$record->id_soal] = $record->soal;
+            $arrJwb = explode(',', $record->pilihan_jawaban);
+            foreach ($arrJwb as $key_j => $value_j) {
+                 $model_jawab->jawaban = $value_j;
+                 $model_jawab->soal_id = $record->id_soal;
+                 $data = $model_jawab->search();
+                 $arrResult[$record->id_soal][$model_jawab->jawaban]['total'] = $data->getTotalItemCount();
+            }            
+        }
+
+        $this->render('report',array(
+            'arrResult' => $arrResult,
+            'arrSoal' => $arrSoal,
+        ));
+    }
+
+    public function actionComplete()
+	{               
+		$this->render('complete',array(	
+            
 		));
 	}
 	

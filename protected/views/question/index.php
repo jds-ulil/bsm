@@ -3,4 +3,34 @@ $this->breadcrumbs=array(
 	'Quistionaire',
 );
 ?>
-<?php $this->widget('EPoll'); ?>
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+	'id'=>'mtb-user-form',
+	'enableAjaxValidation'=>false,
+	'type'=>'horizontal',
+	'htmlOptions' => array(
+        'enctype' => 'multipart/form-data',
+        ),
+)); ?>
+<?php
+ $i = 1;
+ foreach ($model_soal as $key => $model_soalEach) {  
+     echo $i.".".$model_soalEach->soal."<br />";   
+     $jawaban = explode(',', $model_soalEach->pilihan_jawaban);
+     foreach ($jawaban as $key_j => $value_j) {
+         if($key_j == 0)
+         echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j' checked='checked'>&nbsp;<span class='label label-info'>$value_j</span>&nbsp;&nbsp;&nbsp;";   
+         else
+         echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;<span class='label label-info'>$value_j</span>&nbsp;&nbsp;&nbsp;";         
+     }
+     echo "<br>";
+     $i++;
+ }
+?>
+ <div class="form-actions">		
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Submit Vote',
+		)); ?>		
+	</div>
+<?php $this->endWidget(); ?>

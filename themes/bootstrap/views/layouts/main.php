@@ -75,7 +75,7 @@
 								'items'=>array(
 								    array('label'=>'Kuisioner', 'url'=>array('Question/index',)),								   
 								    //array('label'=>'Kode Merah', 'url'=>array('#',)),
-								    array('label'=>'Rekap Kuisioner', 'url'=>array('#',)),
+								    array('label'=>'Rekap Kuisioner', 'url'=>array('Question/report',)),
 								    //array('label'=>'Rekap Kode Merah', 'url'=>array('#',)),
 								    )
 							),													
