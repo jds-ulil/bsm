@@ -11,6 +11,7 @@ $this->breadcrumbs=array(
         'enctype' => 'multipart/form-data',
         ),
 )); ?>
+
 <div class='survey'>
 <div class='head-survey'>Quistionaire</div>
 <div class='soal_jawab'>

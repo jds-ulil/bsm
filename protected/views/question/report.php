@@ -18,10 +18,6 @@ foreach ($arrSoal as $key => $value) {
             echo "$value_ja)";
                 echo "</div>";
         }
-//        echo "<tr>";
-//        echo "<td>'$key_j'</td>";
-//        echo "<td>'$value_j'</td>";
-//        echo "</tr>";
     }
     $i++;   
 }

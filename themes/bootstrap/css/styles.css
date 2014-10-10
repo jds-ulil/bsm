@@ -10,11 +10,6 @@
     font-family: FLllna2U;
     src: url(FLllna2U.ttf);    
 } 
-/*@font-face {
-    font-family: STRATENA;
-    src: url(STRATENA.TTF);    
-}*/
-
 #page {
     padding-top: 60px !important;
 }
@@ -71,21 +66,11 @@ h4 {
 }
 h3 {
     font-family: Dekar !important;
-/*    font-size: 2em !important;*/
-/*    color: green !important;*/
 }
 .help-block {
    color: grey !important;
    font-size:12px !important;
 }
-/*h1 {
-    font-family: Dekar !important;
-    font-size: 3em !important;
-    color: grey !important;
-h1.normal {
-    font-family: sans-serif;  
-    color: red !important;
-}*/
 .loginPage {
     max-width: 800px !important;
     min-height:400px !important;    
@@ -139,7 +124,6 @@ input[type="color"],
 .uneditable-input {    
   border: none !important; ;
   border: 1px solid #ddd !important;   
-/*  background-color: #EEEEEE !important;*/
   border-radius: 0px !important;
 }
 .form-horizontal .control-group {
@@ -210,9 +194,4 @@ input[type="color"],
   -webkit-border-top-right-radius: 0px !important;
           border-top-right-radius: 0px !important;
   -moz-border-radius-topright: 0px !important;
-}
-
-.table-striped tbody > tr:nth-child(odd) > td,
-.table-striped tbody > tr:nth-child(odd) > th {
-/*  background-color: #D7F5DE !important;*/
 }

@@ -42,7 +42,7 @@ class ProposalController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','getRowForm','complete','error','print','tes'
+				'actions'=>array('create', 'getRowForm', 'complete', 'error', 'print', 'tes'
                                         ,'autocompleteUsaha', 'autocompleteNasabah', 'autocompleteNasabahTolak',
                                         'autocompleteNasabahTolakApp'),
 				'roles'=>array('admin', 'inputter', 'approval'),
@@ -65,6 +65,12 @@ class ProposalController extends Controller
             ),
         );
     }   
+    
+    public function actionError() {        
+    $this->render('error',array(			
+		));    
+	}
+    
     public function actionPrint() {
         $data = array();
         $index = 0;
@@ -87,9 +93,8 @@ class ProposalController extends Controller
                         );
             }                                  
         }
-        $model_proposal->marketing = empty($model_proposal->marketing)?'Tidak Ditentukan':$model_proposal->marketing;
-        //$model_proposal->segmen = empty($model_proposal->segmen)?'Semua Segmen':$model_proposal->segmen;
-        $model_proposal->jenis_usaha = empty($model_proposal->jenis_usaha)?'Semua Jenis Usaha':$model_proposal->jenis_usaha;
+        $model_proposal->marketing = empty($model_proposal->marketing)?'Tidak Ditentukan':$model_proposal->marketing;        
+       $model_proposal->jenis_usaha = empty($model_proposal->jenis_usaha)?'Semua Jenis Usaha':$model_proposal->jenis_usaha;
         $model_proposal->from_plafon = empty($model_proposal->from_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->from_plafon,"");
         $model_proposal->to_plafon = empty($model_proposal->to_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->to_plafon,"");
         $model_proposal->from_date = empty($model_proposal->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_proposal->from_date);
@@ -100,11 +105,6 @@ class ProposalController extends Controller
             'total' => Yii::app()->numberFormatter->formatCurrency($total,""),
         ));
     }   
-    public function actionError()
-	{        
-    $this->render('error',array(			
-		));    
-	}
         
 	public function ActionAutocompleteNasabahTolakApp() {
             $res =array();
@@ -117,6 +117,7 @@ class ProposalController extends Controller
             echo json_encode ($command->queryAll());
         }
     }
+    
 	public function actionAutocompleteNasabah() {
             $res =array();
         if (isset($_GET['term'])) {
@@ -128,6 +129,7 @@ class ProposalController extends Controller
             echo json_encode ($command->queryAll());
         }
     }
+    
 	public function actionAutocompleteNasabahTolak() {
             $res =array();
         if (isset($_GET['term'])) {
@@ -139,6 +141,7 @@ class ProposalController extends Controller
             echo json_encode ($command->queryAll());
         }
     }
+    
 	public function actionAutocompleteUsaha() {
             $res =array();
         if (isset($_GET['term'])) {
@@ -150,6 +153,7 @@ class ProposalController extends Controller
             echo json_encode ($command->queryAll());
         }
     }
+    
     public function actionDetail($id){
         $model_proposal = $this->loadModel($id);
         $model_marketing = new pegawai;
@@ -201,6 +205,7 @@ class ProposalController extends Controller
             'listSegmen' => $listSegmen,
         ));
     }
+    
     public function actionCreate (){
         $model_proposal=new proposal('create');
         $model_proposal->jenis_nasabah = 1;
@@ -316,6 +321,7 @@ class ProposalController extends Controller
         $this->render('complete',array(	
         ));
     }
+    
     public function loadModel($id)
 	{
 		$model=  proposal::model()->findByPk($id);
@@ -336,30 +342,30 @@ class ProposalController extends Controller
 			Yii::app()->end();
 		}
 	} 
-         public function actionTes() {
-            $mail_set = mailer::model()->findByPk(1);
-            $message = new YiiMailMessage();   
-                        
-            $message->view = 'input';        
-            $message->subject    = 'Proposal Baru KCP '.vC::APP_nama_KCP;
-            
-            $message->addTo('oelhil@gmail.com');                                
-            
-                $param = array ();
-                $message->setBody($param, 'text/html');                
-                $message->from = vc::APP_from_email;   
+    public function actionTes() {
+        $mail_set = mailer::model()->findByPk(1);
+        $message = new YiiMailMessage();   
 
-            try
-            {            
-                Yii::app()->mail->transportOptions = array(
-                     'host' => 'webmail.bsm.co.id',
-                    'username' => 'rnur1780',
-                    'password' => 'yaarabbku01',
-                    'port' => '443',
-                    'encryption'=>'tls',
-                    );
-                Yii::app()->mail->send($message);                
-                //$model->status = 4;
+        $message->view = 'input';        
+        $message->subject    = 'Proposal Baru KCP '.vC::APP_nama_KCP;
+
+        $message->addTo('oelhil@gmail.com');                                
+
+            $param = array ();
+            $message->setBody($param, 'text/html');                
+            $message->from = vc::APP_from_email;   
+
+        try
+        {            
+            Yii::app()->mail->transportOptions = array(
+                 'host' => 'webmail.bsm.co.id',
+                'username' => 'rnur1780',
+                'password' => 'yaarabbku01',
+                'port' => '443',
+                'encryption'=>'tls',
+                );
+            Yii::app()->mail->send($message);                
+            //$model->status = 4;
                 //$model->save();
                 //$this->redirect(array('view','id'=>$model->nasabah_id));
             }
