@@ -5,14 +5,10 @@ $this->breadcrumbs=array(
 ?>
 <?php 
 $i = 1;
-echo "<table>";
-foreach ($arrSoal as $key => $value) {
+foreach ($arrSoal as $key => $value) {  
+    echo "<table>";
     echo "<tr>";
-    echo "<td>Soal :</td>";
-    echo "<td>$value</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='2'>Jawaban</td>";
+    echo "<td colspan='2'>".$i." "."$value</td>";
     echo "</tr>";
     foreach ($arrResult[$key] as $key_j => $value_j) {
         foreach ($value_j as $key_ja => $value_ja) {
@@ -27,6 +23,9 @@ foreach ($arrSoal as $key => $value) {
 //        echo "</tr>";
     }
     $i++;   
+    echo "</table>";
+    echo "<br />";
+    echo "<br />";
 }
-echo "</table>";
+
 ?>
