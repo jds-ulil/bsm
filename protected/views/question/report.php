@@ -3,19 +3,20 @@ $this->breadcrumbs=array(
 	'Rekap Quistionaire',
 );
 ?>
+<div class='survey'>
+<div class='head-survey'>Laporan</div>
+<div class='soal_jawab'>
 <?php 
 $i = 1;
 foreach ($arrSoal as $key => $value) {  
-    echo "<table>";
-    echo "<tr>";
-    echo "<td colspan='2'>".$i." "."$value</td>";
-    echo "</tr>";
+    echo "<div class='soal'>".$i." "."$value";
+    echo "</div>";
     foreach ($arrResult[$key] as $key_j => $value_j) {
         foreach ($value_j as $key_ja => $value_ja) {
-            echo "<tr>";
-            echo "<td>$key_j</td>";
-            echo "<td>$value_ja</td>";
-            echo "</tr>";
+            echo "<div class='jawab'>";
+            echo "$key_j (";
+            echo "$value_ja)";
+                echo "</div>";
         }
 //        echo "<tr>";
 //        echo "<td>'$key_j'</td>";
@@ -23,9 +24,6 @@ foreach ($arrSoal as $key => $value) {
 //        echo "</tr>";
     }
     $i++;   
-    echo "</table>";
-    echo "<br />";
-    echo "<br />";
 }
-
 ?>
+</div>
