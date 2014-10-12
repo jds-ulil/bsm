@@ -27,7 +27,7 @@ class Jabatan extends CActiveRecord
 		return array(
 			array('nama_jabatan', 'required'),
 			array('id_jabatan', 'numerical', 'integerOnly'=>true),
-			array('nama_jabatan', 'length', 'max'=>20),
+			array('nama_jabatan', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_jabatan, nama_jabatan', 'safe', 'on'=>'search'),

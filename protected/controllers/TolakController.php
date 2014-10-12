@@ -40,14 +40,19 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','complete','error','approval','proses','print',
-                                'toapprove','tocancel','completeApp','detail'),
-				'roles'=>array('admin', 'inputter','approval'),
+				'actions'=>array('create','complete','error',),
+				'roles'=>array('inputter'),
 			),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('report','detail'),
-				'roles'=>array('admin'),
-			),
+                        array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('approval','toapprove','tocancel',
+                                    ),
+				'roles'=>array('approval'),
+                        ),  
+                        array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('report','detail','print','proses','completeApp',
+                                    ),
+				'users'=>array('@'),
+                        ),  
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),

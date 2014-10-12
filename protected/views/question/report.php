@@ -3,6 +3,8 @@ $this->breadcrumbs=array(
 	'Rekap Quistionaire',
 );
 ?>
+<h1 class="loginHead">Kriteria</h1>
+<?php echo $this->renderPartial('_search', array('model_jawab'=>$model_jawab)); ?>
 <div class='survey'>
 <div class='head-survey'>Laporan</div>
 <div class='soal_jawab'>
@@ -22,4 +24,5 @@ foreach ($arrSoal as $key => $value) {
     $i++;   
 }
 ?>
+</div>
 </div>

@@ -1,13 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-	'Kolektabilitas',
+	'Kolektibilitas',
 );
 
 $this->menu=array(
-	array('label'=>'Kolektabilitas Baru','url'=>array('create')),	
+	array('label'=>'Kolektibilitas Baru','url'=>array('create')),	
 );
 ?>
-<h2>Daftar Kolektabilitas</h2>
+<h2>Daftar Kolektibilitas</h2>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'kolektabilitas-grid',
 	'dataProvider'=>$model->search(),

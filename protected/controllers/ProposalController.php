@@ -40,16 +40,17 @@ class ProposalController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'getRowForm', 'complete', 'error', 'print', 'tes'
-                                        ,'autocompleteUsaha', 'autocompleteNasabah', 'autocompleteNasabahTolak',
-                                        'autocompleteNasabahTolakApp'),
-				'roles'=>array('admin', 'inputter', 'approval'),
-                    ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('report','detail'),
-				'roles'=>array('admin','approval'),
+		return array(  
+                array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create', 'complete',),
+				'roles'=>array('inputter',),
+                    ),           
+                array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('autocompleteUsaha', 'autocompleteNasabah', 'autocompleteNasabahTolak',
+                                                'autocompleteNasabahTolakApp', 'getRowForm', 'print', 'tes',
+                                                'error','report','detail',
+                                    ),
+				'users'=>array('@'),
                     ),
 			array('deny',  // deny all users
 				'users'=>array('*'),

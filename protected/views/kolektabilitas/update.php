@@ -1,17 +1,17 @@
 <?php
 $this->breadcrumbs=array(
-	'Kolektabilitas'=>array('index'),
+	'Kolektibilitas'=>array('index'),
 	$model->kolektabilitas_id=>array('view','id'=>$model->kolektabilitas_id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'Daftar Kolektabilitas','url'=>array('index')),
-	array('label'=>'Kolektabilitas Baru','url'=>array('create')),
-	array('label'=>'Detail Kolektabilitas','url'=>array('view','id'=>$model->kolektabilitas_id)),	
+	array('label'=>'Daftar Kolektibilitas','url'=>array('index')),
+	array('label'=>'Kolektibilitas Baru','url'=>array('create')),
+	array('label'=>'Detail Kolektibilitas','url'=>array('view','id'=>$model->kolektabilitas_id)),	
 );
 ?>
 
-<h1>Update Kolektabilitas</h1>
+<h1>Update Kolektibilitas</h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

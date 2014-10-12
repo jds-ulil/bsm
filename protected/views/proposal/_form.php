@@ -1,7 +1,7 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'proposal-form',
 	'enableAjaxValidation'=>true,
-    'type'=>'horizontal',
+        'type'=>'horizontal',
 )); ?>
   <?php
         $this->widget('application.extensions.moneymask.MMask',array(
@@ -132,7 +132,7 @@ function menuTypeChange(menyType)
         <?php echo $form->textFieldRow($model_proposal,'existing_os',array('class'=>'span5','maxlength'=>50)); ?>
         <?php echo $form->textFieldRow($model_proposal,'existing_angsuran',array('class'=>'span5','maxlength'=>50)); ?>        
         <?php echo $form->dropDownListRow($model_proposal,'existing_kolektabilitas', $listKolektabilitas, array(	    
-            'empty'=>'Pilih Kolektabilitas',
+            'empty'=>'Pilih Kolektibilitas',
             'class'=>'span3',
 		)); ?>  
     </div>
@@ -144,7 +144,7 @@ function menuTypeChange(menyType)
         <?php echo $form->textFieldRow($model_proposal,'referal_sektor_usaha',array('class'=>'span5','maxlength'=>50)); ?>        
         <?php echo $form->textFieldRow($model_proposal,'referal_fasilitas',array('class'=>'span5','maxlength'=>50)); ?>        
         <?php echo $form->dropDownListRow($model_proposal,'referal_kolektabilitas', $listKolektabilitas, array(	    
-            'empty'=>'Pilih Kolektabilitas',
+            'empty'=>'Pilih Kolektibilitas',
             'class'=>'span3',
 		)); ?>              
     </div>

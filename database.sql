@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v9.63 
-MySQL - 5.5.27 : Database - nasdo
+MySQL - 5.1.41 : Database - nasdo
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.5.27 : Database - nasdo
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
 USE `nasdo`;
 
@@ -95,13 +95,13 @@ DROP TABLE IF EXISTS `mtb_jabatan`;
 
 CREATE TABLE `mtb_jabatan` (
   `id_jabatan` int(3) NOT NULL AUTO_INCREMENT,
-  `nama_jabatan` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `nama_jabatan` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_jabatan`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_jabatan` */
 
-insert  into `mtb_jabatan`(`id_jabatan`,`nama_jabatan`) values (1,'Kepala Cabang'),(2,'Kepala Divisi'),(3,'Marketing'),(4,'Lainnya'),(7,'Makelar');
+insert  into `mtb_jabatan`(`id_jabatan`,`nama_jabatan`) values (8,'Branch Manager'),(9,'Sub Branch Manager'),(10,'Sales Assistant'),(11,'Ass. Analis Mikro'),(12,'Penaksir Gadai');
 
 /*Table structure for table `mtb_jenis_identitas` */
 
@@ -143,11 +143,11 @@ CREATE TABLE `mtb_list_email` (
   `status` tinyint(2) NOT NULL,
   `NIP` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_list_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_list_email` */
 
-insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`,`NIP`) values (1,'oelhil@gmail.com','Ulil',1,1,'1234'),(2,'oelhil1@gmail.com','Ing',1,3,'1234');
+insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`,`NIP`) values (3,'rnur1780@bsm.co.id','Ridwan Nur',9,1,'047871780'),(4,'alhuda@bsm.co.id','Alhuda Djannis',8,4,'007270489');
 
 /*Table structure for table `mtb_mailer` */
 
@@ -164,7 +164,7 @@ CREATE TABLE `mtb_mailer` (
 
 /*Data for the table `mtb_mailer` */
 
-insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`) values (1,'ssl://smtp.gmail.com','oelhil@gmail.com','j4mg4d4ngsa','465');
+insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`) values (1,'ssl://webmail.syariahmandiri.co.id','rnur1780@syariahmandiri.co.id','yaarabbku01','443');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -181,11 +181,11 @@ CREATE TABLE `mtb_pegawai` (
   `unit_kerja` int(2) DEFAULT NULL,
   `email_atasan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`pegawai_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_pegawai` */
 
-insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`) values (1,'1','Ulil','12',1,'0813330440 817','mingslab@gmail.com',1,'ulil@jakartadenshi.com');
+insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`) values (2,'01','Alhuda Djannis','007270489',8,'0816-1368853','alhuda@bsm.co.id',NULL,'ddurachman@bsm.co.id'),(3,'02','Ridwan Nur','047871780',9,'0853-76102270','rnur1780@bsm.co.id',3,'alhuda@bsm.co.id'),(4,'03','Silvany Riza','118278205',10,'0812-6524091','sriza@bsm.co.id',3,'rnur1780@bsm.co.id'),(5,'04','Nicko Gemayel','12345678',10,'0852-71589848','ngemayel@bsm.co.id',3,'rnur1780@bsm.co.id'),(6,'05','Andi Rachman Guci','118478201',10,'0813-74005586','arguci@bsm.co.id',3,'rnur1780@bsm.co.id'),(7,'06','Maria Gunarti','108676080',11,'0813-74190906','mgunarti@bsm.co.id',3,'rnur1780@bsm.co.id'),(8,'07','Ekko Febrian','118678196',12,'0823-8766616','efebrian@bsm.co.id',3,'rnur1780@bsm.co.id');
 
 /*Table structure for table `mtb_segmen` */
 
@@ -223,11 +223,11 @@ CREATE TABLE `mtb_unit_kerja` (
   `unit_kerja_id` int(3) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`unit_kerja_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_unit_kerja` */
 
-insert  into `mtb_unit_kerja`(`unit_kerja_id`,`nama`) values (1,'IT Konsultan');
+insert  into `mtb_unit_kerja`(`unit_kerja_id`,`nama`) values (2,'KC Bukittinggi'),(3,'KCP Lubuk Sikaping');
 
 /*Table structure for table `mtb_user` */
 
@@ -280,11 +280,11 @@ CREATE TABLE `proposal` (
   `jenis_identitas` int(2) DEFAULT NULL,
   `tanggal_kartu_keluarga` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (4,'1000000','2014-10-01',1,'Pertanian','1','kk1','n1','k1','1','0',1,'','','',NULL,'','','','','','',0,'Akbar',1,NULL),(5,'2000000','2014-10-02',4,'Jagung','1','kk2','n2','k2','2','3',2,'2000000','2500000','300000',6,'','','','','','',0,'Suci',2,NULL);
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'1200000','2014-10-12',1,'Pertambangan','7','1222','1222','1241','1','0',2,'120000','34000','12000',1,'','','','','','',0,'Jaka',1,NULL);
 
 /*Table structure for table `proposal_buku_nikah` */
 
@@ -298,7 +298,7 @@ CREATE TABLE `proposal_buku_nikah` (
 
 /*Data for the table `proposal_buku_nikah` */
 
-insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (4,'n1','2014-10-14'),(5,'n2','2014-10-02');
+insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (1,'1222','2014-10-29');
 
 /*Table structure for table `proposal_kartu_keluarga` */
 
@@ -315,7 +315,7 @@ CREATE TABLE `proposal_kartu_keluarga` (
 
 /*Data for the table `proposal_kartu_keluarga` */
 
-insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('kk1','Danang','2014-10-01','k11',4,'Jakarta');
+insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('1222','Tika','2014-10-29','12444',1,'Medan');
 
 /*Table structure for table `proposal_ktp` */
 
@@ -335,11 +335,11 @@ CREATE TABLE `proposal_ktp` (
   `proposal_id` int(5) DEFAULT NULL,
   `desa` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_ktp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal_ktp` */
 
-insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'k1','','2014-10-08','',1,'','','','2023-10-03',4,''),(2,'k2','Medan','2014-10-02','Jl Medan Merdeka',5,'Menikah','Programmer','WNI','2018-10-03',5,'Sintong');
+insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'1241','Jakarta','2014-10-13','',1,'','','','2014-10-30',1,'');
 
 /*Table structure for table `tolak` */
 
@@ -352,11 +352,9 @@ CREATE TABLE `tolak` (
   `alasan_ditolak` text COLLATE utf8_unicode_ci,
   `tahap_penolakan` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`tolak_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tolak` */
-
-insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (6,5,'2014-10-01','ass','OTS Usaha');
 
 /*Table structure for table `tolak_tahapan` */
 
@@ -380,13 +378,13 @@ CREATE TABLE `vote_jawab` (
   `id_jawab` int(5) NOT NULL AUTO_INCREMENT,
   `soal_id` int(3) DEFAULT NULL,
   `jawaban` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `user_id` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `nama_voter` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `jabatan_voter` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `tanggal_vote` date DEFAULT NULL,
   PRIMARY KEY (`id_jawab`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `vote_jawab` */
-
-insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`user_id`) values (1,1,'YA',NULL),(2,2,'TIDAK',NULL),(3,1,'TIDAK',NULL),(4,2,'BISA JADI',NULL),(5,1,'YA',NULL),(6,2,'TIDAK',NULL),(7,1,'TIDAK',NULL),(8,2,'BISA JADI',NULL);
 
 /*Table structure for table `vote_soal` */
 
@@ -399,11 +397,11 @@ CREATE TABLE `vote_soal` (
   `rank` int(3) DEFAULT NULL,
   `pilihan_jawaban` text COLLATE utf8_bin,
   PRIMARY KEY (`id_soal`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `vote_soal` */
 
-insert  into `vote_soal`(`id_soal`,`soal`,`group_soal`,`rank`,`pilihan_jawaban`) values (1,'Apakah App Ini berguna ?',1,1,'YA,TIDAK'),(2,'Apakah anda sudah makan ?',1,2,'YA,TIDAK,BISA JADI');
+insert  into `vote_soal`(`id_soal`,`soal`,`group_soal`,`rank`,`pilihan_jawaban`) values (1,'Apakah Aplikasi membantu dalam melaksanakan proses pembiayaan sesuai ketentuan di BSM?',1,1,'Ya,Tidak'),(2,'Apakah Aplikasi membantu dalam proses pemeriksaan internal di tahap investigasi pembiayaan?',1,2,'Ya,Tidak'),(3,'Apakah aplikasi membantu Ka.Unit dalam pengambilan keputusan pembiayaan?\r\n',1,3,'Ya,Tidak'),(4,'Apakah Aplikasi membantu dalam menghindari potensi pembiayaan bermasalah?',1,4,'Ya,Tidak'),(5,'Apakah Aplikasi membantu Ka.Unit dalam mereview produktivitas marketing?',1,5,'Ya,Tidak'),(6,'Apakah Aplikasi PENTING dalam memitigasi resiko dan penerapan prudensial banking?\r\n',1,6,'Ya,Tidak');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

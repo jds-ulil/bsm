@@ -28,7 +28,7 @@ class UnitkerjaController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view','create','update','delete'),
-				'roles'=>array('admin','approval'),
+				'roles'=>array('admin'),
 			),			
 			array('deny',  // deny all users
 				'users'=>array('*'),

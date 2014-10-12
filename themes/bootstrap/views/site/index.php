@@ -6,6 +6,15 @@
             </div>
         </div>
         <div class="span2 offset4"><img src="images/logo_bsm.jpg"></div>
+    </div>   
+<p/>
+<BR/>
+<BR/>
+    
+<div class="row">
+    <div>
+    <img src="images/home.png">
     </div>    
+</div>    
 <br />
 <br />

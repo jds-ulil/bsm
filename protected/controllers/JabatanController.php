@@ -29,14 +29,30 @@ class JabatanController extends Controller
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view','create','update','delete'),
 				'roles'=>array('admin','approval'),
-			),			
-			array('deny',  // deny all users
+			),                                 
+                        array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('autocompleteJabatan'),
 				'users'=>array('*'),
 			),
+                        array('deny',  // deny all users
+				'users'=>array('*'),
+			),    
 		);
 	}
 
-	/**
+        public function actionAutocompleteJabatan () {
+            $res =array();
+            if (isset($_GET['term'])) {
+                $sql = 'SELECT jab.nama_jabatan AS label
+                            FROM mtb_jabatan jab';
+                $sql = $sql . " WHERE jab.`nama_jabatan` LIKE :nama"; // Must be at least 1
+                $command =Yii::app()->db->createCommand($sql);
+                $command->bindValue(":nama", '%'.$_GET['term'].'%', PDO::PARAM_STR);
+                echo json_encode ($command->queryAll());
+            }
+        }
+
+        /**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */

@@ -29,7 +29,9 @@ class voteSoal extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('group_soal, rank', 'numerical', 'integerOnly'=>true),
-			array('soal, pilihan_jawaban', 'safe'),
+                        array('rank','unique'),
+                        array('rank, soal, pilihan_jawaban', 'required'),   
+			array('pilihan_jawaban', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_soal, soal, group_soal, rank, pilihan_jawaban', 'safe', 'on'=>'search'),
@@ -54,7 +56,7 @@ class voteSoal extends CActiveRecord
 	{
 		return array(
 			'id_soal' => 'Id Soal',
-			'soal' => 'Soal',
+			'soal' => 'Pertanyaan',
 			'group_soal' => 'Group Soal',
 			'rank' => 'Rank',
 			'pilihan_jawaban' => 'Pilihan Jawaban',
@@ -84,7 +86,10 @@ class voteSoal extends CActiveRecord
 		$criteria->compare('group_soal',$this->group_soal);
 		$criteria->compare('rank',$this->rank);
 		$criteria->compare('pilihan_jawaban',$this->pilihan_jawaban,true);
-        $criteria->order = 'rank ASC';
+                if(!isset($criteria->order)){
+                    $criteria->order = 'rank ASC';
+                }
+                //$criteria->order = 'rank ASC';
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

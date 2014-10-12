@@ -27,9 +27,13 @@ class PegawaiController extends Controller
 	{
 		return array(			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'update', 'index', 'view', 'delete', 'autocompletePegawai'),
-				'roles'=>array('admin','approval'),
-			),			
+				'actions'=>array('create', 'update', 'index', 'view', 'delete',),
+				'roles'=>array('admin',),
+			),
+                        array('allow',
+                                'actions'=>array('autocompletePegawai'),
+                                'users'=>array('@'),
+                            ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),

@@ -32,7 +32,7 @@ class ListEmailController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('view','index','create','update','sendmail', 'delete'),
-				'roles'=>array('approval','admin'),
+				'roles'=>array('admin'),
 			),			
 			array('deny',  // deny all users
 				'users'=>array('*'),

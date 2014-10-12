@@ -11,8 +11,39 @@ $this->breadcrumbs=array(
         'enctype' => 'multipart/form-data',
         ),
 )); ?>
-
+<h1 class="loginHead">Data Voter</h1>
 <div class='survey'>
+    <div class="control-group">
+        <label>Nama</label>
+	<input class="span3" name="voter[nama]" id="voter_name" type="text" maxlength="50" />
+    </div>
+    <div class="control-group">
+        <label>Jabatan</label>
+        <?php 
+        $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+           // 'model'=>,           
+            'name'=>'voter[jabatan]',
+            'source'=>$this->createUrl('jabatan/autocompleteJabatan'),
+            'options'=>array(
+                'delay'=>150,
+                'minLength'=>1,
+                'showAnim'=>'fold',
+                'focus'=>'js:function(event, ui) {   
+                    $(".voter[jabatan]").val(ui.item.label);           
+                    return false;
+                }',
+                'select'=>"js:function(event, ui) {  
+                    $('#voter_jabatan').val(ui.item.label);                        
+                    return false;
+                }",
+            ),
+            'htmlOptions'=>array(
+                'class' => 'span3',
+                'style'=>'height:20px;',    
+            ),
+        ));
+	?>
+    </div>
 <div class='head-survey'>Quistionaire</div>
 <div class='soal_jawab'>
 <?php

@@ -28,18 +28,17 @@
 						'activeCssClass'	=> 'active',
 
 						'items'=>array(
-							array('label'=>'Administrasi User', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin') 
-															    || Yii::app()->user->checkAccess('approval'),
+							array('label'=>'Administrasi User', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'),
 								'items'=>array(
-								    array('label'=>'Inputer', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_inputter),  'visible'=>Yii::app()->user->checkAccess('admin')|| Yii::app()->user->checkAccess('approval')) ,
-								    array('label'=>'Approval', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_approval), 'visible'=>Yii::app()->user->checkAccess('admin')|| Yii::app()->user->checkAccess('approval')),
-								    array('label'=>'Admin', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_admin), 'visible'=>Yii::app()->user->checkAccess('admin')|| Yii::app()->user->checkAccess('approval')),
-								    array('label'=>'Daftar Email Penerima', 'url'=>array('listemail/index',)),
+								    array('label'=>'Inputer', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_inputter),  'visible'=>Yii::app()->user->checkAccess('admin')) ,
+								    array('label'=>'Approval', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_approval), 'visible'=>Yii::app()->user->checkAccess('admin')),
+								    array('label'=>'Admin', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_admin), 'visible'=>Yii::app()->user->checkAccess('admin')),
+								    array('label'=>'Daftar Email Penerima', 'url'=>array('listemail/index',), 'visible'=>Yii::app()->user->checkAccess('admin')),
 								    )
 							),							
-							array('label'=>'Input Data', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest, 
+							array('label'=>'Input Data', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter'), 
 								'items'=>array(
-								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/create',), 'visible'=> Yii::app()->user->checkAccess('admin')||Yii::app()->user->checkAccess('inputter')||Yii::app()->user->checkAccess('approval')),
+								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/create',), 'visible'=> Yii::app()->user->checkAccess('inputter')),
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/create',)),
                                                                  /**
                                                     SELOWWW....
@@ -49,7 +48,7 @@
                                                                   */
                                                                     )
 							),																					
-							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
+							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval'),
 								'items'=>array(
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),
                                                              /**
@@ -71,22 +70,22 @@
                                                       */
 								    )
 							),	                                                    
-							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
+							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval'),
 								'items'=>array(
 								    array('label'=>'Kuisioner', 'url'=>array('Question/index',)),								   
 								    //array('label'=>'Kode Merah', 'url'=>array('#',)),
-								    array('label'=>'Rekap Kuisioner', 'url'=>array('Question/report',)),
-								    //array('label'=>'Rekap Kode Merah', 'url'=>array('#',)),
+								    array('label'=>'Rekap Kuisioner', 'url'=>array('Question/report',)),								   
 								    )
 							),													
-							array('label'=>'Master Data', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval'), 
+							array('label'=>'Master Data', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'), 
 								'items'=>array(
 								    array('label'=>'Pegawai/Marketing', 'url'=>array('pegawai/index',)),								    
-								    array('label'=>'Kolektabilitas', 'url'=>array('kolektabilitas/index',)),								    
+								    array('label'=>'Kolektibilitas', 'url'=>array('kolektabilitas/index',)),								    
 								    array('label'=>'Segmen', 'url'=>array('segmen/index',)),								    
 								    array('label'=>'Jabatan', 'url'=>array('jabatan/index',)),								    
 								    array('label'=>'Unit Kerja', 'url'=>array('unitkerja/index',)),								    
-								    array('label'=>'Mail Setting', 'url'=>array('mailer/set',), 'visible'=> Yii::app()->user->checkAccess('admin')),								    
+								    array('label'=>'Mail Setting', 'url'=>array('mailer/set',), 'visible'=> Yii::app()->user->checkAccess('admin')),	
+                                                                    array('label'=>'Master Pertanyaan', 'url'=>array('Question/pertanyaan',)),
 								    )
 							),
 //							array('label'=>'User', 'url'=>array('/user/index'), 'visible'=>Yii::app()->user->checkAccess('otor') || Yii::app()->user->checkAccess('admin')),

@@ -50,7 +50,7 @@ class Kolektabilitas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'kolektabilitas_id' => 'Kolektabilitas',
+			'kolektabilitas_id' => 'Kolektibilitas',
 			'nama' => 'Nama',
 		);
 	}

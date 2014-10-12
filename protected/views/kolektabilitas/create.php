@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Kolektabilitas'=>array('index'),
+	'Kolektibilitas'=>array('index'),
 	'Tambah',
 );
 
 $this->menu=array(
-	array('label'=>'List Kolektabilitas','url'=>array('index')),	
+	array('label'=>'List Kolektibilitas','url'=>array('index')),	
 );
 ?>
 
-<h1>Kolektabilitas Baru</h1>
+<h1>Kolektibilitas Baru</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
