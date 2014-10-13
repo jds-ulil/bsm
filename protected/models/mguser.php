@@ -32,7 +32,7 @@ class mguser extends CActiveRecord
 		return array(
 			array('NIP, user_name, email_address, password, jabatan_id, hak_akses, confirmPass', 'required', 'on'=>'create'),
 			array('NIP, user_name, email_address, password, jabatan_id, hak_akses', 'required', 'on'=>'update'),
-			array('user_id, jabatan_id, hak_akses', 'numerical', 'integerOnly'=>true),
+			array('user_id, jabatan_id, hak_akses, id_pegawai', 'numerical', 'integerOnly'=>true),
 			array('user_name, email_address', 'length', 'max'=>50),
 			array('email_address', 'length', 'max'=>50),
 			array('email_address', 'email'),
@@ -43,7 +43,7 @@ class mguser extends CActiveRecord
 			array('password, confirmPass', 'length', 'min'=>6),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('NIP, user_id, user_name, email_address, jabatan_id, password, hak_akses', 'safe', 'on'=>'search'),
+			array('id_pegawai, NIP, user_id, user_name, email_address, jabatan_id, password, hak_akses', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +73,7 @@ class mguser extends CActiveRecord
 			'password' => 'Password',
 			'hak_akses' => 'Hak Akses',
 			'NIP' => 'NIP',
+            'id_pegawai' => 'ID Pegawai',
 		);
 	}
 
@@ -99,6 +100,7 @@ class mguser extends CActiveRecord
 		$criteria->compare('NIP',$this->NIP,true);
 		//$criteria->compare('password',$this->password,true);
 		$criteria->compare('hak_akses',$this->hak_akses);		
+		$criteria->compare('id_pegawai',$this->id_pegawai);		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

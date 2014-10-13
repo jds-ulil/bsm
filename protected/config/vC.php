@@ -22,7 +22,7 @@ class vC {
     const APP_jenis_nasabah_existing = 2;
     const APP_jenis_nasabah_refferal = 3;
     
-    const APP_status_proposal_new = 0;
+    const APP_status_proposal_new = 1;
     const APP_status_proposal_tolak = 2;     
     const APP_status_proposal_tolak_approv = 3;     
     

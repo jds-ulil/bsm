@@ -197,6 +197,7 @@ class ProposalController extends Controller
         $model_proposal->unsetAttributes();  // clear any default values     
 
         $listSegmen = CHtml::listData(Segmen::model()->findAll(),'segmen_id','nama'); 
+        $listPengajuan = CHtml::listData(statusProposal::model()->findAll(),'status_id','nama'); 
        //$model_proposal->proposal_id = 'empty';
         if(isset($_GET['proposal'])){
                 $model_proposal->attributes=$_GET['proposal'];
@@ -204,14 +205,16 @@ class ProposalController extends Controller
         $this->render('report',array(
             'model_proposal'=>$model_proposal,            
             'listSegmen' => $listSegmen,
+            'listPengajuan' => $listPengajuan,
         ));
     }
     
     public function actionCreate (){
         $model_proposal=new proposal('create');
         $model_proposal->jenis_nasabah = 1;
-        
-        $model_marketing = new pegawai;  
+                  
+        $model_marketing = pegawai::model()->findByPk(Yii::app()->user->id_pegawai);  
+        $model_proposal->marketing = $model_marketing->pegawai_id;
         $model_kartu_keluarga = array (new proposalKartuKeluarga);        
         $model_buku_nikah = new proposalBukuNikah;
         $model_ktp = new proposalKtp;
@@ -293,7 +296,8 @@ class ProposalController extends Controller
                     ));
                 break;
             case 'confirm': 
-                   // if($model_proposal->sendNotif()) {
+                $mailer = mailer::model()->findByPk(1);                
+                    if(!$mailer->proposal_baru || $model_proposal->sendNotif()) {
                         if ($model_proposal->save()){
                             if(!empty($model_buku_nikah->no_buku_nikah)) {                            
                                 $model_buku_nikah->proposal_id = $model_proposal->proposal_id;
@@ -310,9 +314,9 @@ class ProposalController extends Controller
                             }
                             $this->redirect(array('complete'));                        
                         }
-                  //  } else {
+                    } else {
                          $this->redirect(array('error'));   
-                   // }
+                    }
                 break;
             default:
                 break;

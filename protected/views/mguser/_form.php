@@ -16,16 +16,18 @@
 	<p class="note">Input dengan tanda <span class="required">*</span> wajib diisi.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-    <?php echo $form->textFieldRow($model,'user_name',array('class'=>'span3')); ?>
-    <?php echo $form->textFieldRow($model,'NIP',array('class'=>'span3')); ?>
+    <?php echo $form->hiddenField($model,'id_pegawai',array('class'=>'span5','maxlength'=>50)); ?>
+    <?php echo $form->textFieldRow($model,'user_name',array('class'=>'span3','readonly'=>true)); ?>
+    <?php echo $form->textFieldRow($model,'NIP',array('class'=>'span3','readonly'=>true)); ?>
 <?php if ($model->isNewRecord) {    ?>
           <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span3')); ?>
             <?php echo $form->passwordFieldRow($model,'confirmPass',array('class'=>'span3')); ?>    
 <?php    } //if new record ?>
-    <?php echo $form->textFieldRow($model,'email_address',array('class'=>'span3')); ?>
+    <?php echo $form->textFieldRow($model,'email_address',array('class'=>'span3','readonly'=>true)); ?>
     <?php echo $form->dropDownListRow($model,'jabatan_id', $list, array(
 	    'empty'=>'Pilih Jabatan',
 		'class'=>'span3',
+        'readonly'=>true,
 		)); ?>       
 
     <div class="form-actions">		

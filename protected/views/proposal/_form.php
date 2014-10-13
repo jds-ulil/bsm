@@ -49,44 +49,14 @@ function menuTypeChange(menyType)
 		)); ?>  	    	    
     <?php echo $form->textFieldRow($model_proposal,'no_proposal',array('class'=>'span5','maxlength'=>50)); ?>
     <?php echo $form->textFieldRow($model_proposal,'plafon',array('class'=>'span5','maxlength'=>20)); ?>
-    <?php echo $form->textFieldRow($model_proposal,'jenis_usaha',array('class'=>'span5','maxlength'=>50)); ?>
+    <?php echo $form->textFieldRow($model_proposal,'jenis_usaha',array('class'=>'span5','maxlength'=>50)); ?>    
     
     
-<h4>Marketing</h4>
-    <div class="control-group">
-    <?php echo $form->labelEx($model_proposal,'marketing',array('class'=>'control-label')); ?>
-    <div class="controls">
-	<?php 
-        $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-            'model'=>$model_marketing->nama,           
-            'name'=>'pegawai_nama',
-            'source'=>$this->createUrl('pegawai/autocompletePegawai'),
-            'options'=>array(
-                'delay'=>150,
-                'minLength'=>1,
-                'showAnim'=>'fold',
-                'focus'=>'js:function(event, ui) {   
-                    $("#pegawai_nama").val(ui.item.label);           
-                    return false;
-                }',
-                'select'=>"js:function(event, ui) {  
-                    $('#pegawai_NIP').val(ui.item.NIP);      
-                    $('#pegawai_jabatan').val(ui.item.jabatan);      
-                    $('#pegawai_no_handphone').val(ui.item.no_handphone);      
-                    $('#proposal_marketing').val(ui.item.pegawai_id);      
-                    return false;
-                }",
-            ),
-            'htmlOptions'=>array(
-                'class' => 'span3',
-                'style'=>'height:20px;',
-                'placeholder'=>$model_marketing->nama,
-            ),
-        ));
-	?>
-    <?php echo $form->error($model_proposal,'marketing'); ?>
-    </div>
-    </div>
+<h4>Marketing</h4>   
+    <?php echo $form->textFieldRow($model_marketing,'nama',
+            array('class'=>'span5',
+                'readonly'=>true,
+                'maxlength'=>50)); ?>
     	
     
     <?php echo $form->textFieldRow($model_marketing,'NIP',

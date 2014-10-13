@@ -71,6 +71,7 @@ class PegawaiController extends Controller
 		// $this->performAjaxValidation($model);
 		$list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
 		$listUnit = CHtml::listData(unitkerja::model()->findAll(), 'unit_kerja_id', 'nama');
+		$listLevel = CHtml::listData(levelJabatan::model()->findAll(), 'level_jabatan_id', 'nama_jabatan');
         
 		if(isset($_POST['pegawai']))
 		{
@@ -83,6 +84,7 @@ class PegawaiController extends Controller
                     'model'=>$model,
                     'list'=>$list,
                     'listUnit'=>$listUnit,
+                    'listLevel'=>$listLevel,
 		));
 	}
 
@@ -97,8 +99,9 @@ class PegawaiController extends Controller
                // $model->scenario = 'update';
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-                $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
+        $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');
 		$listUnit = CHtml::listData(unitkerja::model()->findAll(), 'unit_kerja_id', 'nama');
+        $listLevel = CHtml::listData(levelJabatan::model()->findAll(), 'level_jabatan_id', 'nama_jabatan');
                 
 		if(isset($_POST['pegawai']))
 		{
@@ -111,6 +114,7 @@ class PegawaiController extends Controller
                     'model'=>$model,
                     'list'=>$list,
                     'listUnit'=>$listUnit,
+                    'listLevel'=>$listLevel,
 		));
 	}
 
@@ -144,14 +148,16 @@ class PegawaiController extends Controller
                 
         $list = CHtml::listData(Jabatan::model()->findAll(), 'nama_jabatan', 'nama_jabatan');
 		$listUnit = CHtml::listData(unitkerja::model()->findAll(), 'unit_kerja_id', 'nama');
+        $listLevel = CHtml::listData(levelJabatan::model()->findAll(), 'level_jabatan_id', 'nama_jabatan');
                 
 		if(isset($_GET['pegawai']))
 			$model->attributes=$_GET['pegawai'];
 
 		$this->render('index',array(
-			'model'=>$model,
-                        'list'=>$list,
-                        'listUnit'=>$listUnit,
+                	'model'=>$model,
+                    'list'=>$list,
+                    'listUnit'=>$listUnit,
+                    'listLevel'=>$listLevel,
 		));
 	}
 

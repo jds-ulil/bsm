@@ -49,6 +49,10 @@
         'empty'=>'Pilih Segmen',
             'class'=>'span3',
             )); ?>
+<?php echo $form->dropDownListRow($model_proposal,'status_pengajuan', $listPengajuan, array(
+        'empty'=>'Pilih Status Proposal',
+            'class'=>'span3',
+            )); ?>
 
 <div class="control-group">
     <label for="proposal_marketing" class="control-label">Jenis Usaha</label>

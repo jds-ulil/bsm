@@ -28,7 +28,8 @@ class MguserController extends Controller
 	{
 		return array(					
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','create','view','update','delete'),
+				'actions'=>array('index','create','view','update','delete',
+                                'createToSelect', 'afSel',),
 				'roles'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -36,13 +37,50 @@ class MguserController extends Controller
 			),
 		);
 	}
-	
+    public function actionAfSel($id,$ha){
+        if($this->checkJabatan($id,$ha)){            
+            $model=new mguser;
+            $model->setScenario("create");                        
+	    
+            $model->hak_akses = $ha;	    
+            $user = $this->getLabel($model->hak_akses);	    
+            $list = CHtml::listData(Jabatan::model()->findAll(), 'id_jabatan', 'nama_jabatan');      
+            
+            if(!isset($_POST['mguser'])){
+            $model_marketing = pegawai::model()->findByPk($id);
+            $model->user_name = $model_marketing->nama;
+            $model->NIP = $model_marketing->NIP;
+            $model->email_address = $model_marketing->email;
+            $model->jabatan_id = $model_marketing->jabatan;
+            $model->id_pegawai = $model_marketing->pegawai_id;
+            }
+            if(isset($_POST['mguser']))
+            {
+            $model->attributes=$_POST['mguser'];            
+            if($model->save()) {
+                $this->redirect(array('view','id'=>$model->user_id));
+                    } else {
+                 //   $model->password = $oldpassword;
+                    }
+
+            }
+            
+            $this->render('creates',array(
+                    'model'=>$model,
+                    'list'=>$list,            
+                    'mj'=>$user,
+                    ));
+        } else {
+            Yii::app()->user->setFlash('error', "Pegawai tidak sesuai dengan Level Jabatan");
+            $this->redirect(array('CreateToSelect',"id"=>$ha));
+        };
+    }
 	public function actionIndex($id){	    
 	    $model=new mguser('search');
 	    $model->unsetAttributes();  // clear any default values
 	    $model->hak_akses = $id;	    
 	    $list = CHtml::listData(Jabatan::model()->findAll(), 'nama_jabatan', 'nama_jabatan');  
-	    $user = $this->getLabel($model->hak_akses);
+        $user = $this->getLabel($model->hak_akses);
 	    
 	    if(isset($_GET['mguser']))
 		    $model->attributes=$_GET['mguser'];
@@ -84,6 +122,16 @@ class MguserController extends Controller
 			'model'=>$model,
 			'list'=>$list,            
 		        'mj'=>$user,
+		));
+	}
+	public function actionCreateToSelect($id) {
+        $model_marketing = new pegawai('search');
+	    $hak_akses = $id;	    
+        $user = $this->getLabel($hak_akses);
+		$this->render('select_pegawai',array(
+            'model_marketing' => $model_marketing,    
+            'hak_akses' => $hak_akses,
+            'user' => $user,
 		));
 	}
 	public function actionView($id)
@@ -152,4 +200,11 @@ class MguserController extends Controller
 			Yii::app()->end();
 		}
 	}
+    function checkJabatan($id,$ha){
+        $model_marketing = pegawai::model()->findByPk($id);
+        if($model_marketing->level_jabatan != $ha){
+            return false;
+        }
+        return true;
+    }
 }

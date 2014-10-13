@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'Daftar User', 'url'=>array('index')),
-	array('label'=>$mj.' Baru', 'url'=>array('create','id'=>$model->hak_akses)),
+	array('label'=>$mj.' Baru', 'url'=>array('createToSelect','id'=>$model->hak_akses)),
 );
 
 Yii::app()->clientScript->registerScript('search', "

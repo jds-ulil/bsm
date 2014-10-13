@@ -16,7 +16,9 @@ $this->breadcrumbs=array(
 	<?php echo $form->textFieldRow($model_mail,'nama',array('class'=>'span5','maxlength'=>50)); ?>	
 	<?php echo $form->passwordFieldRow($model_mail,'password',array('class'=>'span5','maxlength'=>50)); ?>
 	<?php echo $form->textFieldRow($model_mail,'port',array('class'=>'span5','maxlength'=>50)); ?>
-
+    <?php echo $form->checkBoxRow($model_mail,'proposal_baru'); ?>
+    <?php echo $form->checkBoxRow($model_mail,'nasabah_tolak'); ?>
+    <?php echo $form->checkBoxRow($model_mail,'approval'); ?>
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

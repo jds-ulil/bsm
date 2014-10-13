@@ -28,6 +28,7 @@ $('.search-form form').submit(function(){
 <?php $this->renderPartial('_search',array(
 	'model_proposal'=>$model_proposal,
         'listSegmen' => $listSegmen,
+        'listPengajuan' => $listPengajuan,
 )); ?>
 </div><!-- search-form -->
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
@@ -48,6 +49,10 @@ $('.search-form form').submit(function(){
          array(
                 'name'=>'Marketing',
                 'value'=>'$data->rMar->nama',		
+            ),
+         array(
+                'name'=>'Status',
+                'value'=>'$data->rStat->nama',		
             ),
 //              //  'plafon',
 //        array(

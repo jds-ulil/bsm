@@ -22,6 +22,7 @@ $this->menu=array(
 		'nama',
 		'NIP',
 		'rJab.nama_jabatan',
+		'rLevJab.nama_jabatan',
 		'no_handphone',
 		'email',
 		'rUnK.nama',

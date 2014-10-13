@@ -16,7 +16,7 @@
 
 	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>50)); ?>
 
-	<?php echo $form->textFieldRow($model,'email_atasan',array('class'=>'span5','maxlength'=>50)); ?>
+	<?php echo $form->textFieldRow($model,'email_atasan',array('class'=>'span5','maxlength'=>50)); ?>       
 
         <?php echo $form->dropDownListRow($model,'unit_kerja', $listUnit, array(
 	    'empty'=>'Semua Unit Kerja',
@@ -27,6 +27,11 @@
 	    'empty'=>'Semua Jabatan',
 		'class'=>'span5',
 		)); ?>   
+
+        <?php echo $form->dropDownListRow($model,'level_jabatan', $listLevel, array(
+	    'empty'=>'Semua Level Jabatan',
+		'class'=>'span5',
+		)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

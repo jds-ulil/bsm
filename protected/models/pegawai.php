@@ -32,10 +32,10 @@ class pegawai extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nama, NIP', 'required', 'on'=>'create'),
-			array('nama, NIP', 'required', 'on'=>'update'),
+			array('nama, NIP, level_jabatan, jabatan', 'required', 'on'=>'create'),
+			array('nama, NIP, level_jabatan, jabatan', 'required', 'on'=>'update'),
                         array('NIP, no_urut', 'unique'),
-			array('jabatan, unit_kerja', 'numerical', 'integerOnly'=>true),
+			array('level_jabatan, jabatan, unit_kerja', 'numerical', 'integerOnly'=>true),
 			array('no_urut', 'length', 'max'=>10),
 			array('nama, NIP, email, email_atasan', 'length', 'max'=>50),
                         array('email, email_atasan', 'email'),            
@@ -43,7 +43,7 @@ class pegawai extends CActiveRecord
                         array('no_handphone', 'application.extensions.PhoneValidator.PhoneValidator'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pegawai_id, no_urut, nama, NIP, jabatan, no_handphone, email, unit_kerja, email_atasan', 'safe', 'on'=>'search'),
+			array('level_jabatan, pegawai_id, no_urut, nama, NIP, jabatan, no_handphone, email, unit_kerja, email_atasan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +57,8 @@ class pegawai extends CActiveRecord
 		return array(
 		    'rJab' => array(self::BELONGS_TO, 'Jabatan', 'jabatan'),
 		    'rUnK' => array(self::BELONGS_TO, 'unitkerja', 'unit_kerja'),
+		    'rLevJab' => array(self::BELONGS_TO, 'levelJabatan', 'level_jabatan'),
+		    'rUser' => array(self::BELONGS_TO, 'mguser', 'id_pegawai'),
 		);
 	}
 
@@ -75,6 +77,7 @@ class pegawai extends CActiveRecord
 			'email' => 'Email',
 			'unit_kerja' => 'Unit Kerja',
 			'email_atasan' => 'Email Atasan',
+            'level_jabatan' => 'Level Jabatan',
 		);
 	}
 
@@ -107,12 +110,23 @@ class pegawai extends CActiveRecord
                 //$criteria->compare('rJab.nama_jabatan',$this->jabatan,true);
 		$criteria->compare('unit_kerja',$this->unit_kerja);                
 		$criteria->compare('email_atasan',$this->email_atasan,true);
+		$criteria->compare('level_jabatan',$this->level_jabatan,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
+    public function searchForUser(){
+        $criteria=new CDbCriteria;
+        $criteria->with=array('rJab','rUnK');      
+                
+        $criteria->join = "LEFT JOIN mtb_user mus ON mus.`id_pegawai` = t.`pegawai_id`";    
+        $criteria->condition = "mus.`user_id` IS NULL";
+                
+        return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+    }
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

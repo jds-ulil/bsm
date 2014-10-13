@@ -29,6 +29,10 @@
 	    'empty'=>'Pilih Jabatan',
 		'class'=>'span5',
 		)); ?>     	
+    <?php echo $form->dropDownListRow($model,'level_jabatan', $listLevel, array(
+	    'empty'=>'Pilih Level Jabatan',
+		'class'=>'span5',
+		)); ?>     	
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

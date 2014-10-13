@@ -29,6 +29,7 @@ $('.search-form form').submit(function(){
 	'model'=>$model,
         'list'=>$list,
         'listUnit'=>$listUnit,
+        'listLevel'=>$listLevel,
 )); ?>
 </div><!-- search-form -->
 
@@ -36,7 +37,7 @@ $('.search-form form').submit(function(){
 	'id'=>'pegawai-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-        'filterPosition'=>'footer',
+    'filterPosition'=>'footer',
 	'columns'=>array(
 		//'pegawai_id',
 		'no_urut',
@@ -45,6 +46,10 @@ $('.search-form form').submit(function(){
 		 array(
                 'name'=>'jabatan',
                 'value'=>'$data->rJab->nama_jabatan',
+                ),
+		 array(
+                'name'=>'level_jabatan',
+                'value'=>'$data->rLevJab->nama_jabatan',
                 ),
 		'no_handphone',
 		/*

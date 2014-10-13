@@ -1,23 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "mtb_mailer".
+ * This is the model class for table "mtb_level_jabatan".
  *
- * The followings are the available columns in table 'mtb_mailer':
- * @property integer $mail_id
- * @property string $host
- * @property string $username
- * @property string $password
- * @property string $port
+ * The followings are the available columns in table 'mtb_level_jabatan':
+ * @property integer $level_jabatan_id
+ * @property string $nama_jabatan
  */
-class mailer extends CActiveRecord
+class levelJabatan extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'mtb_mailer';
+		return 'mtb_level_jabatan';
 	}
 
 	/**
@@ -27,14 +24,11 @@ class mailer extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(	
-            array('proposal_baru, nasabah_tolak, approval','safe'),
-			array('mail_id', 'numerical', 'integerOnly'=>true),
-			array('host, nama, password', 'length', 'max'=>50),
-			array('port', 'length', 'max'=>10),
+		return array(
+			array('nama_jabatan', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('mail_id, host, nama, password, port', 'safe', 'on'=>'search'),
+			array('level_jabatan_id, nama_jabatan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,11 +49,8 @@ class mailer extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'mail_id' => 'Mail',
-			'host' => 'Host',
-			'nama' => 'Username / Alamat Email',
-			'password' => 'Password',
-			'port' => 'Port',
+			'level_jabatan_id' => 'Level Jabatan',
+			'nama_jabatan' => 'Nama Jabatan',
 		);
 	}
 
@@ -81,11 +72,8 @@ class mailer extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('mail_id',$this->mail_id);
-		$criteria->compare('host',$this->host,true);
-		$criteria->compare('nama',$this->nama,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('port',$this->port,true);
+		$criteria->compare('level_jabatan_id',$this->level_jabatan_id);
+		$criteria->compare('nama_jabatan',$this->nama_jabatan,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +84,7 @@ class mailer extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return mailer the static model class
+	 * @return levelJabatan the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

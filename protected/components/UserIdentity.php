@@ -15,7 +15,7 @@ class UserIdentity extends CUserIdentity
 	 * against some persistent user identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
-    private $_id;
+    private $_id;    
     public function authenticate()
     {
         $record=User::model()->find("SUBSTR(email_address,1,INSTR(email_address, '@')) = '".$this->username."'");
@@ -29,6 +29,7 @@ class UserIdentity extends CUserIdentity
             $this->_id=$record->user_id;
             $this->setState('roles', $record->hak_akses);
             $this->setState('name', $record->user_name);                        
+            $this->setState('id_pegawai', $record->id_pegawai);                        
             $this->errorCode=self::ERROR_NONE;
         }
         return !$this->errorCode;

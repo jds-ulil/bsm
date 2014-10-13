@@ -93,6 +93,7 @@ class proposal extends CActiveRecord
                     'rMar' => array(self::BELONGS_TO, 'pegawai', 'marketing'),
                     'roMar' => array(self::HAS_ONE, 'pegawai', array('pegawai_id'=>'marketing')),
                     'rJen' => array(self::BELONGS_TO, 'jenisIdentitas', 'jenis_identitas'),
+                    'rStat' => array(self::BELONGS_TO, 'statusProposal', 'status_pengajuan'),
 		);
 	}
 
@@ -113,7 +114,7 @@ class proposal extends CActiveRecord
 			'no_buku_nikah' => 'Nomor',
 			'no_ktp' => 'No Identitas',
 			'no_proposal' => 'No. Proposal',
-			'status_pengajuan' => 'Status Pengajuan',
+			'status_pengajuan' => 'Status Proposal',
 			'jenis_nasabah' => 'Jenis Nasabah',
 			'existing_plafon' => 'Existing Plafon (Rp)',
 			'existing_os' => 'Existing Os/Pokok (Rp)',
@@ -198,7 +199,7 @@ class proposal extends CActiveRecord
                     $this->to_plafon = intval($this->to_plafon);
                     $criteria->addCondition("plafon <= $this->to_plafon ");		
                 }
-        $criteria->compare('status_pengajuan', vC::APP_status_proposal_new);
+        //$criteria->compare('status_pengajuan', vC::APP_status_proposal_new);
         //$criteria->addCondition('plafon <= "'.$this->to_plafon.'" ');	
 		return new CActiveDataProvider($this, array(
                         'pagination'=>array(

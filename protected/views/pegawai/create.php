@@ -16,4 +16,5 @@ $this->menu=array(
             'model'=>$model,
             'list'=>$list,
             'listUnit'=>$listUnit,
+            'listLevel'=>$listLevel,
         )); ?>
