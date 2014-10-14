@@ -97,7 +97,7 @@ CREATE TABLE `mtb_jabatan` (
   `id_jabatan` int(3) NOT NULL AUTO_INCREMENT,
   `nama_jabatan` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_jabatan`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_jabatan` */
 
@@ -181,7 +181,7 @@ CREATE TABLE `mtb_mailer` (
 
 /*Data for the table `mtb_mailer` */
 
-insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`,`proposal_baru`,`nasabah_tolak`,`approval`) values (1,'ssl://webmail.syariahmandiri.co.id','rnur1780@syariahmandiri.co.id','yaarabbku01','443','0','1','1');
+insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`,`proposal_baru`,`nasabah_tolak`,`approval`) values (1,'mail.syariahmandiri.co.id','rnur1780@syariahmandiri.co.id','hasbunallah01','443','0','1','1');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -413,13 +413,14 @@ CREATE TABLE `vote_jawab` (
   `id_jawab` int(5) NOT NULL AUTO_INCREMENT,
   `soal_id` int(3) DEFAULT NULL,
   `jawaban` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `nama_voter` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `jabatan_voter` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `id_pegawai` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `tanggal_vote` date DEFAULT NULL,
   PRIMARY KEY (`id_jawab`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `vote_jawab` */
+
+insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`id_pegawai`,`tanggal_vote`) values (7,1,'Ya','4','2014-10-14'),(8,2,'Tidak','4','2014-10-14'),(9,3,'Ya','4','2014-10-14'),(10,4,'Ya','4','2014-10-14'),(11,5,'Ya','4','2014-10-14'),(12,6,'Tidak','4','2014-10-14');
 
 /*Table structure for table `vote_soal` */
 

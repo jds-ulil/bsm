@@ -129,16 +129,24 @@ class QuestionController extends Controller
         $model_soal = voteSoal::model()->findAllBySql(
                 'SELECT * FROM vote_soal WHERE group_soal = ? ORDER BY rank ASC',
                 array(1)
-                );                    
+                );
+        
+        $model_marketing = pegawai::model()->findByPk(Yii::app()->user->id_pegawai); 
+        $arrJwb = array();
+        $marketing_result = voteJawab::model()->findAllBySql(
+                'SELECT jwb.`soal_id`,jwb.`jawaban` FROM vote_jawab jwb WHERE jwb.`id_pegawai` = ?',
+                array($model_marketing->pegawai_id)                
+                );
+        foreach ($marketing_result as $key => $value) {
+                 $arrJwb[$value->soal_id] = $value->jawaban;
+            }        
         if (isset($_POST['voteSoal'])) {
-            $voterNama = $_POST['voter']['nama'];
-            $voterJabatan = $_POST['voter']['jabatan'];
+            voteJawab::model()->deleteAll('id_pegawai = ' . $model_marketing->pegawai_id);
             $voterDate = date("Y").'-'.date("m").'-'.date("d");
             $arrJawaban  = $_POST['voteSoal'];            
             foreach ($arrJawaban as $key => $value) {
-                $voteJawab = new voteJawab;
-                $voteJawab->nama_voter = $voterNama;
-                $voteJawab->jabatan_voter = $voterJabatan;
+                $voteJawab = new voteJawab;                
+                $voteJawab->id_pegawai = $model_marketing->pegawai_id;
                 $voteJawab->tanggal_vote = $voterDate;
                 $voteJawab->soal_id = $key;
                 $voteJawab->jawaban = $value;
@@ -149,6 +157,8 @@ class QuestionController extends Controller
         
 		$this->render('index',array(	
                     'model_soal' => $model_soal,
+                    'model_marketing' => $model_marketing,
+                    'arrJwb' => $arrJwb,
 		));
 	}
     

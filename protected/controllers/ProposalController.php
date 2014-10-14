@@ -355,6 +355,7 @@ class ProposalController extends Controller
         $message->subject    = 'Proposal Baru KCP '.vC::APP_nama_KCP;
 
         $message->addTo('oelhil@gmail.com');                                
+        $message->addTo('mingslab@gmail.com');                                
 
             $param = array ();
             $message->setBody($param, 'text/html');                
@@ -363,11 +364,13 @@ class ProposalController extends Controller
         try
         {            
             Yii::app()->mail->transportOptions = array(
-                 'host' => 'webmail.bsm.co.id',
-                'username' => 'rnur1780',
-                'password' => 'yaarabbku01',
-                'port' => '443',
-                'encryption'=>'tls',
+                //'host' => 'mail.syariahmandiri.co.id',
+                //'username' => 'rnur1780@syariahmandiri.co.id',
+                'host' => 'mail.bsm.co.id',
+                'username' => 'rnur1780@bsm.co.id',
+                'password' => 'hasbunallah01',
+                'port' => '25',                
+                //'encryption'=>'ssl',
                 );
             Yii::app()->mail->send($message);                
             //$model->status = 4;
@@ -375,7 +378,8 @@ class ProposalController extends Controller
                 //$this->redirect(array('view','id'=>$model->nasabah_id));
             }
             catch (Exception $exc)
-            {                                        
+            { 
+                echo 'errr';
                 return false;
             }             
             

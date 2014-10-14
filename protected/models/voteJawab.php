@@ -27,12 +27,12 @@ class voteJawab extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('tanggal_vote', 'safe'),
+            array('tanggal_vote', 'safe'),
 			array('soal_id', 'numerical', 'integerOnly'=>true),
-			array('jawaban, nama_voter, jabatan_voter', 'length', 'max'=>50),
+			array('jawaban, id_pegawai', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_jawab, soal_id, jawaban, nama_voter, jabatan_voter', 'safe', 'on'=>'search'),
+			array('id_jawab, soal_id, jawaban, id_pegawai', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,10 +55,9 @@ class voteJawab extends CActiveRecord
 		return array(
 			'id_jawab' => 'Id Jawab',
 			'soal_id' => 'Soal',
-			'jawaban' => 'Jawaban',
-			'nama_voter' => 'Nama',
-                        'jabatan_voter' => 'Jabatan',
-                        'tanggal_vote' => 'Tanggal Vote',
+			'jawaban' => 'Jawaban',		
+            'id_pegawai' => 'ID Pegawai',
+            'tanggal_vote' => 'Tanggal Vote',
 		);
 	}
 
@@ -83,8 +82,7 @@ class voteJawab extends CActiveRecord
 		$criteria->compare('id_jawab',$this->id_jawab);
 		$criteria->compare('soal_id',$this->soal_id);
 		$criteria->compare('jawaban',$this->jawaban,true);
-		$criteria->compare('nama_voter',$this->nama_voter,true);
-		$criteria->compare('jabatan_voter',$this->jabatan_voter,true);
+		$criteria->compare('id_pegawai',$this->id_pegawai,true);
 		$criteria->compare('tanggal_vote',$this->tanggal_vote,true);
 
 		return new CActiveDataProvider($this, array(
