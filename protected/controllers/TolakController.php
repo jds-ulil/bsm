@@ -73,12 +73,23 @@ class TolakController extends Controller
                 $data[]=array(  'index'=>$index,
                                 'tanggal_tolak'=>Yii::app()->numberFormatter->formatDate($record->tanggal_tolak),
                                 'tahap_penolakan'=>Yii::app()->numberFormatter->formatDate($record->tahap_penolakan),
-                                'marketing'=>$record->rCM->roMar->nama,
+                                //'marketing'=>$record->rCM->roMar->nama,
+                                'alasan_penolakan'=>$record->alasan_ditolak,
                                 'nama_nasabah'=>$record->rCM->nama_nasabah,                                
                         );
             }
             
         }
+        $unitKerja;
+        if(!empty($model_tolak->marketing_search)) {
+            $unitKerja = Yii::app()->db->createCommand()
+                            ->setFetchMode(PDO::FETCH_COLUMN,0)
+                            ->select("unk.nama")
+                            ->from("mtb_unit_kerja unk")
+                            ->join("mtb_pegawai peg", "peg.unit_kerja = unk.unit_kerja_id")
+                            ->where("peg.nama like '".$model_tolak->marketing_search."' ")                            
+                            ->queryAll(); 
+        }        
         $model_tolak->marketing_search = empty($model_tolak->marketing_search)?' - ':$model_tolak->marketing_search;
         $model_tolak->nama_nasabah = empty($model_tolak->nama_nasabah)?' - ':$model_tolak->nama_nasabah;
         $model_tolak->from_date = empty($model_tolak->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_tolak->from_date);
@@ -87,6 +98,7 @@ class TolakController extends Controller
         $this->render('print',array(
                 'model_tolak' => $model_tolak,
                 'data' => $data,
+                'unitKerja' => $unitKerja,
         ));
     }
     public function actionDetail($id){
@@ -266,7 +278,7 @@ class TolakController extends Controller
                     
                     if ($model_tolak->validate()) {                        
                         $model_proposal = 
-                            proposal::model()->find("del_flag = 0 AND status_pengajuan = 0 AND proposal_id ='".$model_tolak->proposal_id."'");                            
+                            proposal::model()->find("del_flag = 0 AND status_pengajuan = ".vC::APP_status_proposal_new." AND proposal_id ='".$model_tolak->proposal_id."'");                            
                             $model_proposal->namaJenisNasabah = $model_proposal->jenisNasabah[$model_proposal->jenis_nasabah];
                         if(empty($model_proposal)){
                             $model_proposal = new proposal;

@@ -1,4 +1,5 @@
-    <div class="row">        
+<div class="loginPages">
+<div class="row">        
         <div class="span6">
             <div class="row">
                 <div class="span7 text-center"><h1>SADar NaDi kAla PenTiNG</h1></div>
@@ -18,3 +19,4 @@
 </div>    
 <br />
 <br />
+</div>

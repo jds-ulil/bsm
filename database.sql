@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v9.63 
-MySQL - 5.5.27 : Database - nasdo
+MySQL - 5.1.41 : Database - nasdo
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.5.27 : Database - nasdo
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
 USE `nasdo`;
 
@@ -161,7 +161,7 @@ CREATE TABLE `mtb_list_email` (
 
 /*Data for the table `mtb_list_email` */
 
-insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`,`NIP`) values (3,'rnur1780@bsm.co.id','Ridwan Nur',9,1,'047871780'),(4,'alhuda@bsm.co.id','Alhuda Djannis',8,4,'007270489');
+insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`,`NIP`) values (3,'rnur1780@bsm.co.id','Ridwan Nur',9,1,'047871780');
 
 /*Table structure for table `mtb_mailer` */
 
@@ -199,11 +199,11 @@ CREATE TABLE `mtb_pegawai` (
   `email_atasan` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `level_jabatan` int(3) DEFAULT NULL,
   PRIMARY KEY (`pegawai_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_pegawai` */
 
-insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`,`level_jabatan`) values (2,'01','Alhuda Djannis','007270489',8,'0816-1368853','alhuda@bsm.co.id',NULL,'ddurachman@bsm.co.id',2),(3,'02','Ridwan Nur','047871780',9,'0853-76102270','rnur1780@bsm.co.id',3,'alhuda@bsm.co.id',2),(4,'03','Silvany Riza','118278205',10,'0812-6524091','sriza@bsm.co.id',3,'rnur1780@bsm.co.id',2),(5,'04','Nicko Gemayel','12345678',10,'0852-71589848','ngemayel@bsm.co.id',3,'rnur1780@bsm.co.id',2),(6,'05','Andi Rachman Guci','118478201',10,'0813-74005586','arguci@bsm.co.id',3,'rnur1780@bsm.co.id',2),(7,'06','Maria Gunarti','108676080',11,'0813-74190906','mgunarti@bsm.co.id',3,'rnur1780@bsm.co.id',3),(8,'07','Ekko Febrian','118678196',12,'0823-8766616','efebrian@bsm.co.id',3,'rnur1780@bsm.co.id',2),(9,'1','Ulil','123',11,'','',NULL,'',1);
+insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`,`level_jabatan`) values (2,'01','Alhuda Djannis','007270489',8,'0816-1368853','alhuda@bsm.co.id',2,'ddurachman@bsm.co.id',1),(3,'02-a','Ridwan Nur','047871780',9,'0853-76102270','rnur1780@bsm.co.id',3,'alhuda@bsm.co.id',2),(4,'03','Silvany Riza','118278205',10,'0812-6524091','sriza@bsm.co.id',3,'rnur1780@bsm.co.id',3),(5,'04','Nicko Gemayel','12345678',10,'0852-71589848','ngemayel@bsm.co.id',3,'rnur1780@bsm.co.id',3),(6,'05','Andi Rachman Guci','118478201',10,'0813-74005586','arguci@bsm.co.id',3,'rnur1780@bsm.co.id',3),(7,'06','Maria Gunarti','108676080',11,'0813-74190906','mgunarti@bsm.co.id',3,'rnur1780@bsm.co.id',3),(8,'07','Ekko Febrian','118678196',12,'0823-8766616','efebrian@bsm.co.id',3,'rnur1780@bsm.co.id',3),(9,'1','Ulil','123',11,'','',NULL,'',1),(10,'02-b','Ridwan Nur','25041978',9,'0853-76102270','drankoto25@gmail.com',3,'rnur1780@bsm.co.id',1);
 
 /*Table structure for table `mtb_segmen` */
 
@@ -275,11 +275,11 @@ CREATE TABLE `mtb_user` (
   `NIP` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_pegawai` int(5) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `mtb_user` */
 
-insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (1,'ulil','a@b.com',8,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',1,'123',NULL),(10,'approval','ap@b.com',9,'$2a$13$NlxwWAomKqmvW3WC7Ag6sOhc9FEehKq62HwA8uKpbGhtaxZ01HN4i',2,'123',NULL),(12,'tes','ip@b.com',10,'$2a$13$cZhH8A3at3yJ0u/II84RjewSy8VwUVg7g5CNfzRWVaU.uKWimiQ9a',3,'124',NULL),(14,'Silvany Riza','sriza@bsm.co.id',10,'$2a$13$mNHKhCgFpZ0AgCRaK0/w7eUvXcgnKrnVWNCbn8Sp7M8YzX9Ixwg0W',2,'118278205',4),(15,'Maria Gunarti','mgunarti@bsm.co.id',11,'$2a$13$GiviNFF8l7ae78ze4NfqzOdNvSgn3rnlq/KoKl7MtD3H5tWDSzN3W',3,'108676080',7);
+insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (1,'ulil','a@b.com',8,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',1,'123',NULL),(17,'Ridwan Nur','drankoto25@gmail.com',9,'$2a$13$FRDuSD/VE1XsaUsy.HTQS.UtNj3usc19odAaVjHxEg9NUoloyFMOO',1,'25041978',10),(18,'Silvany Riza','sriza@bsm.co.id',10,'$2a$13$Uo0jLeKZHDE.nj20I8ek.eHY3LnPA7AofqRizMhGTCXiMyW2lmD2.',3,'118278205',4),(19,'Nicko Gemayel','ngemayel@bsm.co.id',10,'$2a$13$Be0tgOAftUQLacG6unrEMOsxjPQRGRLUQdMhEMYGX0vki3HT8knDe',3,'12345678',5),(20,'Andi Rachman Guci','arguci@bsm.co.id',10,'$2a$13$DdlP614yKtEiBxEUt58zeua8rpBKwp7q2hGuLFUmdhJdiMEO/zJKy',3,'118478201',6),(21,'Maria Gunarti','mgunarti@bsm.co.id',11,'$2a$13$oBSujl4kcDfBOOWPlgTICeIWkovuPq9S/jukeRK15V1vvT5zmoxei',3,'108676080',7),(22,'Ekko Febrian','efebrian@bsm.co.id',12,'$2a$13$s6/ZQirZwQwqXsQGY/WY5esXnUny6Miu791W4NRa6pB/UxT/QCRuS',3,'118678196',8),(23,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$IgZmSYkuJuWChakyvK6QAe3/GbH/5nR6U129R1W9RBi1UomqV0hwW',2,'047871780',3);
 
 /*Table structure for table `proposal` */
 
@@ -313,11 +313,11 @@ CREATE TABLE `proposal` (
   `jenis_identitas` int(2) DEFAULT NULL,
   `tanggal_kartu_keluarga` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'1200000','2014-10-12',1,'Pertambangan','7','1222','1222','1241','1','1',2,'120000','34000','12000',1,'','','','','','',0,'Jaka',1,NULL),(2,'','2014-10-02',5,'111','7','121','','121','','2',1,'','','',NULL,'','','','','','',0,'tes',1,NULL),(3,'','2014-10-13',1,'1','7','121','','1212','','1',1,'','','',NULL,'','','','','','',0,'211',1,NULL);
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'1200000','2014-10-12',1,'Pertambangan','7','1222','1222','1241','1','1',2,'120000','34000','12000',1,'','','','','','',0,'Jaka',1,NULL),(2,'','2014-10-02',5,'111','7','121','','121','','3',1,'','','',NULL,'','','','','','',0,'tes',1,NULL),(3,'','2014-10-13',1,'1','7','121','','1212','','1',1,'','','',NULL,'','','','','','',0,'211',1,NULL),(4,'250000000','2014-10-01',4,'Toko Elektronik','4','123456789-KK','123456789-BK','123456789A','001','1',1,'','','',NULL,'','','','','','',0,'Tuan A',1,NULL),(5,'275000000','2014-10-01',5,'Dagang Kelontong','4','111111-KK','111111-BN','111111A','002','1',1,'','','',NULL,'','','','','','',0,'Tuan B',1,NULL),(6,'75000000','2014-10-01',6,'Kelontong','7','222222-KK','222222-BN','222222A','003','1',1,'','','',NULL,'','','','','','',0,'Tuan C',1,NULL);
 
 /*Table structure for table `proposal_buku_nikah` */
 
@@ -331,7 +331,7 @@ CREATE TABLE `proposal_buku_nikah` (
 
 /*Data for the table `proposal_buku_nikah` */
 
-insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (1,'1222','2014-10-29');
+insert  into `proposal_buku_nikah`(`proposal_id`,`no_buku_nikah`,`tgl_buku_nikah`) values (1,'1222','2014-10-29'),(4,'123456789-BK','1980-10-01'),(5,'111111-BN','1983-10-01'),(6,'222222-BN','2000-10-01');
 
 /*Table structure for table `proposal_kartu_keluarga` */
 
@@ -348,7 +348,7 @@ CREATE TABLE `proposal_kartu_keluarga` (
 
 /*Data for the table `proposal_kartu_keluarga` */
 
-insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('1222','Tika','2014-10-29','12444',1,'Medan');
+insert  into `proposal_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`proposal_id`,`tempat_lahir`) values ('1222','Tika','2014-10-29','12444',1,'Medan'),('123456789-KK','Istri Tuan A','1961-10-01','123456789B',4,'Rao'),('123456789-KK','Anak Tuan A','1975-10-01','123456789C',4,'Rao'),('111111-KK','Anak Tuan B','1985-10-01','111111-B',5,'Rao'),('222222-KK','Istri Tuan C','1985-10-01','222222-C',6,'rao');
 
 /*Table structure for table `proposal_ktp` */
 
@@ -368,11 +368,11 @@ CREATE TABLE `proposal_ktp` (
   `proposal_id` int(5) DEFAULT NULL,
   `desa` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_ktp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal_ktp` */
 
-insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'1241','Jakarta','2014-10-13','',1,'','','','2014-10-30',1,''),(2,'121','','2014-10-02','',1,'','','','2014-10-02',2,''),(3,'1212','','2014-10-28','',1,'','','','2014-10-29',3,'');
+insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'1241','Jakarta','2014-10-13','',1,'','','','2014-10-30',1,''),(2,'121','','2014-10-02','',1,'','','','2014-10-02',2,''),(3,'1212','','2014-10-28','',1,'','','','2014-10-29',3,''),(4,'123456789A','Rao','1960-10-01','Rao',1,'Kawin','Wiraswasta','Indonesia','2015-10-01',4,'Rao'),(5,'111111A','Rao','1963-10-01','Rao',1,'Kawin','PNS','Indonesia','2014-10-01',5,'Rao'),(6,'222222A','Rao','1990-10-01','Rao',1,'Kawin','Wiraswasta','Indonesia','2015-10-01',6,'Rao');
 
 /*Table structure for table `tolak` */
 
