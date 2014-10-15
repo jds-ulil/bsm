@@ -416,11 +416,11 @@ CREATE TABLE `vote_jawab` (
   `id_pegawai` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `tanggal_vote` date DEFAULT NULL,
   PRIMARY KEY (`id_jawab`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `vote_jawab` */
 
-insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`id_pegawai`,`tanggal_vote`) values (7,1,'Ya','4','2014-10-14'),(8,2,'Tidak','4','2014-10-14'),(9,3,'Ya','4','2014-10-14'),(10,4,'Ya','4','2014-10-14'),(11,5,'Ya','4','2014-10-14'),(12,6,'Tidak','4','2014-10-14');
+insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`id_pegawai`,`tanggal_vote`) values (7,1,'Ya','4','2014-10-14'),(8,2,'Tidak','4','2014-10-14'),(9,3,'Ya','4','2014-10-14'),(10,4,'Ya','4','2014-10-14'),(11,5,'Ya','4','2014-10-14'),(12,6,'Tidak','4','2014-10-14'),(13,1,'Ya','4','2014-10-15'),(14,2,'Ya','4','2014-10-15'),(15,3,'Ya','4','2014-10-15'),(16,4,'Ya','4','2014-10-15'),(17,5,'Tidak','4','2014-10-15'),(18,6,'Tidak','4','2014-10-15'),(19,1,'Tidak','4','2014-10-15'),(20,2,'Ya','4','2014-10-15'),(21,3,'Ya','4','2014-10-15'),(22,4,'Ya','4','2014-10-15'),(23,5,'Ya','4','2014-10-15'),(24,6,'Ya','4','2014-10-15');
 
 /*Table structure for table `vote_soal` */
 
