@@ -11,6 +11,9 @@
  */
 class voteJawab extends CActiveRecord
 {
+    public $from_date;
+    public $to_date;
+    public $unit_kerja;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -32,7 +35,7 @@ class voteJawab extends CActiveRecord
 			array('jawaban, id_pegawai', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_jawab, soal_id, jawaban, id_pegawai', 'safe', 'on'=>'search'),
+			array('from_date, to_date, unit_kerja, id_jawab, soal_id, jawaban, id_pegawai', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +61,9 @@ class voteJawab extends CActiveRecord
 			'jawaban' => 'Jawaban',		
             'id_pegawai' => 'ID Pegawai',
             'tanggal_vote' => 'Tanggal Vote',
+            'from_date' => 'Mulai',
+            'to_date' => 'Sampai',
+            'unit_kerja' => 'Unit Kerja' 
 		);
 	}
 
@@ -78,19 +84,39 @@ class voteJawab extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+        $criteria->join= ' INNER JOIN `mtb_pegawai` `peg` ON (`peg`.`pegawai_id`=`t`.`id_pegawai`)  ';
+        $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON peg.unit_kerja = uk.unit_kerja_id ';
+        
+        
 		$criteria->compare('id_jawab',$this->id_jawab);
 		$criteria->compare('soal_id',$this->soal_id);
 		$criteria->compare('jawaban',$this->jawaban,true);
 		$criteria->compare('id_pegawai',$this->id_pegawai,true);
 		$criteria->compare('tanggal_vote',$this->tanggal_vote,true);
+		$criteria->compare('uk.nama',$this->unit_kerja,true);
 
+        
+         if (!empty($this->from_date)) {                
+            $reFromDate = $this->toDBDate($this->from_date);                
+            $criteria->addCondition('tanggal_vote >= "'.$reFromDate.'" ');                
+            }
+        if (!empty($this->to_date)) {
+            $reToDate = $this->toDBDate($this->to_date);                
+            $criteria->addCondition('tanggal_vote <= "'.$reToDate.'" ');		
+            }
+        
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+    public function searchReport(){
+        $criteria=new CDbCriteria;
+        return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+    }
 
-	/**
+    /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
@@ -100,4 +126,20 @@ class voteJawab extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        } 
 }

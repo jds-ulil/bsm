@@ -11,18 +11,27 @@ $this->breadcrumbs=array(
         'enctype' => 'multipart/form-data',
         ),
 )); ?>
-<h1 class="loginHead">Data Voter</h1>
-   <?php echo $form->textFieldRow($model_marketing,'nama',
+<!--<h1 class="loginHead">Data Voter</h1>-->
+   <?php 
+   /**
+   echo $form->textFieldRow($model_marketing,'nama',
             array('class'=>'span5',
                 'readonly'=>true,
-                'maxlength'=>50)); ?>
+                'maxlength'=>50)); 
+    * 
+    */   
+   ?>
     	
     
-    <?php echo $form->textFieldRow($model_marketing,'NIP',
+    <?php 
+    /**
+    echo $form->textFieldRow($model_marketing,'NIP',
             array('class'=>'span5',
                 'readonly'=>true,
-                'maxlength'=>50)); ?>
-
+                'maxlength'=>50)); 
+     * 
+     */
+    ?>
 <div class='head-survey'>Quistionaire</div>
 <div class='soal_jawab'>
 <?php
@@ -34,21 +43,21 @@ $this->breadcrumbs=array(
      $jawaban = explode(',', $model_soalEach->pilihan_jawaban);
      echo "<div class='jawab'>";
      
-     if(isset($arrJwb[$model_soalEach->id_soal])) { 
-         foreach ($jawaban as $key_j => $value_j) {         
-            if($value_j == $arrJwb[$model_soalEach->id_soal])             
-            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j' checked='checked'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";   
-            else
-            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";         
-        }         
-     } else {     
+//     if(isset($arrJwb[$model_soalEach->id_soal])) { 
+//         foreach ($jawaban as $key_j => $value_j) {         
+//            if($value_j == $arrJwb[$model_soalEach->id_soal])             
+//            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j' checked='checked'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";   
+//            else
+//            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";         
+//        }         
+//     } else {     
         foreach ($jawaban as $key_j => $value_j) {         
             if($key_j == 0)             
             echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j' checked='checked'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";   
             else
             echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";         
         }
-     }
+//     }
     echo "</div>";
      $i++;
  }

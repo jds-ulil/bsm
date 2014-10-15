@@ -32,11 +32,12 @@ class QuestionController extends Controller
 				'roles'=>array('admin'),
 			),			
 			array('allow',  // deny all users
-                                'actions'=>array('index','complete','autocompleteVoter', 'report',),
+                                'actions'=>array('index','complete','autocompleteVoter', 'report',
+                                            'print'),
 				'roles'=>array('inputter','approval', 'complete',),
 			),
 			array('allow',  // deny all users
-                                'actions'=>array('autocompleteVoter',),
+                                'actions'=>array('autocompleteVoter','hasil'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -44,6 +45,54 @@ class QuestionController extends Controller
 			),
 		);
 	}
+        
+        public function actionPrint(){
+            $model_jawab = new voteJawab;           
+            if(isset($_POST['voteJawab'])) {                
+               // $model_jawab->id_pegawai = $_POST['voteJawab']['id_pegawai'];
+                $model_jawab->to_date= $_POST['voteJawab']['to_date'];
+                $model_jawab->from_date= $_POST['voteJawab']['from_date'];
+                $model_jawab->unit_kerja= $_POST['voteJawab']['unit_kerja'];
+            }
+            $dataProvider = $model_jawab->search();
+
+
+            $model_soal = new voteSoal;
+            $model_soal->group_soal = 1;
+            $soal_provider = $model_soal->search();        
+
+            //$totalVote = intval($dataProvider->getTotalItemCount()/$soal_provider->getTotalItemCount());
+
+            $arrResult = array();
+            $arrSoal = array();
+            foreach($soal_provider->getData() as $record) {
+                $arrSoal[$record->id_soal] = $record->soal;
+
+                $model_jawab->soal_id = $record->id_soal;
+                $model_jawab->jawaban = null;
+                $dataSS = $model_jawab->search();
+                $totalPerSoal =  $dataSS->getTotalItemCount();                                    
+
+                $arrJwb = explode(',', $record->pilihan_jawaban);            
+                foreach ($arrJwb as $key_j => $value_j) {
+                     $model_jawab->jawaban = $value_j;
+                     $model_jawab->soal_id = $record->id_soal;
+                     $data = $model_jawab->search();
+                     //$arrResult[$record->id_soal][$model_jawab->jawaban]['total'] = $data->getTotalItemCount();                
+                     $totalJwb = $data->getTotalItemCount();   
+                     if($totalPerSoal == 0 || $totalJwb == 0){
+                         $arrResult[$record->id_soal][$model_jawab->jawaban]['persen'] = 0;                
+                     } else {
+                     $arrResult[$record->id_soal][$model_jawab->jawaban]['persen'] = intval(($totalJwb/$totalPerSoal)*100);                
+                     }
+                }            
+            }    
+              $this->render('print',array(
+                    'arrResult' => $arrResult,
+                    'arrSoal' => $arrSoal,            
+                ));
+        }
+    
         public function actionAutocompleteVoter() {
             $res =array();
             if (isset($_GET['term'])) {
@@ -131,22 +180,22 @@ class QuestionController extends Controller
                 array(1)
                 );
         
-        $model_marketing = pegawai::model()->findByPk(Yii::app()->user->id_pegawai); 
-        $arrJwb = array();
-        $marketing_result = voteJawab::model()->findAllBySql(
-                'SELECT jwb.`soal_id`,jwb.`jawaban` FROM vote_jawab jwb WHERE jwb.`id_pegawai` = ?',
-                array($model_marketing->pegawai_id)                
-                );
-        foreach ($marketing_result as $key => $value) {
-                 $arrJwb[$value->soal_id] = $value->jawaban;
-            }        
+//        $model_marketing = pegawai::model()->findByPk(Yii::app()->user->id_pegawai); 
+//        $arrJwb = array();
+//        $marketing_result = voteJawab::model()->findAllBySql(
+//                'SELECT jwb.`soal_id`,jwb.`jawaban` FROM vote_jawab jwb WHERE jwb.`id_pegawai` = ?',
+//                array($model_marketing->pegawai_id)                
+//                );
+//        foreach ($marketing_result as $key => $value) {
+//                 $arrJwb[$value->soal_id] = $value->jawaban;
+//            }        
         if (isset($_POST['voteSoal'])) {
-            voteJawab::model()->deleteAll('id_pegawai = ' . $model_marketing->pegawai_id);
+            //voteJawab::model()->deleteAll('id_pegawai = ' . $model_marketing->pegawai_id);
             $voterDate = date("Y").'-'.date("m").'-'.date("d");
             $arrJawaban  = $_POST['voteSoal'];            
             foreach ($arrJawaban as $key => $value) {
                 $voteJawab = new voteJawab;                
-                $voteJawab->id_pegawai = $model_marketing->pegawai_id;
+                $voteJawab->id_pegawai = Yii::app()->user->id_pegawai;
                 $voteJawab->tanggal_vote = $voterDate;
                 $voteJawab->soal_id = $key;
                 $voteJawab->jawaban = $value;
@@ -157,13 +206,28 @@ class QuestionController extends Controller
         
 		$this->render('index',array(	
                     'model_soal' => $model_soal,
-                    'model_marketing' => $model_marketing,
-                    'arrJwb' => $arrJwb,
+//                    'model_marketing' => $model_marketing,
+//                    'arrJwb' => $arrJwb,
 		));
 	}
-    
+    public function actionHasil() {
+        $model_jawab = new voteJawab;                        
+        
+        $this->render('hasil',array(
+            'model_jawab' => $model_jawab,
+        ));
+    }
     public function actionReport() {
-        $model_jawab = new voteJawab;                
+        $model_jawab = new voteJawab;   
+        
+        $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');
+        
+        if(isset($_POST['voteJawab'])) {
+           // $model_jawab->id_pegawai = $_POST['voteJawab']['id_pegawai'];
+            $model_jawab->to_date= $_POST['voteJawab']['to_date'];
+            $model_jawab->from_date= $_POST['voteJawab']['from_date'];
+            $model_jawab->unit_kerja= $_POST['voteJawab']['unit_kerja'];
+        }
         $dataProvider = $model_jawab->search();
         
         
@@ -171,25 +235,38 @@ class QuestionController extends Controller
         $model_soal->group_soal = 1;
         $soal_provider = $model_soal->search();        
         
-        $totalVote = intval($dataProvider->getTotalItemCount()/$soal_provider->getTotalItemCount());
+        //$totalVote = intval($dataProvider->getTotalItemCount()/$soal_provider->getTotalItemCount());
             
         $arrResult = array();
         $arrSoal = array();
         foreach($soal_provider->getData() as $record) {
             $arrSoal[$record->id_soal] = $record->soal;
-            $arrJwb = explode(',', $record->pilihan_jawaban);
+                        
+            $model_jawab->soal_id = $record->id_soal;
+            $model_jawab->jawaban = null;
+            $dataSS = $model_jawab->search();
+            $totalPerSoal =  $dataSS->getTotalItemCount();                                    
+            
+            $arrJwb = explode(',', $record->pilihan_jawaban);            
             foreach ($arrJwb as $key_j => $value_j) {
                  $model_jawab->jawaban = $value_j;
                  $model_jawab->soal_id = $record->id_soal;
                  $data = $model_jawab->search();
-                 $arrResult[$record->id_soal][$model_jawab->jawaban]['total'] = $data->getTotalItemCount();
+                 //$arrResult[$record->id_soal][$model_jawab->jawaban]['total'] = $data->getTotalItemCount();                
+                 $totalJwb = $data->getTotalItemCount();   
+                 if($totalPerSoal == 0 || $totalJwb == 0){
+                     $arrResult[$record->id_soal][$model_jawab->jawaban]['persen'] = 0;                
+                 } else {
+                 $arrResult[$record->id_soal][$model_jawab->jawaban]['persen'] = intval(($totalJwb/$totalPerSoal)*100);                
+                 }
             }            
-        }
-
+        }        
         $this->render('report',array(
             'arrResult' => $arrResult,
             'arrSoal' => $arrSoal,
             'model_soal' => $model_soal,
+            'model_jawab' => $model_jawab,
+            'listUnit' => $listUnit,
         ));
     }
 
