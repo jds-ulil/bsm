@@ -21,7 +21,7 @@ class TolakController extends Controller
     
     public function init() {
         parent::init();
-       // Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
         }
         public function handleError(CEvent $event)
             {            

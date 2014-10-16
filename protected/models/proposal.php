@@ -438,5 +438,15 @@ class proposal extends CActiveRecord
                 }
             }    
             return $value;
-        }        
+        }  
+       function getNextProNumber() {
+            $ArrMaxNo = Yii::app()->db->createCommand()
+                  ->setFetchMode(PDO::FETCH_COLUMN,0)
+                  ->select("MAX(LEFT(pro.`no_proposal`,(LOCATE('/',pro.`no_proposal`)-1)))")
+                  ->from("proposal pro")                                             
+                  ->queryAll();       
+            $input = $ArrMaxNo[0]+1;        
+            $input = str_pad($input, 4, 0, STR_PAD_LEFT).'/'.date("m").'/'.date("Y");  
+            return $input;
+       }
 }

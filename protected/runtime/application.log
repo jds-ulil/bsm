@@ -3546,3 +3546,276 @@ Stack trace:
 REQUEST_URI=/bsm/index.php?r=tolak/print
 HTTP_REFERER=http://localhost/bsm/index.php?r=tolak/report
 ---
+2014/10/16 03:39:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in C:\xampp\htdocs\bsm\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\bsm\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\bsm\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(450): CModule->getComponent('db')
+#4 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->getCommandBuilder()
+#7 C:\xampp\htdocs\bsm\protected\components\UserIdentity.php(21): CActiveRecord->find('SUBSTR(email_ad...')
+#8 C:\xampp\htdocs\bsm\protected\models\LoginForm.php(55): UserIdentity->authenticate()
+#9 C:\xampp\htdocs\bsm\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#10 C:\xampp\htdocs\bsm\yii\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#11 C:\xampp\htdocs\bsm\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#12 C:\xampp\htdocs\bsm\protected\controllers\SiteController.php(121): CModel->validate()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#23 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#24 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#26 {main}
+REQUEST_URI=/bsm/index.php?r=site/login
+HTTP_REFERER=http://localhost/bsm/index.php?r=site/login
+---
+2014/10/16 03:40:13 [error] [php] Undefined variable: unitKerja (C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php:118)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (118)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 03:40:56 [error] [php] Undefined variable: unitKerja (C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php:118)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/print
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (118)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 04:22:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/create')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/create
+---
+2014/10/16 04:22:57 [error] [php] Use of undefined constant tes - assumed 'tes' (C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php:226)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/create
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (226)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 05:29:03 [error] [php] Undefined variable: model_proposal (C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php:230)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/create
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (230)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 05:35:43 [error] [exception.CException] exception 'CException' with message 'Properti "WebUser.id_pegawai" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('id_pegawai')
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(230): CWebUser->__get('id_pegawai')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionCreate()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/create')
+#13 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/create
+---
+2014/10/16 05:36:27 [error] [exception.CException] exception 'CException' with message 'Properti "WebUser.id_pegawai" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('id_pegawai')
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(230): CWebUser->__get('id_pegawai')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): ProposalController->actionCreate()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/create')
+#13 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/bsm/index.php?r=proposal/create
+---
+2014/10/16 05:36:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "index" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=proposal
+---
+2014/10/16 05:38:24 [error] [php] Use of undefined constant input - assumed 'input' (C:\xampp\htdocs\bsm\protected\models\proposal.php:450)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): ProposalController->runAction()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): ProposalController->filterAccessControl()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): ProposalController->runActionWithFilters()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): ProposalController->run()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=proposal/create
+in C:\xampp\htdocs\bsm\protected\models\proposal.php (450)
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (228)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 05:38:47 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (245)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 05:38:59 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (245)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 06:17:59 [error] [system.db.CDbCommand] CDbCommand::fetch() gagal: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'proposal_id = 1' at line 1. Statement SQL yang dijalankan: proposal_id = 1.
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (77)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 06:17:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'proposal_id = 1' at line 1. The SQL statement executed was: proposal_id = 1' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1558): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(77): CActiveRecord->findBySql('proposal_id = 1')
+#3 [internal function]: ProposalController->actionDelete('1')
+#4 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1116): CFilterChain->run()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('delete')
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/delete')
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#21 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&id=1&r=proposal%2Fdelete
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/16 06:20:17 [error] [exception.CDbException] exception 'CDbException' with message 'Nama kolom harus berupa string ataupun array' in C:\xampp\htdocs\bsm\yii\framework\db\schema\CDbCommandBuilder.php:828
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\schema\CDbCommandBuilder.php(621): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), NULL, Array, NULL)
+#1 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1800): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), NULL, '', Array)
+#2 C:\xampp\htdocs\bsm\yii\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk(NULL)
+#3 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(81): CActiveRecord->delete()
+#4 [internal function]: ProposalController->actionDelete('6')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1116): CFilterChain->run()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('delete')
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/delete')
+#20 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&id=6&r=proposal%2Fdelete
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---
+2014/10/16 06:25:45 [error] [system.db.CDbCommand] CDbCommand::fetchAll() gagal: SQLSTATE[HY000]: General error. Statement SQL yang dijalankan: delete from proposal_buku_nikah where proposal_id=:proposal_id.
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (77)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/16 06:25:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand gagal menjalankan statementSQL: SQLSTATE[HY000]: General error. The SQL statement executed was: delete from proposal_buku_nikah where proposal_id=:proposal_id' in C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php(77): CDbCommand->queryAll()
+#2 [internal function]: ProposalController->actionDelete('4')
+#3 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProposalController), Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProposalController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1116): CFilterChain->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('delete')
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/delete')
+#18 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#20 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&id=4&r=proposal%2Fdelete
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---

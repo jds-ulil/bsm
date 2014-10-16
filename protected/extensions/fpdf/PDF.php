@@ -11,6 +11,7 @@
  * @author oelhyl
  */
 class PDF extends FPDF{
+    public $unitKerja;
     function Header()
 {
     // Logo
@@ -24,12 +25,19 @@ class PDF extends FPDF{
     //            kekanan       kebawah      Isi          garis                    star dalam kotak 
     $this->SetFont('Arial','B',12);
     $this->Cell(0,8,'Rekapitulasi Proposal Baru',0,1,'L');    
+    $this->Cell(5);    
+    if (!empty($this->unitKerja)) { 
+        $this->SetFont('Arial','B',10);
+        $this->Cell(0,8,$this->unitKerja[0],0,1,'L');  
+    }
     
     $this->Line(200,25,10,25);
     // Line break
     $this->Ln(20);
 }
-
+    function setUnitKerja($unk) {
+        $this->unitKerja = $unk;
+    }
     // Page footer
     function Footer()
     {

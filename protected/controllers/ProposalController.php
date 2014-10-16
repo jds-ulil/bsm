@@ -22,7 +22,7 @@ class ProposalController extends Controller
          
         public function init() {
         parent::init();
-       // Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
         }
         public function handleError(CEvent $event)
             {            
@@ -42,7 +42,7 @@ class ProposalController extends Controller
 	{
 		return array(  
                 array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'complete',),
+				'actions'=>array('create', 'complete','delete'),
 				'roles'=>array('inputter',),
                     ),           
                 array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -71,7 +71,19 @@ class ProposalController extends Controller
     $this->render('error',array(			
 		));    
 	}
-    
+    public function actionDelete($id){
+        $model = $this->loadModel($id);
+        if($model->delete()){
+            Yii::app()->db->createCommand('delete from proposal_buku_nikah where proposal_id='.$id)->query();
+            Yii::app()->db->createCommand('delete from proposal_kartu_keluarga where proposal_id='.$id)->query();
+            Yii::app()->db->createCommand('delete from proposal_ktp where proposal_id='.$id)->query();
+            Yii::app()->db->createCommand('delete from tolak where proposal_id='.$id)->query();
+            
+        }
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index', 'id'=>$user));
+    }
     public function actionPrint() {
         $data = array();
         $index = 0;
@@ -89,13 +101,25 @@ class ProposalController extends Controller
                                 'nama_nasabah'=>$record->nama_nasabah,
                                 'tanggal_pengajuan'=>Yii::app()->numberFormatter->formatDate($record->tanggal_pengajuan),
                                 'plafon'=>Yii::app()->numberFormatter->formatCurrency($record->plafon,""),
-                                'jenis_usaha'=>Yii::app()->numberFormatter->formatCurrency($record->jenis_usaha,""),
-                                'marketing'=>$record->rMar->nama,
+                                //'jenis_usaha'=>Yii::app()->numberFormatter->formatCurrency($record->jenis_usaha,""),
+                                //'marketing'=>$record->rMar->nama,
+                                'jenis_usaha'=>$record->jenis_usaha,
                         );
             }                                  
         }
+        $unitKerja = array();
+        if(!empty($model_proposal->marketing)) {
+            $unitKerja = Yii::app()->db->createCommand()
+                            ->setFetchMode(PDO::FETCH_COLUMN,0)
+                            ->select("unk.nama")
+                            ->from("mtb_unit_kerja unk")
+                            ->join("mtb_pegawai peg", "peg.unit_kerja = unk.unit_kerja_id")
+                            ->where("peg.nama like '".$model_proposal->marketing."' ")                            
+                            ->queryAll(); 
+        }                
+
         $model_proposal->marketing = empty($model_proposal->marketing)?'Tidak Ditentukan':$model_proposal->marketing;        
-       $model_proposal->jenis_usaha = empty($model_proposal->jenis_usaha)?'Semua Jenis Usaha':$model_proposal->jenis_usaha;
+        $model_proposal->jenis_usaha = empty($model_proposal->jenis_usaha)?'Semua Jenis Usaha':$model_proposal->jenis_usaha;
         $model_proposal->from_plafon = empty($model_proposal->from_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->from_plafon,"");
         $model_proposal->to_plafon = empty($model_proposal->to_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model_proposal->to_plafon,"");
         $model_proposal->from_date = empty($model_proposal->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_proposal->from_date);
@@ -104,6 +128,7 @@ class ProposalController extends Controller
             'model_proposal' => $model_proposal,
             'data' => $data,
             'total' => Yii::app()->numberFormatter->formatCurrency($total,""),
+            'unitKerja' => $unitKerja,
         ));
     }   
         
@@ -209,9 +234,10 @@ class ProposalController extends Controller
         ));
     }
     
-    public function actionCreate (){
+    public function actionCreate (){           
         $model_proposal=new proposal('create');
         $model_proposal->jenis_nasabah = 1;
+        $model_proposal->no_proposal = $model_proposal->getNextProNumber();
                   
         $model_marketing = pegawai::model()->findByPk(Yii::app()->user->id_pegawai);  
         $model_proposal->marketing = $model_marketing->pegawai_id;
