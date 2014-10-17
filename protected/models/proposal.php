@@ -279,7 +279,8 @@ class proposal extends CActiveRecord
 //                            return false;
 //                        }
 //                    }
-            foreach ($arrKtptolak as $key => $value) {
+            $arrKtptolakAll = array_merge($arrKtpKKtolak, $arrKtptolak);
+            foreach ($arrKtptolakAll as $key => $value) {
                         if($value['no_ktp'] == $this->$attribute_name) {
                             $model_tolak = tolak::model()->find(" proposal_id = " . $value['proposal_id'] );
                             $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('tolak/detail',array('id'=>$model_tolak->tolak_id))."' target='_blank'>Lihat Detail</a>");

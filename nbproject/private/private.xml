@@ -4,7 +4,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/bsm/assets/26fd7dfc/jquery.yiiactiveform.js</file>
+            <file>file:/C:/xampp/htdocs/bsm/themes/bootstrap/views/layouts/main.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/views/pelunasan/_form.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/views/pelunasan/create.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/views/tolak/report.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/controllers/PelunasanController.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/controllers/TolakController.php</file>
+            <file>file:/C:/xampp/htdocs/bsm/protected/models/pelunasan.php</file>
         </group>
     </open-files>
 </project-private>

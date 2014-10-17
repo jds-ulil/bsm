@@ -37,11 +37,12 @@ $this->breadcrumbs=array(
 <?php
  $i = 1;
  foreach ($model_soal as $key => $model_soalEach) {  
-     echo "<div class='soal'>";
+     echo "<div class='row rowQ'>";
+     echo "<div class='span6 soal'>";
      echo $i.".".$model_soalEach->soal;   
      echo "</div>";
      $jawaban = explode(',', $model_soalEach->pilihan_jawaban);
-     echo "<div class='jawab'>";
+     echo "<div class='span2'>";
      
 //     if(isset($arrJwb[$model_soalEach->id_soal])) { 
 //         foreach ($jawaban as $key_j => $value_j) {         
@@ -51,15 +52,25 @@ $this->breadcrumbs=array(
 //            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";         
 //        }         
 //     } else {     
-        foreach ($jawaban as $key_j => $value_j) {         
-            if($key_j == 0)             
-            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j' checked='checked'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";   
-            else
-            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";         
+//        foreach ($jawaban as $key_j => $value_j) {         
+//            if($key_j == 0)             
+//            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j' checked='checked'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";   
+//            else
+//            echo "<input type='radio' name='voteSoal[$model_soalEach->id_soal]' value='$value_j'>&nbsp;$value_j&nbsp;&nbsp;&nbsp;";         
+//        }
+     ?>
+    <?php  echo "<select class='span2' name='voteSoal[$model_soalEach->id_soal]'>"; ?>
+    <?php
+        foreach ($jawaban as $key_j => $value_j) {                  
+            echo "<option value='$value_j'>$value_j</option>";
         }
+        ?>
+    <?php echo "</select>"; ?>
+    <?php
 //     }
     echo "</div>";
      $i++;
+    echo "</div>";//end div row soal jawab
  }
 ?>
 </div>
@@ -67,7 +78,7 @@ $this->breadcrumbs=array(
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>'Submit Vote',
+			'label'=>'Simpan',
 		)); ?>		
 	</div>
 <?php $this->endWidget(); ?>

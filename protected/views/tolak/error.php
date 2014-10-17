@@ -11,5 +11,5 @@ $this->breadcrumbs=array(
   <b>Silahkan Periksa Kembali Jaringan Dan Configurasi Email</b>   
 </div>
 <div class="form-actions">
-    <?php echo CHtml::link('Input Proposal',array('proposal/create'), array('class'=>'btn btn-primary')); ?>        
+    <?php echo CHtml::link('Input Nasabah Tolak',array('tolak/create'), array('class'=>'btn btn-primary')); ?>        
 </div>

@@ -22,6 +22,18 @@ function menuTypeChange(menyType)
     if(menyType!="")
         $('#'+menyType+'Div').show();
 }
+function stP(st)
+{      
+    if(st=="Kawin") { 
+            $('#proposalBukuNikah_tgl_buku_nikah').prop('readonly',false);     
+            $('#proposal_no_buku_nikah').prop('readonly',false);     
+    } else {
+            $('#proposalBukuNikah_tgl_buku_nikah').prop('readonly',true);     
+            $('#proposal_no_buku_nikah').prop('readonly',true);     
+            $('#proposalBukuNikah_tgl_buku_nikah').val(''); 
+            $('#proposal_no_buku_nikah').val(''); 
+        }
+}
 </script>
 
     <p class="help-block">Kolom dengan tanda <span class="required">*</span> harus diisi.</p>
@@ -155,7 +167,16 @@ function menuTypeChange(menyType)
     <?php echo $form->dropDownListRow($model_ktp,'agama', $listAgama, array(	    
 		'class'=>'span3',
 		)); ?>  
-    <?php echo $form->textFieldRow($model_ktp,'status_perkawinan',array('class'=>'span5','maxlength'=>50)); ?>        
+    <?php echo $form->dropDownListRow($model_ktp,'status_perkawinan', 
+            array(
+                'Kawin' => "Kawin",
+                'Tidak Kawin' => "Tidak Kawin",
+            )
+            , array(
+      'empty'=>'Pilih Status Pernikahan',
+      'class'=>'span3',
+      'onchange'=>'stP(this.value)'
+      )); ?>    
     <?php echo $form->textFieldRow($model_ktp,'pekerjaan',array('class'=>'span5','maxlength'=>50)); ?>        
     <?php echo $form->textFieldRow($model_ktp,'kewarganegaraan',array('class'=>'span5','maxlength'=>50)); ?>            
     <?php echo $form->labelEx($model_ktp, "masa_berlaku",  array('class'=>'control-label'));?>

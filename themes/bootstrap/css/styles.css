@@ -98,11 +98,14 @@ h3 {
         margin-bottom: 10px;
 }
 .soal{
-	padding:5px 10px 3px 5px;
-	background-color:#F2F6F1;
+/*	padding:5px 10px 3px 5px;
+	background-color:#F2F6F1;*/
+}
+.rowQ{
+    padding: 10px;    
 }
 .jawab{
-	padding:5px 10px 10px 5px;
+/*	padding:5px 10px 10px 5px;*/
     font-size: 12px;
 }
 table.resize-table th, table.resize-table td {

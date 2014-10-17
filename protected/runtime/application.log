@@ -3857,3 +3857,142 @@ Stack trace:
 REQUEST_URI=/bsm/index.php?r=proposal/create
 HTTP_REFERER=http://localhost/bsm/index.php?r=pelunasan/create
 ---
+2014/10/17 10:03:10 [error] [php] fsockopen(): unable to connect to mail.syariahmandiri.co.id:443 (A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+) (C:\xampp\htdocs\bsm\protected\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php:233)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php(101): Swift_Transport_StreamBuffer->initialize()
+#1 C:\xampp\htdocs\bsm\protected\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Mailer.php(74): Swift_SmtpTransport->start()
+#2 C:\xampp\htdocs\bsm\protected\extensions\yii-mail\YiiMail.php(133): Swift_Mailer->send()
+#3 C:\xampp\htdocs\bsm\protected\models\tolak.php(267): YiiMail->send()
+#4 C:\xampp\htdocs\bsm\protected\controllers\TolakController.php(332): tolak->sendNotif()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): TolakController->actionCreate()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): TolakController->runAction()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): TolakController->filterAccessControl()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): TolakController->runActionWithFilters()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): TolakController->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=tolak/create
+in C:\xampp\htdocs\bsm\protected\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php (233)
+in C:\xampp\htdocs\bsm\protected\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php (70)
+in C:\xampp\htdocs\bsm\protected\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php (101)
+2014/10/17 10:05:35 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:05:46 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:05:51 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:07:35 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:07:40 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:07:47 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:07:48 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:08:39 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:08:42 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:09:26 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:09:30 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:09:31 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:11:37 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:11:41 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:29:30 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:34:05 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:38:04 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:38:05 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:39:29 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:40:52 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:41:01 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:41:35 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:41:40 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:42:29 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:42:37 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:44:46 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:44:52 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:44:56 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:44:58 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:45:01 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:45:48 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:46:28 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:46:32 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:47:42 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (290)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:47:49 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:47:53 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:47:59 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/17 10:48:03 [warning] [application] Gagal mengeset atribut unsafe "tanggal_kartu_keluarga" dari kelas "proposal".
+in C:\xampp\htdocs\bsm\protected\controllers\ProposalController.php (257)
+in C:\xampp\htdocs\bsm\index.php (15)

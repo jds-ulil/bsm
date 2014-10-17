@@ -33,10 +33,10 @@ class proposalKtp extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tanggal_lahir, masa_berlaku, agama', 'required'),
+			array('tanggal_lahir, masa_berlaku, agama, status_perkawinan', 'required'),
 			array('agama', 'numerical', 'integerOnly'=>true),
 			array('no_ktp, tempat_lahir, pekerjaan, kewarganegaraan, proposal_id', 'length', 'max'=>50),
-			array('tanggal_lahir, alamat, masa_berlaku, desa, status_perkawinan', 'safe'),
+			array('tanggal_lahir, alamat, masa_berlaku, desa', 'safe'),
                         array('tanggal_lahir, masa_berlaku', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
