@@ -141,5 +141,176 @@ class voteJawab extends CActiveRecord
                 }
             }    
             return $value;
-        } 
+        }
+        
+    public function voteResult($fd,$td,$uk){
+        $from_date = '';
+        $to_date = '';
+        $unk = '';
+        if(!empty($fd)) {
+            $fd = $this->toDBDate($fd);
+            $from_date = " AND vj2.`tanggal_vote` >= '$fd' ";
+        }
+        if(!empty($td)) {
+            $td = $this->toDBDate($td);
+            $to_date = " AND vj2.`tanggal_vote` <= '$td' ";
+        }
+        if(!empty($uk)) {
+            $unk = " AND unk.nama = '$uk' ";
+        }
+        $sql = "
+            SELECT jab.nama_jabatan,total_semua.jumlah_input,total_semua.partisipasi,
+            CONCAT(ROUND(( tidak_penting.jumlah_input/total_semua.jumlah_input * 100 ),2),'%') AS tidak_penting,
+            CONCAT(ROUND(( cukup_penting.jumlah_input/total_semua.jumlah_input * 100 ),2),'%') AS cukup_penting,
+            CONCAT(ROUND(( penting.jumlah_input/total_semua.jumlah_input * 100 ),2),'%') AS penting,
+            CONCAT(ROUND(( sangat_penting.jumlah_input/total_semua.jumlah_input * 100 ),2),'%') AS sangat_penting
+                FROM 
+                (SELECT * FROM (
+                SELECT total_each.nama_jabatan,total_per_jabatan AS jumlah_input, total_each.jenis_jawaban,
+                CONCAT(ROUND(( total_per_jabatan/vote_tabel.total_vote * 100 ),2),'%') AS partisipasi
+                ,CONCAT(ROUND(( jumlah_input/total_per_jabatan * 100 ),2),'%') AS percentage FROM 
+
+                (SELECT COUNT(vj2.`id_jawab`) AS total_per_jabatan, peg2.`jabatan` FROM vote_jawab vj2 
+                INNER JOIN mtb_pegawai peg2 ON vj2.`id_pegawai` = peg2.`pegawai_id`
+                
+                INNER JOIN mtb_unit_kerja unk ON peg2.`unit_kerja` = unk.`unit_kerja_id`
+                WHERE TRUE".$from_date.$to_date.$unk.                
+                "
+                    
+                GROUP BY peg2.`jabatan`) AS total_tabel
+
+                INNER JOIN
+
+                (SELECT vj.`jawaban` AS jenis_jawaban, jab.`nama_jabatan`, peg.`jabatan`, COUNT(vj.`id_jawab`) AS jumlah_input FROM vote_jawab vj 
+                INNER JOIN mtb_pegawai peg ON vj.`id_pegawai` = peg.`pegawai_id`
+                INNER JOIN mtb_jabatan jab ON peg.`jabatan` = jab.`id_jabatan`
+                GROUP BY vj.`jawaban`, jab.`id_jabatan` ORDER BY jab.`nama_jabatan`) AS total_each
+
+                ON total_tabel.jabatan = total_each.jabatan
+                JOIN
+                (SELECT COUNT(vj.id_jawab) AS total_vote,vj.`jawaban` AS jenis_jawaban FROM vote_jawab vj) AS vote_tabel)
+                AS result_table) AS total_semua
+
+                RIGHT JOIN 
+                (SELECT * FROM mtb_jabatan) AS jab
+                ON jab.nama_jabatan = total_semua.nama_jabatan
+
+                LEFT JOIN
+
+                (SELECT * FROM (
+                SELECT total_each.nama_jabatan,jumlah_input, total_each.jenis_jawaban,
+                CONCAT(ROUND(( total_per_jabatan/vote_tabel.total_vote * 100 ),2),'%') AS partisipasi
+                ,CONCAT(ROUND(( jumlah_input/total_per_jabatan * 100 ),2),'%') AS percentage FROM 
+
+                (SELECT COUNT(vj2.`id_jawab`) AS total_per_jabatan, peg2.`jabatan` FROM vote_jawab vj2 
+                INNER JOIN mtb_pegawai peg2 ON vj2.`id_pegawai` = peg2.`pegawai_id`
+                INNER JOIN mtb_unit_kerja unk ON peg2.`unit_kerja` = unk.`unit_kerja_id`
+                WHERE TRUE".$from_date.$to_date.$unk.                
+                "
+                GROUP BY peg2.`jabatan`) AS total_tabel
+
+                INNER JOIN
+
+                (SELECT vj.`jawaban` AS jenis_jawaban, jab.`nama_jabatan`, peg.`jabatan`, COUNT(vj.`id_jawab`) AS jumlah_input FROM vote_jawab vj 
+                INNER JOIN mtb_pegawai peg ON vj.`id_pegawai` = peg.`pegawai_id`
+                INNER JOIN mtb_jabatan jab ON peg.`jabatan` = jab.`id_jabatan`
+                GROUP BY vj.`jawaban`, jab.`id_jabatan` ORDER BY jab.`nama_jabatan`) AS total_each
+
+                ON total_tabel.jabatan = total_each.jabatan
+                JOIN
+                (SELECT COUNT(vj.id_jawab) AS total_vote,vj.`jawaban` AS jenis_jawaban FROM vote_jawab vj) AS vote_tabel)
+                AS result_table WHERE result_table.jenis_jawaban = 'Tidak Penting') AS tidak_penting
+
+                ON tidak_penting.nama_jabatan = jab.nama_jabatan
+
+                LEFT JOIN
+
+                (SELECT * FROM (
+                SELECT total_each.nama_jabatan,jumlah_input, total_each.jenis_jawaban,
+                CONCAT(ROUND(( total_per_jabatan/vote_tabel.total_vote * 100 ),2),'%') AS partisipasi
+                ,CONCAT(ROUND(( jumlah_input/total_per_jabatan * 100 ),2),'%') AS percentage FROM 
+
+                (SELECT COUNT(vj2.`id_jawab`) AS total_per_jabatan, peg2.`jabatan` FROM vote_jawab vj2 
+                INNER JOIN mtb_pegawai peg2 ON vj2.`id_pegawai` = peg2.`pegawai_id`
+                INNER JOIN mtb_unit_kerja unk ON peg2.`unit_kerja` = unk.`unit_kerja_id`
+                WHERE TRUE".$from_date.$to_date.$unk.                
+                "
+                GROUP BY peg2.`jabatan`) AS total_tabel
+
+                INNER JOIN
+
+                (SELECT vj.`jawaban` AS jenis_jawaban, jab.`nama_jabatan`, peg.`jabatan`, COUNT(vj.`id_jawab`) AS jumlah_input FROM vote_jawab vj 
+                INNER JOIN mtb_pegawai peg ON vj.`id_pegawai` = peg.`pegawai_id`
+                INNER JOIN mtb_jabatan jab ON peg.`jabatan` = jab.`id_jabatan`
+                GROUP BY vj.`jawaban`, jab.`id_jabatan` ORDER BY jab.`nama_jabatan`) AS total_each
+
+                ON total_tabel.jabatan = total_each.jabatan
+                JOIN
+                (SELECT COUNT(vj.id_jawab) AS total_vote,vj.`jawaban` AS jenis_jawaban FROM vote_jawab vj) AS vote_tabel)
+                AS result_table WHERE result_table.jenis_jawaban = 'Cukup Penting') AS cukup_penting
+
+                ON cukup_penting.nama_jabatan = jab.nama_jabatan
+
+                LEFT JOIN
+
+                (SELECT * FROM (
+                SELECT total_each.nama_jabatan,jumlah_input, total_each.jenis_jawaban,
+                CONCAT(ROUND(( total_per_jabatan/vote_tabel.total_vote * 100 ),2),'%') AS partisipasi
+                ,CONCAT(ROUND(( jumlah_input/total_per_jabatan * 100 ),2),'%') AS percentage FROM 
+
+                (SELECT COUNT(vj2.`id_jawab`) AS total_per_jabatan, peg2.`jabatan` FROM vote_jawab vj2 
+                INNER JOIN mtb_pegawai peg2 ON vj2.`id_pegawai` = peg2.`pegawai_id`
+                INNER JOIN mtb_unit_kerja unk ON peg2.`unit_kerja` = unk.`unit_kerja_id`
+                WHERE TRUE".$from_date.$to_date.$unk.                
+                "
+                GROUP BY peg2.`jabatan`) AS total_tabel
+
+                INNER JOIN
+
+                (SELECT vj.`jawaban` AS jenis_jawaban, jab.`nama_jabatan`, peg.`jabatan`, COUNT(vj.`id_jawab`) AS jumlah_input FROM vote_jawab vj 
+                INNER JOIN mtb_pegawai peg ON vj.`id_pegawai` = peg.`pegawai_id`
+                INNER JOIN mtb_jabatan jab ON peg.`jabatan` = jab.`id_jabatan`
+                GROUP BY vj.`jawaban`, jab.`id_jabatan` ORDER BY jab.`nama_jabatan`) AS total_each
+
+                ON total_tabel.jabatan = total_each.jabatan
+                JOIN
+                (SELECT COUNT(vj.id_jawab) AS total_vote,vj.`jawaban` AS jenis_jawaban FROM vote_jawab vj) AS vote_tabel)
+                AS result_table WHERE result_table.jenis_jawaban = 'Penting') AS penting
+
+                ON penting.nama_jabatan = jab.nama_jabatan
+
+                LEFT JOIN
+
+                (SELECT * FROM (
+                SELECT total_each.nama_jabatan,jumlah_input, total_each.jenis_jawaban,
+                CONCAT(ROUND(( total_per_jabatan/vote_tabel.total_vote * 100 ),2),'%') AS partisipasi
+                ,CONCAT(ROUND(( jumlah_input/total_per_jabatan * 100 ),2),'%') AS percentage FROM 
+
+                (SELECT COUNT(vj2.`id_jawab`) AS total_per_jabatan, peg2.`jabatan` FROM vote_jawab vj2 
+                INNER JOIN mtb_pegawai peg2 ON vj2.`id_pegawai` = peg2.`pegawai_id`
+                INNER JOIN mtb_unit_kerja unk ON peg2.`unit_kerja` = unk.`unit_kerja_id`
+                WHERE TRUE".$from_date.$to_date.$unk.                
+                "
+                GROUP BY peg2.`jabatan`) AS total_tabel
+
+                INNER JOIN
+
+                (SELECT vj.`jawaban` AS jenis_jawaban, jab.`nama_jabatan`, peg.`jabatan`, COUNT(vj.`id_jawab`) AS jumlah_input FROM vote_jawab vj 
+                INNER JOIN mtb_pegawai peg ON vj.`id_pegawai` = peg.`pegawai_id`
+                INNER JOIN mtb_jabatan jab ON peg.`jabatan` = jab.`id_jabatan`
+                GROUP BY vj.`jawaban`, jab.`id_jabatan` ORDER BY jab.`nama_jabatan`) AS total_each
+
+                ON total_tabel.jabatan = total_each.jabatan
+                JOIN
+                (SELECT COUNT(vj.id_jawab) AS total_vote,vj.`jawaban` AS jenis_jawaban FROM vote_jawab vj) AS vote_tabel)
+                AS result_table WHERE result_table.jenis_jawaban = 'Sangat Penting') AS sangat_penting
+
+                ON sangat_penting.nama_jabatan = jab.nama_jabatan
+
+                GROUP BY jab.nama_jabatan 
+
+            ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+        return $result;
+    }
 }

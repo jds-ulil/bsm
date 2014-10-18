@@ -55,7 +55,7 @@ class QuestionController extends Controller
                 $model_jawab->unit_kerja= $_POST['voteJawab']['unit_kerja'];
             }
             $dataProvider = $model_jawab->search();
-
+            $result = $model_jawab->voteResult($model_jawab->from_date,$model_jawab->to_date,$model_jawab->unit_kerja);   
 
             $model_soal = new voteSoal;
             $model_soal->group_soal = 1;
@@ -89,7 +89,8 @@ class QuestionController extends Controller
             }    
               $this->render('print',array(
                     'arrResult' => $arrResult,
-                    'arrSoal' => $arrSoal,            
+                    'arrSoal' => $arrSoal,  
+                    'result' => $result,
                 ));
         }
     
@@ -229,7 +230,7 @@ class QuestionController extends Controller
             $model_jawab->unit_kerja= $_POST['voteJawab']['unit_kerja'];
         }
         $dataProvider = $model_jawab->search();
-        
+        $result = $model_jawab->voteResult($model_jawab->from_date,$model_jawab->to_date,$model_jawab->unit_kerja);   
         
         $model_soal = new voteSoal;
         $model_soal->group_soal = 1;
@@ -260,13 +261,14 @@ class QuestionController extends Controller
                  $arrResult[$record->id_soal][$model_jawab->jawaban]['persen'] = intval(($totalJwb/$totalPerSoal)*100);                
                  }
             }            
-        }        
+        }            
         $this->render('report',array(
             'arrResult' => $arrResult,
             'arrSoal' => $arrSoal,
             'model_soal' => $model_soal,
             'model_jawab' => $model_jawab,
             'listUnit' => $listUnit,
+            'result' => $result,
         ));
     }
 
