@@ -54,6 +54,11 @@
             'class'=>'span3',
             )); ?>
 
+<?php echo $form->dropDownListRow($model_proposal,'unit_kerja', $listUnit, array(
+        'empty'=>'Semua Unit Kerja',
+            'class'=>'span6',
+            )); ?>
+
 <div class="control-group">
     <label for="proposal_marketing" class="control-label">Jenis Usaha</label>
     <div class="controls">

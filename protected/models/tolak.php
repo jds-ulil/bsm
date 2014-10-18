@@ -18,6 +18,7 @@ class tolak extends CActiveRecord
     public $nama_nasabah;
     public $from_date;
     public $to_date;
+    public $unit_kerja;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,10 +39,10 @@ class tolak extends CActiveRecord
 			array('proposal_id', 'length', 'max'=>50),
 			//array('proposal_id', 'check_proposal',),
 			array('mode, tempLL', 'safe'),
-                    array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/MM/yyyy','on'=>'insert'),
+                        array('tanggal_tolak', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/MM/yyyy','on'=>'insert'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('nama_nasabah, from_date, to_date, marketing_search, tolak_id, no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'safe', 'on'=>'search'),
+			array('unit_kerja, nama_nasabah, from_date, to_date, marketing_search, tolak_id, no_proposal, tanggal_tolak, alasan_ditolak, tahap_penolakan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,6 +71,7 @@ class tolak extends CActiveRecord
 			'tahap_penolakan' => 'Tahap Penolakan',
                         'nama_nasabah' => 'NAMA NASABAH',
                         'marketing_search' => 'Marketing',
+                        'unit_kerja' => "Unit Kerja",
 		);
 	}
 
@@ -87,14 +89,16 @@ class tolak extends CActiveRecord
 	 */
 	public function search() {		
 		$criteria=new CDbCriteria;           
-        $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
-        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+                $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
+                $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
 		$criteria->compare('tolak_id',$this->tolak_id);		
 		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
 		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
 		$criteria->compare('mp.nama',$this->marketing_search,true);		
 		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);
-        $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak."' ");   
+		$criteria->compare('uk.nama',$this->unit_kerja,true);
+                $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak."' ");   
         if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
             $arrTahap = tolakTahapan::getArrTahapan();
             foreach ($arrTahap as $key => $value) {
@@ -120,11 +124,13 @@ class tolak extends CActiveRecord
 		$criteria=new CDbCriteria;           
         $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
         $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+        $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
 		$criteria->compare('tolak_id',$this->tolak_id);		
 		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
 		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
 		$criteria->compare('mp.nama',$this->marketing_search,true);		
 		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);
+                $criteria->compare('uk.nama',$this->unit_kerja,true);
         $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak_approv."' ");   
         if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
             $arrTahap = tolakTahapan::getArrTahapan();

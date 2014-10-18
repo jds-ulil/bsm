@@ -66,8 +66,11 @@ class TbBreadcrumbs extends CBreadcrumbs
                             <div class='span9'>                            
                         ".CHtml::tag('ul', $this->htmlOptions, implode('', $links)).
                     "</div>
-                        <div class='span2 offset1 text-right'>                            
-                        <img src='images/logo_bsm.jpg' width='120px'>
+                        <div class='span2 text-right'>                            
+                        <img src='images/logo_bsm.jpg' width='120px'>                             
+                        </div>
+                        <div class='span1 text-left'>                            
+                        <img src='images/year.png' width='70px'>                   
                         </div>                    
                     </div>";
 	}

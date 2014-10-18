@@ -10,6 +10,7 @@ $('.search-form form').submit(function(){
 	$('#print_nasabah').val($('#tolak_nama_nasabah').val());
 	$('#print_from_date').val($('#tolak_from_date').val());
 	$('#print_to_date').val($('#tolak_to_date').val());
+        $('#print_to_unit_kerja').val($('#tolak_unit_kerja').val());
 	$('#mtb-approval-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});  
@@ -22,8 +23,9 @@ $('.search-form form').submit(function(){
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model_tolak'=>$model_tolak,
-    'listTahapan' => $listTahapan,
-    'report'=> $report,
+        'listTahapan' => $listTahapan,
+        'report'=> $report,
+        'listUnit' => $listUnit,
 )); ?>
 </div><!-- search-form -->
 
@@ -70,6 +72,7 @@ $('.search-form form').submit(function(){
         'target'=>"_blank",
     )
 )); ?>
+<input name="tolak[unit_kerja]" id="print_to_unit_kerja" type="hidden" />
 <input name="tolak[marketing_search]" id="print_marketing" type="hidden" />
 <input name="tolak[tahap_penolakan]" id="print_tahap" type="hidden" />
 <input name="tolak[nama_nasabah]" id="print_nasabah" type="hidden" />

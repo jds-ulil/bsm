@@ -98,6 +98,7 @@ h3 {
         margin-bottom: 10px;
 }
 .soal{
+    padding-left: 5px;
 /*	padding:5px 10px 3px 5px;
 	background-color:#F2F6F1;*/
 }
@@ -108,6 +109,9 @@ h3 {
 /*	padding:5px 10px 10px 5px;*/
     font-size: 12px;
 }
+tr.jawab:nth-child(even) {background: #FFF}
+tr.jawab:nth-child(odd) {background: #CCC}    
+
 table.resize-table th, table.resize-table td {
     line-height: 12px !important;
 }

@@ -43,6 +43,7 @@ class proposal extends CActiveRecord
     public $to_date;
     public $from_plafon;
     public $to_plafon;
+    public $unit_kerja;
     /**
 	 * @return string the associated database table name
 	 */
@@ -69,13 +70,14 @@ class proposal extends CActiveRecord
 			array('status_pengajuan', 'length', 'max'=>3),
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
-			array('tanggal_pengajuan,no_proposal, referal_alamat, plafon, mode', 'safe'),
+			array('unit_kerja, tanggal_pengajuan,no_proposal, referal_alamat, plafon, mode', 'safe'),
+                        array('tanggal_kartu_keluarga', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
                         array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
 			array('existing_os, existing_angsuran, existing_kolektabilitas, existing_plafon', 'existing_required'),
 			array('referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas', 'referal_required'),            
             // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('jenis_identitas, from_plafon, to_plafon, to_date, from_date, proposal_id, tanggal_pengajuan, segmen, jenis_usaha, marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, status_pengajuan, jenis_nasabah, existing_plafon, existing_os, existing_angsuran, existing_kolektabilitas, referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas, del_flag', 'safe', 'on'=>'search'),
+			array('unit_kerja, jenis_identitas, from_plafon, to_plafon, to_date, from_date, proposal_id, tanggal_pengajuan, segmen, jenis_usaha, marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, status_pengajuan, jenis_nasabah, existing_plafon, existing_os, existing_angsuran, existing_kolektabilitas, referal_nama, referal_alamat, referal_telp, referal_sektor_usaha, referal_fasilitas, referal_kolektabilitas, del_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -134,6 +136,7 @@ class proposal extends CActiveRecord
                         'to_plafon' => "Sampai Dengan",
                         'jenis_identitas,' => "Jenis Identitas",
                         'tanggal_kartu_keluarga,' => "Tanggal",
+                        'unit_kerja' => "Unit Kerja",
 		);
 	}
 
@@ -154,7 +157,8 @@ class proposal extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-                $criteria->with=array('rMar'); 
+                $criteria->join= ' INNER JOIN `mtb_pegawai` `rMar` ON (`rMar`.`pegawai_id`=`t`.`marketing`)  ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON rMar.unit_kerja = uk.unit_kerja_id  ';           
                 
 		$criteria->compare('proposal_id',$this->proposal_id);
 		$criteria->compare('tanggal_pengajuan',$this->tanggal_pengajuan,true);
@@ -180,6 +184,7 @@ class proposal extends CActiveRecord
 		$criteria->compare('referal_kolektabilitas',$this->referal_kolektabilitas,true);
 		$criteria->compare('tanggal_kartu_keluarga',$this->tanggal_kartu_keluarga,true);
 		$criteria->compare('del_flag',$this->del_flag);
+		$criteria->compare('uk.nama',$this->unit_kerja,true);
                 
                 if (!empty($this->from_date)) {                
                 $reFromDate = $this->toDBDate($this->from_date);                
@@ -365,6 +370,12 @@ class proposal extends CActiveRecord
                 $data = explode('/' ,$this->tanggal_pengajuan);
                 if(count($data) > 2) {
                 $this->tanggal_pengajuan = $data[2].'-'.$data[1].'-'.$data[0];
+                }
+            }
+            if(!empty($this->tanggal_kartu_keluarga)){
+                $data = explode('/' ,$this->tanggal_kartu_keluarga);
+                if(count($data) > 2) {
+                $this->tanggal_kartu_keluarga = $data[2].'-'.$data[1].'-'.$data[0];
                 }
             }
             if (!empty($this->plafon)) {

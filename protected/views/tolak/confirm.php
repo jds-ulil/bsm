@@ -204,7 +204,11 @@ $('.btn-info').click(function(){
             'data'=>$model_proposal,
             'attributes'=>array(
                     'no_kartu_keluarga',
-            ),
+                    array(
+                    'name'=>'Tgl Kartu Keluarga',
+                    'value'=>Yii::app()->numberFormatter->formatDate($model_proposal->tanggal_kartu_keluarga),
+                    ),
+            ),            
             'htmlOptions'=>array(
             'class'=>'detail-view resize-table',
         ),

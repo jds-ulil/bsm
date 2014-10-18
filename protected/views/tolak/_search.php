@@ -38,6 +38,12 @@
 	    'empty'=>'Pilih Tahapan',
 		'class'=>'span3',
 		)); ?>  
+
+<?php echo $form->dropDownListRow($model_tolak,'unit_kerja', $listUnit, array(
+        'empty'=>'Semua Unit Kerja',
+            'class'=>'span6',
+            )); ?>
+
 <div class="control-group">
     <label for="tolak_nama_nasabah" class="control-label">Nama Nasabah</label>
     <div class="controls">

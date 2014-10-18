@@ -15,6 +15,7 @@ $('.search-form form').submit(function(){
 	$('#print_to_plafon').val($('#proposal_to_plafon').val());
 	$('#print_from_date').val($('#proposal_from_date').val());
 	$('#print_to_date').val($('#proposal_to_date').val());
+	$('#print_to_unit_kerja').val($('#proposal_unit_kerja').val());
     $('#mtb-proposal-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
@@ -29,6 +30,7 @@ $('.search-form form').submit(function(){
 	'model_proposal'=>$model_proposal,
         'listSegmen' => $listSegmen,
         'listPengajuan' => $listPengajuan,
+        'listUnit' => $listUnit,
 )); ?>
 </div><!-- search-form -->
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
@@ -81,6 +83,7 @@ $('.search-form form').submit(function(){
             'target'=>"_blank",
         )
 )); ?>
+<input name="proposal[unit_kerja]" id="print_to_unit_kerja" type="hidden" />
 <input name="proposal[marketing]" id="print_marketing" type="hidden" />
 <input name="proposal[segmen]" id="print_segmen" type="hidden" />
 <input name="proposal[jenis_usaha]" id="print_jenis_usaha" type="hidden" />

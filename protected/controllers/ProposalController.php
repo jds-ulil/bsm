@@ -107,7 +107,10 @@ class ProposalController extends Controller
                         );
             }                                  
         }
-        $unitKerja = array();
+        $unitKerja;
+        if(!empty($model_proposal->unit_kerja)) {
+            $unitKerja = array($model_proposal->unit_kerja);
+        } else
         if(!empty($model_proposal->marketing)) {
             $unitKerja = Yii::app()->db->createCommand()
                             ->setFetchMode(PDO::FETCH_COLUMN,0)
@@ -223,6 +226,8 @@ class ProposalController extends Controller
 
         $listSegmen = CHtml::listData(Segmen::model()->findAll(),'segmen_id','nama'); 
         $listPengajuan = CHtml::listData(statusProposal::model()->findAll(),'status_id','nama'); 
+        $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');
+        
        //$model_proposal->proposal_id = 'empty';
         if(isset($_GET['proposal'])){
                 $model_proposal->attributes=$_GET['proposal'];
@@ -231,6 +236,7 @@ class ProposalController extends Controller
             'model_proposal'=>$model_proposal,            
             'listSegmen' => $listSegmen,
             'listPengajuan' => $listPengajuan,
+            'listUnit' => $listUnit,
         ));
     }
     

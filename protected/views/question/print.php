@@ -24,7 +24,7 @@ foreach ($arrSoal as $key => $value) {
  $i++;       
 }
 
-$columns[] = $col;
+//$columns[] = $col;
 
 $pdf->SetY($pdf->GetY()+5);
 

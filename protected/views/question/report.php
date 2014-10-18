@@ -13,14 +13,16 @@ $i = 1;
 foreach ($arrSoal as $key => $value) {  
     echo "<div class='soal'>".$i." "."$value";
     echo "</div>";
+    echo "<table>";    
     foreach ($arrResult[$key] as $key_j => $value_j) {
         foreach ($value_j as $key_ja => $value_ja) {
-            echo "<div class='jawab'>";
+            echo "<tr class='jawab span8'><td>";
             echo "$key_j (";
-            echo "$value_ja%)";
-                echo "</div>";
+            echo "$value_ja%)";                
+            echo "</td></tr>";
         }
-    }
+    }    
+    echo "</table>";
     $i++;   
 }
 ?>

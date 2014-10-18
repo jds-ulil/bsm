@@ -90,7 +90,7 @@ class voteJawab extends CActiveRecord
         
 		$criteria->compare('id_jawab',$this->id_jawab);
 		$criteria->compare('soal_id',$this->soal_id);
-		$criteria->compare('jawaban',$this->jawaban,true);
+		$criteria->compare('jawaban',$this->jawaban);
 		$criteria->compare('id_pegawai',$this->id_pegawai,true);
 		$criteria->compare('tanggal_vote',$this->tanggal_vote,true);
 		$criteria->compare('uk.nama',$this->unit_kerja,true);

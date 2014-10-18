@@ -80,7 +80,10 @@ class TolakController extends Controller
             }
             
         }
-        $unitKerja;
+        $unitKerja = array();
+        if(!empty($model_tolak->unit_kerja)) {
+            $unitKerja = array($model_tolak->unit_kerja);
+        } else
         if(!empty($model_tolak->marketing_search)) {
             $unitKerja = Yii::app()->db->createCommand()
                             ->setFetchMode(PDO::FETCH_COLUMN,0)
@@ -240,6 +243,8 @@ class TolakController extends Controller
         $model_tolak = new tolak('search');
         $model_tolak->unsetAttributes(); 
         $listTahapan = CHtml::listData(tolakTahapan::model()->findAll(),'nama','nama');                         
+        $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');
+        
         if(isset($_GET['tolak']))
             $model_tolak->attributes=$_GET['tolak'];
         
@@ -247,6 +252,7 @@ class TolakController extends Controller
             'model_tolak' => $model_tolak,
             'listTahapan' => $listTahapan,
             'report' => true,
+            'listUnit' => $listUnit,
         ));
     }
     public function actionCreate (){         
