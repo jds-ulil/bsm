@@ -59,6 +59,7 @@
 								'items'=>array(
 								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/report',)),								   								    
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/report',)),
+								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/report',)),
                                                      /**
                                                     SELOWWW....
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('#',)),

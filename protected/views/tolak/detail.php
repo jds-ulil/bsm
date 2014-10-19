@@ -1,5 +1,6 @@
 <?php
     $this->breadcrumbs=array(	
+        'Laporan'=>array('tolak/report'),
 	'Detail Nasabah Tolak',
 );
 ?>

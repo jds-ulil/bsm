@@ -6,7 +6,7 @@ class PelunasanController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/main';
 
 	/**
 	 * @return array action filters
@@ -39,7 +39,7 @@ class PelunasanController extends Controller
                                 'roles'=>array('inputter'),
 			),			
                         array('allow',
-                                'actions'=>array('autocompleteNasabah'),
+                                'actions'=>array('autocompleteNasabah','report','detail'),
                                 'users'=>array('@'),
                         ),
 			array('deny',  // deny all users
@@ -142,6 +142,24 @@ class PelunasanController extends Controller
         }
         public function actionCompleteApp(){
             $this->render('complete_approval');
+        }
+        public function actionReport() {
+            $model_pelunasan = new pelunasan('search');
+            
+            if(isset($_GET['pelunasan']))
+                $model_pelunasan->attributes=$_GET['pelunasan'];
+            
+            $model_pelunasan->status_pelunasan = vC::APP_status_pelunasan_approv;
+            $this->render('report',array(
+                'model_pelunasan'=>$model_pelunasan,
+            ));
+        }
+        
+        public function actionDetail($id){
+            $model_pelunasan = $this->loadModel($id);
+            $this->render('detail',array(
+                'model_pelunasan' => $model_pelunasan,
+            ));            
         }
 	/**
 	 * Updates a particular model.

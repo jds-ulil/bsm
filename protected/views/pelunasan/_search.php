@@ -9,11 +9,12 @@
     <div class="control-group">
     <label for="pelunasan_nama_nasabah" class="control-label">Nama Nasabah</label>
     <div class="controls">
+        <?php $status = $report?vC::APP_status_pelunasan_approv:vc::APP_status_pelunasan_new ?>
         <?php 
         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
             'model'=>$model_pelunasan->nama_nasabah,           
             'name'=>'pelunasan[nama_nasabah]',
-            'source'=>$this->createUrl('pelunasan/autocompleteNasabah&status='.vc::APP_status_pelunasan_new),
+            'source'=>$this->createUrl('pelunasan/autocompleteNasabah&status='.$status),
             'options'=>array(
                 'delay'=>150,
                 'minLength'=>1,
@@ -68,11 +69,20 @@
     </div>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>'Search',
-		)); ?>
+		<?php if($report){                   
+                $this->widget('bootstrap.widgets.TbButton', array(
+                'buttonType'=>'submit',
+                'type'=>'danger',
+                'label'=>'Buat Laporan',
+                ));
+                } else {
+                    $this->widget('bootstrap.widgets.TbButton', array(
+                        'buttonType'=>'submit',
+                        'type'=>'Default',
+                        'label'=>'Search',
+                        ));
+                }
+                ?>
 	</div>
 
 <?php $this->endWidget(); ?>
