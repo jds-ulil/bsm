@@ -30,5 +30,9 @@ $this->menu=array(
 		'OS_pokok_terakhir',
 		'angsuran',
 		'kolektibilitas_terakhir',
+		'alamat_nasabah',
+		'jenis_pembiayaan',
+		'margin',
+		'tunggakan_terakhir',
 	),
 )); ?>

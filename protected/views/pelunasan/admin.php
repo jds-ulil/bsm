@@ -55,6 +55,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'OS_pokok_terakhir',
 		'angsuran',
 		'kolektibilitas_terakhir',
+		'alamat_nasabah',
+		'jenis_pembiayaan',
+		'margin',
+		'tunggakan_terakhir',
 		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',

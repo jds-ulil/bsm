@@ -40,7 +40,7 @@ class TolakController extends Controller
 	{
 		return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','complete','error',),
+				'actions'=>array('create','complete',),
 				'roles'=>array('inputter'),
 			),
                         array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -50,7 +50,7 @@ class TolakController extends Controller
                         ),  
                         array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('report','detail','print','proses','completeApp',
-                                    ),
+                                    'error'),
 				'users'=>array('@'),
                         ),  
 			array('deny',  // deny all users
@@ -185,12 +185,14 @@ class TolakController extends Controller
         $model_tolak = new tolak('search');
         $model_tolak->unsetAttributes(); 
         $listTahapan = CHtml::listData(tolakTahapan::model()->findAll(),'nama','nama');                         
+        $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');                         
         if(isset($_GET['tolak']))
             $model_tolak->attributes=$_GET['tolak'];
         
         $this->render('approval', array(
             'model_tolak' => $model_tolak,
             'listTahapan' => $listTahapan,
+            'listUnit' => $listUnit,
         ));
     }
     public function actionProses($id){

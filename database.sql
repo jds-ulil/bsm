@@ -181,7 +181,7 @@ CREATE TABLE `mtb_mailer` (
 
 /*Data for the table `mtb_mailer` */
 
-insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`,`proposal_baru`,`nasabah_tolak`,`approval`) values (1,'mail.syariahmandiri.co.id','rnur1780@syariahmandiri.co.id','hasbunallah01','443','0','0','1');
+insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`,`proposal_baru`,`nasabah_tolak`,`approval`) values (1,'mail.syariahmandiri.co.id','rnur1780@syariahmandiri.co.id','hasbunallah01','443','0','0','0');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -279,7 +279,7 @@ CREATE TABLE `mtb_user` (
 
 /*Data for the table `mtb_user` */
 
-insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (1,'ulil','a@b.com',8,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',3,'123',10),(17,'Ridwan Nur','drankoto25@gmail.com',9,'$2a$13$FRDuSD/VE1XsaUsy.HTQS.UtNj3usc19odAaVjHxEg9NUoloyFMOO',1,'25041978',10),(18,'Silvany Riza','sriza@bsm.co.id',10,'$2a$13$Uo0jLeKZHDE.nj20I8ek.eHY3LnPA7AofqRizMhGTCXiMyW2lmD2.',3,'118278205',4),(19,'Nicko Gemayel','ngemayel@bsm.co.id',10,'$2a$13$Be0tgOAftUQLacG6unrEMOsxjPQRGRLUQdMhEMYGX0vki3HT8knDe',3,'12345678',5),(20,'Andi Rachman Guci','arguci@bsm.co.id',10,'$2a$13$DdlP614yKtEiBxEUt58zeua8rpBKwp7q2hGuLFUmdhJdiMEO/zJKy',3,'118478201',6),(21,'Maria Gunarti','mgunarti@bsm.co.id',11,'$2a$13$oBSujl4kcDfBOOWPlgTICeIWkovuPq9S/jukeRK15V1vvT5zmoxei',3,'108676080',7),(22,'Ekko Febrian','efebrian@bsm.co.id',12,'$2a$13$s6/ZQirZwQwqXsQGY/WY5esXnUny6Miu791W4NRa6pB/UxT/QCRuS',3,'118678196',8),(23,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$IgZmSYkuJuWChakyvK6QAe3/GbH/5nR6U129R1W9RBi1UomqV0hwW',2,'047871780',3);
+insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (1,'ulil','a@b.com',8,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',2,'3',10),(17,'Ridwan Nur','drankoto25@gmail.com',9,'$2a$13$FRDuSD/VE1XsaUsy.HTQS.UtNj3usc19odAaVjHxEg9NUoloyFMOO',1,'25041978',10),(18,'Silvany Riza','sriza@bsm.co.id',10,'$2a$13$Uo0jLeKZHDE.nj20I8ek.eHY3LnPA7AofqRizMhGTCXiMyW2lmD2.',3,'118278205',4),(19,'Nicko Gemayel','ngemayel@bsm.co.id',10,'$2a$13$Be0tgOAftUQLacG6unrEMOsxjPQRGRLUQdMhEMYGX0vki3HT8knDe',3,'12345678',5),(20,'Andi Rachman Guci','arguci@bsm.co.id',10,'$2a$13$DdlP614yKtEiBxEUt58zeua8rpBKwp7q2hGuLFUmdhJdiMEO/zJKy',3,'118478201',6),(21,'Maria Gunarti','mgunarti@bsm.co.id',11,'$2a$13$oBSujl4kcDfBOOWPlgTICeIWkovuPq9S/jukeRK15V1vvT5zmoxei',3,'108676080',7),(22,'Ekko Febrian','efebrian@bsm.co.id',12,'$2a$13$s6/ZQirZwQwqXsQGY/WY5esXnUny6Miu791W4NRa6pB/UxT/QCRuS',3,'118678196',8),(23,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$IgZmSYkuJuWChakyvK6QAe3/GbH/5nR6U129R1W9RBi1UomqV0hwW',2,'047871780',3);
 
 /*Table structure for table `pelunasan` */
 
@@ -298,10 +298,31 @@ CREATE TABLE `pelunasan` (
   `OS_pokok_terakhir` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `angsuran` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `kolektibilitas_terakhir` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `alamat_nasabah` text COLLATE utf8_bin,
+  `jenis_pembiayaan` int(2) DEFAULT NULL,
+  `margin` varchar(8) COLLATE utf8_bin DEFAULT NULL,
+  `tunggakan_terakhir` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `status_pelunasan` varchar(2) COLLATE utf8_bin DEFAULT '1',
   PRIMARY KEY (`pelunasan_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `pelunasan` */
+
+insert  into `pelunasan`(`pelunasan_id`,`tanggal_pelunasan`,`penyebab`,`segmen`,`jenis_usaha`,`nama_nasabah`,`no_CIF`,`no_rekening`,`plafon_awal`,`OS_pokok_terakhir`,`angsuran`,`kolektibilitas_terakhir`,`alamat_nasabah`,`jenis_pembiayaan`,`margin`,`tunggakan_terakhir`,`status_pelunasan`) values (2,'2014-10-01','tess Lain-lain',4,'','Jaka','11111111','1111111111','11','111.111','1.111','6','',3,'','','1'),(3,'2014-10-01','Penjualan Agunan',4,'','Testing','','1212121111','','','','','Makasar',3,'','','1'),(4,'2014-10-20','Lainya',5,'Pertambangan','Ukaka','1422412','342222113','2000000','950000','300000','6','Papuaa',2,'95.9','400000','3');
+
+/*Table structure for table `pelunasan_jenis_pembiayaan` */
+
+DROP TABLE IF EXISTS `pelunasan_jenis_pembiayaan`;
+
+CREATE TABLE `pelunasan_jenis_pembiayaan` (
+  `pembiayaan_id` int(2) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`pembiayaan_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `pelunasan_jenis_pembiayaan` */
+
+insert  into `pelunasan_jenis_pembiayaan`(`pembiayaan_id`,`nama`) values (1,'Murabahah'),(2,'Salam'),(3,'Istishna'),(4,'Qardh'),(5,'Musyarakah'),(6,'Mudharabah'),(7,'Ijarah');
 
 /*Table structure for table `pelunasan_sebab` */
 
@@ -353,7 +374,7 @@ CREATE TABLE `proposal` (
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (7,'','2014-10-18',1,'Pertambangan`','10','1221','','1211','0001/10/2014','1',1,'','','',NULL,'','','','','','',0,'tuan C',1,NULL),(4,'250000000','2014-10-01',4,'Toko Elektronik','4','123456789-KK','123456789-BK','123456789A','001','3',1,'','','',NULL,'','','','','','',0,'Tuan A',1,NULL),(5,'275000000','2014-10-01',5,'Dagang Kelontong','4','111111-KK','111111-BN','111111A','002','1',1,'','','',NULL,'','','','','','',0,'Tuan B',1,NULL),(6,'75000000','2014-10-01',6,'Kelontong','7','222222-KK','222222-BN','222222A','003','1',1,'','','',NULL,'','','','','','',0,'Tuan C',1,NULL),(8,'','2014-10-22',4,'re','10','1212121','','122','0002/10/2014','1',1,'','','',NULL,'','','','','','',0,'tuanD',1,'21/10/2014'),(9,'121','2014-10-18',6,'js','10','1221','','123','0003/10/2014','1',1,'','','',NULL,'','','','','','',0,'Ulil',1,'2014-10-22');
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (7,'','2014-10-18',1,'Pertambangan`','10','1221','','1211','0001/10/2014','1',1,'','','',NULL,'','','','','','',0,'tuan C',1,NULL),(4,'250000000','2014-10-01',4,'Toko Elektronik','4','123456789-KK','123456789-BK','123456789A','001','1',1,'','','',NULL,'','','','','','',0,'Tuan A',1,NULL),(5,'275000000','2014-10-01',5,'Dagang Kelontong','4','111111-KK','111111-BN','111111A','002','1',1,'','','',NULL,'','','','','','',0,'Tuan B',1,NULL),(6,'75000000','2014-10-01',6,'Kelontong','7','222222-KK','222222-BN','222222A','003','1',1,'','','',NULL,'','','','','','',0,'Tuan C',1,NULL),(8,'','2014-10-22',4,'re','10','1212121','','122','0002/10/2014','3',1,'','','',NULL,'','','','','','',0,'tuanD',1,'2014-10-21'),(9,'121','2014-10-18',6,'js','10','1221','','123','0003/10/2014','1',1,'','','',NULL,'','','','','','',0,'Ulil',1,'2014-10-22');
 
 /*Table structure for table `proposal_buku_nikah` */
 
@@ -421,11 +442,11 @@ CREATE TABLE `tolak` (
   `alasan_ditolak` text COLLATE utf8_unicode_ci,
   `tahap_penolakan` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`tolak_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `tolak` */
 
-insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (2,4,'2014-10-18','Black List','Blacklist PPATK');
+insert  into `tolak`(`tolak_id`,`proposal_id`,`tanggal_tolak`,`alasan_ditolak`,`tahap_penolakan`) values (3,8,'2014-10-01','fd','OTS Usaha');
 
 /*Table structure for table `tolak_tahapan` */
 
@@ -452,11 +473,11 @@ CREATE TABLE `vote_jawab` (
   `id_pegawai` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `tanggal_vote` date DEFAULT NULL,
   PRIMARY KEY (`id_jawab`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `vote_jawab` */
 
-insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`id_pegawai`,`tanggal_vote`) values (1,1,'Tidak Penting','10','2014-10-17'),(2,2,'Penting','10','2014-10-17'),(3,3,'Tidak Penting','10','2014-10-17'),(4,4,'Cukup Penting','10','2014-10-17'),(5,5,'Tidak Penting','10','2014-10-17'),(6,6,'Sangat Penting','10','2014-10-17'),(7,1,'Tidak Penting','4','2014-10-17'),(8,2,'Tidak Penting','4','2014-10-17'),(9,3,'Cukup Penting','4','2014-10-17'),(10,4,'Penting','4','2014-10-17'),(11,5,'Penting','4','2014-10-17'),(12,6,'Tidak Penting','4','2014-10-17'),(13,1,'Tidak Penting','3','2014-10-17'),(14,2,'Cukup Penting','3','2014-10-17'),(15,3,'Tidak Penting','3','2014-10-17'),(16,4,'Tidak Penting','3','2014-10-17'),(17,5,'Cukup Penting','3','2014-10-17'),(18,6,'Penting','3','2014-10-17');
+insert  into `vote_jawab`(`id_jawab`,`soal_id`,`jawaban`,`id_pegawai`,`tanggal_vote`) values (1,1,'Tidak Penting','10','2014-10-17'),(2,2,'Penting','10','2014-10-17'),(3,3,'Tidak Penting','10','2014-10-17'),(4,4,'Cukup Penting','10','2014-10-17'),(5,5,'Tidak Penting','10','2014-10-17'),(6,6,'Sangat Penting','10','2014-10-17'),(7,1,'Tidak Penting','4','2014-10-17'),(8,2,'Tidak Penting','4','2014-10-17'),(9,3,'Cukup Penting','4','2014-10-17'),(10,4,'Penting','4','2014-10-17'),(11,5,'Penting','4','2014-10-17'),(12,6,'Tidak Penting','4','2014-10-17'),(13,1,'Tidak Penting','3','2014-10-17'),(14,2,'Cukup Penting','3','2014-10-17'),(15,3,'Tidak Penting','3','2014-10-17'),(16,4,'Tidak Penting','3','2014-10-17'),(17,5,'Cukup Penting','3','2014-10-17'),(18,6,'Penting','3','2014-10-17'),(19,1,'Sangat Penting ','10','2014-10-18'),(20,2,'Sangat Penting','10','2014-10-18'),(21,3,'Tidak Penting','10','2014-10-18'),(22,4,'Penting','10','2014-10-18'),(23,5,'Cukup Penting','10','2014-10-18'),(24,6,'Cukup Penting','10','2014-10-18');
 
 /*Table structure for table `vote_soal` */
 

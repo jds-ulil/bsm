@@ -25,15 +25,23 @@ class PelunasanController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(	
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'roles'=>array('inputter'),
-			),
-//			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-//				'actions'=>array('admin','delete'),
-//				'users'=>array('admin'),
+		return array(
+//			array('allow',  // allow all users to perform 'index' and 'view' actions
+//				'actions'=>array('index','view'),
+//				'users'=>array('*'),
 //			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('approval', 'proses', 'toapprove', 'tocancel', 'completeApp'),				
+                                'roles'=>array('approval'),
+			),			
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','complete'),				
+                                'roles'=>array('inputter'),
+			),			
+                        array('allow',
+                                'actions'=>array('autocompleteNasabah'),
+                                'users'=>array('@'),
+                        ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -43,7 +51,7 @@ class PelunasanController extends Controller
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
-	 */
+	 */        
 	public function actionView($id)
 	{
 		$this->render('view',array(
@@ -57,23 +65,84 @@ class PelunasanController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new pelunasan;
-
+		$model=new pelunasan;                
+                $model->penyebab = 'Write Off';
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                
+                $listSegmen = CHtml::listData(Segmen::model()->findAll(),'segmen_id','nama');
+                $listKolektibilitas = CHtml::listData(Kolektabilitas::model()->findAll(),'kolektabilitas_id','nama');
+                $listPembiayaan = CHtml::listData(jenisPembiayaan::model()->findAll(),'pembiayaan_id','nama');
+                $listSebab = CHtml::listData(pelunasanSebab::model()->findAll(),'nama','nama');
+                $listSebabCheck = CHtml::listData(pelunasanSebab::model()->findAll(),'nama','nama');      
+                
 		if(isset($_POST['pelunasan']))
 		{
 			$model->attributes=$_POST['pelunasan'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->pelunasan_id));
+                        if($model->tempLL != '') {
+                            $model->penyebab = $model->tempLL;
+                        } else {
+                            if ($model->penyebab == 'Lain-lain'){
+                            $model->penyebab = '';
+                            }
+                        }                              
+			if($model->save()){                                                        
+                            $this->redirect(array('complete'));
+                        } else {                                                                                     
+                            if(!in_array($model->penyebab, $listSebabCheck)) {
+                            $model->penyebab = 'Lain-lain';                        
+                            };
+                        }
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'listSegmen' => $listSegmen,
+                        'listKolektibilitas' => $listKolektibilitas,
+                       'listPembiayaan' => $listPembiayaan,
+                        'listSebab' => $listSebab,
 		));
 	}
 
+        public function actionComplete(){
+            $this->render('complete',array(     
+                ));
+        }
+        
+        public function actionApproval(){
+            $model_pelunasan = new pelunasan('search');
+            
+            if(isset($_GET['pelunasan']))
+                $model_pelunasan->attributes=$_GET['pelunasan'];
+                        
+            $this->render('approval',array(
+                'model_pelunasan' => $model_pelunasan,
+            ));            
+        }
+        
+        public function actionProses($id){
+            $model_pelunasan = $this->loadModel($id);
+            
+            $this->render('proses_approval', array(
+                'model_pelunasan' => $model_pelunasan,
+            ));
+        }
+        public function actionTocancel($id) {
+            $model_pelunasan = $this->loadModel($id);            
+            if($model_pelunasan->delete()){                
+                $this->redirect(array('pelunasan/completeApp'));
+            }
+        }
+        public function actionToapprove($id) {
+            $model_pelunasan = $this->loadModel($id);            
+            $model_pelunasan->status_pelunasan = vC::APP_status_pelunasan_approv;
+            if($model_pelunasan->save()){                
+                $this->redirect(array('pelunasan/completeApp'));
+            }
+        }
+        public function actionCompleteApp(){
+            $this->render('complete_approval');
+        }
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -169,4 +238,17 @@ class PelunasanController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionAutocompleteNasabah() {
+            $res =array();
+            $status = $_GET['status'];
+        if (isset($_GET['term'])) {
+            $sql = 'SELECT pel.nama_nasabah AS label
+                        FROM pelunasan pel';
+            $sql = $sql . " WHERE pel.`nama_nasabah` LIKE :nama AND pel.status_pelunasan = '".$status."' group by pel.nama_nasabah"; // Must be at least 1
+            $command =Yii::app()->db->createCommand($sql);
+            $command->bindValue(":nama", '%'.$_GET['term'].'%', PDO::PARAM_STR);
+            echo json_encode ($command->queryAll());
+        }
+    }
 }

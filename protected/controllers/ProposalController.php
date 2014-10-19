@@ -140,7 +140,7 @@ class ProposalController extends Controller
         if (isset($_GET['term'])) {
             $sql = 'SELECT pro.nama_nasabah AS label,pro.proposal_id AS proposal_id
                         FROM proposal pro';
-            $sql = $sql . " WHERE pro.`nama_nasabah` LIKE :nama AND pro.status_pengajuan = '".vc::APP_status_proposal_tolak_approv."' group by pro.jenis_usaha"; // Must be at least 1
+            $sql = $sql . " WHERE pro.`nama_nasabah` LIKE :nama AND (pro.status_pengajuan = '".vc::APP_status_proposal_tolak_approv."' OR pro.status_pengajuan = '".vc::APP_status_proposal_tolak."') group by pro.jenis_usaha"; // Must be at least 1
             $command =Yii::app()->db->createCommand($sql);
             $command->bindValue(":nama", '%'.$_GET['term'].'%', PDO::PARAM_STR);
             echo json_encode ($command->queryAll());

@@ -51,12 +51,8 @@
 							),																					
 							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval'),
 								'items'=>array(
-								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),
-                                                             /**
-                                                                SELOWWW....
-								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('#',)),								    
-                                                              * 
-                                                              */
+								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),                                                             
+								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/approval',)),								                                                                  
                                                                     )
 							),							
 							array('label'=>'Laporan', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,

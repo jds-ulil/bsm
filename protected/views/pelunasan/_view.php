@@ -49,6 +49,22 @@
 	<?php echo CHtml::encode($data->kolektibilitas_terakhir); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('alamat_nasabah')); ?>:</b>
+	<?php echo CHtml::encode($data->alamat_nasabah); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('jenis_pembiayaan')); ?>:</b>
+	<?php echo CHtml::encode($data->jenis_pembiayaan); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('margin')); ?>:</b>
+	<?php echo CHtml::encode($data->margin); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tunggakan_terakhir')); ?>:</b>
+	<?php echo CHtml::encode($data->tunggakan_terakhir); ?>
+	<br />
+
 	*/ ?>
 
 </div>

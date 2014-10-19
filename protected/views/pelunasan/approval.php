@@ -1,8 +1,8 @@
 <?php
-    $this->breadcrumbs=array(	
-	'approval',
+$this->breadcrumbs=array(	
+	'Approval Pelunasan Tidak Normal',
 );
-    
+
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -15,43 +15,33 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
-
 ?>
-<h1 class="loginHead">Approval</h1>
+<h1 class="loginHead">Approval Pelunasan</h1>
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
-    'model_tolak' => $model_tolak,
-    'listTahapan' => $listTahapan,
-    'listUnit' => $listUnit,
-    'report'=> false,
+    'model_pelunasan' => $model_pelunasan,
 )); ?>
 </div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mtb-approval-grid',
-	'dataProvider'=>$model_tolak->search(),	
+	'dataProvider'=>$model_pelunasan->search(),	
         'type'=>'bordered striped',
-	'columns'=>array(			
-                array(
-               'name'=>'Tgl Penolakan',
-                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal_tolak)',
-                ),
-                'tahap_penolakan',
-                array(
-                'name'=>'Marketing',
-                'value'=>'$data->rCM->roMar->nama',		
-                ),
-                array(
-                'name'=>'Nama Nasabah',
-                'value'=>'$data->rCM->nama_nasabah',		
-                ),                
-                array(
+	'columns'=>array(	
+             array(
+               'name'=>'Tgl Pelunasan',
+                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal_pelunasan)',
+                ),            
+            'nama_nasabah',
+            'no_rekening',
+            'penyebab',
+             array(
                 'header' => 'Action',
                         'class'=>'bootstrap.widgets.TbButtonColumn',
                         'template'=>'{update}',
                         'updateButtonLabel' => "Proses Nasabah",
-                        'updateButtonUrl'=>'Yii::app()->createUrl("tolak/proses", array("id" =>$data[\'tolak_id\']))',
+                        'updateButtonUrl'=>'Yii::app()->createUrl("pelunasan/proses", array("id" =>$data[\'pelunasan_id\']))',
                         'htmlOptions' => array(
                         //  'width' => '6%',
                         //  'align' => 'center',

@@ -62,7 +62,12 @@ class QuestionController extends Controller
             $soal_provider = $model_soal->search();        
 
             //$totalVote = intval($dataProvider->getTotalItemCount()/$soal_provider->getTotalItemCount());
-
+             $unitKerja;
+            if(!empty($model_jawab->unit_kerja)) {
+                $unitKerja = array($model_jawab->unit_kerja);
+            }
+            
+            
             $arrResult = array();
             $arrSoal = array();
             foreach($soal_provider->getData() as $record) {
@@ -86,11 +91,15 @@ class QuestionController extends Controller
                      $arrResult[$record->id_soal][$model_jawab->jawaban]['persen'] = intval(($totalJwb/$totalPerSoal)*100);                
                      }
                 }            
-            }    
+            }  
+                $model_jawab->from_date = empty($model_jawab->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_jawab->from_date);
+                $model_jawab->to_date = empty($model_jawab->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model_jawab->to_date);        
               $this->render('print',array(
+                    'model_jawab' => $model_jawab,
                     'arrResult' => $arrResult,
                     'arrSoal' => $arrSoal,  
                     'result' => $result,
+                    'unitKerja' => $unitKerja,
                 ));
         }
     

@@ -26,6 +26,10 @@ class vC {
     const APP_status_proposal_tolak = 2;     
     const APP_status_proposal_tolak_approv = 3;     
     
+    const APP_status_pelunasan_new = 1;
+    const APP_status_pelunasan_to_approv = 2;
+    const APP_status_pelunasan_approv = 3;
+    
     const APP_tahapan_lainya = 'Lain-lain';
     
     const APP_status_email_semua = 1;

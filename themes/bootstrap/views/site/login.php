@@ -7,7 +7,10 @@
                 <div class="span6 text-center"><h5>Sistem Aplikasi Nasabah Ditolak,Menunggak Akhir Bulan & Pelunasan Tidak Normal/<i>Strange</i></h5></div>
             </div>
         </div>
-    </div>
+        <div class="span2">
+            <img src="images/year.png" width="150px">
+        </div> 
+        </div>
     <div class="row">        
         <div class="span offset2">
         

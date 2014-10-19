@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "mtb_kolektabilitas".
+ * This is the model class for table "pelunasan_jenis_pembiayaan".
  *
- * The followings are the available columns in table 'mtb_kolektabilitas':
- * @property integer $kolektabilitas_id
+ * The followings are the available columns in table 'pelunasan_jenis_pembiayaan':
+ * @property integer $pembiayaan_id
  * @property string $nama
  */
-class Kolektabilitas extends CActiveRecord
+class jenisPembiayaan extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'mtb_kolektabilitas';
+		return 'pelunasan_jenis_pembiayaan';
 	}
 
 	/**
@@ -25,11 +25,11 @@ class Kolektabilitas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nama', 'required'),
-			array('nama', 'length', 'max'=>50),
+			array('pembiayaan_id', 'numerical', 'integerOnly'=>true),
+			array('nama', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('kolektabilitas_id, nama', 'safe', 'on'=>'search'),
+			array('pembiayaan_id, nama', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,8 +50,8 @@ class Kolektabilitas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'kolektabilitas_id' => 'Kolektibilitas',
-			'nama' => 'Kolektibilitas',
+			'pembiayaan_id' => 'Pembiayaan',
+			'nama' => 'Jenis Pembiayaan',
 		);
 	}
 
@@ -73,7 +73,7 @@ class Kolektabilitas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('kolektabilitas_id',$this->kolektabilitas_id);
+		$criteria->compare('pembiayaan_id',$this->pembiayaan_id);
 		$criteria->compare('nama',$this->nama,true);
 
 		return new CActiveDataProvider($this, array(
@@ -85,7 +85,7 @@ class Kolektabilitas extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Kolektabilitas the static model class
+	 * @return jenisPembiayaan the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
