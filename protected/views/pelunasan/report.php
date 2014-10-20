@@ -8,7 +8,8 @@ $('.search-form form').submit(function(){
 	$('#print_no_rekening').val($('#pelunasan_no_rekening').val());
 	$('#print_nama_nasabah').val($('#pelunasan_nama_nasabah').val());
 	$('#print_to_date').val($('#pelunasan_to_date').val());
-        $('#print_from_date').val($('#pelunasan_from_date').val());
+    $('#print_from_date').val($('#pelunasan_from_date').val());
+    $('#print_unit_kerja').val($('#pelunasan_unit_kerja').val());
         
 	$('#mtb-approval-grid').yiiGridView('update', {
 		data: $(this).serialize()
@@ -22,6 +23,7 @@ $('.search-form form').submit(function(){
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model_pelunasan'=>$model_pelunasan,
+    'listUnit' => $listUnit,
         'report'=>true,
 )); ?>
 </div><!-- search-form -->
@@ -67,6 +69,7 @@ $('.search-form form').submit(function(){
 <input name="pelunasan[nama_nasabah]" id="print_nama_nasabah" type="hidden" />
 <input name="pelunasan[from_date]" id="print_from_date" type="hidden" />
 <input name="pelunasan[to_date]" id="print_to_date" type="hidden" />
+<input name="pelunasan[unit_kerja]" id="print_unit_kerja" type="hidden" />
 <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType'=>'submit',                

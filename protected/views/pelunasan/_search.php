@@ -37,6 +37,11 @@
     </div>
     </div>
 
+    <?php echo $form->dropDownListRow($model_pelunasan,'unit_kerja', $listUnit, array(
+        'empty'=>'Semua Unit Kerja',
+            'class'=>'span6',
+            )); ?>
+
     <div class="control-group">
     <label for="pelunasan_periode" class="control-label">Periode (Tgl)</label>
     <div class="controls">

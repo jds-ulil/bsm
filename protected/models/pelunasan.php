@@ -26,6 +26,7 @@ class pelunasan extends CActiveRecord
     public $tempLL;
     public $from_date;
     public $to_date;
+    public $unit_kerja;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -47,7 +48,7 @@ class pelunasan extends CActiveRecord
                         array('tanggal_pelunasan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'insert'),
 			array('segmen, jenis_pembiayaan, no_CIF, no_rekening', 'numerical', 'integerOnly'=>true),
 			array('no_CIF,', 'length', 'max'=>8),
-                        array('tempLL, status_pelunasan','safe'),
+                        array('tempLL, status_pelunasan, marketing, unit_kerja','safe'),
 			array('no_rekening,', 'length', 'max'=>10),
 			array('jenis_usaha', 'length', 'max'=>50),
 			array('nama_nasabah', 'length', 'max'=>100),
@@ -56,7 +57,7 @@ class pelunasan extends CActiveRecord
 			array('tanggal_pelunasan, penyebab, alamat_nasabah, from_date, to_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pelunasan_id, tanggal_pelunasan, penyebab, segmen, jenis_usaha, nama_nasabah, no_CIF, no_rekening, plafon_awal, OS_pokok_terakhir, angsuran, kolektibilitas_terakhir, alamat_nasabah, jenis_pembiayaan, margin, tunggakan_terakhir', 'safe', 'on'=>'search'),
+			array('pelunasan_id,unit_kerja, tanggal_pelunasan, penyebab, segmen, jenis_usaha, nama_nasabah, no_CIF, no_rekening, plafon_awal, OS_pokok_terakhir, angsuran, kolektibilitas_terakhir, alamat_nasabah, jenis_pembiayaan, margin, tunggakan_terakhir', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -116,6 +117,12 @@ class pelunasan extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+        
+        if(!empty($this->unit_kerja)){
+        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = t.marketing ';
+        $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
+        $criteria->compare('uk.nama',$this->unit_kerja,true);
+        }
               
 		$criteria->compare('pelunasan_id',$this->pelunasan_id);
 		$criteria->compare('tanggal_pelunasan',$this->tanggal_pelunasan,true);
@@ -134,6 +141,7 @@ class pelunasan extends CActiveRecord
 		$criteria->compare('margin',$this->margin,true);
 		$criteria->compare('tunggakan_terakhir',$this->tunggakan_terakhir,true);
 		$criteria->compare('status_pelunasan',$this->status_pelunasan,true);
+        //$criteria->compare('uk.nama',$this->unit_kerja,true);
                 
                 
                 if (!empty($this->from_date)) {                

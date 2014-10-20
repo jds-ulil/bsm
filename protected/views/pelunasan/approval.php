@@ -21,6 +21,7 @@ $('.search-form form').submit(function(){
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
     'model_pelunasan' => $model_pelunasan,
+    'listUnit' => $listUnit,
     'report'=>false,
 )); ?>
 </div><!-- search-form -->

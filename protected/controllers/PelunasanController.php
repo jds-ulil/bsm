@@ -75,7 +75,7 @@ class PelunasanController extends Controller
                 $listPembiayaan = CHtml::listData(jenisPembiayaan::model()->findAll(),'pembiayaan_id','nama');
                 $listSebab = CHtml::listData(pelunasanSebab::model()->findAll(),'nama','nama');
                 $listSebabCheck = CHtml::listData(pelunasanSebab::model()->findAll(),'nama','nama');      
-                
+                                
 		if(isset($_POST['pelunasan']))
 		{
 			$model->attributes=$_POST['pelunasan'];
@@ -86,6 +86,11 @@ class PelunasanController extends Controller
                             $model->penyebab = '';
                             }
                         }                              
+                
+            if(!empty(Yii::app()->user->id_pegawai)) {
+                $model->marketing = Yii::app()->user->id_pegawai;       
+            }                
+            
 			if($model->save()){                                                        
                             $this->redirect(array('complete'));
                         } else {                                                                                     
@@ -111,12 +116,14 @@ class PelunasanController extends Controller
         
         public function actionApproval(){
             $model_pelunasan = new pelunasan('search');
+            $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');                         
             
             if(isset($_GET['pelunasan']))
                 $model_pelunasan->attributes=$_GET['pelunasan'];
                         
             $this->render('approval',array(
                 'model_pelunasan' => $model_pelunasan,
+                'listUnit' => $listUnit,
             ));            
         }
         
@@ -143,6 +150,11 @@ class PelunasanController extends Controller
                             );
                 }
             }
+            
+            if(!empty($model_pelunasan->unit_kerja)) {
+            $unitKerja = array($model_pelunasan->unit_kerja);
+            }
+            
             $model_pelunasan->no_rekening = empty($model_pelunasan->no_rekening)?' - ':$model_pelunasan->no_rekening;
             $model_pelunasan->nama_nasabah = empty($model_pelunasan->nama_nasabah)?' - ':$model_pelunasan->nama_nasabah;
             $model_pelunasan->from_date = empty($model_pelunasan->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_pelunasan->from_date);
@@ -180,6 +192,7 @@ class PelunasanController extends Controller
         }
         public function actionReport() {
             $model_pelunasan = new pelunasan('search');
+            $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');                         
             
             if(isset($_GET['pelunasan']))
                 $model_pelunasan->attributes=$_GET['pelunasan'];
@@ -187,6 +200,7 @@ class PelunasanController extends Controller
             $model_pelunasan->status_pelunasan = vC::APP_status_pelunasan_approv;
             $this->render('report',array(
                 'model_pelunasan'=>$model_pelunasan,
+                'listUnit' => $listUnit,
             ));
         }
         
