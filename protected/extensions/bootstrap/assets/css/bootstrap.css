@@ -4953,17 +4953,22 @@ input[type="submit"].btn.btn-mini {
   padding: 8px 15px;
   margin: 0 0 20px;
   list-style: none;
-  background-color: #f5f5f5;
+  background-color: #FECE14;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
 }
 
-.breadcrumb > li {
+.breadcrumb > li {   
   display: inline-block;
   *display: inline;
-  text-shadow: 0 1px 0 #ffffff;
+  color:white;
+/*  text-shadow: 0 1px 0 #ffffff;*/
   *zoom: 1;
+}
+
+.breadcrumb > li > a {   
+  color:#075B43;  
 }
 
 .breadcrumb > li > .divider {
