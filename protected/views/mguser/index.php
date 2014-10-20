@@ -46,7 +46,7 @@ $('.search-form form').submit(function(){
                 'NIP',
                 array(
                 'name'=>'jabatan_id',
-                'value'=>'$data->rJab->nama_jabatan',
+                'value'=>'empty($data->rJab->nama_jabatan)?"Reset":$data->rJab->nama_jabatan',
                 ),        	
 		'email_address',         		
         array(

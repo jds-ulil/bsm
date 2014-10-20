@@ -39,7 +39,7 @@ class PelunasanController extends Controller
                                 'roles'=>array('inputter'),
 			),			
                         array('allow',
-                                'actions'=>array('autocompleteNasabah','report','detail'),
+                                'actions'=>array('autocompleteNasabah','report','detail','print'),
                                 'users'=>array('@'),
                         ),
 			array('deny',  // deny all users
@@ -118,6 +118,41 @@ class PelunasanController extends Controller
             $this->render('approval',array(
                 'model_pelunasan' => $model_pelunasan,
             ));            
+        }
+        
+        public function actionPrint(){
+            $data = array();
+            $index = 0;
+            $unitKerja = array();
+
+            $model_pelunasan = new pelunasan('search');
+            $model_pelunasan->unsetAttributes();
+            if(isset($_POST['pelunasan'])){            
+                $model_pelunasan->attributes = $_POST['pelunasan'];
+                $model_pelunasan->status_pelunasan = vC::APP_status_pelunasan_approv;
+                $dataProv = $model_pelunasan->search(); 
+            
+            
+                foreach($dataProv->getData() as $record) {
+                    $index++;                
+                    $data[]=array(  'index'=>$index,
+                                    'tanggal_pelunasan'=>Yii::app()->numberFormatter->formatDate($record->tanggal_pelunasan),
+                                    'no_rekening'=>Yii::app()->numberFormatter->formatDate($record->no_rekening),
+                                    'penyebab'=>$record->penyebab, 
+                                    'nama_nasabah'=>$record->nama_nasabah,                 
+                            );
+                }
+            }
+            $model_pelunasan->no_rekening = empty($model_pelunasan->no_rekening)?' - ':$model_pelunasan->no_rekening;
+            $model_pelunasan->nama_nasabah = empty($model_pelunasan->nama_nasabah)?' - ':$model_pelunasan->nama_nasabah;
+            $model_pelunasan->from_date = empty($model_pelunasan->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model_pelunasan->from_date);
+            $model_pelunasan->to_date = empty($model_pelunasan->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model_pelunasan->to_date);        
+            
+            $this->render('print',array(
+                'model_pelunasan' => $model_pelunasan,
+                'data' => $data,
+                'unitKerja' => $unitKerja,
+            ));
         }
         
         public function actionProses($id){

@@ -12,8 +12,8 @@
 		'nama',
 		'NIP',		
 		 array(
-                'name'=>'level_jabatan',
-                'value'=>'$data->rLevJab->nama_jabatan',
+                'name'=>'level_jabatan',   
+                'value'=>'empty($data->rLevJab->nama_jabatan)?"Reset":$data->rLevJab->nama_jabatan',
                 ),	
         array(
         'header' => 'Action',

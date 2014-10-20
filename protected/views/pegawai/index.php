@@ -45,11 +45,11 @@ $('.search-form form').submit(function(){
 		'NIP',
 		 array(
                 'name'=>'jabatan',
-                'value'=>'$data->rJab->nama_jabatan',
+                'value'=>'empty($data->rJab->nama_jabatan)?"Reset":$data->rJab->nama_jabatan',
                 ),
 		 array(
                 'name'=>'level_jabatan',
-                'value'=>'$data->rLevJab->nama_jabatan',
+                'value'=>'empty($data->rLevJab->nama_jabatan)?"Reset":$data->rLevJab->nama_jabatan',
                 ),
 		'no_handphone',
 		/*

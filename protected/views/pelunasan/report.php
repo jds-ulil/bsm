@@ -56,7 +56,7 @@ $('.search-form form').submit(function(){
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'proposal-print',
-	'action'=>Yii::app()->createUrl('tolak/print'),
+	'action'=>Yii::app()->createUrl('pelunasan/print'),
 	'method'=>'post',        
     'type'=>'horizontal',
     'htmlOptions'=> array(

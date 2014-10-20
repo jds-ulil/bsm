@@ -50,11 +50,11 @@ $('.search-form form').submit(function(){
                 'jenis_usaha',
          array(
                 'name'=>'Marketing',
-                'value'=>'$data->rMar->nama',		
+                'value'=>'empty($data->rMar->nama)?"Deleted":$data->rMar->nama',
             ),
          array(
                 'name'=>'Status',
-                'value'=>'$data->rStat->nama',		
+                'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
             ),
 //              //  'plafon',
 //        array(

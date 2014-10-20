@@ -39,12 +39,12 @@ $('.search-form form').submit(function(){
                 ),
                 'tahap_penolakan',
                 array(
-                'name'=>'Marketing',
-                'value'=>'$data->rCM->roMar->nama',		
+                'name'=>'Marketing',         	
+                'value'=>'empty($data->rCM->roMar->nama)?"Reset":$data->rCM->roMar->nama',
                 ),
                 array(
                 'name'=>'Nama Nasabah',
-                'value'=>'$data->rCM->nama_nasabah',		
+                'value'=>'empty($data->rCM->nama_nasabah)?"Reset":$data->rCM->nama_nasabah',
                 ),                
                 array(
                 'header' => 'Action',
