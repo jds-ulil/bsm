@@ -153,6 +153,7 @@
             'data'=>$model_proposal,
             'attributes'=>array(
                     'no_kartu_keluarga',
+                    'tanggal_kartu_keluarga',
             ),
             'htmlOptions'=>array(
             'class'=>'detail-view resize-table',

@@ -40,13 +40,8 @@
 								'items'=>array(
 								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/create',), 'visible'=> Yii::app()->user->checkAccess('inputter')),
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/create',)),
-								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/create',)),
-                                                                 /**
-                                                    SELOWWW....
-								    array('label'=>'Nasabah Wathclist Akhir Bulan', 'url'=>array('#',)),
-								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('#',)),								    
-                                                                  * 
-                                                                  */
+								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/create',)),    
+								    array('label'=>'Nasabah Wathclist Akhir Bulan', 'url'=>array('watch/input',)),
                                                                     )
 							),																					
 							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval'),

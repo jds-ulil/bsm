@@ -62,7 +62,7 @@ class QuestionController extends Controller
             $soal_provider = $model_soal->search();        
 
             //$totalVote = intval($dataProvider->getTotalItemCount()/$soal_provider->getTotalItemCount());
-             $unitKerja;
+             $unitKerja=array();
             if(!empty($model_jawab->unit_kerja)) {
                 $unitKerja = array($model_jawab->unit_kerja);
             }

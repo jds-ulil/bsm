@@ -13,7 +13,7 @@ $i = 1;
 foreach ($arrSoal as $key => $value) {  
     echo "<div class='soal'>".$i." "."$value";
     echo "</div>";
-    echo "<table>";    
+    echo "<table style='margin-left:5px;'>";    
     foreach ($arrResult[$key] as $key_j => $value_j) {
         foreach ($value_j as $key_ja => $value_ja) {
             echo "<tr class='jawab span8'><td>";

@@ -67,6 +67,8 @@ class proposal extends CActiveRecord
 			//array('no_proposal', 'unique'),
                         array('nama_nasabah', 'checkTolakNama', 'on'=>'create'),
                         array('no_ktp', 'checkTolakKtp', 'on'=>'create'),
+                        array('no_buku_nikah', 'checkTolakBukuNikah', 'on'=>'create'),
+                        array('no_kartu_keluarga', 'checkNoKK', 'on'=>'create'),
 			array('status_pengajuan', 'length', 'max'=>3),
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
@@ -259,6 +261,38 @@ class proposal extends CActiveRecord
                             return false;
                         }
                     }
+            return true;
+        }
+        public function checkTolakBukuNikah($attribute_name, $params){
+            $arrBukuNikahTolak = Yii::app()->db->createCommand()
+                            ->select("pro.no_buku_nikah, pro.proposal_id")
+                            ->from("proposal pro")                                                      
+                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."' OR "
+                                    . " pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak_approv ."' ")
+                            ->queryAll(); 
+            foreach ($arrBukuNikahTolak as $key => $value) {
+                        if($value['no_buku_nikah'] == $this->$attribute_name) {
+                            $model_tolak = tolak::model()->find(" proposal_id = " . $value['proposal_id'] );
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('tolak/detail',array('id'=>$model_tolak->tolak_id))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }             
+            return true;
+        }
+        public function checkNoKK($attribute_name, $params){
+            $arrKKTolak = Yii::app()->db->createCommand()
+                            ->select("pro.no_kartu_keluarga, pro.proposal_id")
+                            ->from("proposal pro")                                                      
+                            ->where("pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak."' OR "
+                                    . " pro.`status_pengajuan` = '".vC::APP_status_proposal_tolak_approv ."' ")
+                            ->queryAll(); 
+            foreach ($arrKKTolak as $key => $value) {
+                        if($value['no_kartu_keluarga'] == $this->$attribute_name) {
+                            $model_tolak = tolak::model()->find(" proposal_id = " . $value['proposal_id'] );
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('tolak/detail',array('id'=>$model_tolak->tolak_id))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }             
             return true;
         }
         public function checkTolakKtp($attribute_name, $params)

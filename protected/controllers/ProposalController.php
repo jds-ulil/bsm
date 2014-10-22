@@ -22,7 +22,7 @@ class ProposalController extends Controller
          
         public function init() {
         parent::init();
-        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+       // Yii::app()->attachEventHandler('onError',array($this,'handleError'));
         }
         public function handleError(CEvent $event)
             {            
@@ -107,7 +107,7 @@ class ProposalController extends Controller
                         );
             }                                  
         }
-        $unitKerja;
+        $unitKerja = array();
         if(!empty($model_proposal->unit_kerja)) {
             $unitKerja = array($model_proposal->unit_kerja);
         } else
@@ -250,6 +250,7 @@ class ProposalController extends Controller
         $model_kartu_keluarga = array (new proposalKartuKeluarga);        
         $model_buku_nikah = new proposalBukuNikah;
         $model_ktp = new proposalKtp;
+        $model_ktp->kewarganegaraan = 'Indonesia';
         
         $listSegmen = CHtml::listData(Segmen::model()->findAll(),'segmen_id','nama');
         $listAgama = CHtml::listData(agama::model()->findAll(),'agama_id','nama');

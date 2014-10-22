@@ -109,8 +109,8 @@ h3 {
 /*	padding:5px 10px 10px 5px;*/
     font-size: 12px;
 }
-tr.jawab:nth-child(even) {background: #FFF}
-tr.jawab:nth-child(odd) {background: #CCC}    
+tr.jawab:nth-child(even) {background: #FFF;padding-left: 10px;}
+tr.jawab:nth-child(odd) {background: #CCC;padding-left: 10px;}    
 
 table.resize-table th, table.resize-table td {
     line-height: 12px !important;
