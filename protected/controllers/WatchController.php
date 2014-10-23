@@ -65,8 +65,17 @@ class WatchController extends Controller
                             continue;
                         } else {
                             $index++;
-                        }                        
-                        $arrData[] = $line;                                                
+                        }   
+                        $arrLine = explode('\",\"',$line[0]);
+//                        $model_temp = new watchlistTemp();
+//                        //remove pd on loan
+//                        $model_temp->no_loan = substr($arrLine[0], 2);                        
+//                        $model_temp->nama_nasabah = $arrLine[1];
+//                        $model_temp->total_tunggakan = $arrLine[4];
+//                        $model_temp->kolektibilitas = $arrLine[5];
+//                        $model_temp->jenis_produk = $arrLine[6];
+//                        $model_temp->save();
+                        $arrData[] = $arrLine;                                                
                         }while( ($line = fgetcsv($fp, 1000, ";")) != FALSE);
                        // $this->redirect('././index');
                     fclose($fp);
