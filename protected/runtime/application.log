@@ -1536,3 +1536,250 @@ in C:\xampp\htdocs\bsm\index.php (15)
 2014/10/22 09:52:16 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watch".
 in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
 in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 03:49:09 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watch".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 03:49:29 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watch".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:05:06 [error] [php] Undefined index: watch (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:48)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:05:21 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:11:44 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:11:44 [error] [php] Undefined variable: data (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:72)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (72)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:12:02 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:12:02 [error] [php] Undefined variable: data (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:78)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (78)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:12:22 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:12:22 [error] [php] Undefined variable: data (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:79)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (79)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:12:36 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:16:41 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:16:41 [error] [php] Undefined variable: first_time (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:60)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (60)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:17:07 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:17:07 [error] [php] Undefined variable: line (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:64)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (64)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:17:37 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:18:22 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:18:33 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:23:45 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:23:45 [error] [php] Cannot use a scalar value as an array (C:\xampp\htdocs\bsm\yii\framework\zii\widgets\grid\CGridView.php:387)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php(49): TbGridView->init()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(147): TbGridView->init()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): WatchController->createWidget()
+#3 C:\xampp\htdocs\bsm\protected\views\watch\upload.php(14): WatchController->widget()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): WatchController->renderInternal()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): WatchController->renderFile()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): WatchController->renderPartial()
+#8 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(85): WatchController->render()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): WatchController->actionInput()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php (91)
+in C:\xampp\htdocs\bsm\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in C:\xampp\htdocs\bsm\protected\views\watch\upload.php (14)
+2014/10/23 04:26:09 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:26:30 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:32:24 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:32:37 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:33:36 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:34:05 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:34:18 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:45:05 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:45:24 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:46:10 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:49:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "updateAttribute" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('updateAttribute')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttribute
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/input
+---
+2014/10/23 04:58:20 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 04:58:32 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:01:01 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:03:19 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:03:20 [error] [php] Undefined variable: line (C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:64)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (64)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:03:53 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:12:41 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:13:30 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:14:08 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (48)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/23 05:16:15 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (49)
+in C:\xampp\htdocs\bsm\index.php (15)

@@ -40,7 +40,9 @@ class vC {
     
     const APP_nama_KCP = "LUBUK SIKAPING";
     
-    const APP_from_email = "oelhil@gmail.com";        
+    const APP_from_email = "oelhil@gmail.com";   
+    
+    const APP_header_csv_row = 7;
 }
 
 ?>

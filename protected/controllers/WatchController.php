@@ -41,38 +41,41 @@ class WatchController extends Controller
 	}
         
     public function actionInput(){
-        $model = new watch;
         
-        if(isset($_POST['watch']))
+        $model = new watchlist();
+        
+        if(isset($_POST['watchlist']))
             {    
-              $model->attributes=$_POST['watch'];
+              $model->attributes=$_POST['watchlist'];
             
               $filelist= CUploadedFile::getInstance($model,'w_file');
               $arrData = array();
+              $index = 0;
               if($model->validate()){                 
-                   $fp = fopen($filelist->tempName, 'r');
+                    Yii::app()->db->createCommand()->truncateTable(watchlistTemp::model()->tableName());                   
+                    $fp = fopen($filelist->tempName, 'r');
                     if($fp)
                     {
                         //  $line = fgetcsv($fp, 1000, ",");
                         //  print_r($line); exit;
-                        $first_time = true;
+                        
                      do {
-                        if ($first_time == true) {
-                            $first_time = false;
+                        if ($index < vc::APP_header_csv_row) {                        
+                            $index++;
                             continue;
-                        }
-                        $arrData[] = $line;                        
-
+                        } else {
+                            $index++;
+                        }                        
+                        $arrData[] = $line;                                                
                         }while( ($line = fgetcsv($fp, 1000, ";")) != FALSE);
                        // $this->redirect('././index');
-
-                    }}   
-              
-              print_r($arrData);
-              return;
+                    fclose($fp);
+                    }}    
+print_r($arrData);
+                    return;
             }  
             $this->render('input',array(
-                'model'=>$model,
+                'model'=>$model,                
                 ));
     }
 }
