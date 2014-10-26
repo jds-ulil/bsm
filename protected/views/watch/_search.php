@@ -37,9 +37,9 @@
 <div class="control-group">
     <label for="proposal_plafon" class="control-label">Persentase Bagi Hasil</label>
     <div class="controls">
-        <input type="text" maxlength="50" id="watchlist_from_persen" name="watchlist[from_persen]" class="span3">
+        <input type="text" maxlength="50" id="watchlist_from_persen" name="watchlist[from_persen]" class="span3 percent">
         s.d
-        <input type="text" maxlength="50" id="watchlist_to_persen" name="watchlist[to_persen]" class="span3">
+        <input type="text" maxlength="50" id="watchlist_to_persen" name="watchlist[to_persen]" class="span3 percent">
     </div>
     </div>
 

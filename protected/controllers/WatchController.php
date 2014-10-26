@@ -85,6 +85,9 @@ class WatchController extends Controller
     }
     
     public function actionReport(){
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.mask.js',
+                CClientScript::POS_END);
+        
         $model = new watchlist;
         if(isset($_GET['watchlist'])){
                 $model->attributes=$_GET['watchlist'];

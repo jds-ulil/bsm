@@ -17,6 +17,9 @@ $('.search-form form').submit(function(){
 		data: $(this).serialize()
 	});
 	return false;
+    });
+$(document).ready(function(){
+    $('.percent').mask('##0.00');
 });
 ");
 ?>
