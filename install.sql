@@ -54,9 +54,6 @@ CREATE TABLE `mtb_email_notif` (
   PRIMARY KEY (`email_notif_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `mtb_email_notif` */
-
-insert  into `mtb_email_notif`(`email_notif_id`,`nama`) values (1,'Semua (Email notifikasi saat input proposal, nasabah ditolak dan approval)'),(2,'Proposal (Email notifikasi saat input proposal)'),(3,'Approval (Email notifikasi saat proses approval)'),(4,'Nasabah Tolak (Email notifikasi saat input nasabah di tolak)'),(5,'Tidak Aktif');
 
 /*Table structure for table `mtb_hak_akses` */
 
@@ -81,10 +78,6 @@ CREATE TABLE `mtb_jabatan` (
   `nama_jabatan` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_jabatan`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `mtb_jabatan` */
-
-insert  into `mtb_jabatan`(`id_jabatan`,`nama_jabatan`) values (8,'Branch Manager'),(9,'Sub Branch Manager'),(10,'Sales Assistant'),(11,'Ass. Analis Mikro'),(12,'Penaksir Gadai');
 
 /*Table structure for table `mtb_jenis_identitas` */
 
@@ -142,10 +135,6 @@ CREATE TABLE `mtb_list_email` (
   PRIMARY KEY (`id_list_email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `mtb_list_email` */
-
-insert  into `mtb_list_email`(`id_list_email`,`email_address`,`nama_pengguna`,`jabatan_id`,`status`,`NIP`) values (3,'rnur1780@bsm.co.id','Ridwan Nur',9,1,'047871780');
-
 /*Table structure for table `mtb_mailer` */
 
 DROP TABLE IF EXISTS `mtb_mailer`;
@@ -162,9 +151,6 @@ CREATE TABLE `mtb_mailer` (
   PRIMARY KEY (`mail_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `mtb_mailer` */
-
-insert  into `mtb_mailer`(`mail_id`,`host`,`nama`,`password`,`port`,`proposal_baru`,`nasabah_tolak`,`approval`) values (1,'mail.syariahmandiri.co.id','rnur1780@syariahmandiri.co.id','hasbunallah01','443','0','0','0');
 
 /*Table structure for table `mtb_pegawai` */
 
@@ -184,9 +170,6 @@ CREATE TABLE `mtb_pegawai` (
   PRIMARY KEY (`pegawai_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `mtb_pegawai` */
-
-insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`,`level_jabatan`) values (2,'01','Alhuda Djannis','007270489',8,'0816-1368853','alhuda@bsm.co.id',2,'ddurachman@bsm.co.id',1),(3,'02-a','Ridwan Nur','047871780',9,'0853-76102270','rnur1780@bsm.co.id',3,'alhuda@bsm.co.id',2),(4,'03','Silvany Riza','118278205',10,'0812-6524091','sriza@bsm.co.id',3,'rnur1780@bsm.co.id',3),(5,'04','Nicko Gemayel','12345678',10,'0852-71589848','ngemayel@bsm.co.id',3,'rnur1780@bsm.co.id',3),(6,'05','Andi Rachman Guci','118478201',10,'0813-74005586','arguci@bsm.co.id',3,'rnur1780@bsm.co.id',3),(7,'06','Maria Gunarti','108676080',11,'0813-74190906','mgunarti@bsm.co.id',3,'rnur1780@bsm.co.id',3),(8,'07','Ekko Febrian','118678196',12,'0823-8766616','efebrian@bsm.co.id',3,'rnur1780@bsm.co.id',3),(9,'1','Ulil','123',11,'','',NULL,'',1),(10,'02-b','Ridwan Nur','25041978',9,'0853-76102270','drankoto25@gmail.com',3,'rnur1780@bsm.co.id',1);
 
 /*Table structure for table `mtb_segmen` */
 
@@ -240,10 +223,6 @@ CREATE TABLE `mtb_unit_kerja` (
   PRIMARY KEY (`unit_kerja_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `mtb_unit_kerja` */
-
-insert  into `mtb_unit_kerja`(`unit_kerja_id`,`nama`) values (2,'KC Bukittinggi'),(3,'KCP Lubuk Sikaping');
-
 /*Table structure for table `mtb_user` */
 
 DROP TABLE IF EXISTS `mtb_user`;
@@ -262,7 +241,7 @@ CREATE TABLE `mtb_user` (
 
 /*Data for the table `mtb_user` */
 
-insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (1,'ulil','a@b.com',8,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',1,'3',10),(17,'Ridwan Nur','drankoto25@gmail.com',9,'$2a$13$FRDuSD/VE1XsaUsy.HTQS.UtNj3usc19odAaVjHxEg9NUoloyFMOO',1,'25041978',10),(18,'Silvany Riza','sriza@bsm.co.id',10,'$2a$13$Uo0jLeKZHDE.nj20I8ek.eHY3LnPA7AofqRizMhGTCXiMyW2lmD2.',3,'118278205',4),(19,'Nicko Gemayel','ngemayel@bsm.co.id',10,'$2a$13$Be0tgOAftUQLacG6unrEMOsxjPQRGRLUQdMhEMYGX0vki3HT8knDe',3,'12345678',5),(20,'Andi Rachman Guci','arguci@bsm.co.id',10,'$2a$13$DdlP614yKtEiBxEUt58zeua8rpBKwp7q2hGuLFUmdhJdiMEO/zJKy',3,'118478201',6),(21,'Maria Gunarti','mgunarti@bsm.co.id',11,'$2a$13$oBSujl4kcDfBOOWPlgTICeIWkovuPq9S/jukeRK15V1vvT5zmoxei',3,'108676080',7),(22,'Ekko Febrian','efebrian@bsm.co.id',12,'$2a$13$s6/ZQirZwQwqXsQGY/WY5esXnUny6Miu791W4NRa6pB/UxT/QCRuS',3,'118678196',8),(23,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$IgZmSYkuJuWChakyvK6QAe3/GbH/5nR6U129R1W9RBi1UomqV0hwW',2,'047871780',3);
+insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (1,'ulil','a@b.com',8,'$2a$13$q0pqVszYTYxzAghTY3PRCu5i9QdFnGXCZhlUthRS4iy4v.q7v/hsW',1,'3',10);
 
 /*Table structure for table `pelunasan` */
 

@@ -153,6 +153,42 @@ class tolak extends CActiveRecord
                 'criteria'=>$criteria,
         ));
 	}
+	public function searchTolak_Print() {		
+		$criteria=new CDbCriteria;           
+        $criteria->join= ' INNER JOIN `proposal` `rCM` ON (`rCM`.`proposal_id`=`t`.`proposal_id`)  ';
+        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = rCM.marketing ';
+        $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
+		$criteria->compare('tolak_id',$this->tolak_id);		
+		$criteria->compare('tanggal_tolak',$this->tanggal_tolak,true);
+		$criteria->compare('alasan_ditolak',$this->alasan_ditolak,true);		
+		$criteria->compare('mp.nama',$this->marketing_search,true);		
+		$criteria->compare('rCM.nama_nasabah',$this->nama_nasabah,true);
+                $criteria->compare('uk.nama',$this->unit_kerja,true);
+        $criteria->addCondition("rCM.status_pengajuan = '".vC::APP_status_proposal_tolak_approv."' ");   
+        if ($this->tahap_penolakan == vc::APP_tahapan_lainya) {
+            $arrTahap = tolakTahapan::getArrTahapan();
+            foreach ($arrTahap as $key => $value) {
+                $criteria->addCondition("tahap_penolakan <> '".$value."' ");                 
+            }            
+        } else {
+            $criteria->compare('tahap_penolakan',$this->tahap_penolakan,true);
+        }
+        if (!empty($this->from_date)) {                
+        $reFromDate = $this->toDBDate($this->from_date);                
+        $criteria->addCondition('tanggal_tolak >= "'.$reFromDate.'" ');                
+        }
+        if (!empty($this->to_date)) {
+        $reToDate = $this->toDBDate($this->to_date);                
+        $criteria->addCondition('tanggal_tolak <= "'.$reToDate.'" ');		
+        }
+                
+        return new CActiveDataProvider($this, array(
+                'criteria'=>$criteria,
+                'pagination'=>array(
+                            'pageSize'=>1000,
+                        ),
+        ));
+	}
         public function check_proposal($attribute_name, $params)
         {             
             $query1 = "SELECT COUNT(proposal_id) FROM proposal                        

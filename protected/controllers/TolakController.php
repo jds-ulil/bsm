@@ -46,7 +46,7 @@ class TolakController extends Controller
                         array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('approval','toapprove','tocancel',
                                     ),
-				'roles'=>array('approval'),
+				'roles'=>array('approval', 'admin'),
                         ),  
                         array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('report','detail','print','proses','completeApp',
@@ -66,7 +66,7 @@ class TolakController extends Controller
         $model_tolak->unsetAttributes();
         if(isset($_POST['tolak'])){            
             $model_tolak->attributes = $_POST['tolak'];
-            $dataProv = $model_tolak->searchTolak(); 
+            $dataProv = $model_tolak->searchTolak_Print(); 
             
             foreach($dataProv->getData() as $record) {
                 $index++;                

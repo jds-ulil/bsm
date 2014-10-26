@@ -110,7 +110,7 @@ h3 {
     font-size: 12px;
 }
 tr.jawab:nth-child(even) {background: #FFF;padding-left: 10px;}
-tr.jawab:nth-child(odd) {background: #CCC;padding-left: 10px;}    
+tr.jawab:nth-child(odd) {background: #CCC;padding-left: 10px;}      
 
 table.resize-table th, table.resize-table td {
     line-height: 12px !important;
@@ -205,6 +205,13 @@ input[type="color"],
           border-top-right-radius: 0px !important;
   -moz-border-radius-topright: 0px !important;
 }
+
+table tr.wathclist {
+    background:#FFF6BF;
+    color:#514721;
+}
+
+
 @media (min-height: 700px) {
     .loginPage {
         max-width: 1028px !important;

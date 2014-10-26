@@ -22,6 +22,12 @@
 class watchlist extends CActiveRecord
 {
     public $w_file;
+    public $from_plafon;
+    public $to_plafon;
+    public $from_os;
+    public $to_os;
+    public $from_persen;
+    public $to_persen;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,12 +44,13 @@ class watchlist extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('w_file', 'file', 
-                            'types'=>'csv',
-                            'maxSize'=>1024 * 1024 * 2, // 10MB
-                            'tooLarge'=>'The file was larger than 2MB. Please upload a smaller file.',
-                            'allowEmpty' => false
-                    ),	
+                        array('w_file', 'file', 
+                                    'types'=>'csv',
+                                    'maxSize'=>1024 * 1024 * 2, // 10MB
+                                    'tooLarge'=>'The file was larger than 2MB. Please upload a smaller file.',
+                                    'allowEmpty' => true,
+                            ),	                        
+                        array('from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
 			array('no_loan, total_tunggakan, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan', 'length', 'max'=>20),
 			array('nama_nasabah, no_CIF', 'length', 'max'=>50),
 			array('kolektibilitas', 'length', 'max'=>3),
@@ -51,7 +58,7 @@ class watchlist extends CActiveRecord
 			array('persentase_bagi_hasil', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,10 +90,16 @@ class watchlist extends CActiveRecord
 			'plafon' => 'Plafon',
 			'os_pokok' => 'Os Pokok',
 			'angsuran_bulanan' => 'Angsuran Bulanan',
-			'persentase_bagi_hasil' => 'Persentase Bagi Hasil',
+			'persentase_bagi_hasil' => 'Persentase Bagi Hasil (%)',
 			'usaha_nasabah' => 'Usaha Nasabah',
 			'tujuan_pembiayaan' => 'Tujuan Pembiayaan',
-            'w_file' => 'Select file',
+                        'w_file' => 'Select file',
+                        'from_plafon' => "Mulai Dari",
+                        'to_plafon' => "Sampai Dengan",
+                        'from_os' => "Mulai Dari",
+                        'to_os' => "Sampai Dengan",
+                        'from_persen' => "Mulai Dari",
+                        'to_persen' => "Sampai Dengan",                    
 		);
 	}
 
@@ -123,8 +136,88 @@ class watchlist extends CActiveRecord
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
 
+                 if (!empty($this->from_plafon)) {
+                    $this->from_plafon = str_replace(',','', $this->from_plafon);
+                    $this->from_plafon = intval($this->from_plafon);
+                    $criteria->addCondition("plafon >= $this->from_plafon ");
+                }
+                if (!empty($this->to_plafon)) {
+                    $this->to_plafon = str_replace(',','', $this->to_plafon);
+                    $this->to_plafon = intval($this->to_plafon);
+                    $criteria->addCondition("plafon <= $this->to_plafon ");		
+                }
+                 if (!empty($this->from_os)) {
+                    $this->from_os = str_replace(',','', $this->from_os);
+                    $this->from_os = intval($this->from_os);
+                    $criteria->addCondition("os_pokok >= $this->from_os ");
+                }
+                if (!empty($this->to_os)) {
+                    $this->to_os = str_replace(',','', $this->to_os);
+                    $this->to_os = intval($this->to_os);
+                    $criteria->addCondition("os_pokok <= $this->to_os ");		
+                }
+                 if (!empty($this->from_persen)) {                      
+                    $criteria->addCondition("persentase_bagi_hasil >= $this->from_persen ");                     
+                }
+                if (!empty($this->to_persen)) {                    
+                    $criteria->addCondition("persentase_bagi_hasil <= $this->to_persen ");		
+                }
+                
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+		));
+	}
+	public function search_print()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('watchlist_id',$this->watchlist_id);
+		$criteria->compare('no_loan',$this->no_loan,true);
+		$criteria->compare('nama_nasabah',$this->nama_nasabah,true);
+		$criteria->compare('total_tunggakan',$this->total_tunggakan,true);
+		$criteria->compare('kolektibilitas',$this->kolektibilitas,true);
+		$criteria->compare('jenis_produk',$this->jenis_produk,true);
+		$criteria->compare('no_CIF',$this->no_CIF,true);
+		$criteria->compare('no_rekening_angsuran',$this->no_rekening_angsuran,true);
+		$criteria->compare('plafon',$this->plafon,true);
+		$criteria->compare('os_pokok',$this->os_pokok,true);
+		$criteria->compare('angsuran_bulanan',$this->angsuran_bulanan,true);
+		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
+		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
+		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+
+                 if (!empty($this->from_plafon)) {
+                    $this->from_plafon = str_replace(',','', $this->from_plafon);
+                    $this->from_plafon = intval($this->from_plafon);
+                    $criteria->addCondition("plafon >= $this->from_plafon ");
+                }
+                if (!empty($this->to_plafon)) {
+                    $this->to_plafon = str_replace(',','', $this->to_plafon);
+                    $this->to_plafon = intval($this->to_plafon);
+                    $criteria->addCondition("plafon <= $this->to_plafon ");		
+                }
+                 if (!empty($this->from_os)) {
+                    $this->from_os = str_replace(',','', $this->from_os);
+                    $this->from_os = intval($this->from_os);
+                    $criteria->addCondition("os_pokok >= $this->from_os ");
+                }
+                if (!empty($this->to_os)) {
+                    $this->to_os = str_replace(',','', $this->to_os);
+                    $this->to_os = intval($this->to_os);
+                    $criteria->addCondition("os_pokok <= $this->to_os ");		
+                }
+                 if (!empty($this->from_persen)) {                      
+                    $criteria->addCondition("persentase_bagi_hasil >= $this->from_persen ");                     
+                }
+                if (!empty($this->to_persen)) {                    
+                    $criteria->addCondition("persentase_bagi_hasil <= $this->to_persen ");		
+                }
+                
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+                        'pagination'=>array('pageSize'=>1000),
 		));
 	}
 

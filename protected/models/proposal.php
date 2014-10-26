@@ -215,6 +215,67 @@ class proposal extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	public function search_print()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+                $criteria->join= ' INNER JOIN `mtb_pegawai` `rMar` ON (`rMar`.`pegawai_id`=`t`.`marketing`)  ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON rMar.unit_kerja = uk.unit_kerja_id  ';           
+                
+		$criteria->compare('proposal_id',$this->proposal_id);
+		$criteria->compare('tanggal_pengajuan',$this->tanggal_pengajuan,true);
+		$criteria->compare('plafon',$this->plafon);
+		$criteria->compare('segmen',$this->segmen);
+		$criteria->compare('jenis_usaha',$this->jenis_usaha);
+		$criteria->compare('rMar.nama',$this->marketing,true);
+		$criteria->compare('no_kartu_keluarga',$this->no_kartu_keluarga,true);
+		$criteria->compare('no_buku_nikah',$this->no_buku_nikah,true);
+		$criteria->compare('no_ktp',$this->no_ktp,true);
+		$criteria->compare('no_proposal',$this->no_proposal,true);
+		$criteria->compare('status_pengajuan',$this->status_pengajuan,true);
+		$criteria->compare('jenis_nasabah',$this->jenis_nasabah);
+		$criteria->compare('existing_plafon',$this->existing_plafon,true);
+		$criteria->compare('existing_os',$this->existing_os,true);
+		$criteria->compare('existing_angsuran',$this->existing_angsuran,true);
+		$criteria->compare('existing_kolektabilitas',$this->existing_kolektabilitas);
+		$criteria->compare('referal_nama',$this->referal_nama,true);
+		$criteria->compare('referal_alamat',$this->referal_alamat,true);
+		$criteria->compare('referal_telp',$this->referal_telp,true);
+		$criteria->compare('referal_sektor_usaha',$this->referal_sektor_usaha,true);
+		$criteria->compare('referal_fasilitas',$this->referal_fasilitas,true);
+		$criteria->compare('referal_kolektabilitas',$this->referal_kolektabilitas,true);
+		$criteria->compare('tanggal_kartu_keluarga',$this->tanggal_kartu_keluarga,true);
+		$criteria->compare('del_flag',$this->del_flag);
+		$criteria->compare('uk.nama',$this->unit_kerja,true);
+                
+                if (!empty($this->from_date)) {                
+                $reFromDate = $this->toDBDate($this->from_date);                
+                $criteria->addCondition('tanggal_pengajuan >= "'.$reFromDate.'" ');                
+                }
+                if (!empty($this->to_date)) {
+                $reToDate = $this->toDBDate($this->to_date);                
+                $criteria->addCondition('tanggal_pengajuan <= "'.$reToDate.'" ');		
+                }
+                if (!empty($this->from_plafon)) {
+                    $this->from_plafon = str_replace('.','', $this->from_plafon);
+                    $this->from_plafon = intval($this->from_plafon);
+                    $criteria->addCondition("plafon >= $this->from_plafon ");
+                }
+                if (!empty($this->to_plafon)) {
+                    $this->to_plafon = str_replace('.','', $this->to_plafon);
+                    $this->to_plafon = intval($this->to_plafon);
+                    $criteria->addCondition("plafon <= $this->to_plafon ");		
+                }
+        //$criteria->compare('status_pengajuan', vC::APP_status_proposal_new);
+        //$criteria->addCondition('plafon <= "'.$this->to_plafon.'" ');	
+		return new CActiveDataProvider($this, array(
+                        'pagination'=>array(
+                            'pageSize'=>1000,
+                        ),
+			'criteria'=>$criteria,
+		));
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.

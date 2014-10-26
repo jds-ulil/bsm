@@ -17,7 +17,7 @@ class WatchController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		);
 	}
-
+               
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -27,11 +27,11 @@ class WatchController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('input'),
+				'actions'=>array('input','edit','save','complete'),
 				'roles'=>array('inputter'),
-			),				
+			),							
 			array('allow',  // deny all users
-                'actions'=>array(''),
+                                'actions'=>array('updateAttribute','report','delete','detail','print'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -39,7 +39,110 @@ class WatchController extends Controller
 			),
 		);
 	}
+    public function actions() {
+        return array(
+            'updateAttribute' => array(
+		'class' => 'application.extensions.EJEditable.actions.UpdateAttributeAction',
+            ),
+        );
+    } 
+    
+    public function actionPrint(){        
+        $data = array();
+        $index = 0;
         
+        $model = new watchlist('search');
+        $model->unsetAttributes();
+        
+        if(isset($_POST['watchlist'])) {
+            $model->attributes = $_POST['watchlist'];
+            $dataProv = $model->search_print();
+             
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $data[]=array(  'index'=>$index,
+                                'nama_nasabah'=>$record->nama_nasabah,
+                                'kolektibilitas'=>$record->kolektibilitas,
+                                'plafon'=>Yii::app()->numberFormatter->formatCurrency($record->plafon,""),
+                                'os_pokok'=>Yii::app()->numberFormatter->formatCurrency($record->os_pokok,""),
+                                'persen'=>$record->persentase_bagi_hasil,                                
+                        );
+            }
+        }
+        
+        $model->from_plafon = empty($model->from_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model->from_plafon,"Rp ");
+        $model->to_plafon = empty($model->to_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model->to_plafon,"Rp ");
+        $model->from_os = empty($model->from_os)?' - ':Yii::app()->numberFormatter->formatCurrency($model->from_os,"Rp ");
+        $model->to_os = empty($model->to_os)?' - ':Yii::app()->numberFormatter->formatCurrency($model->to_os,"Rp ");        
+        $model->from_persen = empty($model->from_persen)?' - ':$model->from_persen;
+        $model->to_persen = empty($model->to_persen)?' - ':$model->to_persen;        
+        $model->kolektibilitas = empty($model->kolektibilitas)?' - ':$model->kolektibilitas;        
+        
+        $this->render('print',array(
+            'model' => $model,
+            'data' => $data,
+        ));
+    }
+    
+    public function actionReport(){
+        $model = new watchlist;
+        if(isset($_GET['watchlist'])){
+                $model->attributes=$_GET['watchlist'];
+                }
+        $this->render('report',array(
+            'model' => $model,
+        ));
+    }
+    
+    public function actionDetail($id){
+         $model = $this->loadModel($id);   
+         $this->render('detail',array('model'=>$model));
+    }
+    
+    public function actionDelete($id){
+        $model = $this->loadModel($id);   
+        $model->delete();
+    }
+    
+    public function actionComplete(){
+        $this->render('complete');
+    }
+    public function actionSave(){
+        $model_temp = new watchlistTemp;
+        $dataProv = $model_temp->search_save(); 
+        
+        foreach($dataProv->getData() as $record) {                
+            $model = new watchlist;
+            $model->no_loan = $record->no_loan;
+            $model->nama_nasabah = $record->nama_nasabah;
+            $model->total_tunggakan = str_replace(',', '', $record->total_tunggakan);
+            $model->kolektibilitas = $record->kolektibilitas;
+            $model->jenis_produk = $record->jenis_produk;
+            $model->no_CIF = $record->no_CIF;
+            $model->no_rekening_angsuran = $record->no_rekening_angsuran;
+            $model->plafon = str_replace(',', '', $record->plafon);
+            $model->os_pokok = str_replace(',', '', $record->os_pokok);
+            $model->angsuran_bulanan = str_replace(',', '', $record->angsuran_bulanan);
+            $model->persentase_bagi_hasil = $record->persentase_bagi_hasil;
+            $model->usaha_nasabah = $record->usaha_nasabah;
+            $model->tujuan_pembiayaan = $record->tujuan_pembiayaan;
+            if(!$model->save()) {
+                print_r($model->getErrors());
+                break;
+            }
+        }
+       Yii::app()->db->createCommand()->truncateTable(watchlistTemp::model()->tableName()); 
+       $this->redirect(array('complete'));
+    }
+    
+    public function actionEdit() {
+        $this->layout = "widthpage";
+        $model_temp = new watchlistTemp;
+        $this->render('edit',array(
+            'model_temp' => $model_temp,
+        ));
+    }
+            
     public function actionInput(){
         
         $model = new watchlist();
@@ -66,25 +169,43 @@ class WatchController extends Controller
                         } else {
                             $index++;
                         }   
-                        $arrLine = explode('\",\"',$line[0]);
-//                        $model_temp = new watchlistTemp();
-//                        //remove pd on loan
-//                        $model_temp->no_loan = substr($arrLine[0], 2);                        
-//                        $model_temp->nama_nasabah = $arrLine[1];
-//                        $model_temp->total_tunggakan = $arrLine[4];
-//                        $model_temp->kolektibilitas = $arrLine[5];
-//                        $model_temp->jenis_produk = $arrLine[6];
-//                        $model_temp->save();
+                        $data = str_replace(',"', "|", $line[0]);                        
+                        $data = str_replace('"', "", $data);                        
+                        $arrLine = explode("|", $data);
+                        $model_temp = new watchlistTemp();
+                        //remove pd on loan
+                        $model_temp->no_loan = substr($arrLine[0], 2);                        
+                        $model_temp->nama_nasabah = $arrLine[1];
+                        $model_temp->total_tunggakan = $arrLine[4];
+                        $model_temp->kolektibilitas = $arrLine[5];
+                        $model_temp->jenis_produk = $arrLine[6];
+                        $model_temp->no_CIF = $arrLine[7];
+                        $model_temp->no_rekening_angsuran = $arrLine[8];
+                        $model_temp->plafon = $arrLine[9];
+                        $model_temp->os_pokok = $arrLine[10];
+                        $model_temp->angsuran_bulanan = $arrLine[11];
+                        $model_temp->persentase_bagi_hasil = $arrLine[12];
+                        $model_temp->usaha_nasabah = $arrLine[13];
+                        $model_temp->tujuan_pembiayaan = $arrLine[14];
+                        $model_temp->save();
                         $arrData[] = $arrLine;                                                
                         }while( ($line = fgetcsv($fp, 1000, ";")) != FALSE);
                        // $this->redirect('././index');
                     fclose($fp);
                     }}    
-print_r($arrData);
+                    $this->redirect(array('edit'));
                     return;
             }  
             $this->render('input',array(
                 'model'=>$model,                
                 ));
     }
+    
+      public function loadModel($id)
+	{
+		$model= watchlist::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
 }

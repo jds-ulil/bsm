@@ -32,7 +32,7 @@ class PelunasanController extends Controller
 //			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('approval', 'proses', 'toapprove', 'tocancel', 'completeApp'),				
-                                'roles'=>array('approval'),
+                                'roles'=>array('approval','admin'),
 			),			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','complete'),				
@@ -137,7 +137,7 @@ class PelunasanController extends Controller
             if(isset($_POST['pelunasan'])){            
                 $model_pelunasan->attributes = $_POST['pelunasan'];
                 $model_pelunasan->status_pelunasan = vC::APP_status_pelunasan_approv;
-                $dataProv = $model_pelunasan->search(); 
+                $dataProv = $model_pelunasan->search_print(); 
             
             
                 foreach($dataProv->getData() as $record) {

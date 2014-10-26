@@ -157,6 +157,54 @@ class pelunasan extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	public function search_print()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+        
+        if(!empty($this->unit_kerja)){
+        $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = t.marketing ';
+        $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
+        $criteria->compare('uk.nama',$this->unit_kerja,true);
+        }
+              
+		$criteria->compare('pelunasan_id',$this->pelunasan_id);
+		$criteria->compare('tanggal_pelunasan',$this->tanggal_pelunasan,true);
+		$criteria->compare('penyebab',$this->penyebab,true);
+		$criteria->compare('segmen',$this->segmen);
+		$criteria->compare('jenis_usaha',$this->jenis_usaha,true);
+		$criteria->compare('nama_nasabah',$this->nama_nasabah,true);
+		$criteria->compare('no_CIF',$this->no_CIF,true);
+		$criteria->compare('no_rekening',$this->no_rekening,true);
+		$criteria->compare('plafon_awal',$this->plafon_awal,true);
+		$criteria->compare('OS_pokok_terakhir',$this->OS_pokok_terakhir,true);
+		$criteria->compare('angsuran',$this->angsuran,true);
+		$criteria->compare('kolektibilitas_terakhir',$this->kolektibilitas_terakhir,true);
+		$criteria->compare('alamat_nasabah',$this->alamat_nasabah,true);
+		$criteria->compare('jenis_pembiayaan',$this->jenis_pembiayaan);
+		$criteria->compare('margin',$this->margin,true);
+		$criteria->compare('tunggakan_terakhir',$this->tunggakan_terakhir,true);
+		$criteria->compare('status_pelunasan',$this->status_pelunasan,true);
+        //$criteria->compare('uk.nama',$this->unit_kerja,true);
+                
+                
+                if (!empty($this->from_date)) {                
+                $reFromDate = $this->toDBDate($this->from_date);                
+                $criteria->addCondition('tanggal_pelunasan >= "'.$reFromDate.'" ');                
+                }
+                if (!empty($this->to_date)) {
+                $reToDate = $this->toDBDate($this->to_date);                
+                $criteria->addCondition('tanggal_pelunasan <= "'.$reToDate.'" ');		
+                }
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+                        'pagination'=>array(
+                            'pageSize'=>1000,
+                        ),
+		));
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.

@@ -22,7 +22,7 @@ class ProposalController extends Controller
          
         public function init() {
         parent::init();
-       // Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
         }
         public function handleError(CEvent $event)
             {            
@@ -92,7 +92,7 @@ class ProposalController extends Controller
         $model_proposal->unsetAttributes();
         if(isset($_POST['proposal'])){
             $model_proposal->attributes = $_POST['proposal'];
-            $dataProv = $model_proposal->search();            
+            $dataProv = $model_proposal->search_print();            
             
             foreach($dataProv->getData() as $record) {
                 $index++;

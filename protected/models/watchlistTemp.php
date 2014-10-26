@@ -65,7 +65,7 @@ class watchlistTemp extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'watchlist_id' => 'Watchlist',
+			'watchlist_id' => 'No',
 			'no_loan' => 'No Loan',
 			'nama_nasabah' => 'Nama Nasabah',
 			'total_tunggakan' => 'Total Tunggakan',
@@ -117,6 +117,33 @@ class watchlistTemp extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        //'pagination'=>array('pageSize'=>50),
+		));
+	}
+	public function search_save()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('watchlist_id',$this->watchlist_id);
+		$criteria->compare('no_loan',$this->no_loan,true);
+		$criteria->compare('nama_nasabah',$this->nama_nasabah,true);
+		$criteria->compare('total_tunggakan',$this->total_tunggakan,true);
+		$criteria->compare('kolektibilitas',$this->kolektibilitas,true);
+		$criteria->compare('jenis_produk',$this->jenis_produk,true);
+		$criteria->compare('no_CIF',$this->no_CIF,true);
+		$criteria->compare('no_rekening_angsuran',$this->no_rekening_angsuran,true);
+		$criteria->compare('plafon',$this->plafon,true);
+		$criteria->compare('os_pokok',$this->os_pokok,true);
+		$criteria->compare('angsuran_bulanan',$this->angsuran_bulanan,true);
+		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
+		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
+		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+                        'pagination'=>array('pageSize'=>1000),
 		));
 	}
 

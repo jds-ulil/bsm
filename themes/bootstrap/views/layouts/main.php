@@ -44,7 +44,7 @@
 								    array('label'=>'Nasabah Wathclist Akhir Bulan', 'url'=>array('watch/input',)),
                                                                     )
 							),																					
-							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval'),
+							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin'),
 								'items'=>array(
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),                                                             
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/approval',)),								                                                                  
@@ -54,13 +54,8 @@
 								'items'=>array(
 								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/report',)),								   								    
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/report',)),
-								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/report',)),
-                                                     /**
-                                                    SELOWWW....
-								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('#',)),
-								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('#',)),
-                                                      * 
-                                                      */
+								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/report',)),                                                     
+								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('watch/report',)),								                                                          
 								    )
 							),	                                                    
 							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval'),
@@ -78,7 +73,8 @@
 								    array('label'=>'Jabatan', 'url'=>array('jabatan/index',)),								    
 								    array('label'=>'Unit Kerja', 'url'=>array('unitkerja/index',)),								    
 								    array('label'=>'Mail Setting', 'url'=>array('mailer/set',), 'visible'=> Yii::app()->user->checkAccess('admin')),	
-                                                                    array('label'=>'Master Pertanyaan', 'url'=>array('Question/pertanyaan',)),
+                                                                    array('label'=>'Master Pertanyaan', 'url'=>array('question/pertanyaan',)),
+                                                                    array('label'=>'Reset Data', 'url'=>array('data/reset',)),
 								    )
 							),
 //							array('label'=>'User', 'url'=>array('/user/index'), 'visible'=>Yii::app()->user->checkAccess('otor') || Yii::app()->user->checkAccess('admin')),

@@ -46,7 +46,7 @@ class UpdateAttributeAction extends CAction
 			$this->init();
 			$controller = $this->getController();
 			$modelClass = !empty($this->modelClass) ? $this->modelClass : ucfirst( $controller->getId() );
-			$model = $modelClass::model()->findByPk($id);
+			$model = watchlistTemp::model()->findByPk($id);
 			if(!empty($model)) {
 				if( $this->preCall !== null && method_exists( $controller, $this->preCall ) )
 					$controller->{$this->preCall}( $model );
