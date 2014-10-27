@@ -77,10 +77,6 @@
                                                                     array('label'=>'Reset Data', 'url'=>array('data/reset',)),
 								    )
 							),
-//							array('label'=>'User', 'url'=>array('/user/index'), 'visible'=>Yii::app()->user->checkAccess('otor') || Yii::app()->user->checkAccess('admin')),
-//							array('label'=>'Jabatan', 'url'=>array('/jabatan/admin'), 'visible'=>Yii::app()->user->checkAccess('admin')),
-
-//							array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 						),
 					)); ?>
 					
