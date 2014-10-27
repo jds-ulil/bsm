@@ -182,14 +182,24 @@ class WatchController extends Controller
                         $model_temp->total_tunggakan = $arrLine[4];
                         $model_temp->kolektibilitas = $arrLine[5];
                         $model_temp->jenis_produk = $arrLine[6];
+                        
+                        if(isset($arrLine[7]))
                         $model_temp->no_CIF = $arrLine[7];
+                        if(isset($arrLine[8]))
                         $model_temp->no_rekening_angsuran = $arrLine[8];
+                        if(isset($arrLine[9]))
                         $model_temp->plafon = $arrLine[9];
+                        if(isset($arrLine[10]))
                         $model_temp->os_pokok = $arrLine[10];
+                        if(isset($arrLine[11]))
                         $model_temp->angsuran_bulanan = $arrLine[11];
+                        if(isset($arrLine[12]))
                         $model_temp->persentase_bagi_hasil = $arrLine[12];
+                        if(isset($arrLine[13]))
                         $model_temp->usaha_nasabah = $arrLine[13];
+                        if(isset($arrLine[14]))
                         $model_temp->tujuan_pembiayaan = $arrLine[14];
+                        
                         $model_temp->save();
                         $arrData[] = $arrLine;                                                
                         }while( ($line = fgetcsv($fp, 1000, ";")) != FALSE);

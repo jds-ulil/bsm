@@ -45,7 +45,7 @@ $this->breadcrumbs=array(
 			'class'=>'application.extensions.EJEditable.components.DataColumn',
 			'name'=>'no_rekening_angsuran',
 			'evaluateHtmlOptions'=>true,
-			'htmlOptions'=>array('width'=>'150','class'=>'"editable"','name'=>'tesss', 'data-attribute'=>'"no_rekening_angsuran"', 'id'=>'"{$data->watchlist_id}"'),
+			'htmlOptions'=>array('width'=>'150','class'=>'"editable"', 'data-attribute'=>'"no_rekening_angsuran"', 'id'=>'"{$data->watchlist_id}"'),
 		),
             'plafon'=>array(
 			'class'=>'application.extensions.EJEditable.components.DataColumn',
