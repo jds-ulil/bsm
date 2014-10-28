@@ -1,4 +1,5 @@
 *~
+/assets/*
 /nbproject/private/*
 /nbproject/*
 protected/config/main.php
