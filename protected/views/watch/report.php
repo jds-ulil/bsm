@@ -24,7 +24,7 @@ $(document).ready(function(){
 ");
 ?>
 
-<h1 class="loginHead">Berdasarkan</h1>
+<h1 class="loginHead">Kriteria Pencarian</h1>
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

@@ -1,15 +1,3 @@
-@font-face {
-    font-family: Dekar;
-    src: url(Dekar.otf); 
-}
-@font-face {
-    font-family: Moiser;
-    src: url(Moiser.ttf);    
-}
-@font-face {
-    font-family: FLllna2U;
-    src: url(FLllna2U.ttf);    
-} 
 #page {
     padding-top: 60px !important;
 }
@@ -47,9 +35,9 @@
     font-size: 6em;   
 }
 .loginHead {
-    font-family: Dekar;
-    font-size: 3em;
-    color: grey;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 2em;
+    color: #00622C;
 }
 .loginText{
     font-family: "Trebuchet MS";
@@ -60,12 +48,13 @@
     text-transform: uppercase;
 }
 h4 {
-    font-family: Dekar !important;
-    font-size: 2em;
-    color: grey;
+    font-family: "Arial Black", Gadget, sans-serif !important;
+    font-size: 1em !important;
 }
 h3 {
-    font-family: Dekar !important;
+     font-family: "Arial Black", Gadget, sans-serif !important;
+     font-size: 1.5em !important;
+     color: #00622C;
 }
 .help-block {
    color: grey !important;
@@ -82,11 +71,18 @@ h3 {
     margin-top: auto;
     border: 1px solid;
 }
+
+td.detail-header{
+    font-family: "Arial Black", Gadget, sans-serif;    
+    color: #ffffff !important;
+    background-color: #00622C !important;    
+}
+
 .selamatDatang {
     font-family: "FLllna2U.ttf";    
 }
 .head-survey{
-	background-color:#8DD885;
+	background-color:#005643;
 	color:white;
 	font-size:20px;
 	padding:10px;
@@ -112,7 +108,7 @@ h3 {
 tr.jawab:nth-child(even) {background: #FFF;padding-left: 10px;}
 tr.jawab:nth-child(odd) {background: #CCC;padding-left: 10px;}      
 
-table.resize-table th, table.resize-table td {
+table.resize-table th, table.resize-table td {    
     line-height: 12px !important;
 }
 select,
@@ -157,7 +153,14 @@ input[type="color"],
 .table-bordered tbody:first-child tr:first-child > th:first-child {
   -webkit-border-top-left-radius: 0px !important;
           border-top-left-radius: 0px !important;
-  -moz-border-radius-topleft: 0px !important;
+  -moz-border-radius-topleft: 0px !important;  
+}
+.table-bordered thead {
+  background-color: #005643 !important;
+  color: #ffffff !important;
+}
+a.sort-link {
+  color: #ffffff !important;
 }
 
 .table-bordered thead:first-child tr:first-child > th:last-child,

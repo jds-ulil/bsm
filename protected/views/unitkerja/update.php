@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Edit Unit Kerja</h1>
+<h1 class="loginHead">Edit Unit Kerja</h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

@@ -12,5 +12,5 @@ $this->menu=array(
   <?php echo "Terima Kasih, proses berhasil" ?>
 </div>
 <div class="form-actions">
-    <?php echo CHtml::link('Kembali ke daftar',array('tolak/approval'), array('class'=>'btn btn-primary')); ?>        
+    <?php echo CHtml::link('Kembali ke daftar',array('tolak/approval'), array('class'=>'btn btn-success')); ?>        
 </div>

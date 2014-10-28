@@ -4,10 +4,11 @@
 	'Detail Watchlist',
 );
 ?>
-<h1 class="loginHead">Watchlist</h1>
+<br />
  <?php  $this->widget('bootstrap.widgets.TbDetailView',array(
 	'type'=>'striped',
 	'data'=>$model,
+    'header'=>'WATCHLIST',
 	'attributes'=>array(                
             'no_loan',
             'nama_nasabah',            

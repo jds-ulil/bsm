@@ -12,10 +12,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Detail Unit Kerja</h1>
-
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
+    'header'=>'DETAIL UNIT KERJA',
 	'attributes'=>array(		
 		'nama',
 	),

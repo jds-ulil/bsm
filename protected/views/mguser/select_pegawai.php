@@ -1,4 +1,10 @@
 <?php
+    $this->breadcrumbs=array(
+        "List ".$user =>array('index','id'=>$hak_akses),
+        $user." baru"
+);
+?>
+<?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {
         echo '<div class="flash-' . $key . ' alert alert-danger">' . $message . "</div>\n";
     }
@@ -8,6 +14,7 @@
 	'dataProvider'=>$model_marketing->searchForUser(),
 	'filter'=>$model_marketing,
     'filterPosition'=>'footer',
+    'type'=>'bordered striped',
 	'columns'=>array(
 		'nama',
 		'NIP',		

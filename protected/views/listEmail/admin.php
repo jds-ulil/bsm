@@ -38,6 +38,7 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'filterPosition'=>'footer',
+    'type'=>'bordered striped',
 	'columns'=>array(
 		//'id_list_email',
 		'email_address',

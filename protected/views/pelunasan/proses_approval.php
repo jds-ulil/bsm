@@ -49,5 +49,5 @@
 
     <div class="form-actions">        
         <?php  echo CHtml::link('Hapus Pelunasan', Yii::app()->createUrl('pelunasan/tocancel',array('id'=>$model_pelunasan->pelunasan_id)), array('class' => 'btn btn-warning '));	 ?>		
-        <?php  echo CHtml::link('Approve Pelunasan', Yii::app()->createUrl('pelunasan/toapprove',array('id'=>$model_pelunasan->pelunasan_id)), array('class' => 'btn btn-primary'));	 ?>		
+        <?php  echo CHtml::link('Approve Pelunasan', Yii::app()->createUrl('pelunasan/toapprove',array('id'=>$model_pelunasan->pelunasan_id)), array('class' => 'btn btn-success'));	 ?>		
 	</div>

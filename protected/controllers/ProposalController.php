@@ -42,8 +42,12 @@ class ProposalController extends Controller
 	{
 		return array(  
                 array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'complete','delete'),
+				'actions'=>array('create', 'complete'),
 				'roles'=>array('inputter',),
+                    ),           
+                array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('delete'),
+				'roles'=>array('admin','approval'),
                     ),           
                 array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('autocompleteUsaha', 'autocompleteNasabah', 'autocompleteNasabahTolak',

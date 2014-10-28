@@ -1,7 +1,8 @@
-<h3>Proposal</h3>
+
  <?php  $this->widget('bootstrap.widgets.TbDetailView',array(
 	'type'=>'striped',
 	'data'=>$model_proposal,
+    'header' => "PROPOSAL",
 	'attributes'=>array(
                 'nama_nasabah',
 		array(
@@ -20,10 +21,11 @@
             'class'=>'detail-view resize-table',
         ),
     )); ?>
-<h3>Marketing</h3>
+
 <?php  $this->widget('bootstrap.widgets.TbDetailView',array(
 	'type'=>'striped',
 	'data'=>$model_marketing,
+    'header' => "MARKETING",
 	'attributes'=>array(
                 'nama',
 		'NIP',		
@@ -35,11 +37,10 @@
         ),
   )); ?>
 
-
-<h3>Jenis Nasabah</h3>
 <?php if($model_proposal->jenis_nasabah == vc::APP_jenis_nasabah_WIC) {
         $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
+            'header' => "JENIS NASABAH",
             'data'=>$model_proposal,
             'attributes'=>array(
                     'namaJenisNasabah',		
@@ -53,6 +54,7 @@
     <?php 
     $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
+            'header' => "JENIS NASABAH",
             'data'=>$model_proposal,
             'attributes'=>array(
                     'namaJenisNasabah',
@@ -81,6 +83,7 @@
     $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
             'data'=>$model_proposal,
+            'header' => "JENIS NASABAH",
             'attributes'=>array(
                     'namaJenisNasabah',		
                     'referal_alamat',		
@@ -98,11 +101,11 @@
     ));    
     }?>  
 
-<h3>Identitas Nasabah</h3>
     <?php
     $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
             'data'=>$model_ktp,
+            'header' => "IDENTITAS NASABAH",
             'attributes'=>array(
                     array(
                     'name'=>'Jenis Identitas',
@@ -131,10 +134,10 @@
     ));    
     ?>
 
-<h4>Buku Nikah</h4>
     <?php
     $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
+            'header' => "BUKU NIKAH",
             'data'=>$model_buku_nikah,
             'attributes'=>array(                
                     'no_buku_nikah',
@@ -146,11 +149,11 @@
     ));    
     ?>
 
-<h4>Kartu Keluarga</h4>
 <?php
     $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
             'data'=>$model_proposal,
+            'header' => "KARTU KELUARGA",
             'attributes'=>array(
                     'no_kartu_keluarga',
                     'tanggal_kartu_keluarga',
@@ -162,10 +165,10 @@
 ?>
 <?php   
     foreach ($model_kartu_keluarga as $key => $model_kartu_keluargaEach) {    
-    $index = $key+1;
-    echo "<h4>Data $index</h4>";
+    $index = $key+1; 
        $this->widget('bootstrap.widgets.TbDetailView',array(
             'type'=>'striped',
+            'header' => "Data ".$index,
             'data'=>$model_kartu_keluargaEach,
             'attributes'=>array(
                     //'no_kartu_keluarga',

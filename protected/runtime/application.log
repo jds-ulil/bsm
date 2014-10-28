@@ -302,3 +302,68 @@ Stack trace:
 REQUEST_URI=/bsm/index.php?ajax=mtb-approval-grid&pelunasan%5Bno_rekening%5D=&pelunasan%5Bnama_nasabah%5D=&pelunasan%5Bunit_kerja%5D=KC+Bukittinggi&pelunasan%5Bfrom_date%5D=&pelunasan%5Bto_date%5D=&r=pelunasan%2Freport
 HTTP_REFERER=http://localhost/bsm/index.php?r=pelunasan/report
 ---
+2014/10/28 08:01:39 [error] [php] Undefined variable: mj (C:\xampp\htdocs\bsm\protected\views\mguser\select_pegawai.php:3)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): MguserController->renderFile()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): MguserController->renderPartial()
+#2 C:\xampp\htdocs\bsm\protected\controllers\MguserController.php(135): MguserController->render()
+#3 unknown(0): MguserController->actionCreateToSelect()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): MguserController->runAction()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): MguserController->filterAccessControl()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): MguserController->runActionWithFilters()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): MguserController->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=mguser/createToSelect&id=1
+in C:\xampp\htdocs\bsm\protected\views\mguser\select_pegawai.php (3)
+in C:\xampp\htdocs\bsm\protected\controllers\MguserController.php (135)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/28 08:03:14 [error] [php] Undefined variable: model (C:\xampp\htdocs\bsm\protected\views\mguser\select_pegawai.php:3)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): MguserController->renderFile()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): MguserController->renderPartial()
+#2 C:\xampp\htdocs\bsm\protected\controllers\MguserController.php(135): MguserController->render()
+#3 unknown(0): MguserController->actionCreateToSelect()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): MguserController->runAction()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): MguserController->filterAccessControl()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): MguserController->runActionWithFilters()
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): MguserController->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=mguser/createToSelect&id=1
+in C:\xampp\htdocs\bsm\protected\views\mguser\select_pegawai.php (3)
+in C:\xampp\htdocs\bsm\protected\controllers\MguserController.php (135)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/28 10:01:20 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('delete')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('proposal/delete')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?ajax=mtb-proposal-grid&id=4&r=proposal%2Fdelete
+HTTP_REFERER=http://localhost/bsm/index.php?r=proposal/report
+---

@@ -12,5 +12,5 @@ $this->menu=array(
   Berhasil Vote
 </div>
 <div class="form-actions">
-    <?php echo CHtml::link('Back To Home',array('site/'), array('class'=>'btn btn-primary')); ?>        
+    <?php echo CHtml::link('Back To Home',array('site/'), array('class'=>'btn btn-success')); ?>        
 </div>

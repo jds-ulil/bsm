@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Jabatan <?php echo $model->id_jabatan; ?></h1>
+<h1 class="loginHead">Update Jabatan <?php echo $model->id_jabatan; ?></h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

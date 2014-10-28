@@ -47,7 +47,7 @@ $this->menu=array(
             <?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'link',
 			'url'=>array('apply','id'=>$model->nasabah_id),
-			'type'=>'primary',
+			'type'=>'success',
 			'label'=>'Apply',
 		)); ?>		
         </div>

@@ -4,10 +4,11 @@ $this->breadcrumbs=array(
     $model_pelunasan->nama_nasabah
 );
 ?>
-<h3>Data Pelunasan</h3>
+<BR />
  <?php  $this->widget('bootstrap.widgets.TbDetailView',array(
 	'type'=>'striped',
 	'data'=>$model_pelunasan,
+    'header'=>'DATA PELUNASAN',
 	'attributes'=>array(
                 array(
                 'name'=>'Tgl Pelunasan',

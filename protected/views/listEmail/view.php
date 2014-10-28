@@ -12,10 +12,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Detail Email #<?php echo $model->nama_pengguna; ?></h1>
-
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
+    'header'=>"DETAIL EMAIL",
 	'attributes'=>array(
 		//'id_list_email',
 		'email_address',

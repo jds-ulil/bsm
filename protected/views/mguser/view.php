@@ -15,11 +15,10 @@ $this->menu=array(
 );
 ?>
 
-<h1>Detail User #<?php echo $model->user_name; ?></h1>
-
-
+<br />
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 //	'type'=>'bordered striped',
+    'header'=>"Detail ".$mj,
 	'data'=>$model,
 	'attributes'=>array(
 		//'user_id',

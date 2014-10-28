@@ -6,10 +6,10 @@
 ?>
 <h1 class="loginHead">Nasabah Ditolak</h1>
 
-<h3>Data Penolakan</h3>
  <?php  $this->widget('bootstrap.widgets.TbDetailView',array(
 	'type'=>'striped',
 	'data'=>$model_tolak,
+    'header' => "DATA PENOLAKAN",
 	'attributes'=>array(                
 		array(
                 'name'=>'Tgl Penolakan',

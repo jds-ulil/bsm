@@ -15,6 +15,7 @@ $this->menu=array(
 	'id'=>'jabatan-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+    'type'=>'bordered striped',
 	'columns'=>array(
 		//'id_jabatan',
 		'nama_jabatan',

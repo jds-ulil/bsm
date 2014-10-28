@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Edit pegawai <?php echo $model->nama; ?></h1>
+<h1 class="loginHead">Edit pegawai <?php echo $model->nama; ?></h1>
 
 <?php echo $this->renderPartial('_form',
         array('model'=>$model,

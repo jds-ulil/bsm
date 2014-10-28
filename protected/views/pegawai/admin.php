@@ -41,7 +41,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'id'=>'pegawai-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-        'filterPosition'=>'footer',
+    'filterPosition'=>'footer',
+    'type'=>'bordered striped',
 	'columns'=>array(
 		'pegawai_id',
 		'no_urut',

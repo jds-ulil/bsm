@@ -33,5 +33,5 @@
 </div><!-- search-form --> 
     <div class="form-actions">        
         <?php  echo CHtml::link('Cancel Nasabah Tolak', Yii::app()->createUrl('tolak/tocancel',array('id'=>$model_tolak->tolak_id)), array('class' => 'btn btn-warning '));	 ?>		
-        <?php  echo CHtml::link('Approve Nasabah Tolak', Yii::app()->createUrl('tolak/toapprove',array('id'=>$model_tolak->tolak_id)), array('class' => 'btn btn-primary'));	 ?>		
+        <?php  echo CHtml::link('Approve Nasabah Tolak', Yii::app()->createUrl('tolak/toapprove',array('id'=>$model_tolak->tolak_id)), array('class' => 'btn btn-success'));	 ?>		
 	</div>

@@ -13,10 +13,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Lihat Segmen</h1>
-
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
+    'header' => 'DETAIL SEGMEN',
 	'attributes'=>array(
 		//'segmen_id',
 		'nama',

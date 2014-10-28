@@ -21,7 +21,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Pegawai</h1>
+<h1 class="loginHead">Pegawai</h1>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -37,6 +37,7 @@ $('.search-form form').submit(function(){
 	'id'=>'pegawai-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+    'type'=>'bordered striped',
     'filterPosition'=>'footer',
 	'columns'=>array(
 		//'pegawai_id',

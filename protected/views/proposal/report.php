@@ -24,7 +24,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1 class="loginHead">Berdasarkan</h1>
+<h1 class="loginHead">Kriteria Pencarian</h1>
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model_proposal'=>$model_proposal,
@@ -33,6 +33,16 @@ $('.search-form form').submit(function(){
         'listUnit' => $listUnit,
 )); ?>
 </div><!-- search-form -->
+
+<?php
+if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval')) {
+$template = "{view}{delete}";
+} else {
+    $template = "{view}";
+}
+?>
+
+
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mtb-proposal-grid',
 	'dataProvider'=>$model_proposal->search(),	
@@ -60,13 +70,13 @@ $('.search-form form').submit(function(){
 //        array(
 //            'name'=>'Plafon',
 //            'value'=>'Yii::app()->numberFormatter->formatCurrency($data->plafon, "IDR")',
-//        ),
+//        ),      
         array(
         'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-			'template'=>'{view}{delete}',
-                        'viewButtonLabel' => "Detail Proposal",
-                        'viewButtonUrl'=>'Yii::app()->createUrl("/proposal/detail", array("id" =>$data[\'proposal_id\']))',
+			'template'=>$template,
+            'viewButtonLabel' => "Detail Proposal",
+            'viewButtonUrl'=>'Yii::app()->createUrl("/proposal/detail", array("id" =>$data[\'proposal_id\']))',
 			'htmlOptions' => array(
 			  //  'width' => '6%',
 			  //  'align' => 'center',

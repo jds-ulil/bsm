@@ -49,7 +49,7 @@
     <span class="pull-right">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
-			'type'=>'primary',
+			'type'=>'success',
 			'label'=>'Check All',
 		)); ?>		
         </span>

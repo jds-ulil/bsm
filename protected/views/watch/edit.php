@@ -87,6 +87,6 @@ $this->breadcrumbs=array(
 )); ?>
 
 <div class="form-actions">
-    <?php echo CHtml::link('Simpan',array('watch/save'), array('class'=>'btn btn-primary')); ?>        
+    <?php echo CHtml::link('Simpan',array('watch/save'), array('class'=>'btn btn-success')); ?>        
 </div>
 

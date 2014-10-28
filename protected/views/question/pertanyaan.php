@@ -18,6 +18,7 @@ $this->menu=array(
 	'dataProvider'=>$model_soal->search(),
 	'filter'=>$model_soal,
 	'filterPosition'=>'footer',
+    'type'=>'bordered striped',
 	'columns'=>array(
 		'soal',               
                 'pilihan_jawaban',

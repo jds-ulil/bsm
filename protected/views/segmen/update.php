@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Segmen <?php echo $model->segmen_id; ?></h1>
+<h1 class="loginHead">Update Segmen <?php echo $model->segmen_id; ?></h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

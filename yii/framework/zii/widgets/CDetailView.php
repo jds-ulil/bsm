@@ -44,6 +44,8 @@
  */
 class CDetailView extends CWidget
 {
+    public $header;
+    
 	private $_formatter;
 
 	/**
@@ -177,6 +179,9 @@ class CDetailView extends CWidget
 
 		foreach($this->attributes as $attribute)
 		{
+            if ($i==0 && !empty($this->header)) {
+                echo "<tr><tr><td colspan='2' class='detail-header'><b>$this->header</b></td></tr>\n";
+            }
 			if(is_string($attribute))
 			{
 				if(!preg_match('/^([\w\.]+)(:(\w*))?(:(.*))?$/',$attribute,$matches))

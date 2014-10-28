@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Tambah Unit Kerja</h1>
+<h1 class="loginHead">Tambah Unit Kerja</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

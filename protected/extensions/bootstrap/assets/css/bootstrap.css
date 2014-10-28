@@ -233,7 +233,7 @@ body {
 }
 
 a {
-  color: #0088cc;
+  color: #005643;
   text-decoration: none;
 }
 
@@ -2014,7 +2014,7 @@ table {
   line-height: 20px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ffffff;
 }
 
 .table th {
@@ -2142,7 +2142,11 @@ table {
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: #f9f9f9;
+  background-color: #E0F1E8;
+}
+.table-striped tbody > tr:nth-child(even) > td,
+.table-striped tbody > tr:nth-child(even) > th {
+  background-color: #EBF2EF;
 }
 
 .table-hover tbody tr:hover > td,

@@ -213,7 +213,7 @@ $('.btn-info').click(function(){
     <div class="form-actions">
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
-			'type'=>'primary',
+			'type'=>'success',
 			'label'=>'Simpan',
 		)); ?>
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

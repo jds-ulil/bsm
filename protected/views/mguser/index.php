@@ -39,7 +39,8 @@ $('.search-form form').submit(function(){
 	'id'=>'mtb-user-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'filterPosition'=>'footer',    
+	'filterPosition'=>'footer',   
+    'type'=>'bordered striped',
 	'columns'=>array(
 	//	'user_id',
 		'user_name',

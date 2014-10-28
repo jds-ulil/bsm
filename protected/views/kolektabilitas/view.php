@@ -12,10 +12,10 @@ $this->menu=array(
 );
 ?>
 
-<h1>Detail Kolektibilitas</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
+    'header'=>'DETAIL KOLEKTIBILITAS',
 	'attributes'=>array(
 		//'kolektabilitas_id',
 		'nama',

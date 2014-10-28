@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Pegawai Baru</h1>
+<h1 class="loginHead">Pegawai Baru</h1>
 
 <?php echo $this->renderPartial('_form', 
         array(

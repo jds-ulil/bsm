@@ -12,5 +12,5 @@ $this->menu=array(
   Data Berhasil Disimpan
 </div>
 <div class="form-actions">
-    <?php echo CHtml::link('Input Wathclist',array('watch/input'), array('class'=>'btn btn-primary')); ?>        
+    <?php echo CHtml::link('Input Wathclist',array('watch/input'), array('class'=>'btn btn-success')); ?>        
 </div>

@@ -8,13 +8,14 @@ $this->menu=array(
 );
 ?>
 
-<h1>List Jabatan</h1>
+<h1 class="loginHead">List Jabatan</h1>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'jabatan-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'filterPosition'=>'footer',
+    'type'=>'bordered striped',
 	'columns'=>array(
 		//'id_jabatan',
 		'nama_jabatan',
