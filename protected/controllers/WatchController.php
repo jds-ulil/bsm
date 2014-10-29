@@ -91,6 +91,16 @@ class WatchController extends Controller
         if(isset($_GET['watchlist'])){
                 $model->attributes=$_GET['watchlist'];
                 }
+        if (isset($_POST['DeleteButton'])) {
+            if (isset($_POST['selectedIds']))
+            {
+                foreach ($_POST['selectedIds'] as $id)
+                {
+                    $model_watchlist = $this->loadModel($id);
+                    $model_watchlist->delete();
+                }
+            }
+        }
         $this->render('report',array(
             'model' => $model,
         ));
@@ -117,13 +127,13 @@ class WatchController extends Controller
             $model = new watchlist;
             $model->no_loan = $record->no_loan;
             $model->nama_nasabah = $record->nama_nasabah;
-            $model->total_tunggakan = str_replace(',', '', $record->total_tunggakan);
+            $model->total_tunggakan = str_replace('.', '', $record->total_tunggakan);
             $model->kolektibilitas = $record->kolektibilitas;
             $model->jenis_produk = $record->jenis_produk;
             $model->no_CIF = $record->no_CIF;
             $model->no_rekening_angsuran = $record->no_rekening_angsuran;
-            $model->plafon = str_replace(',', '', $record->plafon);
-            $model->os_pokok = str_replace(',', '', $record->os_pokok);
+            $model->plafon = str_replace('.', '', $record->plafon);
+            $model->os_pokok = str_replace('.', '', $record->os_pokok);
             $model->angsuran_bulanan = str_replace(',', '', $record->angsuran_bulanan);
             $model->persentase_bagi_hasil = $record->persentase_bagi_hasil;
             $model->usaha_nasabah = $record->usaha_nasabah;
