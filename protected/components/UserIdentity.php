@@ -19,6 +19,7 @@ class UserIdentity extends CUserIdentity
     public function authenticate()
     {
         $record=User::model()->find("SUBSTR(email_address,1,INSTR(email_address, '@')) = '".$this->username."'");
+        $alert = setting::model()->findByPk(1);
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if(!CPasswordHelper::verifyPassword($this->password, $record->password)){
@@ -30,6 +31,7 @@ class UserIdentity extends CUserIdentity
             $this->setState('roles', $record->hak_akses);
             $this->setState('name', $record->user_name);                        
             $this->setState('id_pegawai', $record->id_pegawai);                        
+            $this->setState('alertSign', $alert->alert_status);                        
             $this->errorCode=self::ERROR_NONE;
         }
         return !$this->errorCode;

@@ -28,7 +28,7 @@ class QuestionController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array( 'pertanyaan', 'create', 'view',
-                                        'delete','update'),
+                                        'delete','update','logAlert'),
 				'roles'=>array('admin'),
 			),			
 			array('allow',  // deny all users
@@ -45,6 +45,19 @@ class QuestionController extends Controller
 			),
 		);
 	}
+        public function actionLogAlert() {
+            $id = 1;
+            $model = setting::model()->findByPk($id);
+            if(isset($_POST['setting'])){
+                $model->attributes = $_POST['setting'];
+                if ($model->save()) {
+                    Yii::app()->user->setFlash('success', "Sukses Update");
+                }
+            }
+            $this->render('LAset', array(
+                'model' => $model,
+            ));
+        }
         
         public function actionPrint(){
             $model_jawab = new voteJawab;           

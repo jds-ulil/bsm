@@ -202,6 +202,20 @@ CREATE TABLE `mtb_segmen` (
 
 insert  into `mtb_segmen`(`segmen_id`,`nama`) values (1,'Komersial'),(4,'Konsumer'),(5,'Small'),(6,'Mikro'),(7,'Gadai');
 
+/*Table structure for table `mtb_setting` */
+
+DROP TABLE IF EXISTS `mtb_setting`;
+
+CREATE TABLE `mtb_setting` (
+  `id` int(1) NOT NULL,
+  `alert_status` varchar(5) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `mtb_setting` */
+
+insert  into `mtb_setting`(`id`,`alert_status`) values (1,'0');
+
 /*Table structure for table `mtb_status_nasabah` */
 
 DROP TABLE IF EXISTS `mtb_status_nasabah`;

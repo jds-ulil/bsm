@@ -110,7 +110,22 @@
         <?php endif?>
 
         <?php echo $content; ?>
-
+        <?php $la = isset(Yii::app()->user->alertSign)?Yii::app()->user->alertSign:0; ?>
+        <script type="text/javascript"> 
+        $(document).ready(function(){
+                var x = 0;    
+                $( "li#xyz" ).mouseover(
+                  function() {        
+                      if ( <?php echo $la ?>  && x == 0) {
+                    alert('Terima kasih telah menggunakan Aplikasi SNkP ini.Mohon untuk dapat mengisi kuisioner terlebih dahulu sebelum logout sebagai masukan bagi kami untuk mengetahui manfaat dan efektivitas implementasi aplikasi ini bagi unit kerja Bapak/Ibu.');
+                    x = 1;
+                    }            
+                    return false;
+                  }                  
+                );
+        });
+        </script>
+            
         <div class="clear"></div>
     </div><!-- page -->
     <div id="push"></div>
@@ -128,21 +143,5 @@
   </div> <!-- /container -->	
 		
 </div><!-- footer -->
-<?php $hin =  Yii::app()->user->checkAccess('inputter')==''?0:1; ?>
-<?php $hap =  Yii::app()->user->checkAccess('approval')==''?0:1; ?>
-<script type="text/javascript"> 
-$(document).ready(function(){
-        var x = 0;    
-        $( "li#xyz" ).mouseover(
-          function() {
-              if ( ( <?php echo $hin ?> || <?php echo $hap ?> ) && x == 0) {
-            alert('Terima kasih telah menggunakan Aplikasi SNkP ini.Mohon untuk dapat mengisi kuisioner terlebih dahulu sebelum logout sebagai masukan bagi kami untuk mengetahui manfaat dan efektivitas implementasi aplikasi ini bagi unit kerja Bapak/Ibu.');
-            x = 1;
-            }            
-            return false;
-          }                  
-        );
-});
-    </script>
 </body>    
 </html>

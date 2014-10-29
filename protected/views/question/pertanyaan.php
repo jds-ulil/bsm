@@ -5,6 +5,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Pertanyaan Baru','url'=>array('create')),	
+	array('label'=>'Logout alert','url'=>array('logAlert')),	
 );
 
 ?>

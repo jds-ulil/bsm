@@ -49,13 +49,10 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-                $total_proposal = proposal::model()->getTotalProposal();
-                $total_tolak = tolak::model()->getTotalTolak();
+        
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index', array(
-                    "total_proposal" =>$total_proposal,
-                    "total_tolak" =>$total_tolak,
+		$this->render('index', array(                    
                 ));
 	}
 
