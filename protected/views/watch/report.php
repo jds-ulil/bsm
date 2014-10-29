@@ -30,23 +30,31 @@ $(document).ready(function(){
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-
+<?php echo CHtml::beginForm(); ?>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mtb-proposal-grid',
 	'dataProvider'=>$model->search(),	
-        'type'=>'bordered striped',
+    'selectableRows' => 2,
+    'type'=>'bordered striped',
 	'columns'=>array(	
+            array(
+                'id' => 'selectedIds',
+                'class' => 'CCheckBoxColumn',
+                'footer' =>  CHtml::submitButton('Hapus', 
+                        array('name' => 'DeleteButton',
+                            'confirm' => 'Are you sure you want to permanently delete these comments?')),
+            ),
             'nama_nasabah',
-            'kolektibilitas',            
-             array(
-                'name'=>'Plafon',
-                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->plafon, "Rp ")',
-                ),
+            'kolektibilitas',              
              array(
                 'name'=>'OS Pokok',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->os_pokok, "Rp ")',
                 ),            
-            'persentase_bagi_hasil',
+            'no_rekening_angsuran',
+            array(
+                'name'=>'Total Tunggakan',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total_tunggakan, "Rp ")',
+                ),            
             array(
             'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
@@ -60,6 +68,7 @@ $(document).ready(function(){
             ),
         )	
 )); ?>
+<?php echo CHtml::endForm(); ?>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'id'=>'proposal-print',
 	'action'=>Yii::app()->createUrl('watch/print'),

@@ -63,9 +63,8 @@ class WatchController extends Controller
                 $data[]=array(  'index'=>$index,
                                 'nama_nasabah'=>$record->nama_nasabah,
                                 'kolektibilitas'=>$record->kolektibilitas,
-                                'plafon'=>Yii::app()->numberFormatter->formatCurrency($record->plafon,""),
-                                'os_pokok'=>Yii::app()->numberFormatter->formatCurrency($record->os_pokok,""),
-                                'persen'=>$record->persentase_bagi_hasil,                                
+                                'total_tunggakan'=>Yii::app()->numberFormatter->formatCurrency($record->total_tunggakan,""),
+                                'os_pokok'=>Yii::app()->numberFormatter->formatCurrency($record->os_pokok,""),                           
                         );
             }
         }
