@@ -40,6 +40,12 @@ foreach ($data as $key => $value) {
     $columns[] = $col;
 }
 
+$col = array();
+$col[] = array('text' => 'Jumlah', 'width' => '70', 'height' => '5', 'align' => 'R', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => '', 'fillcolor' => '255,255,255', 'textcolor' => '0,0,0', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');       
+$col[] = array('text' => $total, 'width' => '40', 'height' => '5', 'align' => 'R', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => 'B', 'fillcolor' => '255,255,255', 'textcolor' => '0,0,0', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');       
+$col[] = array('text' => '', 'width' => '70', 'height' => '5', 'align' => 'R', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => '', 'fillcolor' => '255,255,255', 'textcolor' => '0,0,0', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');       
+$columns[] = $col;
+
 $pdf->SetY($pdf->GetY()+5);
 
 $pdf->WriteTable($columns); 

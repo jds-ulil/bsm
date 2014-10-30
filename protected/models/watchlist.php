@@ -29,6 +29,10 @@ class watchlist extends CActiveRecord
     public $from_persen;
     public $to_persen;
     public $unit_kerja;
+    
+    public $from_date;
+    public $to_date;
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -51,15 +55,16 @@ class watchlist extends CActiveRecord
                                     'tooLarge'=>'The file was larger than 2MB. Please upload a smaller file.',
                                     'allowEmpty' => true,
                             ),	                        
-                        array('unit_kerja, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
+                array('tgl_upload, unit_kerja, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
 			array('no_loan, total_tunggakan, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan', 'length', 'max'=>20),
 			array('nama_nasabah, no_CIF', 'length', 'max'=>50),
+            array('from_date, to_date', 'safe'),
 			array('kolektibilitas', 'length', 'max'=>3),
 			array('jenis_produk, usaha_nasabah, tujuan_pembiayaan', 'length', 'max'=>100),
 			array('persentase_bagi_hasil, marketing', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('unit_kerja, marketing, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('from_date, to_date, tgl_upload, unit_kerja, marketing, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -102,6 +107,9 @@ class watchlist extends CActiveRecord
                         'from_persen' => "Mulai Dari",
                         'to_persen' => "Sampai Dengan",      
                         'marketing' => 'Pegawai',
+                        'from_date' => "Dari Tanggal",
+                        'to_date' => "Sampai Dengan",
+            'tgl_upload' => "Tanggal Upload",
 		);
 	}
 
@@ -139,6 +147,12 @@ class watchlist extends CActiveRecord
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
 
+        
+                if (!empty($this->tgl_upload)) {
+                    $this->tgl_upload = $this->toDBDate($this->tgl_upload);                
+                    $criteria->compare('tgl_upload',$this->tgl_upload,true);
+                    }
+                    
                  if (!empty($this->from_plafon)) {
                     $this->from_plafon = str_replace(',','', $this->from_plafon);
                     $this->from_plafon = intval($this->from_plafon);
@@ -164,6 +178,15 @@ class watchlist extends CActiveRecord
                 }
                 if (!empty($this->to_persen)) {                    
                     $criteria->addCondition("persentase_bagi_hasil <= $this->to_persen ");		
+                }
+                
+                if (!empty($this->from_date)) {                
+                    $reFromDate = $this->toDBDate($this->from_date);                
+                    $criteria->addCondition('tgl_upload >= "'.$reFromDate.'" ');                
+                }
+                if (!empty($this->to_date)) {
+                    $reToDate = $this->toDBDate($this->to_date);                
+                    $criteria->addCondition('tgl_upload <= "'.$reToDate.'" ');		
                 }
                 
                 if(!empty($this->unit_kerja)){
@@ -196,7 +219,12 @@ class watchlist extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
-
+        
+                if (!empty($this->tgl_upload)) {
+                    $this->tgl_upload = $this->toDBDate($this->tgl_upload);                
+                    $criteria->compare('tgl_upload',$this->tgl_upload,true);
+                    }
+                    
                  if (!empty($this->from_plafon)) {
                     $this->from_plafon = str_replace(',','', $this->from_plafon);
                     $this->from_plafon = intval($this->from_plafon);
@@ -224,6 +252,15 @@ class watchlist extends CActiveRecord
                     $criteria->addCondition("persentase_bagi_hasil <= $this->to_persen ");		
                 }
                 
+                if (!empty($this->from_date)) {                
+                    $reFromDate = $this->toDBDate($this->from_date);                
+                    $criteria->addCondition('tgl_upload >= "'.$reFromDate.'" ');                
+                }
+                if (!empty($this->to_date)) {
+                    $reToDate = $this->toDBDate($this->to_date);                
+                    $criteria->addCondition('tgl_upload <= "'.$reToDate.'" ');		
+                }
+                
                 if(!empty($this->unit_kerja)){
                 $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = t.marketing ';
                 $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
@@ -236,6 +273,20 @@ class watchlist extends CActiveRecord
 		));
 	}
 
+    
+    public function search_input()
+	{        
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+         
+		$criteria->group = "tgl_upload";
+                
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -246,4 +297,20 @@ class watchlist extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        }
 }

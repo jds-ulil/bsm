@@ -31,7 +31,8 @@ class WatchController extends Controller
 				'roles'=>array('inputter'),
 			),							
 			array('allow',  // deny all users
-                                'actions'=>array('updateAttribute','report','delete','detail','print'),
+                                'actions'=>array('updateAttribute','report','delete','detail','print','deleteByDate', 'updateByDate'
+                                    ,'updateAttributeReal'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -42,7 +43,10 @@ class WatchController extends Controller
     public function actions() {
         return array(
             'updateAttribute' => array(
-		'class' => 'application.extensions.EJEditable.actions.UpdateAttributeAction',
+                'class' => 'application.extensions.EJEditable.actions.UpdateAttributeAction',
+            ),
+            'updateAttributeReal' => array(
+                'class' => 'application.extensions.EJEditable.actions.UpdateAttributeActionReal',
             ),
         );
     } 
@@ -51,6 +55,7 @@ class WatchController extends Controller
         $data = array();
         $index = 0;
         $unitKerja = array();
+        $total = 0;
         
         $model = new watchlist('search');
         $model->unsetAttributes();
@@ -61,6 +66,7 @@ class WatchController extends Controller
              
             foreach($dataProv->getData() as $record) {
                 $index++;
+                $total = $total + $record->os_pokok;
                 $data[]=array(  'index'=>$index,
                                 'nama_nasabah'=>$record->nama_nasabah,
                                 'kolektibilitas'=>$record->kolektibilitas,
@@ -69,6 +75,7 @@ class WatchController extends Controller
                         );
             }
         }
+        $total = Yii::app()->numberFormatter->formatCurrency($total,"");
         if(!empty($model->unit_kerja)) {
             $unitKerja = array($model->unit_kerja);
         }
@@ -84,6 +91,7 @@ class WatchController extends Controller
             'model' => $model,
             'data' => $data,
             'unitKerja' => $unitKerja,
+            'total' => $total,
         ));
     }
     
@@ -145,6 +153,7 @@ class WatchController extends Controller
             $model->usaha_nasabah = $record->usaha_nasabah;
             $model->tujuan_pembiayaan = $record->tujuan_pembiayaan;
             $model->marketing = $record->marketing;
+            $model->tgl_upload = $record->tgl_upload;
             if(!$model->save()) {
                 print_r($model->getErrors());
                 break;
@@ -161,11 +170,28 @@ class WatchController extends Controller
             'model_temp' => $model_temp,
         ));
     }
+    
+    public function actionDeleteByDate ($date) {
+        $date = $this->toDBDate($date);      
+        
+        watchlist::model()->deleteAll('`tgl_upload` = :tgl_upload',array(
+            ':tgl_upload'=>$date));        
+    }
+    
+    public function actionUpdateByDate ($date) {
+        
+        $date = $this->toDBDate($date); 
+        $model = new watchlist("search");
+        $model->tgl_upload = $date;
+        $this->render('edit_date',array(
+            'model'=>$model,
+        ));       
+    }
             
     public function actionInput(){
         
         $model = new watchlist();
-        
+        $model_search = new watchlist();
         if(isset($_POST['watchlist']))
             {    
               $model->attributes=$_POST['watchlist'];
@@ -218,6 +244,9 @@ class WatchController extends Controller
                         
                         $model_temp->marketing = Yii::app()->user->id_pegawai;
                         
+                        if(isset($model->tgl_upload))
+                        $model_temp->tgl_upload = $this->toDBDate($model->tgl_upload);
+                        
                         $model_temp->save();
                         $arrData[] = $arrLine;                                                
                         }while( ($line = fgetcsv($fp, 1000, ";")) != FALSE);
@@ -228,7 +257,8 @@ class WatchController extends Controller
                     return;
             }  
             $this->render('input',array(
-                'model'=>$model,                
+                'model'=>$model,  
+                'model_search' => $model_search,
                 ));
     }
     
@@ -239,4 +269,19 @@ class WatchController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        }
 }

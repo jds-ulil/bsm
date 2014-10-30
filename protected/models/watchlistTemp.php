@@ -42,9 +42,10 @@ class watchlistTemp extends CActiveRecord
 			array('kolektibilitas', 'length', 'max'=>3),
 			array('jenis_produk, usaha_nasabah, tujuan_pembiayaan', 'length', 'max'=>100),
 			array('persentase_bagi_hasil, marketing', 'length', 'max'=>5),            
+			array('tgl_upload', 'safe'),            
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('marketing, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('tgl_upload, marketing, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,6 +81,7 @@ class watchlistTemp extends CActiveRecord
 			'usaha_nasabah' => 'Usaha Nasabah',
 			'tujuan_pembiayaan' => 'Tujuan Pembiayaan',
             'marketing' => 'Pegawai',
+            'tgl_upload' => "Tanggal Upload",
 		);
 	}
 
@@ -116,6 +118,11 @@ class watchlistTemp extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+        
+        if (!empty($this->tgl_upload)) {
+                $this->tgl_upload = $this->toDBDate($this->tgl_upload);                
+                $criteria->compare('tgl_upload',$this->tgl_upload,true);
+            }
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -142,6 +149,11 @@ class watchlistTemp extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+        
+        if (!empty($this->tgl_upload)) {
+               $this->tgl_upload = $this->toDBDate($this->tgl_upload);                
+               $criteria->compare('tgl_upload',$this->tgl_upload,true);
+           }
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -159,4 +171,19 @@ class watchlistTemp extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        }
 }

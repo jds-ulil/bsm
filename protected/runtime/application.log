@@ -736,3 +736,296 @@ REQUEST_URI=/bsm/index.php?r=watch/print
 in C:\xampp\htdocs\bsm\protected\views\watch\print.php (4)
 in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (86)
 in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 04:02:28 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (171)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 04:03:51 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (172)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 06:00:50 [error] [php] Undefined variable: template (C:\xampp\htdocs\bsm\protected\views\watch\input.php:81)
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): WatchController->renderFile()
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): WatchController->renderPartial()
+#2 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(237): WatchController->render()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(49): WatchController->actionInput()
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): WatchController->runAction()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): WatchController->filterAccessControl()
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): WatchController->runActionWithFilters()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): WatchController->run()
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\bsm\index.php(15): CWebApplication->run()
+REQUEST_URI=/bsm/index.php?r=watch/input
+in C:\xampp\htdocs\bsm\protected\views\watch\input.php (81)
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (237)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 07:07:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Tidak bisa mengurai request "watchlist/deleteByDate"' in C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watchlist/delet...')
+#1 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/bsm/index.php?ajax=unitkerja-grid&date=2014-10-29&r=watchlist%2FdeleteByDate
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/input
+---
+2014/10/30 07:07:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Tidak bisa mengurai request "watchlist/deleteByDate"' in C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watchlist/delet...')
+#1 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/bsm/index.php?ajax=unitkerja-grid&date=2014-10-29&r=watchlist%2FdeleteByDate
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/input
+---
+2014/10/30 07:29:41 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (178)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 07:30:30 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (178)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 07:30:54 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (178)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 07:39:07 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (183)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 08:55:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php:260
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(179): WatchController->loadModel('edit_date', Array)
+#1 [internal function]: WatchController->actionUpdateByDate('2014-11-01')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(WatchController), Array)
+#3 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(WatchController), Object(ReflectionMethod), Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateByDate')
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateByD...')
+#14 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/input
+---
+2014/10/30 09:04:41 [error] [exception.CException] exception 'CException' with message 'Properti "EJEditable.modelClass" tidak didefinisikan.' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('modelClass', 'watchlist')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(WatchController), 'application.ext...', Array)
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.ext...', Array)
+#3 C:\xampp\htdocs\bsm\protected\views\watch\edit_date.php(9): CBaseController->widget('application.ext...', Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('edit_date', Array, true)
+#8 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(179): CController->render('edit_date', Array)
+#9 [internal function]: WatchController->actionUpdateByDate('2014-11-01')
+#10 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(WatchController), Array)
+#11 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(WatchController), Object(ReflectionMethod), Array)
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateByDate')
+#21 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateByD...')
+#22 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:08:58 [error] [exception.CException] exception 'CException' with message 'WatchController dan behaviornya tidak memiliki method ataupun closure bernama "getController"' in C:\xampp\htdocs\bsm\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(174): CComponent->__call('getController', Array)
+#1 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(174): WatchController->getController()
+#2 [internal function]: WatchController->actionUpdateByDate('2014-11-01')
+#3 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(WatchController), Array)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(WatchController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateByDate')
+#14 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateByD...')
+#15 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:13:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "updateAttributeReal" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('updateAttribute...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute...')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttributeReal
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:13:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "updateAttributeReal" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('updateAttribute...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute...')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttributeReal
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:15:28 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(UpdateAttributeActionReal), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttributeReal
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:16:10 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(UpdateAttributeActionReal), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttributeReal
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:16:56 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(UpdateAttributeActionReal), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttributeReal
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:17:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(UpdateAttributeActionReal), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateAttribute...')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateAtt...')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateAttributeReal
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/30 09:28:12 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:28:12 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:28:20 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:28:20 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:20 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:20 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:22 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:22 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:23 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:23 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:24 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:24 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:51 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:51 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:57 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:29:57 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:30:22 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:30:22 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:30:28 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:30:28 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:32:00 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:32:00 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:32:08 [warning] [application] Gagal mengeset atribut unsafe "from_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 09:32:08 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
+in C:\xampp\htdocs\bsm\index.php (15)
