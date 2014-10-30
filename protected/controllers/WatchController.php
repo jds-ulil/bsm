@@ -27,12 +27,15 @@ class WatchController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('input','edit','save','complete'),
+				'actions'=>array('input','edit','save','complete','updateByDate'),
 				'roles'=>array('inputter'),
 			),							
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('deleteByDate'),
+				'roles'=>array('admin', 'approval'),
+			),							
 			array('allow',  // deny all users
-                                'actions'=>array('updateAttribute','report','delete','detail','print','deleteByDate', 'updateByDate'
-                                    ,'updateAttributeReal'),
+                'actions'=>array('input','updateAttribute','report','delete','detail','print', 'updateAttributeReal'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users

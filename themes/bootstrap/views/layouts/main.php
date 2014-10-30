@@ -44,6 +44,11 @@
 								    array('label'=>'Nasabah Wathclist Akhir Bulan', 'url'=>array('watch/input',)),
                                                                     )
 							),																					
+							array('label'=>'Input Data', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin'), 
+								'items'=>array(								    
+								    array('label'=>'Nasabah Wathclist Akhir Bulan', 'url'=>array('watch/input',)),
+                                                )
+							),																					
 							array('label'=>'Approval', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin'),
 								'items'=>array(
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),                                                             

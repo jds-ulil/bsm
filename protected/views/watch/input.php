@@ -68,7 +68,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </fieldset>
  
 <?php $this->endWidget(); ?>
- 
+<?php
+if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval')) {
+$template = "{delete}";
+} else {
+    $template = "{update}";
+}
+?>
 <div class="row">
     <div class="span6 offset1">   
  <?php $this->widget('bootstrap.widgets.TbGridView',array(
@@ -88,7 +94,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         array(
         'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-            'template'=>"{update}{delete}",
+            'template'=>$template,
             'updateButtonLabel' => "Edit",
             'deleteButtonLabel' => "Hapus",
             'updateButtonUrl'=>'Yii::app()->createUrl("/watch/updateByDate", array("date" =>$data[\'tgl_upload\']))',
