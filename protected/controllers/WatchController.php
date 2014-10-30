@@ -50,6 +50,7 @@ class WatchController extends Controller
     public function actionPrint(){        
         $data = array();
         $index = 0;
+        $unitKerja = array();
         
         $model = new watchlist('search');
         $model->unsetAttributes();
@@ -68,7 +69,9 @@ class WatchController extends Controller
                         );
             }
         }
-        
+        if(!empty($model->unit_kerja)) {
+            $unitKerja = array($model->unit_kerja);
+        }
         $model->from_plafon = empty($model->from_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model->from_plafon,"Rp ");
         $model->to_plafon = empty($model->to_plafon)?' - ':Yii::app()->numberFormatter->formatCurrency($model->to_plafon,"Rp ");
         $model->from_os = empty($model->from_os)?' - ':Yii::app()->numberFormatter->formatCurrency($model->from_os,"Rp ");
@@ -80,14 +83,16 @@ class WatchController extends Controller
         $this->render('print',array(
             'model' => $model,
             'data' => $data,
+            'unitKerja' => $unitKerja,
         ));
     }
     
     public function actionReport(){
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.mask.js',
                 CClientScript::POS_END);
-        
+                
         $model = new watchlist;
+        $listUnit = CHtml::listData(unitkerja::model()->findAll(), 'nama', 'nama');                         
         if(isset($_GET['watchlist'])){
                 $model->attributes=$_GET['watchlist'];
                 }
@@ -103,6 +108,7 @@ class WatchController extends Controller
         }
         $this->render('report',array(
             'model' => $model,
+            'listUnit' => $listUnit,
         ));
     }
     
@@ -138,6 +144,7 @@ class WatchController extends Controller
             $model->persentase_bagi_hasil = $record->persentase_bagi_hasil;
             $model->usaha_nasabah = $record->usaha_nasabah;
             $model->tujuan_pembiayaan = $record->tujuan_pembiayaan;
+            $model->marketing = $record->marketing;
             if(!$model->save()) {
                 print_r($model->getErrors());
                 break;
@@ -208,6 +215,8 @@ class WatchController extends Controller
                         $model_temp->usaha_nasabah = $arrLine[13];
                         if(isset($arrLine[14]))
                         $model_temp->tujuan_pembiayaan = $arrLine[14];
+                        
+                        $model_temp->marketing = Yii::app()->user->id_pegawai;
                         
                         $model_temp->save();
                         $arrData[] = $arrLine;                                                

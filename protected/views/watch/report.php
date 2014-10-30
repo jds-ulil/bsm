@@ -12,6 +12,7 @@ $('.search-form form').submit(function(){
     $('#print_kolektibilitas').val($('#watchlist_kolektibilitas').val());
     $('#print_from_persen').val($('#watchlist_from_persen').val());
     $('#print_to_persen').val($('#watchlist_to_persen').val());
+    $('#print_unit_kerja').val($('#watchlist_unit_kerja').val());
 
     $('#mtb-proposal-grid').yiiGridView('update', {
 		data: $(this).serialize()
@@ -28,6 +29,7 @@ $(document).ready(function(){
 <div class="search-form">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
+    'listUnit'=>$listUnit,
 )); ?>
 </div><!-- search-form -->
 <?php echo CHtml::beginForm(); ?>
@@ -85,6 +87,7 @@ $(document).ready(function(){
 <input name="watchlist[kolektibilitas]" id="print_kolektibilitas" type="hidden" />
 <input name="watchlist[from_persen]" id="print_from_persen" type="hidden" />
 <input name="watchlist[to_persen]" id="print_to_persen" type="hidden" />
+<input name="watchlist[unit_kerja]" id="print_unit_kerja" type="hidden" />
 <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType'=>'submit',                

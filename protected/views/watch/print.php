@@ -1,6 +1,7 @@
 <?php
 Yii::import('application.extensions.fpdf.*');	
 $pdf = new PDF_watchlist('P','mm','A4');
+$pdf->setUnitKerja($unitKerja);
 $pdf->AliasNbPages();
 $pdf->AddPage();
 

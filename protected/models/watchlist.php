@@ -28,6 +28,7 @@ class watchlist extends CActiveRecord
     public $to_os;
     public $from_persen;
     public $to_persen;
+    public $unit_kerja;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -50,15 +51,15 @@ class watchlist extends CActiveRecord
                                     'tooLarge'=>'The file was larger than 2MB. Please upload a smaller file.',
                                     'allowEmpty' => true,
                             ),	                        
-                        array('from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
+                        array('unit_kerja, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
 			array('no_loan, total_tunggakan, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan', 'length', 'max'=>20),
 			array('nama_nasabah, no_CIF', 'length', 'max'=>50),
 			array('kolektibilitas', 'length', 'max'=>3),
 			array('jenis_produk, usaha_nasabah, tujuan_pembiayaan', 'length', 'max'=>100),
-			array('persentase_bagi_hasil', 'length', 'max'=>5),
+			array('persentase_bagi_hasil, marketing', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('unit_kerja, marketing, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,7 +100,8 @@ class watchlist extends CActiveRecord
                         'from_os' => "Mulai Dari",
                         'to_os' => "Sampai Dengan",
                         'from_persen' => "Mulai Dari",
-                        'to_persen' => "Sampai Dengan",                    
+                        'to_persen' => "Sampai Dengan",      
+                        'marketing' => 'Pegawai',
 		);
 	}
 
@@ -116,11 +118,12 @@ class watchlist extends CActiveRecord
 	 * based on the search/filter conditions.
 	 */
 	public function search()
-	{
+	{        
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('marketing',$this->marketing);
 		$criteria->compare('watchlist_id',$this->watchlist_id);
 		$criteria->compare('no_loan',$this->no_loan,true);
 		$criteria->compare('nama_nasabah',$this->nama_nasabah,true);
@@ -161,6 +164,12 @@ class watchlist extends CActiveRecord
                 }
                 if (!empty($this->to_persen)) {                    
                     $criteria->addCondition("persentase_bagi_hasil <= $this->to_persen ");		
+                }
+                
+                if(!empty($this->unit_kerja)){
+                $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = t.marketing ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
+                $criteria->compare('uk.nama',$this->unit_kerja,true);
                 }
                 
 		return new CActiveDataProvider($this, array(
@@ -213,6 +222,12 @@ class watchlist extends CActiveRecord
                 }
                 if (!empty($this->to_persen)) {                    
                     $criteria->addCondition("persentase_bagi_hasil <= $this->to_persen ");		
+                }
+                
+                if(!empty($this->unit_kerja)){
+                $criteria->join.= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = t.marketing ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON mp.unit_kerja = uk.unit_kerja_id ';
+                $criteria->compare('uk.nama',$this->unit_kerja,true);
                 }
                 
 		return new CActiveDataProvider($this, array(

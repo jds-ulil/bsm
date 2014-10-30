@@ -41,10 +41,10 @@ class watchlistTemp extends CActiveRecord
 			array('nama_nasabah, no_CIF', 'length', 'max'=>50),
 			array('kolektibilitas', 'length', 'max'=>3),
 			array('jenis_produk, usaha_nasabah, tujuan_pembiayaan', 'length', 'max'=>100),
-			array('persentase_bagi_hasil', 'length', 'max'=>5),
+			array('persentase_bagi_hasil, marketing', 'length', 'max'=>5),            
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('marketing, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,6 +79,7 @@ class watchlistTemp extends CActiveRecord
 			'persentase_bagi_hasil' => 'Persentase Bagi Hasil',
 			'usaha_nasabah' => 'Usaha Nasabah',
 			'tujuan_pembiayaan' => 'Tujuan Pembiayaan',
+            'marketing' => 'Pegawai',
 		);
 	}
 
@@ -100,6 +101,7 @@ class watchlistTemp extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+        $criteria->compare('marketing',$this->marketing);
 		$criteria->compare('watchlist_id',$this->watchlist_id);
 		$criteria->compare('no_loan',$this->no_loan,true);
 		$criteria->compare('nama_nasabah',$this->nama_nasabah,true);

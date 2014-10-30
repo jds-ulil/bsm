@@ -33,6 +33,10 @@
     </div>
 
 <?php echo $form->textFieldRow($model,'kolektibilitas',array('class'=>'span6','maxlength'=>50)); ?>
+<?php echo $form->dropDownListRow($model,'unit_kerja', $listUnit, array(
+        'empty'=>'Semua Unit Kerja',
+            'class'=>'span6',
+            )); ?>
 
 <div class="control-group">
     <label for="proposal_plafon" class="control-label">Persentase Bagi Hasil</label>
