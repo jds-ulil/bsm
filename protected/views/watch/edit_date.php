@@ -34,7 +34,7 @@ $this->breadcrumbs=array(
             ),            
             array(
                 'name'=>'total_tunggakan',
-                'value'=>'$data->total_tunggakan',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total_tunggakan, "Rp ")',
                 'htmlOptions'=>array('width'=>'120'),
             ),                        
             'kolektibilitas',
