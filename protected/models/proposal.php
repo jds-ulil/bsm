@@ -325,6 +325,7 @@ class proposal extends CActiveRecord
             return true;
         }
         public function checkTolakBukuNikah($attribute_name, $params){
+            if(empty($this->$attribute_name)) return TRUE;
             $arrBukuNikahTolak = Yii::app()->db->createCommand()
                             ->select("pro.no_buku_nikah, pro.proposal_id")
                             ->from("proposal pro")                                                      
@@ -341,6 +342,7 @@ class proposal extends CActiveRecord
             return true;
         }
         public function checkNoKK($attribute_name, $params){
+            if(empty($this->$attribute_name)) return TRUE;
             $arrKKTolak = Yii::app()->db->createCommand()
                             ->select("pro.no_kartu_keluarga, pro.proposal_id")
                             ->from("proposal pro")                                                      
@@ -358,6 +360,7 @@ class proposal extends CActiveRecord
         }
         public function checkTolakKtp($attribute_name, $params)
         {
+            if(empty($this->$attribute_name)) return TRUE;
              $arrKtpKKtolak = Yii::app()->db->createCommand()
                             //->setFetchMode(PDO::FETCH_COLUMN,0)
                             ->select("pkk.no_ktp, pro.proposal_id")
