@@ -27,7 +27,7 @@ class WatchController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('input','edit','save','complete','updateByDate'),
+				'actions'=>array('input','edit','save','complete','updateByDate','addrow'),
 				'roles'=>array('inputter'),
 			),							
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -98,6 +98,24 @@ class WatchController extends Controller
         ));
     }
     
+    public function actionAddrow($dt) {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.mask.js',
+                CClientScript::POS_END);
+        $model = new watchlist;        
+        $model->setScenario('addrow');
+        if(isset($_POST['watchlist'])) {
+            $model->attributes = $_POST['watchlist'];
+            $model->tgl_upload = $this->toDBDate($dt);
+            if($model->validate() && $model->save()){
+                $this->redirect(array('updateByDate&date='.$dt));
+            }
+        }
+        $this->render('addrow',array(
+            'model' => $model,
+            'dt'=>$dt,
+        ));
+    }
+    
     public function actionReport(){
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.mask.js',
                 CClientScript::POS_END);
@@ -157,6 +175,8 @@ class WatchController extends Controller
             $model->tujuan_pembiayaan = $record->tujuan_pembiayaan;
             $model->marketing = $record->marketing;
             $model->tgl_upload = $record->tgl_upload;
+            $model->status_tunggakan = $record->status_tunggakan;
+            $model->tgl_bayar = $record->tgl_bayar;
             if(!$model->save()) {
                 print_r($model->getErrors());
                 break;
@@ -182,12 +202,13 @@ class WatchController extends Controller
     }
     
     public function actionUpdateByDate ($date) {
-        
+        $this->layout = "widthpage";
         $date = $this->toDBDate($date); 
         $model = new watchlist("search");
         $model->tgl_upload = $date;
         $this->render('edit_date',array(
             'model'=>$model,
+            'dateset' => $date,
         ));       
     }
             
@@ -226,24 +247,26 @@ class WatchController extends Controller
                         $model_temp->nama_nasabah = $arrLine[1];
                         $model_temp->total_tunggakan = $arrLine[4];
                         $model_temp->kolektibilitas = $arrLine[5];
-                        $model_temp->jenis_produk = $arrLine[6];
+                        $model_temp->status_tunggakan = $arrLine[6];
+                        $model_temp->tgl_bayar = $arrLine[7];
+                        $model_temp->jenis_produk = $arrLine[8];
                         
-                        if(isset($arrLine[7]))
-                        $model_temp->no_CIF = $arrLine[7];
-                        if(isset($arrLine[8]))
-                        $model_temp->no_rekening_angsuran = $arrLine[8];
                         if(isset($arrLine[9]))
-                        $model_temp->plafon = $arrLine[9];
+                        $model_temp->no_CIF = $arrLine[9];
                         if(isset($arrLine[10]))
-                        $model_temp->os_pokok = $arrLine[10];
+                        $model_temp->no_rekening_angsuran = $arrLine[10];
                         if(isset($arrLine[11]))
-                        $model_temp->angsuran_bulanan = $arrLine[11];
+                        $model_temp->plafon = $arrLine[11];
                         if(isset($arrLine[12]))
-                        $model_temp->persentase_bagi_hasil = $arrLine[12];
+                        $model_temp->os_pokok = $arrLine[12];
                         if(isset($arrLine[13]))
-                        $model_temp->usaha_nasabah = $arrLine[13];
+                        $model_temp->angsuran_bulanan = $arrLine[13];
                         if(isset($arrLine[14]))
-                        $model_temp->tujuan_pembiayaan = $arrLine[14];
+                        $model_temp->persentase_bagi_hasil = $arrLine[14];
+                        if(isset($arrLine[15]))
+                        $model_temp->usaha_nasabah = $arrLine[15];
+                        if(isset($arrLine[16]))
+                        $model_temp->tujuan_pembiayaan = $arrLine[16];
                         
                         $model_temp->marketing = Yii::app()->user->id_pegawai;
                         

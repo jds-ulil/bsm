@@ -42,10 +42,10 @@ class watchlistTemp extends CActiveRecord
 			array('kolektibilitas', 'length', 'max'=>3),
 			array('jenis_produk, usaha_nasabah, tujuan_pembiayaan', 'length', 'max'=>100),
 			array('persentase_bagi_hasil, marketing', 'length', 'max'=>5),            
-			array('tgl_upload', 'safe'),            
+			array('status_tunggakan, tgl_bayar, tgl_upload', 'safe'),            
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('tgl_upload, marketing, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('status_tunggakan, tgl_bayar, tgl_upload, marketing, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +82,8 @@ class watchlistTemp extends CActiveRecord
 			'tujuan_pembiayaan' => 'Tujuan Pembiayaan',
             'marketing' => 'Pegawai',
             'tgl_upload' => "Tanggal Upload",
+            'status_tunggakan' => "Status Tunggakan",
+            'tgl_bayar' => "Tgl.Bayar Tunggakan",
 		);
 	}
 
@@ -118,6 +120,8 @@ class watchlistTemp extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+		$criteria->compare('status_tunggakan',$this->status_tunggakan,true);
+		$criteria->compare('tgl_bayar',$this->tgl_bayar,true);
         
         if (!empty($this->tgl_upload)) {
                 $this->tgl_upload = $this->toDBDate($this->tgl_upload);                
@@ -149,6 +153,8 @@ class watchlistTemp extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+        $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
+		$criteria->compare('tgl_bayar',$this->tgl_bayar,true);
         
         if (!empty($this->tgl_upload)) {
                $this->tgl_upload = $this->toDBDate($this->tgl_upload);                

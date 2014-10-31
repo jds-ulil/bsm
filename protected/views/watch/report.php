@@ -46,7 +46,7 @@ $(document).ready(function(){
                 'class' => 'CCheckBoxColumn',
                 'footer' =>  CHtml::submitButton('Hapus', 
                         array('name' => 'DeleteButton',
-                            'confirm' => 'Are you sure you want to permanently delete these comments?')),
+                            'confirm' => 'Anda yakin menghapus data ini?')),
             ),
             'nama_nasabah',
             'kolektibilitas',              

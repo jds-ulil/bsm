@@ -58,13 +58,16 @@ class watchlist extends CActiveRecord
                 array('tgl_upload, unit_kerja, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
 			array('no_loan, total_tunggakan, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan', 'length', 'max'=>20),
 			array('nama_nasabah, no_CIF', 'length', 'max'=>50),
-            array('from_date, to_date', 'safe'),
+            array('status_tunggakan, tgl_bayar, from_date, to_date', 'safe'),
 			array('kolektibilitas', 'length', 'max'=>3),
 			array('jenis_produk, usaha_nasabah, tujuan_pembiayaan', 'length', 'max'=>100),
 			array('persentase_bagi_hasil, marketing', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('from_date, to_date, tgl_upload, unit_kerja, marketing, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+			array('status_tunggakan, tgl_bayar, from_date, to_date, tgl_upload, unit_kerja, marketing, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen, w_file, watchlist_id, no_loan, nama_nasabah, total_tunggakan, kolektibilitas, jenis_produk, no_CIF, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan, persentase_bagi_hasil, usaha_nasabah, tujuan_pembiayaan', 'safe', 'on'=>'search'),
+            
+            // on addrow
+            array('no_loan, nama_nasabah', 'required', 'on'=>'addrow'),
 		);
 	}
 
@@ -110,6 +113,8 @@ class watchlist extends CActiveRecord
                         'from_date' => "Dari Tanggal",
                         'to_date' => "Sampai Dengan",
             'tgl_upload' => "Tanggal Upload",
+            'status_tunggakan' => "Status Tunggakan",
+            'tgl_bayar' => "Tgl.Bayar Tunggakan",
 		);
 	}
 
@@ -146,6 +151,8 @@ class watchlist extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+        $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
+		$criteria->compare('tgl_bayar',$this->tgl_bayar,true);
 
         
                 if (!empty($this->tgl_upload)) {
@@ -219,6 +226,8 @@ class watchlist extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
+        $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
+		$criteria->compare('tgl_bayar',$this->tgl_bayar,true);
         
                 if (!empty($this->tgl_upload)) {
                     $this->tgl_upload = $this->toDBDate($this->tgl_upload);                

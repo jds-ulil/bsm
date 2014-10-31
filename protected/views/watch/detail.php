@@ -17,6 +17,8 @@
                 'value'=>Yii::app()->numberFormatter->formatCurrency($model->total_tunggakan,'Rp '),
                 ),
             'kolektibilitas',
+            'status_tunggakan',
+            'tgl_bayar',
             'jenis_produk',
             'no_CIF',
             'no_rekening_angsuran',            

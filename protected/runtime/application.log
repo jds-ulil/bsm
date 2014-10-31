@@ -1029,3 +1029,121 @@ in C:\xampp\htdocs\bsm\index.php (15)
 2014/10/30 09:32:08 [warning] [application] Gagal mengeset atribut unsafe "to_date" dari kelas "watchlist".
 in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (101)
 in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 10:24:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('input')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/input')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=watch/input
+HTTP_REFERER=http://localhost/bsm/index.php
+---
+2014/10/30 10:25:51 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (200)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/30 10:25:51 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Anda tidak diotorisasi untuk melakukan action ini.' in C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'Anda tidak diot...')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('edit')
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/edit')
+#9 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/bsm/index.php?r=watch/edit
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/input
+---
+2014/10/31 03:00:55 [warning] [application] Gagal mengeset atribut unsafe "w_file" dari kelas "watchlist".
+in C:\xampp\htdocs\bsm\protected\controllers\WatchController.php (200)
+in C:\xampp\htdocs\bsm\index.php (15)
+2014/10/31 03:17:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "addrow" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('addrow')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('addrow')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/addrow')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=watch/addrow
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/31 03:20:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "addrow" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('addrow')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('addrow')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/addrow')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=watch/addrow&0%5Bdt%5D=2014-11-01
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/31 03:21:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Sistem tidak bisa menemukan action "addrow" seperti yang diminta.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(270): CController->missingAction('addrow')
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('addrow')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/addrow')
+#3 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bsm/index.php?r=watch/addrow&dt=2014-11-01
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/31 03:29:53 [error] [exception.CException] exception 'CException' with message 'WatchController tidak bisa menemukan view "_form" yang di-request.' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\bsm\protected\views\watch\addrow.php(10): CController->renderPartial('_form', Array)
+#1 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#2 C:\xampp\htdocs\bsm\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#4 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(782): CController->renderPartial('addrow', Array, true)
+#5 C:\xampp\htdocs\bsm\protected\controllers\WatchController.php(106): CController->render('addrow', Array)
+#6 [internal function]: WatchController->actionAddrow('2014-11-01')
+#7 C:\xampp\htdocs\bsm\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(WatchController), Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(WatchController), Object(ReflectionMethod), Array)
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('addrow')
+#18 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/addrow')
+#19 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#21 {main}
+REQUEST_URI=/bsm/index.php?r=watch/addrow&dt=2014-11-01
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/updateByDate&date=2014-11-01
+---
+2014/10/31 03:30:08 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Request anda tidak valid' in C:\xampp\htdocs\bsm\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\bsm\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\bsm\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\bsm\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(282): CController->run('updateByDate')
+#9 C:\xampp\htdocs\bsm\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('watch/updateByD...')
+#10 C:\xampp\htdocs\bsm\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\bsm\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/bsm/index.php?r=watch/updateByDate&0%5Bdate%5D=2014-11-01
+HTTP_REFERER=http://localhost/bsm/index.php?r=watch/addrow&dt=2014-11-01
+---

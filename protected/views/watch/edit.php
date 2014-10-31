@@ -35,6 +35,18 @@ $this->breadcrumbs=array(
                 'value'=>'$data->jenis_produk',
                 'htmlOptions'=>array('width'=>'250'),
             ),                        
+            'status_tunggakan'=>array(
+			'class'=>'application.extensions.EJEditable.components.DataColumn',
+			'name'=>'status_tunggakan',                        
+			'evaluateHtmlOptions'=>true,
+			'htmlOptions'=>array('width'=>'150','class'=>'"editable"', 'data-attribute'=>'"status_tunggakan"', 'id'=>'"{$data->watchlist_id}"'),
+		),
+            'tgl_bayar'=>array(
+			'class'=>'application.extensions.EJEditable.components.DataColumn',
+			'name'=>'tgl_bayar',                        
+			'evaluateHtmlOptions'=>true,
+			'htmlOptions'=>array('width'=>'150','class'=>'"editable"', 'data-attribute'=>'"tgl_bayar"', 'id'=>'"{$data->watchlist_id}"'),
+		),
             'no_CIF'=>array(
 			'class'=>'application.extensions.EJEditable.components.DataColumn',
 			'name'=>'no_CIF',                        

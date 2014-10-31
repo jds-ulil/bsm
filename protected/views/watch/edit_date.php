@@ -19,9 +19,14 @@ $this->breadcrumbs=array(
             array(
                 'name'=>'NO',
                 'value'=>'$row+1',
-                'htmlOptions'=>array('width'=>'20'),
+                'htmlOptions'=>array('width'=>'20'),                
             ),            
-            'no_loan',
+            array(
+                'name'=>'no_loan',
+                'value'=>'$data->no_loan',
+                'htmlOptions'=>array('width'=>'20'),
+                'footer'=> CHtml::link('Tambah Data',array('watch/addrow&dt='.$dateset)),
+            ),                 
             array(
                 'name'=>'nama_nasabah',
                 'value'=>'$data->nama_nasabah',
@@ -33,6 +38,18 @@ $this->breadcrumbs=array(
                 'htmlOptions'=>array('width'=>'120'),
             ),                        
             'kolektibilitas',
+            'status_tunggakan'=>array(
+                'class'=>'application.extensions.EJEditable.components.DataColumn',
+                'name'=>'status_tunggakan',                        
+                'evaluateHtmlOptions'=>true,
+                'htmlOptions'=>array('width'=>'150','class'=>'"editable"', 'data-attribute'=>'"status_tunggakan"', 'id'=>'"{$data->watchlist_id}"'),
+            ),
+            'tgl_bayar'=>array(
+                'class'=>'application.extensions.EJEditable.components.DataColumn',
+                'name'=>'tgl_bayar',                        
+                'evaluateHtmlOptions'=>true,
+                'htmlOptions'=>array('width'=>'150','class'=>'"editable"', 'data-attribute'=>'"tgl_bayar"', 'id'=>'"{$data->watchlist_id}"'),
+            ),
             array(
                 'name'=>'jenis_produk',
                 'value'=>'$data->jenis_produk',
