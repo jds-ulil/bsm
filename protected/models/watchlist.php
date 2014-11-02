@@ -151,7 +151,7 @@ class watchlist extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
-        $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
+                $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
 		$criteria->compare('tgl_bayar',$this->tgl_bayar,true);
 
         
@@ -226,7 +226,7 @@ class watchlist extends CActiveRecord
 		$criteria->compare('persentase_bagi_hasil',$this->persentase_bagi_hasil,true);
 		$criteria->compare('usaha_nasabah',$this->usaha_nasabah,true);
 		$criteria->compare('tujuan_pembiayaan',$this->tujuan_pembiayaan,true);
-        $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
+                $criteria->compare('status_tunggakan',$this->status_tunggakan,true);
 		$criteria->compare('tgl_bayar',$this->tgl_bayar,true);
         
                 if (!empty($this->tgl_upload)) {

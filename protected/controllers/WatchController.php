@@ -216,16 +216,20 @@ class WatchController extends Controller
         
         $model = new watchlist();
         $model_search = new watchlist();
-        if(isset($_POST['watchlist']))
+        if(isset($_POST['watchlist']) )
             {    
               $model->attributes=$_POST['watchlist'];
-            
+  
               $filelist= CUploadedFile::getInstance($model,'w_file');
               $arrData = array();
               $index = 0;
               if($model->validate()){                 
-                    Yii::app()->db->createCommand()->truncateTable(watchlistTemp::model()->tableName());                   
+                    Yii::app()->db->createCommand()->truncateTable(watchlistTemp::model()->tableName()); 
+                    if(!empty($filelist->tempName)){
                     $fp = fopen($filelist->tempName, 'r');
+                    } else {
+                        $fp = false;
+                    }
                     if($fp)
                     {
                         //  $line = fgetcsv($fp, 1000, ",");
@@ -278,9 +282,9 @@ class WatchController extends Controller
                         }while( ($line = fgetcsv($fp, 1000, ";")) != FALSE);
                        // $this->redirect('././index');
                     fclose($fp);
-                    }}    
                     $this->redirect(array('edit'));
                     return;
+                    }}                       
             }  
             $this->render('input',array(
                 'model'=>$model,  

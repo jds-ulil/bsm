@@ -9,6 +9,7 @@ $this->breadcrumbs=array(
 Yii::app()->clientScript->registerScript('search', "
 $('.search-form form').submit(function(){	
 	$('#print_marketing').val($('#proposal_marketing').val());
+	$('#print_status_pengajuan').val($('#proposal_status_pengajuan').val());
 	$('#print_segmen').val($('#proposal_segmen').val());
 	$('#print_jenis_usaha').val($('#proposal_jenis_usaha').val());
 	$('#print_from_plafon').val($('#proposal_from_plafon').val());
@@ -95,6 +96,7 @@ $template = "{view}{delete}";
 )); ?>
 <input name="proposal[unit_kerja]" id="print_to_unit_kerja" type="hidden" />
 <input name="proposal[marketing]" id="print_marketing" type="hidden" />
+<input name="proposal[status_pengajuan]" id="print_status_pengajuan" type="hidden" />
 <input name="proposal[segmen]" id="print_segmen" type="hidden" />
 <input name="proposal[jenis_usaha]" id="print_jenis_usaha" type="hidden" />
 <input name="proposal[to_plafon]" id="print_to_plafon" type="hidden" />

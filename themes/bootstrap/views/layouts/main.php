@@ -5,8 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
     <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
-    
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />       
+        
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>    
 	<?php Yii::app()->bootstrap->register(); ?>
 </head>
@@ -41,7 +41,7 @@
 								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/create',), 'visible'=> Yii::app()->user->checkAccess('inputter')),
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/create',)),
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/create',)),    
-								    array('label'=>'Nasabah Wathclist Akhir Bulan', 'url'=>array('watch/input',)),
+								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('watch/input',)),
                                                                     )
 							),																					
 							array('label'=>'Input Data', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin'), 
@@ -106,7 +106,7 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
-	</div>
+	</div>            
     <div class="container" id="page">
         <?php if(isset($this->breadcrumbs)):?>
             <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
@@ -117,7 +117,7 @@
         <?php echo $content; ?>
         <?php $la = isset(Yii::app()->user->alertSign)?Yii::app()->user->alertSign:0; ?>
         <script type="text/javascript"> 
-        $(document).ready(function(){
+       $(document).ready(function(){                                                                   
                 var x = 0;    
                 $( "li#xyz" ).mouseover(
                   function() {        

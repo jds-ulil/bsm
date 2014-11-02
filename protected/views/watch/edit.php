@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Data Wathclist',
+	'Data Watchlist',
 );
 ?>
 <h1>Edit Watchlist</h1>

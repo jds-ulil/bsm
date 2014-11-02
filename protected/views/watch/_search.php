@@ -33,6 +33,10 @@
     </div>
 
 <?php echo $form->textFieldRow($model,'kolektibilitas',array('class'=>'span6','maxlength'=>50)); ?>
+<?php echo $form->dropDownListRow($model,'status_tunggakan',array('Telah'=>'Telah Bayar','Belum'=>'Belum Bayar'),array(
+        'empty'=>'Semua',
+            'class'=>'span6',
+            )); ?>
 <?php echo $form->dropDownListRow($model,'unit_kerja', $listUnit, array(
         'empty'=>'Semua Unit Kerja',
             'class'=>'span6',
