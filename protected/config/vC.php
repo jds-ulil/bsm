@@ -43,6 +43,16 @@ class vC {
     const APP_from_email = "oelhil@gmail.com";   
     
     const APP_header_csv_row = 7;
+    
+    static function getText(){
+        $text = Yii::app()->db->createCommand()
+                            ->setFetchMode(PDO::FETCH_COLUMN,0)
+                            ->select("text")
+                            ->from("mtb_text")
+                            ->where("`show` = 1")                            
+                            ->queryAll();  
+        return $text;
+    }
 }
 
 ?>

@@ -6,7 +6,7 @@
 	<meta name="language" content="en" />
     <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />       
-        
+    <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.marquee.min.js'); ?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>    
 	<?php Yii::app()->bootstrap->register(); ?>
 </head>
@@ -53,6 +53,7 @@
 								'items'=>array(
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/approval',)),                                                             
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/approval',)),								                                                                  
+                                    array('label'=>'Running Text', 'url'=>array('text/index',)),
                                                                     )
 							),							
 							array('label'=>'Laporan', 'url'=>array('#'), 'visible'=>!Yii::app()->user->isGuest,
@@ -78,8 +79,8 @@
 								    array('label'=>'Jabatan', 'url'=>array('jabatan/index',)),								    
 								    array('label'=>'Unit Kerja', 'url'=>array('unitkerja/index',)),								    
 								    array('label'=>'Mail Setting', 'url'=>array('mailer/set',), 'visible'=> Yii::app()->user->checkAccess('admin')),	
-                                                                    array('label'=>'Master Pertanyaan', 'url'=>array('question/pertanyaan',)),
-                                                                    array('label'=>'Reset Data', 'url'=>array('data/reset',)),
+                                    array('label'=>'Master Pertanyaan', 'url'=>array('question/pertanyaan',)),
+                                    array('label'=>'Reset Data', 'url'=>array('data/reset',)),                                    
 								    )
 							),
 						),
@@ -106,7 +107,19 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
-	</div>            
+	</div>    
+    <?php   $running_text = vC::getText(); 
+            shuffle($running_text);
+            $tulisan = "";
+            foreach ($running_text as $key => $value) {                
+                if($key != 0)
+                $tulisan = $tulisan."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                        . "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."$value";
+                else 
+                    $tulisan = $value;
+            }
+    ?>
+    <div class="marquee"><?php echo $tulisan; ?></div>
     <div class="container" id="page">
         <?php if(isset($this->breadcrumbs)):?>
             <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
@@ -117,7 +130,11 @@
         <?php echo $content; ?>
         <?php $la = isset(Yii::app()->user->alertSign)?Yii::app()->user->alertSign:0; ?>
         <script type="text/javascript"> 
-       $(document).ready(function(){                                                                   
+       $(document).ready(function(){     
+                $('.marquee').marquee({
+                     duration: 40000,
+                     pauseOnHover: true
+                });
                 var x = 0;    
                 $( "li#xyz" ).mouseover(
                   function() {        

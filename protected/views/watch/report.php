@@ -15,6 +15,7 @@ $('.search-form form').submit(function(){
     $('#print_from_date').val($('#watchlist_from_date').val());
 	$('#print_to_date').val($('#watchlist_to_date').val());
     $('#print_unit_kerja').val($('#watchlist_unit_kerja').val());
+    $('#print_status_tunggakan').val($('#watchlist_status_tunggakan').val());
 
     $('#mtb-proposal-grid').yiiGridView('update', {
 		data: $(this).serialize()
@@ -92,6 +93,7 @@ $(document).ready(function(){
 <input name="watchlist[unit_kerja]" id="print_unit_kerja" type="hidden" />
 <input name="watchlist[from_date]" id="print_from_date" type="hidden" />
 <input name="watchlist[to_date]" id="print_to_date" type="hidden" />
+<input name="watchlist[status_tunggakan]" id="print_status_tunggakan" type="hidden" />
 <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType'=>'submit',                
