@@ -15,8 +15,11 @@ $pdf->Cell(40,10,$model->from_os . ' S/D '. $model->to_os,0,1,'L');
 $pdf->Cell(40,0,'Kolektibilitas :',0,0,'R');
 $pdf->Cell(40,0,$model->kolektibilitas,0,1,'L');
 
-$pdf->Cell(40,10,'Persentase Bagi Hasil :',0,0,'R');
-$pdf->Cell(40,10,$model->from_persen . ' S/D '. $model->to_persen,0,1,'L');
+$pdf->Cell(40,10,'Status Tunggakan :',0,0,'R');
+$pdf->Cell(40,10,$model->status_tunggakan,0,1,'L');
+
+$pdf->Cell(40,0,'Persentase Bagi Hasil :',0,0,'R');
+$pdf->Cell(40,0,$model->from_persen . ' S/D '. $model->to_persen,0,1,'L');
 
 
 $columns = array();      

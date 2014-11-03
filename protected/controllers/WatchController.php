@@ -89,6 +89,7 @@ class WatchController extends Controller
         $model->from_persen = empty($model->from_persen)?' - ':$model->from_persen;
         $model->to_persen = empty($model->to_persen)?' - ':$model->to_persen;        
         $model->kolektibilitas = empty($model->kolektibilitas)?' - ':$model->kolektibilitas;        
+        $model->status_tunggakan = empty($model->status_tunggakan)?' - ':$model->status_tunggakan." Bayar";        
         
         $this->render('print',array(
             'model' => $model,
