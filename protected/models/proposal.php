@@ -559,4 +559,27 @@ class proposal extends CActiveRecord
             $input = str_pad($input, 4, 0, STR_PAD_LEFT).'/'.date("m").'/'.date("Y");  
             return $input;
        }
+       
+       function searchfromglobal($keyword,$val){           
+            $criteria = new CDbCriteria();                
+            switch ($val){
+                case 1:                   
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "nama_nasabah like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'nama_nasabah';  
+                        }
+                    break;
+                case 2:                     
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "no_buku_nikah like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");                    
+                        if($this->model()->exists($criteria)) {                                 
+                            return 'no_buku_nikah';                         
+                        }
+                    break;                
+            }
+            return;
+       }
 }

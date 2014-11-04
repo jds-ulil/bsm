@@ -64,6 +64,7 @@
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('watch/report',)),								                                                          
 								    )
 							),	                                                    
+//							array('label'=>'Halaman Pencarian', 'url'=>array('search/index'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin')),													
 							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval'),
 								'items'=>array(
 								    array('label'=>'Kuisioner', 'url'=>array('Question/index',)),								   
