@@ -66,6 +66,8 @@ class proposal extends CActiveRecord
 			array('marketing, no_kartu_keluarga, no_buku_nikah, no_ktp, no_proposal, existing_plafon, referal_nama, referal_sektor_usaha', 'length', 'max'=>50),
 			//array('no_proposal', 'unique'),
                         array('nama_nasabah', 'checkTolakNama', 'on'=>'create'),
+                        array('nama_nasabah', 'checkPelunasan', 'on'=>'create'),
+                        array('nama_nasabah', 'checkWatchlist', 'on'=>'create'),
                         array('no_ktp', 'checkTolakKtp', 'on'=>'create'),
                         array('no_buku_nikah', 'checkTolakBukuNikah', 'on'=>'create'),
                         array('no_kartu_keluarga', 'checkNoKK', 'on'=>'create'),
@@ -308,9 +310,10 @@ class proposal extends CActiveRecord
         }
         public function checkTolakNama($attribute_name, $params)
         {
+            $this->$attribute_name = strtoupper($this->$attribute_name);
             $arrNamaTolak = Yii::app()->db->createCommand()
                             //->setFetchMode(PDO::FETCH_COLUMN,1)
-                            ->select("nama_nasabah,proposal_id")
+                            ->select("UPPER(nama_nasabah) as nama_nasabah,proposal_id")
                             ->from("proposal")            
                             ->where("status_pengajuan = '".vC::APP_status_proposal_tolak."' OR "
                                     . " status_pengajuan = '".vC::APP_status_proposal_tolak_approv ."' ")
@@ -353,6 +356,38 @@ class proposal extends CActiveRecord
                         if($value['no_kartu_keluarga'] == $this->$attribute_name) {
                             $model_tolak = tolak::model()->find(" proposal_id = " . $value['proposal_id'] );
                             $this->addError($attribute_name, "Masuk Daftar Nasabah ditolak <a href='".YII::app()->createUrl('tolak/detail',array('id'=>$model_tolak->tolak_id))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }             
+            return true;
+        }
+        public function checkWatchlist($attribute_name, $params){
+            if(empty($this->$attribute_name)) return TRUE;
+            $this->$attribute_name = strtoupper($this->$attribute_name);
+            $arrKKTolak = Yii::app()->db->createCommand()
+                            ->select("UPPER(wat.nama_nasabah) as nama_nasabah, wat.watchlist_id")
+                            ->from("watchlist wat")                                                                                  
+                            ->queryAll(); 
+            foreach ($arrKKTolak as $key => $value) {
+                        if($value['nama_nasabah'] == $this->$attribute_name) {
+                            //$model_pelunasan = pelunasan::model()->find(" pelunasan_id = " . $value['pelunasan_id'] );
+                            $this->addError($attribute_name, "Masuk Daftar Watchlist <a href='".YII::app()->createUrl('watch/detail',array('id'=>$value['watchlist_id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }             
+            return true;
+        }
+        public function checkPelunasan($attribute_name, $params){
+            if(empty($this->$attribute_name)) return TRUE;
+            $this->$attribute_name = strtoupper($this->$attribute_name);
+            $arrKKTolak = Yii::app()->db->createCommand()
+                            ->select("UPPER(pel.nama_nasabah) as nama_nasabah, pel.pelunasan_id")
+                            ->from("pelunasan pel")                                                                                  
+                            ->queryAll(); 
+            foreach ($arrKKTolak as $key => $value) {
+                        if($value['nama_nasabah'] == $this->$attribute_name) {
+                            //$model_pelunasan = pelunasan::model()->find(" pelunasan_id = " . $value['pelunasan_id'] );
+                            $this->addError($attribute_name, "Masuk Daftar Pelunasan Tidak Normal <a href='".YII::app()->createUrl('pelunasan/detail',array('id'=>$value['pelunasan_id']))."' target='_blank'>Lihat Detail</a>");
                             return false;
                         }
                     }             
