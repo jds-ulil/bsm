@@ -160,7 +160,7 @@
             <br>
         </div> <!-- /span6 -->
         <div id="footer-terms" class="col-md-6">
-          © <?php echo date("Y"); ?> BSM 
+            © <?php //echo date("Y"); ?> BSM FMDP III a.n <b>Ridwan Nur</b> (NIP.047871780)
         </div> <!-- /.span6 -->
      </div> <!-- /row -->
   </div> <!-- /container -->	

@@ -41,10 +41,11 @@ foreach ($result as $key => $value) {
             echo "<td rowspan='2'>Nama Jabatan</td>";
             echo "<td rowspan='2' align='center' valign='middle'>Jumlah Input</td>";
             echo "<td rowspan='2' align='center' valign='middle'>Partisipasi</td>";
-            echo "<td colspan='4' align='center' valign='middle'>Jenis Jawaban</td>";            
+            echo "<td colspan='5' align='center' valign='middle'>Jenis Jawaban</td>";            
         echo "</tr>";
         echo "<tr>";                                                
             echo "<td align='center' valign='middle'>Tidak Penting</td>";
+            echo "<td align='center' valign='middle'>Biasa Saja</td>";
             echo "<td align='center' valign='middle'>Cukup Penting</td>";
             echo "<td align='center' valign='middle'>Penting</td>";
             echo "<td align='center' valign='middle'>Sangat Penting</td>";
@@ -56,6 +57,7 @@ foreach ($result as $key => $value) {
             echo "<td align='center' valign='middle'>".($value['jumlah_input']==''?'-':$value['jumlah_input'])."</td>";
             echo "<td align='center' valign='middle'>".($value['partisipasi']==''?'-':$value['partisipasi'])."</td>";
             echo "<td align='center' valign='middle'>".($value['tidak_penting']==''?'-':$value['tidak_penting'])."</td>";
+            echo "<td align='center' valign='middle'>".($value['biasa_saja']==''?'-':$value['biasa_saja'])."</td>";
             echo "<td align='center' valign='middle'>".($value['cukup_penting']==''?'-':$value['cukup_penting'])."</td>";
             echo "<td align='center' valign='middle'>".($value['penting']==''?'-':$value['penting'])."</td>";
             echo "<td align='center' valign='middle'>".($value['sangat_penting']==''?'-':$value['sangat_penting'])."</td>";
@@ -67,6 +69,7 @@ foreach ($result as $key => $value) {
             echo "<td align='center' valign='middle'>".($value['jumlah_input']==''?'-':$value['jumlah_input'])."</td>";
             echo "<td align='center' valign='middle'>".($value['partisipasi']==''?'-':$value['partisipasi'])."</td>";
             echo "<td align='center' valign='middle'>".($value['tidak_penting']==''?'-':$value['tidak_penting'])."</td>";
+            echo "<td align='center' valign='middle'>".($value['biasa_saja']==''?'-':$value['biasa_saja'])."</td>";
             echo "<td align='center' valign='middle'>".($value['cukup_penting']==''?'-':$value['cukup_penting'])."</td>";
             echo "<td align='center' valign='middle'>".($value['penting']==''?'-':$value['penting'])."</td>";
             echo "<td align='center' valign='middle'>".($value['sangat_penting']==''?'-':$value['sangat_penting'])."</td>";
