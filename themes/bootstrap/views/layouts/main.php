@@ -110,7 +110,7 @@
 		</div>
 	</div>    
     <?php   $running_text = vC::getText(); 
-            shuffle($running_text);
+            //shuffle($running_text);
             $tulisan = "";
             foreach ($running_text as $key => $value) {                
                 if($key != 0)
@@ -160,7 +160,7 @@
             <br>
         </div> <!-- /span6 -->
         <div id="footer-terms" class="col-md-6">
-            © <?php //echo date("Y"); ?> BSM FMDP III a.n <b>Ridwan Nur</b> (NIP.047871780)
+            © <?php //echo date("Y"); ?> BSM FMDP III Batch VII a.n <b>Ridwan Nur</b> (NIP.047871780)
         </div> <!-- /.span6 -->
      </div> <!-- /row -->
   </div> <!-- /container -->	
