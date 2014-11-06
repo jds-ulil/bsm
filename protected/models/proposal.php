@@ -44,6 +44,8 @@ class proposal extends CActiveRecord
     public $from_plafon;
     public $to_plafon;
     public $unit_kerja;
+    public $sKeyword;
+    public $sValue;
     /**
 	 * @return string the associated database table name
 	 */
@@ -60,6 +62,7 @@ class proposal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            
 			array('jenis_identitas, nama_nasabah, segmen, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'create'),
 			array('jenis_identitas, nama_nasabah, segmen, marketing, no_kartu_keluarga, no_ktp, tanggal_pengajuan, jenis_usaha', 'required', 'on'=>'update'),
 			array('segmen, jenis_nasabah, existing_kolektabilitas, del_flag', 'numerical', 'integerOnly'=>true),
@@ -74,7 +77,7 @@ class proposal extends CActiveRecord
 			array('status_pengajuan', 'length', 'max'=>3),
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
-			array('unit_kerja, tanggal_pengajuan,no_proposal, referal_alamat, plafon, mode', 'safe'),
+			array('sValue, sKeyword, unit_kerja, tanggal_pengajuan,no_proposal, referal_alamat, plafon, mode', 'safe'),
                         array('tanggal_kartu_keluarga', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
                         array('tanggal_pengajuan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
 			array('existing_os, existing_angsuran, existing_kolektabilitas, existing_plafon', 'existing_required'),
@@ -614,7 +617,77 @@ class proposal extends CActiveRecord
                             return 'no_buku_nikah';                         
                         }
                     break;                
+                case 3:                     
+                    $keyword_db = addcslashes($keyword, '%_');
+                        $criteria->condition = "no_kartu_keluarga like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");                    
+                        if($this->model()->exists($criteria)) {                                 
+                            return 'no_kartu_keluarga';                         
+                        }
+                    break;                
+                case 4:                     
+                    $keyword_db = addcslashes($keyword, '%_');
+                        $criteria->condition = "no_ktp like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");                    
+                        if($this->model()->exists($criteria)) {                                 
+                            return 'no_ktp';                         
+                        }
+                    break;                
+                case 5:                     
+                    $keyword_db = addcslashes($keyword, '%_');
+                        $criteria->condition = "no_ktp like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");                    
+                        if($this->model()->exists($criteria)) {                                 
+                            return 'no_ktp';                         
+                        }
+                    break;                
             }
             return;
        }
+       public function searchForGlobalBaru()
+        {
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+                $criteria->join= ' INNER JOIN `mtb_pegawai` `rMar` ON (`rMar`.`pegawai_id`=`t`.`marketing`)  ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON rMar.unit_kerja = uk.unit_kerja_id  ';           
+                
+                if (empty($this->sKeyword)) {
+                $this->status_pengajuan = 22;
+                $criteria->compare('status_pengajuan',$this->status_pengajuan);
+                }
+                else {
+                    $this->status_pengajuan = vC::APP_status_proposal_new;
+                    $criteria->compare('status_pengajuan',$this->status_pengajuan);
+                    $var = $this->sKeyword;
+                    $this->$var = $this->sValue;
+                    $criteria->compare($var,$this->$var,true);
+                }		
+		return new CActiveDataProvider($this, array(                   
+                'criteria'=>$criteria,
+		));
+	}
+       public function searchForGlobalTolak()
+        {
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+                $criteria->join= ' INNER JOIN `mtb_pegawai` `rMar` ON (`rMar`.`pegawai_id`=`t`.`marketing`)  ';
+                $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON rMar.unit_kerja = uk.unit_kerja_id  ';           
+                
+                if (empty($this->sKeyword)) {
+                $this->status_pengajuan = 22;
+                $criteria->compare('status_pengajuan',$this->status_pengajuan);
+                }
+                else {
+                    $this->status_pengajuan = vC::APP_status_proposal_tolak_approv;
+                    $criteria->compare('status_pengajuan',$this->status_pengajuan);
+                    $var = $this->sKeyword;
+                    $this->$var = $this->sValue;
+                    $criteria->compare($var,$this->$var,true);
+                }		
+		return new CActiveDataProvider($this, array(                   
+                'criteria'=>$criteria,
+		));
+	}
 }

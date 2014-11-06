@@ -27,6 +27,8 @@ class pelunasan extends CActiveRecord
     public $from_date;
     public $to_date;
     public $unit_kerja;
+    public $sKeyword;
+    public $sValue;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -48,7 +50,7 @@ class pelunasan extends CActiveRecord
                         array('tanggal_pelunasan', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'insert'),
 			array('segmen, jenis_pembiayaan, no_CIF, no_rekening', 'numerical', 'integerOnly'=>true),
 			array('no_CIF,', 'length', 'max'=>8),
-                        array('tempLL, status_pelunasan, marketing, unit_kerja','safe'),
+                        array('sValue, sKeyword, tempLL, status_pelunasan, marketing, unit_kerja','safe'),
 			array('no_rekening,', 'length', 'max'=>10),
 			array('jenis_usaha', 'length', 'max'=>50),
 			array('nama_nasabah', 'length', 'max'=>100),
@@ -254,4 +256,40 @@ class pelunasan extends CActiveRecord
             }    
             return $value;
         } 
+        function searchfromglobal($keyword,$val){           
+            $criteria = new CDbCriteria();                
+            switch ($val){
+                case 1:                   
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "nama_nasabah like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'nama_nasabah';  
+                        }
+                    break;                             
+            }
+            return;
+       }
+       
+       public function searchForGlobalPelunasan()
+        {
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;               
+
+        if (!empty($this->sKeyword)) {
+                $this->status_pelunasan = vC::APP_status_pelunasan_approv;
+                $criteria->compare('status_pelunasan',$this->status_pelunasan);
+                $var = $this->sKeyword;
+                $this->$var = $this->sValue;
+                $criteria->compare($var,$this->$var,true);
+            } else {
+                $this->status_pelunasan = 22;
+                $criteria->compare('status_pelunasan',$this->status_pelunasan);
+            }
+        
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,                        
+		));
+	}
 }

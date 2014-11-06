@@ -2,9 +2,23 @@
 $this->breadcrumbs=array(
 	'Halaman Pencarian',
 );
+Yii::app()->clientScript->registerScript('search', "
+$('.search-form form').submit(function(){
+	$('#mtb-proposal-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	$('#mtb-tolak-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	$('#mtb-pelunasan-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
 ?>
 <h1 class="loginHead">Kriteria Pencarian</h1>
-
+<div class="search-form">
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
@@ -21,4 +35,106 @@ $this->breadcrumbs=array(
 	</div>
 
 <?php $this->endWidget(); ?>
+</div>
+<h1 class="loginHead">Proposal Baru</h1>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'id'=>'mtb-tolak-grid',
+	'dataProvider'=>$model_proposal->searchForGlobalBaru(),	
+        'type'=>'bordered striped',
+	'columns'=>array(	
+		'nama_nasabah',		
+		 array(
+               'name'=>'Tgl Pengajuan',
+                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal_pengajuan)',
+                ),		
+                array(
+                'name'=>'Plafon',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->plafon, "Rp ")',
+                ),
+                'jenis_usaha',
+         array(
+                'name'=>'Marketing',
+                'value'=>'empty($data->rMar->nama)?"Deleted":$data->rMar->nama',
+            ),
+         array(
+                'name'=>'Status',
+                'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
+            ),
+         array(
+            'header' => 'Action',
+                'class'=>'bootstrap.widgets.TbButtonColumn',
+                'template'=>"{view}",
+                'viewButtonLabel' => "Detail Proposal",
+                'viewButtonUrl'=>'Yii::app()->createUrl("/proposal/detail", array("id" =>$data[\'proposal_id\']))',
+                'htmlOptions' => array(
+                  //  'width' => '6%',
+                  //  'align' => 'center',
+                ),
+            ),
+        )	
+)); ?>
+<h1 class="loginHead">Nasabah Tolak</h1>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'id'=>'mtb-proposal-grid',
+	'dataProvider'=>$model_proposal->searchForGlobalTolak(),	
+        'type'=>'bordered striped',
+	'columns'=>array(	
+		'nama_nasabah',		
+		 array(
+               'name'=>'Tgl Pengajuan',
+                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal_pengajuan)',
+                ),		
+                array(
+                'name'=>'Plafon',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->plafon, "Rp ")',
+                ),
+                'jenis_usaha',
+         array(
+                'name'=>'Marketing',
+                'value'=>'empty($data->rMar->nama)?"Deleted":$data->rMar->nama',
+            ),
+         array(
+                'name'=>'Status',
+                'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
+            ),
+         array(
+            'header' => 'Action',
+                'class'=>'bootstrap.widgets.TbButtonColumn',
+                'template'=>"{view}",
+                'viewButtonLabel' => "Detail Proposal",
+                'viewButtonUrl'=>'Yii::app()->createUrl("/proposal/detail", array("id" =>$data[\'proposal_id\']))',
+                'htmlOptions' => array(
+                  //  'width' => '6%',
+                  //  'align' => 'center',
+                ),
+            ),
+        )	
+)); ?>
 
+<h1 class="loginHead">Pelunasan Tidak Normal</h1>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'id'=>'mtb-pelunasan-grid',
+	'dataProvider'=>$model_pelunasan->searchForGlobalPelunasan(),	
+        'type'=>'bordered striped',
+	'columns'=>array(			
+                array(
+                'name'=>'Tgl Pelunasan',
+                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal_pelunasan)',
+                ),            
+                'nama_nasabah',
+                'no_rekening',
+                'penyebab',
+                array(
+                    'header' => 'Action',
+                            'class'=>'bootstrap.widgets.TbButtonColumn',
+                            'template'=>'{view}',
+                            'viewButtonLabel' => "Detail",
+                            'viewButtonUrl'=>'Yii::app()->createUrl("pelunasan/detail", array("id" =>$data[\'pelunasan_id\']))',
+                            'htmlOptions' => array(
+                            //  'width' => '6%',
+                            //  'align' => 'center',
+                            ),
+                        ),
+            ),
+        )	
+); ?>

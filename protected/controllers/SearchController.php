@@ -38,9 +38,14 @@ class SearchController extends Controller
     
     public function actionIndex() {
         $model_search = new search;
-        $check_proposal = 3;
+        $check_proposal = 6;
+        $check_pelunasan = 2;
         $stop = 1;
         $var_pro = '';
+        
+        $model_proposal = new proposal;
+        $model_pelunasan = new pelunasan;      
+        
         if(isset($_GET['search'])){
             $model_search->attributes = $_GET['search'];
             
@@ -50,12 +55,36 @@ class SearchController extends Controller
                     $stop = $check_proposal;
                 } else {
                     $stop +=1;
-                }
-            }                                                
-            echo("<script>alert('$var_pro');</script>");
+                }              
+                $model_proposal->sKeyword = $var_pro;
+                $model_proposal->sValue = $model_search->search_name;
+                
+            }     
+            $stop = 1;
+            while ($stop != $check_pelunasan) {
+                $var_pro = pelunasan::model()->searchfromglobal($model_search->search_name, $stop);   
+                if (!empty($var_pro)) {
+                    $stop = $check_pelunasan;
+                } else {
+                    $stop +=1;
+                }              
+                $model_pelunasan->sKeyword = $var_pro;
+                $model_pelunasan->sValue = $model_search->search_name;                
+            }                                                           
         }
         $this->render('index', array(
             'model_search' => $model_search,
+            'model_proposal' => $model_proposal,
+            'model_pelunasan' => $model_pelunasan,
         ));
     }
+    
+    protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='search-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
 }
