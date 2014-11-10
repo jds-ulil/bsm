@@ -40,11 +40,13 @@ class SearchController extends Controller
         $model_search = new search;
         $check_proposal = 6;
         $check_pelunasan = 2;
+        $check_watchlist = 3;
         $stop = 1;
         $var_pro = '';
         
         $model_proposal = new proposal;
         $model_pelunasan = new pelunasan;      
+        $model_watchlist = new watchlist;      
         
         if(isset($_GET['search'])){
             $model_search->attributes = $_GET['search'];
@@ -73,12 +75,27 @@ class SearchController extends Controller
                 }              
                 $model_pelunasan->sKeyword = $var_pro;
                 $model_pelunasan->sValue = $model_search->search_name;                
+            }    
+            
+            $stop = 1;
+            $var_pro = '';
+            
+            while ($stop != $check_watchlist) {
+                $var_pro = watchlist::model()->searchfromglobal($model_search->search_name, $stop);   
+                if (!empty($var_pro)) {
+                    $stop = $check_watchlist;
+                } else {
+                    $stop +=1;
+                }              
+                $model_watchlist->sKeyword = $var_pro;
+                $model_watchlist->sValue = $model_search->search_name;                
             }                                                           
         }
         $this->render('index', array(
             'model_search' => $model_search,
             'model_proposal' => $model_proposal,
             'model_pelunasan' => $model_pelunasan,
+            'model_watchlist' => $model_watchlist,
         ));
     }
     

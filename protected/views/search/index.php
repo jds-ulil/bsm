@@ -13,6 +13,9 @@ $('.search-form form').submit(function(){
 	$('#mtb-pelunasan-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
+	$('#mtb-watchlist-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
 	return false;
 });
 ");
@@ -136,5 +139,37 @@ $('.search-form form').submit(function(){
                             ),
                         ),
             ),
+        )	
+); ?>
+
+<h1 class="loginHead">WATCHLIST</h1>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'id'=>'mtb-watchlist-grid',
+	'dataProvider'=>$model_watchlist->searchForGlobalWatchlist(),	
+    'type'=>'bordered striped',
+	'columns'=>array(	 
+            'nama_nasabah',
+            'kolektibilitas',              
+             array(
+                'name'=>'OS Pokok',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->os_pokok, "Rp ")',
+                ),            
+            'no_rekening_angsuran',
+            array(
+                'name'=>'Total Tunggakan',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total_tunggakan, "Rp ")',
+                ),            
+            array(
+            'header' => 'Action',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{view}',
+                        'viewButtonLabel' => "Detail Watchlist Data",
+                        'viewButtonUrl'=>'Yii::app()->createUrl("/watch/detail", array("id" =>$data[\'watchlist_id\']))',
+			'htmlOptions' => array(
+			  //  'width' => '6%',
+			  //  'align' => 'center',
+			),
+            ),
+        )
         )	
 ); ?>

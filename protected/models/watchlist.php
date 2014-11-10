@@ -33,6 +33,9 @@ class watchlist extends CActiveRecord
     public $from_date;
     public $to_date;
     
+    public $sKeyword;
+    public $sValue;
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -55,7 +58,7 @@ class watchlist extends CActiveRecord
                                     'tooLarge'=>'The file was larger than 2MB. Please upload a smaller file.',
                                     'allowEmpty' => true,
                             ),	                        
-                array('tgl_upload, unit_kerja, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
+                array('sValue, sKeyword, tgl_upload, unit_kerja, from_plafon, to_plafon, from_os, to_os, from_persen, to_persen','safe'),
 			array('no_loan, total_tunggakan, no_rekening_angsuran, plafon, os_pokok, angsuran_bulanan', 'length', 'max'=>20),
 			array('nama_nasabah, no_CIF', 'length', 'max'=>50),
             array('status_tunggakan, tgl_bayar, from_date, to_date', 'safe'),
@@ -322,4 +325,45 @@ class watchlist extends CActiveRecord
             }    
             return $value;
         }
+        
+    function searchfromglobal($keyword,$val){           
+            $criteria = new CDbCriteria();                
+            switch ($val){
+                case 1:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(nama_nasabah) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'nama_nasabah';  
+                        }
+                    break;                             
+                case 2:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(no_rekening_angsuran) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'no_rekening_angsuran';  
+                        }
+                    break;                             
+            }
+            return;
+       }
+    public function searchForGlobalWatchlist() {
+        $criteria=new CDbCriteria;
+        
+        if(empty($this->sKeyword)) {
+            $this->watchlist_id = 'AADC';
+            $criteria->compare('watchlist_id',$this->watchlist_id);
+        } else {            
+            $var = $this->sKeyword;
+            $this->$var = $this->sValue;
+            $criteria->compare("LOWER($var)",strtolower($this->$var),true);   
+        }
+        
+        return new CActiveDataProvider($this, array(                   
+                'criteria'=>$criteria,
+		));
+    }
 }
