@@ -59,8 +59,11 @@ class SearchController extends Controller
                 $model_proposal->sKeyword = $var_pro;
                 $model_proposal->sValue = $model_search->search_name;
                 
-            }     
+            }   
+            
             $stop = 1;
+            $var_pro = '';
+            
             while ($stop != $check_pelunasan) {
                 $var_pro = pelunasan::model()->searchfromglobal($model_search->search_name, $stop);   
                 if (!empty($var_pro)) {

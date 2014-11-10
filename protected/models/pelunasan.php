@@ -259,9 +259,10 @@ class pelunasan extends CActiveRecord
         function searchfromglobal($keyword,$val){           
             $criteria = new CDbCriteria();                
             switch ($val){
-                case 1:                   
+                case 1:    
+                    $keyword = strtolower($keyword);
                     $keyword_db = addcslashes($keyword, '%_');
-                    $criteria->condition = "nama_nasabah like :param ";                    
+                    $criteria->condition = "LOWER(nama_nasabah) like :param ";                    
                     $criteria->params = array(':param'=>"%$keyword_db%");
                         if($this->model()->exists($criteria)) {                              
                             return 'nama_nasabah';  
@@ -276,13 +277,12 @@ class pelunasan extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;               
-
-        if (!empty($this->sKeyword)) {
+        if (!empty($this->sKeyword)) {            
                 $this->status_pelunasan = vC::APP_status_pelunasan_approv;
                 $criteria->compare('status_pelunasan',$this->status_pelunasan);
                 $var = $this->sKeyword;
                 $this->$var = $this->sValue;
-                $criteria->compare($var,$this->$var,true);
+                $criteria->compare("LOWER($var)",strtolower($this->$var),true);   
             } else {
                 $this->status_pelunasan = 22;
                 $criteria->compare('status_pelunasan',$this->status_pelunasan);
