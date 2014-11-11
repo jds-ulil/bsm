@@ -632,15 +632,7 @@ class proposal extends CActiveRecord
                         if($this->model()->exists($criteria)) {                                 
                             return 'no_ktp';                         
                         }
-                    break;                
-                case 5:                     
-                    $keyword_db = addcslashes($keyword, '%_');
-                        $criteria->condition = "no_ktp like :param ";                    
-                    $criteria->params = array(':param'=>"%$keyword_db%");                    
-                        if($this->model()->exists($criteria)) {                                 
-                            return 'no_ktp';                         
-                        }
-                    break;                
+                    break;                                           
             }
             return;
        }

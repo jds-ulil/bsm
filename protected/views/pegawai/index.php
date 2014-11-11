@@ -40,8 +40,12 @@ $('.search-form form').submit(function(){
     'type'=>'bordered striped',
     'filterPosition'=>'footer',
 	'columns'=>array(
-		//'pegawai_id',
-		'no_urut',
+		//'pegawai_id',		
+        array(
+              'name'=>'no_urut',
+              'value'=>'$data->no_urut',
+              'htmlOptions'=>array('width'=>'30'),
+          ), 
 		'nama',
 		'NIP',
 		 array(
@@ -53,6 +57,10 @@ $('.search-form form').submit(function(){
                 'value'=>'empty($data->rLevJab->nama_jabatan)?"Reset":$data->rLevJab->nama_jabatan',
                 ),
 		'no_handphone',
+        array(
+                'name'=>'unit_kerja',
+                'value'=>'empty($data->rUnK->nama)?"Reset":$data->rUnK->nama',
+                ),
 		/*
 		'email',
 		'unit_kerja',

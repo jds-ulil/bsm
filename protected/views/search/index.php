@@ -104,8 +104,8 @@ $('.search-form form').submit(function(){
             'header' => 'Action',
                 'class'=>'bootstrap.widgets.TbButtonColumn',
                 'template'=>"{view}",
-                'viewButtonLabel' => "Detail Proposal",
-                'viewButtonUrl'=>'Yii::app()->createUrl("/proposal/detail", array("id" =>$data[\'proposal_id\']))',
+                'viewButtonLabel' => "Detail Penolakan",
+                'viewButtonUrl'=>'Yii::app()->createUrl("/tolak/detail", array("id" =>$data[\'proposal_id\']))',
                 'htmlOptions' => array(
                   //  'width' => '6%',
                   //  'align' => 'center',

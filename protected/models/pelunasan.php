@@ -267,7 +267,15 @@ class pelunasan extends CActiveRecord
                         if($this->model()->exists($criteria)) {                              
                             return 'nama_nasabah';  
                         }
-                    break;                             
+                    break;   
+                case 2:                    
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(no_rekening) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'no_rekening';  
+                        }
+                    break;  
             }
             return;
        }

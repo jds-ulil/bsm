@@ -38,8 +38,8 @@ class SearchController extends Controller
     
     public function actionIndex() {
         $model_search = new search;
-        $check_proposal = 6;
-        $check_pelunasan = 2;
+        $check_proposal = 5;
+        $check_pelunasan = 3;
         $check_watchlist = 3;
         $stop = 1;
         $var_pro = '';

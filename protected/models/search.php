@@ -27,7 +27,7 @@ class search extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'search_name'=>'Keyword', 
+			'search_name'=>'Keyword (Nama, NO KTP, NO KK, NO Buku Nikah atau NO Rekening)', 
 		);
 	}
 
