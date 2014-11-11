@@ -35,7 +35,8 @@
 								    array('label'=>'Admin', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_admin), 'visible'=>Yii::app()->user->checkAccess('admin')),
 								    array('label'=>'Daftar Email Penerima', 'url'=>array('listemail/index',), 'visible'=>Yii::app()->user->checkAccess('admin')),
 								    )
-							),							
+							),
+                            array('label'=>'CARI', 'url'=>array('search/index'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin')),													
 							array('label'=>'Input Data', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter'), 
 								'items'=>array(
 								    array('label'=>'Proposal Pembiayaan Baru', 'url'=>array('proposal/create',), 'visible'=> Yii::app()->user->checkAccess('inputter')),
@@ -63,8 +64,7 @@
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/report',)),                                                     
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('watch/report',)),								                                                          
 								    )
-							),	                                                    
-							array('label'=>'CARI/Search', 'url'=>array('search/index'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin')),													
+							),	                                                    							
 							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval'),
 								'items'=>array(
 								    array('label'=>'Kuisioner', 'url'=>array('Question/index',)),								   
