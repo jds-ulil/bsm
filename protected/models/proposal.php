@@ -103,6 +103,7 @@ class proposal extends CActiveRecord
                     'roMar' => array(self::HAS_ONE, 'pegawai', array('pegawai_id'=>'marketing')),
                     'rJen' => array(self::BELONGS_TO, 'jenisIdentitas', 'jenis_identitas'),
                     'rStat' => array(self::BELONGS_TO, 'statusProposal', 'status_pengajuan'),
+                    'tol' => array(self::HAS_ONE, 'tolak', array('proposal_id'=>'proposal_id')),
 		);
 	}
 
@@ -663,9 +664,10 @@ class proposal extends CActiveRecord
         {
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria=new CDbCriteria;                
                 $criteria->join= ' INNER JOIN `mtb_pegawai` `rMar` ON (`rMar`.`pegawai_id`=`t`.`marketing`)  ';
                 $criteria->join.= ' INNER JOIN mtb_unit_kerja uk ON rMar.unit_kerja = uk.unit_kerja_id  ';           
+                $criteria->join.= ' INNER JOIN tolak tol ON tol.proposal_id = t.proposal_id  ';           
                 
                 if (empty($this->sKeyword)) {
                 $this->status_pengajuan = 22;

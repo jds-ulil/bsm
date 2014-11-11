@@ -105,7 +105,7 @@ $('.search-form form').submit(function(){
                 'class'=>'bootstrap.widgets.TbButtonColumn',
                 'template'=>"{view}",
                 'viewButtonLabel' => "Detail Penolakan",
-                'viewButtonUrl'=>'Yii::app()->createUrl("/tolak/detail", array("id" =>$data[\'proposal_id\']))',
+                'viewButtonUrl'=>'Yii::app()->createUrl("/tolak/detail", array("id" =>$data->tol->tolak_id))',
                 'htmlOptions' => array(
                   //  'width' => '6%',
                   //  'align' => 'center',
