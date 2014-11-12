@@ -39,6 +39,7 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
     'type'=>'bordered striped',
     'filterPosition'=>'footer',
+    'enableSorting' => false,
 	'columns'=>array(
 		//'pegawai_id',		
         array(

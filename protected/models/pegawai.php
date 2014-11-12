@@ -111,6 +111,8 @@ class pegawai extends CActiveRecord
 		$criteria->compare('unit_kerja',$this->unit_kerja);                
 		$criteria->compare('email_atasan',$this->email_atasan,true);
 		$criteria->compare('level_jabatan',$this->level_jabatan,true);
+        
+        $criteria->order = 'no_urut ASC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
