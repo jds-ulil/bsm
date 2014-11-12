@@ -4,23 +4,7 @@ $this->breadcrumbs=array(
 );
 ?>
 <h4>Data - Data Berikut Akan Di kosongkan !!!</h4>
-<ul>
-    <li>
-       Proposal Baru 
-    </li>
-    <li>
-       Daftar Nasabah Ditolak
-    </li>
-    <li>
-       Watchlist Akhir Bulan
-    </li>
-    <li>
-       Pelunasan Tidak Normal
-    </li>
-    <li>
-       Kuisioner
-    </li>
-</ul>
+
 <?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {
         echo '<div class="flash-' . $key . ' alert alert-success">' . $message . "</div>\n";
@@ -31,7 +15,11 @@ $this->breadcrumbs=array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'post',                    
 )); ?>
-<input name="reset" type="hidden" value="1" />
+
+<?php echo $form->checkBoxRow($model,'proposal'); ?>
+<?php echo $form->checkBoxRow($model,'pelunasan'); ?>
+<?php echo $form->checkBoxRow($model,'watchlist'); ?>
+<?php echo $form->checkBoxRow($model,'kuisioner'); ?>
 
 <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(

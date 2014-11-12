@@ -82,6 +82,7 @@
 								    array('label'=>'Mail Setting', 'url'=>array('mailer/set',), 'visible'=> Yii::app()->user->checkAccess('admin')),	
                                     array('label'=>'Master Pertanyaan', 'url'=>array('question/pertanyaan',)),
                                     array('label'=>'Reset Data', 'url'=>array('data/reset',)),                                    
+                                    array('label'=>'Icon Site', 'url'=>array('gambar/index',)),                                    
 								    )
 							),
 						),

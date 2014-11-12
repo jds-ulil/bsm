@@ -37,18 +37,37 @@ class DataController extends Controller
 	}
 
         public function actionReset() {
-            if(isset($_POST['reset'])) {      
-                Yii::app()->db->createCommand()->truncateTable(watchlistTemp::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(pelunasan::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(proposal::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(proposalBukuNikah::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(proposalKartuKeluarga::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(proposalKtp::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(tolak::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(voteJawab::model()->tableName());  
-                Yii::app()->db->createCommand()->truncateTable(watchlist::model()->tableName());  
-                Yii::app()->user->setFlash('success', "Data Telah Di Kosongkan");
+            $change = false;
+            $model = new data;
+            if(isset($_POST['data'])) {    
+                $model->attributes = $_POST['data'];
+                if($model->proposal == 1) {
+                    $change = true;
+                    Yii::app()->db->createCommand()->truncateTable(proposal::model()->tableName());
+                    Yii::app()->db->createCommand()->truncateTable(proposalBukuNikah::model()->tableName());
+                    Yii::app()->db->createCommand()->truncateTable(proposalKartuKeluarga::model()->tableName());
+                    Yii::app()->db->createCommand()->truncateTable(proposalKtp::model()->tableName()); 
+                    Yii::app()->db->createCommand()->truncateTable(tolak::model()->tableName());  
+                }             
+                if($model->pelunasan == 1) {
+                    $change = true;
+                    Yii::app()->db->createCommand()->truncateTable(pelunasan::model()->tableName());  
+                }
+                if($model->watchlist == 1) {
+                    $change = true;
+                    Yii::app()->db->createCommand()->truncateTable(watchlistTemp::model()->tableName()); 
+                    Yii::app()->db->createCommand()->truncateTable(watchlist::model()->tableName());  
+                }
+                if($model->kuisioner == 1) {
+                    $change = true;
+                    Yii::app()->db->createCommand()->truncateTable(voteJawab::model()->tableName());  
+                }
+                if ($change) {
+                     Yii::app()->user->setFlash('success', "Data Telah Di Kosongkan");
+                }
             }
-            $this->render('reset');
+            $this->render('reset',array(
+                'model' => $model,
+            ));
         }
 }
