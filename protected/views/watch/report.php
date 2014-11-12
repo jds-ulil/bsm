@@ -35,6 +35,13 @@ $(document).ready(function(){
     'listUnit'=>$listUnit,
 )); ?>
 </div><!-- search-form -->
+<?php
+if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval')) {
+$template = "{view}{delete}";
+} else {
+    $template = "{view}";
+}
+?>
 <?php echo CHtml::beginForm(); ?>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mtb-proposal-grid',
@@ -63,7 +70,7 @@ $(document).ready(function(){
             array(
             'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-			'template'=>'{view}{delete}',
+			'template'=>$template,
                         'viewButtonLabel' => "Detail Watchlist Data",
                         'viewButtonUrl'=>'Yii::app()->createUrl("/watch/detail", array("id" =>$data[\'watchlist_id\']))',
 			'htmlOptions' => array(

@@ -34,7 +34,7 @@ class pegawai extends CActiveRecord
 		return array(
 			array('nama, NIP, level_jabatan, jabatan', 'required', 'on'=>'create'),
 			array('nama, NIP, level_jabatan, jabatan', 'required', 'on'=>'update'),
-                        array('NIP, no_urut', 'unique'),
+                        array('email, NIP, no_urut', 'unique'),
 			array('level_jabatan, jabatan, unit_kerja', 'numerical', 'integerOnly'=>true),
 			array('no_urut', 'length', 'max'=>10),
 			array('nama, NIP, email, email_atasan', 'length', 'max'=>50),
