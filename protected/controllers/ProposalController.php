@@ -247,7 +247,7 @@ class ProposalController extends Controller
     public function actionCreate (){           
         $model_proposal=new proposal('create');
         $model_proposal->jenis_nasabah = 1;
-        $model_proposal->no_proposal = $model_proposal->getNextProNumber();
+        $model_proposal->no_proposal = $model_proposal->getNextProNumber(Yii::app()->user->id_pegawai);
                   
         $model_marketing = pegawai::model()->findByPk(Yii::app()->user->id_pegawai);  
         $model_proposal->marketing = $model_marketing->pegawai_id;

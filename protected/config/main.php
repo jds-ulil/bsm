@@ -60,7 +60,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=nasdo',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		

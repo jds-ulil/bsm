@@ -588,12 +588,23 @@ class proposal extends CActiveRecord
             }    
             return $value;
         }  
-       function getNextProNumber() {
+       function getNextProNumber($pegawai_id=null) {
+           if($pegawai_id == null)
             $ArrMaxNo = Yii::app()->db->createCommand()
                   ->setFetchMode(PDO::FETCH_COLUMN,0)
                   ->select("MAX(LEFT(pro.`no_proposal`,(LOCATE('/',pro.`no_proposal`)-1)))")
-                  ->from("proposal pro")                                             
-                  ->queryAll();       
+                  ->from("proposal pro")                    
+                  ->queryAll();  
+           else {
+                $ArrMaxNo = Yii::app()->db->createCommand()
+                  ->setFetchMode(PDO::FETCH_COLUMN,0)
+                  ->select("MAX(LEFT(pro.`no_proposal`,(LOCATE('/',pro.`no_proposal`)-1)))")
+                  ->from("proposal pro")  
+                  ->join('mtb_pegawai peg', 'pro.`marketing` = peg.pegawai_id')  
+                  ->join('mtb_pegawai unit', 'peg.`unit_kerja` = unit.`unit_kerja`')  
+                  ->where('unit.`pegawai_id` = '.$pegawai_id)  
+                  ->queryAll();  
+           }
             $input = $ArrMaxNo[0]+1;        
             $input = str_pad($input, 4, 0, STR_PAD_LEFT).'/'.date("m").'/'.date("Y");  
             return $input;
