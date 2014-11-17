@@ -286,14 +286,19 @@ class watchlist extends CActiveRecord
 	}
 
     
-    public function search_input()
+    public function search_input($pegawai_id = null)
 	{        
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-         
-		$criteria->group = "tgl_upload";
-                
+        
+        $criteria->select = 'tgl_upload';	
+        if($pegawai_id != null) {
+            $criteria->join .= ' INNER JOIN mtb_pegawai mp ON mp.pegawai_id = t.marketing ';
+            $criteria->join .= ' INNER JOIN mtb_pegawai unit ON mp.`unit_kerja` = unit.`unit_kerja` ';
+            $criteria->compare('unit.pegawai_id', $pegawai_id, true);
+        }
+         	$criteria->group = "tgl_upload";       
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

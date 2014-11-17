@@ -79,7 +79,7 @@ $template = "{delete}";
     <div class="span6 offset1">   
  <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'mtb-proposal-grid',
-	'dataProvider'=>$model_search->search_input(),	
+	'dataProvider'=>$model_search->search_input(Yii::app()->user->id_pegawai),	
     'type'=>'bordered striped',
 	'columns'=>array(
          array(
