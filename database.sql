@@ -186,7 +186,7 @@ CREATE TABLE `mtb_pegawai` (
 
 /*Data for the table `mtb_pegawai` */
 
-insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`,`level_jabatan`) values (16,'032','Maria Gunarti','108676080',21,'0813-74190906','mgunarti@bsm.co.id',3,'rnur1780@bsm.co.id',3),(15,'031','Nicko Gemayel','148713908',20,'0852-71589848','ngemayel@bsm.co.id',3,'rnur1780@bsm.co.id',3),(14,'030','Silvany Riza','118278205',20,'0812-6524091','sriza@bsm.co.id',3,'rnur1780@bsm.co.id',3),(13,'011','Ridwan Nur','047871780',9,'0852-76102270','rnur1780@bsm.co.id',3,'alhuda@bsm.co.id',2),(12,'010','Alhuda Djannis','007270489',8,'0816-1368853','alhuda@bsm.co.id',2,'ddurachman@bsm.co.id',2),(11,'001','Administrator','76102270',9,'0853-76102270','drankoto25@gmail.com',3,'rnur1780@bsm.co.id',1),(17,'012','Dedi Azmeli','037571378',9,'08126797660','dazmeli@bsm.co.id',8,'alhuda@bsm.co.id',2),(18,'020','Risa Anggraini','118579247',19,'082169583344','ranggraini@bsm.co.id',8,'dazmeli@bsm.co.id',2),(19,'033','Subhannoto','108176697',20,'081363027265','subhannoto@bsm.co.id',8,'dazmeli@bsm.co.id',3),(20,'034','Hendra Wahyudi','128412326',20,'081374222323','hwahyudi1064@bsm.co.id',8,'dazmeli@bsm.co.id',3),(21,'035','Aprizal','118179210',21,'081268377111','aprizal@bsm.co.id',8,'dazmeli@bsm.co.id',3),(22,'036','Ilma Ranita Sari','108777277',22,'081363967495','irsari7277@bsm.co.id',8,'dazmeli@bsm.co.id',3),(23,'013','Arief Hidayat','078272934',9,'08126799440','ahidayat82@bsm.co.id',9,'alhuda@bsm.co.id',2),(24,'021','Indrahman Syaiful','128771041',15,'085272715484','isyaiful@bsm.co.id',9,'ahidayat82@bsm.co.id',3),(25,'037','Donny Kurniawan','108475410',16,'08126745778','dkurniawan5410@bsm.co.id',9,'ahidayat82@bsm.co.id',3),(26,'038','Sri Maria Wahyuni','108675411',20,'081374370086','smwahyuni@bsm.co.id',9,'ahidayat82@bsm.co.id',3),(27,'014','Zulveri','057472638',9,'08126724586','zulveri@bsm.co.id',7,'alhuda@bsm.co.id',2),(28,'022','Ii Iswandi','127911319',15,'082387004623','iiswandi@bsm.co.id',7,'zulveri@bsm.co.id',3),(29,'039','Fadli','118379211',20,'08127668669','fadli@bsm.co.id',7,'zulveri@bsm.co.id',3),(30,'040','Fauziah','118979217',20,'085263637679','fauziah9217@bsm.co.id',7,'zulveri@bsm.co.id',3),(31,'041','Yanche Dede Saputra','108075069',20,'081363886633','ydsaputra@bsm.co.id',7,'zulveri@bsm.co.id',3),(32,'015','Ibnu Fadhli','108276695',9,'081363054582','ifadhli@bsm.co.id',6,'alhuda@bsm.co.id',2),(33,'023','Arsyad Sani','128711036',15,'081267718017','asani1036@bsm.co.id',6,'ifadhli@bsm.co.id',2),(34,'042','Shefri Donaldy','108877571',20,'085274739909','sdonaldy@bsm.co.id',6,'ifadhli@bsm.co.id',3),(35,'043','Franky Diyedra','128912204',20,'081365442508','fdiyedra@bsm.co.id',6,'ifadhli@bsm.co.id',3),(36,'044','Indra Febrian','108777266',21,'085365089130','ifadhli@bsm.co.id',6,'ifadhli@bsm.co.id',3);
+insert  into `mtb_pegawai`(`pegawai_id`,`no_urut`,`nama`,`NIP`,`jabatan`,`no_handphone`,`email`,`unit_kerja`,`email_atasan`,`level_jabatan`) values (16,'032','Maria Gunarti','108676080',21,'0813-74190906','mgunarti@bsm.co.id',3,'rnur1780@bsm.co.id',3),(15,'031','Nicko Gemayel','148713908',20,'0852-71589848','ngemayel@bsm.co.id',7,'rnur1780@bsm.co.id',3),(14,'030','Silvany Riza','118278205',20,'0812-6524091','sriza@bsm.co.id',7,'rnur1780@bsm.co.id',3),(13,'011','Ridwan Nur','047871780',9,'0852-76102270','rnur1780@bsm.co.id',3,'alhuda@bsm.co.id',2),(12,'010','Alhuda Djannis','007270489',8,'0816-1368853','alhuda@bsm.co.id',2,'ddurachman@bsm.co.id',2),(11,'001','Administrator','76102270',9,'0853-76102270','drankoto25@gmail.com',3,'rnur1780@bsm.co.id',1),(17,'012','Dedi Azmeli','037571378',9,'08126797660','dazmeli@bsm.co.id',8,'alhuda@bsm.co.id',2),(18,'020','Risa Anggraini','118579247',19,'082169583344','ranggraini@bsm.co.id',8,'dazmeli@bsm.co.id',2),(19,'033','Subhannoto','108176697',20,'081363027265','subhannoto@bsm.co.id',8,'dazmeli@bsm.co.id',3),(20,'034','Hendra Wahyudi','128412326',20,'081374222323','hwahyudi1064@bsm.co.id',8,'dazmeli@bsm.co.id',3),(21,'035','Aprizal','118179210',21,'081268377111','aprizal@bsm.co.id',8,'dazmeli@bsm.co.id',3),(22,'036','Ilma Ranita Sari','108777277',22,'081363967495','irsari7277@bsm.co.id',8,'dazmeli@bsm.co.id',3),(23,'013','Arief Hidayat','078272934',9,'08126799440','ahidayat82@bsm.co.id',9,'alhuda@bsm.co.id',2),(24,'021','Indrahman Syaiful','128771041',15,'085272715484','isyaiful@bsm.co.id',9,'ahidayat82@bsm.co.id',3),(25,'037','Donny Kurniawan','108475410',16,'08126745778','dkurniawan5410@bsm.co.id',9,'ahidayat82@bsm.co.id',3),(26,'038','Sri Maria Wahyuni','108675411',20,'081374370086','smwahyuni@bsm.co.id',9,'ahidayat82@bsm.co.id',3),(27,'014','Zulveri','057472638',9,'08126724586','zulveri@bsm.co.id',7,'alhuda@bsm.co.id',2),(28,'022','Ii Iswandi','127911319',15,'082387004623','iiswandi@bsm.co.id',7,'zulveri@bsm.co.id',3),(29,'039','Fadli','118379211',20,'08127668669','fadli@bsm.co.id',7,'zulveri@bsm.co.id',3),(30,'040','Fauziah','118979217',20,'085263637679','fauziah9217@bsm.co.id',7,'zulveri@bsm.co.id',3),(31,'041','Yanche Dede Saputra','108075069',20,'081363886633','ydsaputra@bsm.co.id',7,'zulveri@bsm.co.id',3),(32,'015','Ibnu Fadhli','108276695',9,'081363054582','ifadhli@bsm.co.id',6,'alhuda@bsm.co.id',2),(33,'023','Arsyad Sani','128711036',15,'081267718017','asani1036@bsm.co.id',6,'ifadhli@bsm.co.id',2),(34,'042','Shefri Donaldy','108877571',20,'085274739909','sdonaldy@bsm.co.id',6,'ifadhli@bsm.co.id',3),(35,'043','Franky Diyedra','128912204',20,'081365442508','fdiyedra@bsm.co.id',6,'ifadhli@bsm.co.id',3),(36,'044','Indra Febrian','108777266',21,'085365089130','ifadhli@bsm.co.id',6,'ifadhli@bsm.co.id',3);
 
 /*Table structure for table `mtb_segmen` */
 
@@ -214,7 +214,7 @@ CREATE TABLE `mtb_setting` (
 
 /*Data for the table `mtb_setting` */
 
-insert  into `mtb_setting`(`id`,`alert_status`) values (1,'1');
+insert  into `mtb_setting`(`id`,`alert_status`) values (1,'0');
 
 /*Table structure for table `mtb_status_nasabah` */
 
@@ -257,7 +257,7 @@ CREATE TABLE `mtb_text` (
 
 /*Data for the table `mtb_text` */
 
-insert  into `mtb_text`(`id`,`text`,`show`) values (1,'JANGAN LUPA ISI KUISIONER-NYA YACH....',1),(5,'Bismillah, Perangi Fraud. Integritas Harga Mati !!!',1),(7,'Pahami dan Patuhi Aturan',1),(8,'Jaga diri, jaga keluarga, jaga kawan, jaga BSM',1),(9,'5 to BE ( Be On Time, Belajar tuk Diri, Be Proaktif, Bersih Rapi Areaku, Bugar Sehat & Senyum Selalu )',1),(10,'... Boleh jadi kamu membenci sesuatu, padahal ia amat baik bagimu, dan boleh jadi (pula) kamu menyukai sesuatu, padahal ia amat buruk bagimu; Allah mengetahui, sedang kamu tidak mengetahui. (Al Baqarah : 216)',1);
+insert  into `mtb_text`(`id`,`text`,`show`) values (1,'JANGAN LUPA ISI KUISIONER-NYA YACH....',0),(5,'Bismillah, Perangi Fraud. Integritas Harga Mati !!!',0),(7,'Pahami dan Patuhi Aturan',0),(8,'Jaga diri, jaga keluarga, jaga kawan, jaga BSM',0),(9,'5 to BE ( Be On Time, Belajar tuk Diri, Be Proaktif, Bersih Rapi Areaku, Bugar Sehat & Senyum Selalu )',0),(10,'... Boleh jadi kamu membenci sesuatu, padahal ia amat baik bagimu, dan boleh jadi (pula) kamu menyukai sesuatu, padahal ia amat buruk bagimu; Allah mengetahui, sedang kamu tidak mengetahui. (Al Baqarah : 216)',0);
 
 /*Table structure for table `mtb_unit_kerja` */
 
@@ -292,6 +292,65 @@ CREATE TABLE `mtb_user` (
 /*Data for the table `mtb_user` */
 
 insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (25,'Silvany Riza','sriza@bsm.co.id',20,'$2a$13$ZpEVPaz3OV2ks3AbHHQHvujkmxnroRMsFM9r0gDGewjIvFJaLyFSq',1,'118278205',14),(27,'Maria Gunarti','mgunarti@bsm.co.id',21,'$2a$13$rrSQT8Io7Oee4Nf81Y2v0.qAe2uVT97Rs//mn/nM9zV2w0Z8hF6Ce',3,'108676080',16),(28,'Alhuda Djannis','alhuda@bsm.co.id',8,'$2a$13$lzu2Wrp84b3mBpbt884jpOXnPv5egkZIUWACjz6bf3F8vH9RWQ.Vu',2,'007270489',12),(29,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$ItTVNFqT8IMemrgSITnnIuqo4SZovc9wleKxuRoi3hB2skCYsiH8K',2,'047871780',13),(30,'Administrator','drankoto25@gmail.com',9,'$2a$13$QxQ/Tw4kdL8XlFVyqsU8BuXnSUCnlv4931JJdHxx.nLlmZceYefZ.',1,'76102270',11),(31,'Nicko Gemayel','ngemayel@bsm.co.id',20,'$2a$13$qcFFssgxRRHTcc5D3jQchey8RnpSbvHM1gD7xaQm5tz/s5Z5jw4he',3,'148713908',15),(32,'Dedi Azmeli','dazmeli@bsm.co.id',9,'$2a$13$bI0hFP5M9eDhas7uaCwn5.zTZ/HwrwNWGTAObcjkfxsng7XxjO49y',2,'037571378',17),(33,'Risa Anggraini','ranggraini@bsm.co.id',19,'$2a$13$jZN8/fsW6GbtxNG3i9wY1uuw483YBIqHWMjsbs/H8cCt3AlSOiBcm',2,'118579247',18),(34,'Subhannoto','subhannoto@bsm.co.id',20,'$2a$13$KxYS223F/KBlVoV9L24tV.k2/6UHs6DQ6qGyNlHJQ0nDKjX9XjeJm',3,'108176697',19),(35,'Hendra Wahyudi','hwahyudi1064@bsm.co.id',20,'$2a$13$iqM9UcWAmsnYiXTlzqI/6u18nVAY.HtzdIEO6kuOferwW6IXmkoWq',3,'128412326',20),(36,'Aprizal','aprizal@bsm.co.id',21,'$2a$13$xH8L29Jle3K7DD/LLJKO3O2bDcfhSgK43AkuQZo5/9s/7lkt.obzS',3,'118179210',21),(37,'Ilma Ranita Sari','irsari7277@bsm.co.id',22,'$2a$13$9sUArLFWQ0Qjpn2hGsL1EOQHI1IRyGS1ZIepLZd58X8skEf00Qgrq',3,'108777277',22),(38,'Indrahman Syaiful','isyaiful@bsm.co.id',15,'$2a$13$QUrcWSSd6060SOgMSZeCNe.BTPM.pASA9rwyywZDoWARvWTKgWMii',3,'128771041',24),(39,'Donny Kurniawan','dkurniawan5410@bsm.co.id',16,'$2a$13$6KTlIyRM6Oz8BJMoYgNUZOOSPxR7c2ZF1urBEcIC4egMhaxaMiR0.',3,'108475410',25),(40,'Sri Maria Wahyuni','smwahyuni@bsm.co.id',20,'$2a$13$sC5KnB4G.6sXpR.4JPovAeKWRvL9.Q7nn8pYo2wmSn3JdSNRYDvea',3,'108675411',26),(41,'Arief Hidayat','ahidayat82@bsm.co.id',9,'$2a$13$Ns5stiGJYX.YTlwkHbCO0e0VG7.3yjoQl1XDJCnU7S/v1fBy4nhUm',2,'078272934',23),(42,'Zulveri','zulveri@bsm.co.id',9,'$2a$13$/swSMJZJRKswCUlKcI6g8eDOwFmPaamjPT7Sr0HkKCs1BEjRgSkWy',2,'057472638',27),(43,'Ii Iswandi','iiswandi@bsm.co.id',15,'$2a$13$mwQit2EZAyjcuIPZqbRbBuviu6cVbK1DtmEEE.tDfyZK8MMR5JK8e',3,'127911319',28),(44,'Fadli','fadli@bsm.co.id',20,'$2a$13$MxunaAih4g3ZVv9NXlUI4ed8E5SesjEsHEg0afQOgiurrA8r8PHLu',3,'118379211',29),(45,'Fauziah','fauziah9217@bsm.co.id',20,'$2a$13$wVsp8/XJhSrMApFbZuXPzueWR0R1yRC4TLvtPA85EQh88gaud/53G',3,'118979217',30),(46,'Yanche Dede Saputra','ydsaputra@bsm.co.id',20,'$2a$13$Z1Nd3.kFjliD718l89vpa.V8kgzJtHZeOPEbg425bPR7pWiiTkMBe',3,'108075069',31),(47,'Shefri Donaldy','sdonaldy@bsm.co.id',20,'$2a$13$2AV8RXlJHiZi4Lm2xSn4MuPOe63zqo0UEanpVEh/kbJbXiYkF4D0u',3,'108877571',34),(48,'Franky Diyedra','fdiyedra@bsm.co.id',20,'$2a$13$O1pT8o8xeAurgkCT4T403.2AXWLwu7QaA3uq9qxg6StXMOssRwCa2',3,'128912204',35),(49,'Indra Febrian','ifadhli@bsm.co.id',21,'$2a$13$ARqHDBGbERJFH.92nK.MBe80ZyYasu/bxGRLdjEBSLlNOdo4cbudK',3,'108777266',36),(50,'Arsyad Sani','asani1036@bsm.co.id',15,'$2a$13$sJD/6WHT64jhUdNkHys25OU.0Ph6Py8ob8nTBpX/9j8MA9r.driua',2,'128711036',33);
+
+/*Table structure for table `naspoma` */
+
+DROP TABLE IF EXISTS `naspoma`;
+
+CREATE TABLE `naspoma` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) COLLATE utf8_bin NOT NULL,
+  `segmen` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `alasan` text COLLATE utf8_bin,
+  `jenis_pembiayaan` int(2) DEFAULT NULL,
+  `jenis_usaha` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `no_CIF` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `no_rekening` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `plafon_awal` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `OS_pokok_terakhir` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `angs_per_hasil` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `kolektibilitas_terakhir` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `margin` varchar(8) COLLATE utf8_bin DEFAULT NULL,
+  `tunggakan` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `jenis_identitas` int(2) DEFAULT NULL,
+  `no_identitas` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `tempat_lahir` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `alamat` text COLLATE utf8_bin,
+  `agama` int(2) DEFAULT NULL,
+  `status_perkawinan` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `pekerjaan` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `kewarganegaraan` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `masa_berlaku` date DEFAULT NULL,
+  `desa` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `no_buku_nikah` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `tgl_buku_nikah` date DEFAULT NULL,
+  `no_kartu_keluarga` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `tgl_kartu_keluarga` date DEFAULT NULL,
+  `marketing` int(3) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `naspoma` */
+
+insert  into `naspoma`(`id`,`nama`,`segmen`,`alasan`,`jenis_pembiayaan`,`jenis_usaha`,`no_CIF`,`no_rekening`,`plafon_awal`,`OS_pokok_terakhir`,`angs_per_hasil`,`kolektibilitas_terakhir`,`margin`,`tunggakan`,`jenis_identitas`,`no_identitas`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`desa`,`no_buku_nikah`,`tgl_buku_nikah`,`no_kartu_keluarga`,`tgl_kartu_keluarga`,`marketing`) values (1,'namaku','1','alesan',1,'jenis usaha','no cif','no rek','1','2','3','1','10','4',1,'no identitas','medan','0000-00-00','alamat',1,'Kawin','programmer','indonesia','0000-00-00','desa','buku nikah','0000-00-00','no kk','0000-00-00',14),(2,'Kedua','1','',3,'','','','','','','1','','',1,'1','','2014-12-17','',1,'Tidak Kawin','','','2014-12-03','','','0000-00-00','111','0000-00-00',14);
+
+/*Table structure for table `naspoma_kartu_keluarga` */
+
+DROP TABLE IF EXISTS `naspoma_kartu_keluarga`;
+
+CREATE TABLE `naspoma_kartu_keluarga` (
+  `no_kartu_keluarga` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `nama` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `no_ktp` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `naspoma_id` int(5) DEFAULT NULL,
+  `tempat_lahir` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `naspoma_kartu_keluarga` */
+
+insert  into `naspoma_kartu_keluarga`(`no_kartu_keluarga`,`nama`,`tanggal_lahir`,`no_ktp`,`naspoma_id`,`tempat_lahir`) values ('no kk','adik','0000-00-00','no ktp 1',1,'medan');
 
 /*Table structure for table `pelunasan` */
 
@@ -383,11 +442,11 @@ CREATE TABLE `proposal` (
   `jenis_identitas` int(2) DEFAULT NULL,
   `tanggal_kartu_keluarga` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal` */
 
-insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'40000000','2014-10-15',6,'Golbertap','16','1308073108070002','','1308071304800002','0001/11/2014','3',1,'','','',NULL,'','','','','','',0,'DIRMAN',1,'2014-03-21'),(2,'150000000','2014-11-03',4,'PNS','14','1308022903070004','344/40/VII/2005','1308055604690001','0002/11/2014','1',1,'','','',NULL,'','','','','','',0,'ITA WISIKARTIYAH',1,'2010-07-26'),(3,'300000000','2014-11-03',5,'TOKO BANGUNAN','15','1308052112090001','235/39/VIII/2007','1308051706840005','0003/11/2014','1',1,'','','',NULL,'','','','','','',0,'AHMAD RAMADHANI',1,'2012-05-02'),(4,'300000000','2014-10-13',5,'TOKO ELEKTRONIK','14','1308172407070003','126/01/X/2002','1308170406770001','0004/11/2014','1',1,'','','',NULL,'','','','','','',0,'M.RAFLIA',1,'2012-03-20'),(5,'40000000','2014-10-05',6,'Dagang Harian','16','1308031408080048','','1308071606650001','0006/11/2014','3',1,'','','',NULL,'','','','','','',0,'SYAMSUDDIN RAMBE',1,'2011-02-28'),(6,'50000000','2014-11-03',6,'KEBUN COKLAT','16','1308193005110001','','1308190405640002','0007/11/2014','3',1,'','','',NULL,'','','','','','',0,'ABDUL HADI LUBIS',1,'2014-09-12'),(7,'50000000','2014-10-20',6,'DAGANG SAYUR DAN KEBUN COKLAT','16','1308071910090007','648/1/1983','1308070709600001','0008/11/2014','1',1,'','','',NULL,'','','','','','',0,'AMRY',1,'2013-09-09'),(8,'20000000','2014-08-11',6,'Dagang Karet','16','1308042112110006','','1308040107620011','0009/11/2014','3',1,'','','',NULL,'','','','','','',0,'ADAM BURI',1,'2011-12-23'),(9,'100000000','2014-08-14',6,'kontraktor','16','1308050102100008','225/03/11/94','1308052307640001','0010/11/2014','3',1,'','','',NULL,'','','','','','',0,'YUSMEDI',1,'2012-02-08');
+insert  into `proposal`(`proposal_id`,`plafon`,`tanggal_pengajuan`,`segmen`,`jenis_usaha`,`marketing`,`no_kartu_keluarga`,`no_buku_nikah`,`no_ktp`,`no_proposal`,`status_pengajuan`,`jenis_nasabah`,`existing_plafon`,`existing_os`,`existing_angsuran`,`existing_kolektabilitas`,`referal_nama`,`referal_alamat`,`referal_telp`,`referal_sektor_usaha`,`referal_fasilitas`,`referal_kolektabilitas`,`del_flag`,`nama_nasabah`,`jenis_identitas`,`tanggal_kartu_keluarga`) values (1,'40000000','2014-10-15',6,'Golbertap','16','1308073108070002','','1308071304800002','0001/11/2014','3',1,'','','',NULL,'','','','','','',0,'DIRMAN',1,'2014-03-21'),(2,'150000000','2014-11-03',4,'PNS','16','1308022903070004','344/40/VII/2005','1308055604690001','0002/11/2014','1',1,'','','',NULL,'','','','','','',0,'ITA WISIKARTIYAH',1,'2010-07-26'),(4,'300000000','2014-10-13',5,'TOKO ELEKTRONIK','16','1308172407070003','126/01/X/2002','1308170406770001','0004/11/2014','1',1,'','','',NULL,'','','','','','',0,'M.RAFLIA',1,'2012-03-20'),(5,'40000000','2014-10-05',6,'Dagang Harian','16','1308031408080048','','1308071606650001','0006/11/2014','3',1,'','','',NULL,'','','','','','',0,'SYAMSUDDIN RAMBE',1,'2011-02-28'),(6,'50000000','2014-11-03',6,'KEBUN COKLAT','16','1308193005110001','','1308190405640002','0007/11/2014','3',1,'','','',NULL,'','','','','','',0,'ABDUL HADI LUBIS',1,'2014-09-12'),(7,'50000000','2014-10-20',6,'DAGANG SAYUR DAN KEBUN COKLAT','16','1308071910090007','648/1/1983','1308070709600001','0008/11/2014','1',1,'','','',NULL,'','','','','','',0,'AMRY',1,'2013-09-09'),(8,'20000000','2014-08-11',6,'Dagang Karet','16','1308042112110006','','1308040107620011','0009/11/2014','3',1,'','','',NULL,'','','','','','',0,'ADAM BURI',1,'2011-12-23'),(9,'100000000','2014-08-14',6,'kontraktor','16','1308050102100008','225/03/11/94','1308052307640001','0010/11/2014','3',1,'','','',NULL,'','','','','','',0,'YUSMEDI',1,'2012-02-08'),(10,'','2014-12-03',1,'121','14','112211','','211','0004/12/2014','1',1,'','','',NULL,'','','','','','',0,'TES',1,'');
 
 /*Table structure for table `proposal_buku_nikah` */
 
@@ -438,11 +497,11 @@ CREATE TABLE `proposal_ktp` (
   `proposal_id` int(5) DEFAULT NULL,
   `desa` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`proposal_ktp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `proposal_ktp` */
 
-insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'1308071304800002','Kampung Baru','1980-04-13','Pasar Petok',1,'Kawin','PNS','Indonesia','2017-04-13',1,'Panti'),(2,'1308055604690001','BUKITTINGGI','1969-04-16','JL.PERWIRA NO.7 JR.TANJUNG ALAI KEL.PAUH KEC.LUBUK SIKAPING',1,'Kawin','PNS','Indonesia','2019-04-16',2,'PAUH'),(3,'1308051706840005','LUBUK SIKAPING','1984-06-17','JL. PASAR BARU- BENTENG',1,'Kawin','KARYAWAN HONORER','Indonesia','2017-06-17',3,'TANJUNG BARINGIN'),(4,'1308170406770001','CUBADAK DAKEK','1977-06-04','CUBADAK DAKEK,MAKMUR KEL PADANG GELUGUR ',1,'Kawin','WIRASWASTA','Indonesia','2017-06-04',4,'PADANG GELUGUR'),(5,'1308071606650001','RANTAU PRAPAT','1965-06-16','Sumpur Sejati jorong Kuamang ',1,'Kawin','wiraswasta','Indonesia','2017-06-16',5,'Panti'),(6,'1308190405640002','KOTO NOPAN SETIA','1964-05-04','KOTO NOPAN SETIA',1,'Kawin','PENSIUNAN','Indonesia','2018-05-04',6,'LANSEK KADOK'),(7,'1308070709600001','TAPSEL','1960-09-07','KAJAI II JR MURNI PANTI',1,'Kawin','wiraswasta','Indonesia','2017-09-07',7,'Panti'),(8,'1308040107620011','musus','1962-07-01','Jorong Air Abu',1,'Kawin','Petani','Indonesia','2017-07-01',8,'Limo Koto'),(9,'1308052307640001','Talu','1964-07-23','Jl Prof.DR.hamka No.16B',1,'Kawin','PNS','Indonesia','2017-07-23',9,'Tanjung Beringin');
+insert  into `proposal_ktp`(`proposal_ktp_id`,`no_ktp`,`tempat_lahir`,`tanggal_lahir`,`alamat`,`agama`,`status_perkawinan`,`pekerjaan`,`kewarganegaraan`,`masa_berlaku`,`proposal_id`,`desa`) values (1,'1308071304800002','Kampung Baru','1980-04-13','Pasar Petok',1,'Kawin','PNS','Indonesia','2017-04-13',1,'Panti'),(2,'1308055604690001','BUKITTINGGI','1969-04-16','JL.PERWIRA NO.7 JR.TANJUNG ALAI KEL.PAUH KEC.LUBUK SIKAPING',1,'Kawin','PNS','Indonesia','2019-04-16',2,'PAUH'),(3,'1308051706840005','LUBUK SIKAPING','1984-06-17','JL. PASAR BARU- BENTENG',1,'Kawin','KARYAWAN HONORER','Indonesia','2017-06-17',3,'TANJUNG BARINGIN'),(4,'1308170406770001','CUBADAK DAKEK','1977-06-04','CUBADAK DAKEK,MAKMUR KEL PADANG GELUGUR ',1,'Kawin','WIRASWASTA','Indonesia','2017-06-04',4,'PADANG GELUGUR'),(5,'1308071606650001','RANTAU PRAPAT','1965-06-16','Sumpur Sejati jorong Kuamang ',1,'Kawin','wiraswasta','Indonesia','2017-06-16',5,'Panti'),(6,'1308190405640002','KOTO NOPAN SETIA','1964-05-04','KOTO NOPAN SETIA',1,'Kawin','PENSIUNAN','Indonesia','2018-05-04',6,'LANSEK KADOK'),(7,'1308070709600001','TAPSEL','1960-09-07','KAJAI II JR MURNI PANTI',1,'Kawin','wiraswasta','Indonesia','2017-09-07',7,'Panti'),(8,'1308040107620011','musus','1962-07-01','Jorong Air Abu',1,'Kawin','Petani','Indonesia','2017-07-01',8,'Limo Koto'),(9,'1308052307640001','Talu','1964-07-23','Jl Prof.DR.hamka No.16B',1,'Kawin','PNS','Indonesia','2017-07-23',9,'Tanjung Beringin'),(10,'211','','2014-12-03','',1,'Kawin','','Indonesia','2014-12-03',10,'');
 
 /*Table structure for table `tolak` */
 

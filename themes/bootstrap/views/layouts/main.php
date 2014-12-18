@@ -43,6 +43,7 @@
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/create',)),
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/create',)),    
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('watch/input',)),
+								    array('label'=>'Nasabah Potensi Masalah (Proses Exit Strategy)', 'url'=>array('naspoma/create',)),
                                                                     )
 							),																					
 							array('label'=>'Input Data', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('admin'), 
@@ -63,6 +64,7 @@
 								    array('label'=>'Daftar Nasabah Ditolak', 'url'=>array('tolak/report',)),
 								    array('label'=>'Nasabah Pelunasan Tidak Normal', 'url'=>array('pelunasan/report',)),                                                     
 								    array('label'=>'Nasabah Watchlist Akhir Bulan', 'url'=>array('watch/report',)),								                                                          
+								    array('label'=>'Nasabah Potensi Masalah (Proses Exit Strategy)', 'url'=>array('naspoma/report',)),								                                                          
 								    )
 							),	                                                    							
 							array('label'=>'Kuisioner', 'url'=>array('#'), 'visible'=>Yii::app()->user->checkAccess('inputter') || Yii::app()->user->checkAccess('approval'),
