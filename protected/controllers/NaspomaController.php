@@ -238,7 +238,7 @@ class NaspomaController extends Controller{
                             'index' => $index,
                             'nama' => $record->nama,
                             'no_rekening' => $record->no_rekening,
-                            'jenis_pembiayaan' => $record->jenis_pembiayaan,
+                            'jenis_pembiayaan' => $record->rJen->nama,
                             'marketing' => $record->rMar->nama,
                     );
             }            
@@ -259,7 +259,7 @@ class NaspomaController extends Controller{
         
         // tadaaaa finally render
          $this->render('print',array(
-            'modelal' => $model,
+            'model' => $model,
             'data' => $data,           
             'unitKerja' => $unitKerja,
         ));

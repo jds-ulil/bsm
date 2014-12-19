@@ -16,6 +16,9 @@ $('.search-form form').submit(function(){
 	$('#mtb-watchlist-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
+	$('#mtb-naspoma-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
 	return false;
 });
 ");
@@ -173,3 +176,44 @@ $('.search-form form').submit(function(){
         )
         )	
 ); ?>
+
+
+<!----------------------NASABAH POTENSI TOLAK------------------------->
+<h1 class="loginHead">NASABAH POTENSI TOLAK</h1>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'id'=>'mtb-naspoma-grid',
+	'dataProvider'=>$model_naspoma->searchForGlobalNaspoma(),	
+    'type'=>'bordered striped',
+	'columns'=>array(	
+		'nama',
+        'jenis_usaha',               
+        array(
+            'name'=>'Segmen',
+            'value'=>'empty($data->rSeg->nama)?"Deleted":$data->rSeg->nama',
+        ),
+        'no_rekening',        
+        array(
+               'name'=>'Jenis Pembiayaan',
+               'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
+           ),
+        array(
+            'name'=>'Kolektibilitas',
+            'value'=>'empty($data->rKol->nama)?"Deleted":$data->rKol->nama',
+        ),
+        array(
+               'name'=>'Marketing',
+               'value'=>'empty($data->rMar->nama)?"Deleted":$data->rMar->nama',
+           ),
+        array(
+        'header' => 'Action',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{view}',
+            'viewButtonLabel' => "Detail",
+            'viewButtonUrl'=>'Yii::app()->createUrl("/naspoma/detail", array("id" =>$data[\'id\']))',
+			'htmlOptions' => array(
+			  //  'width' => '6%',
+			  //  'align' => 'center',
+			),
+            ),
+        )	
+)); ?>

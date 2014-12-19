@@ -41,12 +41,23 @@ class SearchController extends Controller
         $check_proposal = 5;
         $check_pelunasan = 3;
         $check_watchlist = 3;
+        /**
+         * check variable for naspoma (5)
+         *  nama
+         *  no_rekening
+         *  no_identitas
+         *  no_kartu_keluarga
+         *  no_buku_nikah
+         */        
+        $check_naspoma = 5;
         $stop = 1;
         $var_pro = '';
         
         $model_proposal = new proposal;
         $model_pelunasan = new pelunasan;      
-        $model_watchlist = new watchlist;      
+        $model_watchlist = new watchlist;
+        // init model naspoma
+        $model_naspoma = new naspoma;
         
         if(isset($_GET['search'])){
             $model_search->attributes = $_GET['search'];
@@ -89,13 +100,30 @@ class SearchController extends Controller
                 }              
                 $model_watchlist->sKeyword = $var_pro;
                 $model_watchlist->sValue = $model_search->search_name;                
-            }                                                           
+            } 
+            
+            //reinit stop and var_pro
+            $stop = 1;
+            //variable search
+            $var_pro = '';
+            // checking for naspoma
+            while ($stop !=  $check_naspoma) {
+                $var_pro = naspoma::model()->searchfromglobal($model_search->search_name, $stop);
+                if (!empty($var_pro)) {
+                    $stop = $check_naspoma;
+                } else {
+                    $stop +=1;
+                }
+                $model_naspoma->sKeyword = $var_pro;
+                $model_naspoma->sValue = $model_search->search_name;
+            }
         }
         $this->render('index', array(
             'model_search' => $model_search,
             'model_proposal' => $model_proposal,
             'model_pelunasan' => $model_pelunasan,
             'model_watchlist' => $model_watchlist,
+            'model_naspoma' => $model_naspoma,
         ));
     }
     

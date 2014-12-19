@@ -34,6 +34,9 @@ class naspoma extends CActiveRecord
     // for searching variable
     public $unit_kerja;
     
+    public $sKeyword;
+    public $sValue;
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -66,11 +69,12 @@ class naspoma extends CActiveRecord
             array('tgl_kartu_keluarga', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
             
 			array('no_identitas', 'length', 'max'=>30),
-			array('tgl_kartu_keluarga, alasan, tanggal_lahir, alamat, masa_berlaku, tgl_buku_nikah', 'safe'),
+			array('sKeyword, sValue, tgl_kartu_keluarga, alasan, tanggal_lahir, alamat, masa_berlaku, tgl_buku_nikah', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('no_kartu_keluarga, tgl_kartu_keluarga, id, jenis_identitas, plafon_awal, nama, segmen, alasan, jenis_pembiayaan, jenis_usaha, no_CIF, no_rekening, OS_pokok_terakhir, angs_per_hasil, kolektibilitas_terakhir, margin, tunggakan, no_identitas, tempat_lahir, tanggal_lahir, alamat, agama, status_perkawinan, pekerjaan, kewarganegaraan, masa_berlaku, desa', 'safe', 'on'=>'search'),
 			array('unit_kerja', 'safe', 'on'=>'search'),
+            
 		);
 	}
 
@@ -202,6 +206,88 @@ class naspoma extends CActiveRecord
 	}
     
     
+    /**
+     * 
+     * @param type $keyword searching keyword input by user
+     * @param type $val use for looping check
+     * @return string
+     */
+    function searchfromglobal($keyword,$val){           
+            $criteria = new CDbCriteria();                
+            switch ($val){
+                // nama
+                case 1:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(nama) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'nama';  
+                        }
+                    break;                             
+                // no identitas
+                case 2:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(no_identitas) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'no_identitas';  
+                        }
+                    break;                             
+                // no rekening
+                case 3:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(no_rekening) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'no_rekening';  
+                        }
+                    break;                             
+                // no kartu keluarga
+                case 4:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(no_kartu_keluarga) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'no_kartu_keluarga';  
+                        }
+                    break;                             
+                // no buku nikah
+                case 5:    
+                    $keyword = strtolower($keyword);
+                    $keyword_db = addcslashes($keyword, '%_');
+                    $criteria->condition = "LOWER(no_buku_nikah) like :param ";                    
+                    $criteria->params = array(':param'=>"%$keyword_db%");
+                        if($this->model()->exists($criteria)) {                              
+                            return 'no_buku_nikah';  
+                        }
+                    break;                             
+            }
+            return;
+       }
+    
+    
+    
+    public function searchForGlobalNaspoma() {
+        $criteria=new CDbCriteria;
+        
+        if(empty($this->sKeyword)) {
+            $this->id = 'AADC';
+            $criteria->compare('id',$this->id);
+        } else {            
+            $var = $this->sKeyword;
+            $this->$var = $this->sValue;
+            $criteria->compare("LOWER($var)",strtolower($this->$var),true);   
+        }
+        
+        return new CActiveDataProvider($this, array(                   
+                'criteria'=>$criteria,
+		));
+    }   
+     
 
 	/**
 	 * Returns the static model of the specified AR class.

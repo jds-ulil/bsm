@@ -22,16 +22,16 @@ class ProposalController extends Controller
          
         public function init() {
         parent::init();
-        Yii::app()->attachEventHandler('onError',array($this,'handleError'));
+        //Yii::app()->attachEventHandler('onError',array($this,'handleError'));
         }
-        public function handleError(CEvent $event)
-            {            
-            if($event instanceof CErrorEvent)
-            {       
-            $this->redirect(array('Error'));
-          }
-            $event->handled = TRUE;
-        }    
+//        public function handleError(CEvent $event)
+//            {            
+//            if($event instanceof CErrorEvent)
+//            {       
+//            $this->redirect(array('Error'));
+//          }
+//            $event->handled = TRUE;
+//        }    
         
 	/**
 	 * Specifies the access control rules.

@@ -74,6 +74,18 @@ class proposal extends CActiveRecord
                         array('no_ktp', 'checkTolakKtp', 'on'=>'create'),
                         array('no_buku_nikah', 'checkTolakBukuNikah', 'on'=>'create'),
                         array('no_kartu_keluarga', 'checkNoKK', 'on'=>'create'),
+            
+            // rules for naspoma
+                //check nama with naspoma.nama
+                array('nama_nasabah', 'checkTolakNamaNaspoma', 'on' => 'create'),
+                //check no_ktp with naspoma.no_identitas
+                array('no_ktp', 'checkTolakKtpNaspoma', 'on' => 'create'),
+                // check no_buku nikah with naspoma.no_buku_nikah
+                array('no_buku_nikah', 'checkTolakBukuNikahNaspoma', 'on' => 'create'),
+                // check no_kartu_keluarga nikah with naspoma.no_kartu_keluarga
+                array('no_kartu_keluarga', 'checkNoKKNaspoma', 'on'=>'create'),
+            
+            
 			array('status_pengajuan', 'length', 'max'=>3),
 			array('plafon,existing_os, existing_angsuran, referal_telp, referal_fasilitas', 'length', 'max'=>20),
 			array('referal_kolektabilitas', 'length', 'max'=>2),
@@ -431,6 +443,115 @@ class proposal extends CActiveRecord
                     }
             return true;
         }
+        
+        
+        //---------------------CHECK FROM NASPOMA
+        
+        /**
+         * 
+         * @param type $attribute_name value dari input field nama
+         * @param type $params emptied
+         * @return boolean
+         * table naspoma.nama
+         */
+        public function checkTolakNamaNaspoma($attribute_name, $params)
+        {
+            $this->$attribute_name = strtoupper($this->$attribute_name);
+            $arrNamaTolak = Yii::app()->db->createCommand()
+                            //->setFetchMode(PDO::FETCH_COLUMN,1)
+                            ->select("UPPER(nama) as nama,id")
+                            ->from("naspoma")                                        
+                            ->queryAll();                   
+            foreach ($arrNamaTolak as $key => $value) {
+                        if($value['nama'] == $this->$attribute_name) {                          
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah Potensi Masalah <a href='".YII::app()->createUrl('naspoma/detail',array('id'=>$value['id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }
+            return true;
+        }
+        
+        
+        /**
+         * check input user with naspoma.no_identitas
+         * @param type $attribute_name no_ktp input from user
+         * @param type $params set empty     
+         */
+        public function checkTolakKtpNaspoma ($attribute_name, $params)
+        {
+            // can empty field
+            if(empty($this->$attribute_name)) return TRUE;
+            
+            // from table naspoma_kartu_keluarga
+            $arrKtpKKNaspoma = Yii::app()->db->createCommand()                           
+                            ->select("nkk.no_ktp as no_identitas, nas.id")
+                            ->from("naspoma nas")
+                            ->join('naspoma_kartu_keluarga nkk', 'nas.id=nkk.naspoma_id')                                                        
+                            ->queryAll();   
+             // from table naspoma
+            $arrKtpNaspoma = Yii::app()->db->createCommand()                           
+                            ->select("nas.no_identitas, nas.id")
+                            ->from("naspoma nas")                                                        
+                            ->queryAll();            
+            $arrKtpNaspomaAll = array_merge($arrKtpKKNaspoma, $arrKtpNaspoma);
+            foreach ($arrKtpNaspomaAll as $key => $value) {
+                        if($value['no_identitas'] == $this->$attribute_name) {                   
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah Potensi Masalah <a href='".YII::app()->createUrl('naspoma/detail',array('id'=>$value['id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }
+            return true;
+        }
+        
+        
+        /**
+         * check user input with naspoma.no_buku_nikah
+         * @param type $attribute_name input no buku nikah by user
+         * @param type $params emptied value
+         * @return boolean
+         */
+        public function checkTolakBukuNikahNaspoma ($attribute_name, $params){
+            if(empty($this->$attribute_name)) return TRUE;
+            $arrBukuNikahTolak = Yii::app()->db->createCommand()
+                            ->select("nas.no_buku_nikah, nas.id")
+                            ->from("naspoma nas")                                                                                  
+                            ->queryAll(); 
+            foreach ($arrBukuNikahTolak as $key => $value) {
+                        if($value['no_buku_nikah'] == $this->$attribute_name) {                            
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah Potensi Masalah <a href='".YII::app()->createUrl('naspoma/detail',array('id'=>$value['id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }             
+            return true;
+        }
+        
+        
+        /**
+         * check usr input wiht naspoma.no_kartu_keluarga
+         * @param type $attribute_name input by user in field no kk
+         * @param type $params emptid value
+         * @return boolean
+         */
+        public function checkNoKKNaspoma ($attribute_name, $params){
+            // can set empty
+            if(empty($this->$attribute_name)) return TRUE;
+            $arrKKNaspoma = Yii::app()->db->createCommand()
+                            ->select("nas.no_kartu_keluarga, nas.id")
+                            ->from("naspoma nas")                                                                                  
+                            ->queryAll(); 
+            foreach ($arrKKNaspoma as $key => $value) {
+                        if($value['no_kartu_keluarga'] == $this->$attribute_name) {                            
+                            $this->addError($attribute_name, "Masuk Daftar Nasabah Potensi Masalah <a href='".YII::app()->createUrl('naspoma/detail',array('id'=>$value['id']))."' target='_blank'>Lihat Detail</a>");
+                            return false;
+                        }
+                    }             
+            return true;
+        }
+        
+        
+        //---------------------CHECK FROM NASPOMA
+        
+        
         public function getTotalProposal () {
             $query1 = "SELECT COUNT(proposal_id) FROM proposal                        
                         WHERE del_flag = 0";                        

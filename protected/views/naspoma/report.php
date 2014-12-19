@@ -71,7 +71,7 @@ $template = "{view}{delete}";
         'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 			'template'=>$template,
-            'viewButtonLabel' => "Detail Proposal",
+            'viewButtonLabel' => "Detail",
             'viewButtonUrl'=>'Yii::app()->createUrl("/naspoma/detail", array("id" =>$data[\'id\']))',
 			'htmlOptions' => array(
 			  //  'width' => '6%',
