@@ -6,7 +6,8 @@
 	<meta name="language" content="en" />
     <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />       
-    <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.marquee.min.js'); ?>
+    <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.marquee.min.js'); ?>   
+    <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/angular.min.js'); ?>    
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>    
 	<?php Yii::app()->bootstrap->register(); ?>
 </head>
@@ -28,6 +29,12 @@
 						'activeCssClass'	=> 'active',
 
 						'items'=>array(
+                            array('label'=>'LAPORAN HARIAN', 'url'=>array('#'),
+								'items'=>array(
+								    array('label'=>'Input', 'url'=>array('/daily/input',),'visible'=>TRUE, 'linkOptions'=>array('target'=>'_blank')),								   
+								    array('label'=>'Cetak Laporan', 'url'=>array('/user/setting',),  'visible'=>TRUE),								    
+								    )
+								),
 							array('label'=>'Administrasi User', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'),
 								'items'=>array(
 								    array('label'=>'Inputer', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_inputter),  'visible'=>Yii::app()->user->checkAccess('admin')) ,
@@ -97,7 +104,7 @@
 						'htmlOptions' => array( 'class' => 'nav pull-right' ),
 						'activeCssClass'	=> 'active',
 
-						'items'=>array(		
+						'items'=>array(																    
 								array('label'=>$user, 'url'=>array('#'),
 								'items'=>array(
 								    array('label'=>'Login', 'url'=>array('/site/login',),  'visible'=>Yii::app()->user->isGuest),								   

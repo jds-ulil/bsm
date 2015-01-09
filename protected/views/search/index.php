@@ -145,7 +145,7 @@ $('.search-form form').submit(function(){
         )	
 ); ?>
 
-<h1 class="loginHead">WATCHLIST</h1>
+<h1 class="loginHead">Watchlist</h1>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mtb-watchlist-grid',
 	'dataProvider'=>$model_watchlist->searchForGlobalWatchlist(),	
@@ -179,31 +179,28 @@ $('.search-form form').submit(function(){
 
 
 <!----------------------NASABAH POTENSI TOLAK------------------------->
-<h1 class="loginHead">NASABAH POTENSI TOLAK</h1>
+<h1 class="loginHead">Nasabah Potensi Bermasalah (Proses Exit Strategy)</h1>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mtb-naspoma-grid',
 	'dataProvider'=>$model_naspoma->searchForGlobalNaspoma(),	
     'type'=>'bordered striped',
 	'columns'=>array(	
 		'nama',
-        'jenis_usaha',               
+        'jenis_usaha', 
+        'no_CIF',
         array(
-            'name'=>'Segmen',
-            'value'=>'empty($data->rSeg->nama)?"Deleted":$data->rSeg->nama',
-        ),
-        'no_rekening',        
-        array(
-               'name'=>'Jenis Pembiayaan',
-               'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
-           ),
-        array(
-            'name'=>'Kolektibilitas',
-            'value'=>'empty($data->rKol->nama)?"Deleted":$data->rKol->nama',
+            'name'=>'Jenis Pembiayaan',
+            'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
         ),
         array(
-               'name'=>'Marketing',
-               'value'=>'empty($data->rMar->nama)?"Deleted":$data->rMar->nama',
-           ),
+            'name'=>'O/S Pokok',
+            'value'=>'Yii::app()->numberFormatter->formatCurrency($data->OS_pokok_terakhir, "Rp ")',
+        ),
+        array(
+            'name'=>'Unit Kerja',
+            'value'=>'empty($data->rMar->rUnK->nama)?"Deleted":$data->rMar->rUnK->nama',
+        ),        
+        'alasan',
         array(
         'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',

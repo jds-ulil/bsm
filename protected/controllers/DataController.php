@@ -62,6 +62,10 @@ class DataController extends Controller
                     $change = true;
                     Yii::app()->db->createCommand()->truncateTable(voteJawab::model()->tableName());  
                 }
+                if($model->naspoma == 1) {
+                    $change = true;
+                    Yii::app()->db->createCommand()->truncateTable(naspoma::model()->tableName());  
+                }
                 if ($change) {
                      Yii::app()->user->setFlash('success', "Data Telah Di Kosongkan");
                 }

@@ -49,24 +49,17 @@ $template = "{view}{delete}";
     'type'=>'bordered striped',
 	'columns'=>array(	
 		'nama',
-        'jenis_usaha',               
+        'jenis_usaha', 
+        'no_CIF',
         array(
-            'name'=>'Segmen',
-            'value'=>'empty($data->rSeg->nama)?"Deleted":$data->rSeg->nama',
-        ),
-        'no_rekening',        
-        array(
-               'name'=>'Jenis Pembiayaan',
-               'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
-           ),
-        array(
-            'name'=>'Kolektibilitas',
-            'value'=>'empty($data->rKol->nama)?"Deleted":$data->rKol->nama',
+            'name'=>'Jenis Pembiayaan',
+            'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
         ),
         array(
-               'name'=>'Marketing',
-               'value'=>'empty($data->rMar->nama)?"Deleted":$data->rMar->nama',
-           ),
+            'name'=>'O/S Pokok',
+            'value'=>'Yii::app()->numberFormatter->formatCurrency($data->OS_pokok_terakhir, "Rp ")',
+        ),
+        'alasan',
         array(
         'header' => 'Action',
 			'class'=>'bootstrap.widgets.TbButtonColumn',

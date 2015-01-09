@@ -20,6 +20,7 @@ $this->breadcrumbs=array(
 <?php echo $form->checkBoxRow($model,'pelunasan'); ?>
 <?php echo $form->checkBoxRow($model,'watchlist'); ?>
 <?php echo $form->checkBoxRow($model,'kuisioner'); ?>
+<?php echo $form->checkBoxRow($model,'naspoma'); ?>
 
 <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(

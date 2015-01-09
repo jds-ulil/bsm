@@ -7,7 +7,7 @@
  */
 class data extends CFormModel
 {
-    public $proposal, $watchlist, $pelunasan, $kuisioner;
+    public $proposal, $watchlist, $pelunasan, $kuisioner, $naspoma;
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -17,7 +17,7 @@ class data extends CFormModel
 	{
 		return array(		
 			// password needs to be authenticated
-			array('proposal, watchlist, pelunasan, kuisioner', 'safe'),
+			array('proposal, watchlist, pelunasan, kuisioner, naspoma', 'safe'),
 		);
 	}
 
@@ -31,6 +31,7 @@ class data extends CFormModel
 			'watchlist'=>'Data Watchlist', 
 			'pelunasan'=>'Data Pelunasan', 
 			'kuisioner'=>'Data Kuisioner', 
+            'naspoma' => 'Nasabah Wathclist Akhir Bulan'
 		);
 	}
 

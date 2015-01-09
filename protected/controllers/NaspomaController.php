@@ -237,9 +237,9 @@ class NaspomaController extends Controller{
                 $data[] =array(
                             'index' => $index,
                             'nama' => $record->nama,
-                            'no_rekening' => $record->no_rekening,
-                            'jenis_pembiayaan' => $record->rJen->nama,
-                            'marketing' => $record->rMar->nama,
+                            'no_CIF' => $record->no_CIF,
+                            'OS_pokok_terakhir' =>  Yii::app()->numberFormatter->formatCurrency($record->OS_pokok_terakhir, "Rp "),
+                            'alasan' => $record->alasan,
                     );
             }            
         }//end post
@@ -254,7 +254,7 @@ class NaspomaController extends Controller{
         $model->segmen = empty($model->segmen)?'Tidak ditentukan':$model->rSeg->nama;        
         $model->jenis_pembiayaan = empty($model->jenis_pembiayaan)?'Tidak ditentukan':$model->rJen->nama;        
         $model->jenis_usaha = empty($model->jenis_usaha)?'Tidak ditentukan':$model->jenis_usaha;        
-        $model->kolektibilitas_terakhir = empty($model->kolektibilitas_terakhir)?'Tidak ditentukan':$model->kolektibilitas_terakhir;        
+        $model->kolektibilitas_terakhir = empty($model->kolektibilitas_terakhir)?'Tidak ditentukan':$model->rKol->nama;        
         
         
         // tadaaaa finally render
