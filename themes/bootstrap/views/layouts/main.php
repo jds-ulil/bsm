@@ -29,12 +29,12 @@
 						'activeCssClass'	=> 'active',
 
 						'items'=>array(
-                            array('label'=>'LAPORAN HARIAN', 'url'=>array('#'),
-								'items'=>array(
-								    array('label'=>'Input', 'url'=>array('/daily/input',),'visible'=>TRUE, 'linkOptions'=>array('target'=>'_blank')),								   
-								    array('label'=>'Cetak Laporan', 'url'=>array('/user/setting',),  'visible'=>TRUE),								    
-								    )
-								),
+//                            array('label'=>'LAPORAN HARIAN', 'url'=>array('#'),
+//								'items'=>array(
+//								    array('label'=>'Input', 'url'=>array('/daily/input',),'visible'=>TRUE, 'linkOptions'=>array('target'=>'_blank')),								   
+//								    array('label'=>'Cetak Laporan', 'url'=>array('/user/setting',),  'visible'=>TRUE),								    
+//								    )
+//								),
 							array('label'=>'Administrasi User', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'),
 								'items'=>array(
 								    array('label'=>'Inputer', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_inputter),  'visible'=>Yii::app()->user->checkAccess('admin')) ,
