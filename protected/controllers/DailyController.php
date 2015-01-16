@@ -13,7 +13,7 @@ class DailyController extends Controller{
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column1';
+	public $layout='//layouts/dailyreporttempplate';
 
 	/**
 	 * @return array action filters
@@ -39,7 +39,7 @@ class DailyController extends Controller{
         // semua dapat mengakses halaman input
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('input','inputSecurity'),
+				'actions'=>array('index','inputSecurity'),
 				'users'=>array('*'),
 			),			
             // deny for unidentified page and user
@@ -53,54 +53,28 @@ class DailyController extends Controller{
      * diakses ketika pertama mau input lap daily activity
      * 
      */
-    public function actionInput () {
-        $this->render('input',array(
+    public function actionIndex () {  
+        $this->layout = 'dailyreportempty';
+        $this->render('index',array(
 			
 		));
-    }
+    }    
+    
     
     /**
-     * diakses ketika pertama mau nge load form security
+     * diakses ketika pertama mau input lap daily activity khusus security
      * 
      */
     public function actionInputSecurity () {
-        $this->layout='empty';
-        $this->render('input_security',array(
-			
+        //set page title
+        $this->setPageTitle("Input Security Data");
+        
+        $model = new dailySecurity;
+        
+        $this->render('inputSecurity',array(
+			'model' => $model,
 		));
-    }
-    
-    /**
-     * fungsi pemrosesan aksi save yang terdiri dari
-     *  -pengecekan input
-     *  -simpan data jika input sukses smua
-     */
-    public function actionSaveSecurity () {
-        $model = new dailySecurity();
-        
-        // get from post values
-        $model->nama_inputer = $_POST['namaInputer'];
-        
-        $model->teler_jumlah = $_POST['telerJumlah'];
-        $model->teler_info = $_POST['telerInfo'];
-        
-        $model->cs_jumlah = $_POST['CSJumlah'];
-        $model->cs_info = $_POST['CSInfo'];
-        //marketing
-        $model->cs_jumlah = $_POST['CSJumlah'];
-        $model->cs_info = $_POST['CSInfo'];
-        //mikro
-        $model->cs_jumlah = $_POST['CSJumlah'];
-        $model->cs_info = $_POST['CSInfo'];
-        //gadai
-        $model->cs_jumlah = $_POST['CSJumlah'];
-        $model->cs_info = $_POST['CSInfo'];
-        //lain
-        $model->cs_jumlah = $_POST['CSJumlah'];
-        $model->cs_info = $_POST['CSInfo'];
-        
-        
-    }
+    }    
 }
 
 
