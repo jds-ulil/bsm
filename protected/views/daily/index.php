@@ -69,7 +69,7 @@
                 <a href="<?php echo yii::app()->createUrl('daily/inputSecurity'); ?>">
                     <img class="inputan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/security.png"; ?>" title="Input Data Security" />
                 </a> 
-                <a href="<?php echo yii::app()->createUrl('daily/inputSecurity'); ?>">
+                <a href="<?php echo yii::app()->createUrl('daily/laporanSecurity'); ?>">
                     <img class="laporan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/report.png"; ?>" title="Laporan Data Security"  />
                 </a>                                                                                             
             </div>               

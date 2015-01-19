@@ -39,7 +39,9 @@ class DailyController extends Controller{
         // semua dapat mengakses halaman input
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','inputSecurity'),
+				'actions'=>array('index', 'complete',
+                    'inputSecurity', 'laporanSecurity', 'getRowSec',
+                    ),
 				'users'=>array('*'),
 			),			
             // deny for unidentified page and user
@@ -69,12 +71,52 @@ class DailyController extends Controller{
         //set page title
         $this->setPageTitle("Input Security Data");
         
-        $model = new dailySecurity;
+        $model = new dailySecurity('create');
+        $model_ = array (new dailySecurity);   
+        // jika form submit 
+        if(isset($_POST['dailySecurity'])){
+                $model->attributes = $_POST['dailySecurity'];   
+                // check input validasi
+                if($model->validate()){
+                    if($model->save()){
+                        $this->redirect(array('complete'));
+                    }
+                };
+         }
         
         $this->render('inputSecurity',array(
 			'model' => $model,
+			'model_' => $model_,
 		));
-    }    
+    }
+    
+    
+    public function actionLaporanSecurity () {
+         //set page title
+        $this->setPageTitle("Laporan Security Data");
+        
+        $model = new dailySecurity('search');
+        
+        $this->render('searchSecurity');
+    }
+    
+    
+    // halaman complete yang diakses semua elemen ketika selesai suatu proses
+    public function actionComplete () {
+        $this->render('complete');
+    }
+    
+    
+    public function actions() {
+        return array(
+            'getRowSec' => array(
+                'class' => 'ext.ddynamictabularform.actions.GetRowForm',
+                'view' => '_form_sec',
+                'modelClass' => 'dailySecurity'
+            ),
+        );
+    } 
+    
 }
 
 

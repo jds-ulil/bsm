@@ -46,7 +46,7 @@ class TbDBreadcrumbs extends CBreadcrumbs
 		if (!isset($this->homeLink))
 		{
             // edit home link for dailyactifiti
-			$content = CHtml::link(Yii::t('zii', 'Home'), yii::app()->createUrl('daily/index'));
+			$content = CHtml::link('Laporan', yii::app()->createUrl('daily/index'));
 			$links[] = $this->renderItem($content);
 		}
 		else if ($this->homeLink !== false)

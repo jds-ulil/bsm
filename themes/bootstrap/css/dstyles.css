@@ -1,7 +1,7 @@
 .dbreadcrumb {	
-    background-color: #475577 !important;   
+    margin-top: 10px !important;
+    background-color: #51A351 !important;   
 	border-radius: 0px !important;
-	padding-top : 40px !important;
 }
 
 .dbreadcrumb  .active{    
@@ -14,7 +14,7 @@
 }
 
 .dbreadcrumb  > li  > a{    
-	color: white !important;
+	color: #DBFCA3 !important;
 	font-style : bold !important;
 	font-size : 16px !important;
 }
@@ -31,11 +31,12 @@ legend {
     color: #333333;
     display: block;
     font-size: 16px !important;
-    line-height: 35px !important;
+    line-height: 25px !important;
     margin-bottom: 0px !important;
     padding: 0;
     width: 100%;
     font-weight: bold !important;
+    padding-left: 10px !important;
 }
 
 .dmain {
@@ -43,7 +44,7 @@ legend {
     border-image: none;
     border-style: solid solid solid solid;
     border-width: 0px 0px 1px;
-	margin-bottom: 10px;
+	margin-bottom: 10px;    
 }
 
 /*override bootstrap css for input form*/
@@ -65,12 +66,16 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {    
   border: none !important; ;  
-  border: 1px outset #ddd !important;   
+/* border: 1px outset #ddd !important;   */
   border-radius: 0px !important;
   background-color: #EDEDF0 !important;
+  padding: 3px !important;
 }
 .form-horizontal .control-group {
-  margin-bottom: 5px !important;
+  margin-bottom: 2px !important;
 /*  *zoom: 1;*/
 }
 
+img.dadd {
+    max-height: 45px !important;        
+}

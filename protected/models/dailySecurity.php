@@ -38,13 +38,16 @@ class dailySecurity extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(			
-			array('daily_security_id, teler_jumlah, cs_jumlah, marketing_jumlah, mikro_jumlah, gadai_jumlah', 'numerical', 'integerOnly'=>true),
-			array('nama_inputer, teler_info, cs_info, marketing_info, mikro_info, gadai_info, lain_info', 'length', 'max'=>100),
-			array('lain_jumlah', 'length', 'max'=>5),
-			array('tanggal', 'safe'),
+			array('jumlah, jenis_nasabah', 'numerical', 'integerOnly'=>true),
+			array('info', 'length', 'max'=>100),			
+            array('nama_inputer, tanggal','required'),
+            
+            //tanggal validation
+            array('tanggal', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
+            
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('daily_security_id, nama_inputer, teler_jumlah, teler_info, cs_jumlah, cs_info, marketing_jumlah, marketing_info, mikro_jumlah, mikro_info, gadai_jumlah, gadai_info, lain_jumlah, lain_info, tanggal', 'safe', 'on'=>'search'),
+			array('nama_inputer, tanggal, jumlah, info, jenis_nasabah', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,19 +70,10 @@ class dailySecurity extends CActiveRecord
 		return array(
 			'daily_security_id' => 'Daily Security',
 			'nama_inputer' => 'Nama Inputer',
-			'teler_jumlah' => 'Jumlah (Orang)',
-			'teler_info' => 'Info',
-			'cs_jumlah' => 'Jumlah (Orang)', 
-			'cs_info' => 'Info',
-			'marketing_jumlah' => 'Jumlah (Orang)',
-			'marketing_info' => 'Info',
-			'mikro_jumlah' => 'Jumlah (Orang)',
-			'mikro_info' => 'Info',
-			'gadai_jumlah' => 'Jumlah (Orang)',
-			'gadai_info' => 'Info',
-			'lain_jumlah' => 'Jumlah (Orang)',
-			'lain_info' => 'Info',
-			'tanggal' => 'Tanggal',
+            'tanggal' => 'Tanggal',
+			'jumlah' => 'Jumlah (Orang)',
+			'info' => 'Info',
+			'jenis_nasabah' => 'Jenis Nasabah', 			
 		);
 	}
 
@@ -103,19 +97,10 @@ class dailySecurity extends CActiveRecord
 
 		$criteria->compare('daily_security_id',$this->daily_security_id);
 		$criteria->compare('nama_inputer',$this->nama_inputer,true);
-		$criteria->compare('teler_jumlah',$this->teler_jumlah);
-		$criteria->compare('teler_info',$this->teler_info,true);
-		$criteria->compare('cs_jumlah',$this->cs_jumlah);
-		$criteria->compare('cs_info',$this->cs_info,true);
-		$criteria->compare('marketing_jumlah',$this->marketing_jumlah);
-		$criteria->compare('marketing_info',$this->marketing_info,true);
-		$criteria->compare('mikro_jumlah',$this->mikro_jumlah);
-		$criteria->compare('mikro_info',$this->mikro_info,true);
-		$criteria->compare('gadai_jumlah',$this->gadai_jumlah);
-		$criteria->compare('gadai_info',$this->gadai_info,true);
-		$criteria->compare('lain_jumlah',$this->lain_jumlah,true);
-		$criteria->compare('lain_info',$this->lain_info,true);
-		$criteria->compare('tanggal',$this->tanggal,true);
+        $criteria->compare('tanggal',$this->tanggal,true);
+		$criteria->compare('jenis_nasabah',$this->jenis_nasabah);
+        $criteria->compare('jumlah',$this->jumlah);
+		$criteria->compare('info',$this->info,true);						
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -132,4 +117,36 @@ class dailySecurity extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    
+    public function beforeSave()
+	{
+        // ubah tanggal ke db version sebelum disimpan
+		if(parent::beforeSave())
+		{            
+            if(!empty($this->tanggal)){
+                $this->tanggal = $this->toDBDate($this->tanggal);
+            }
+		}
+	return true;
+	}
+    
+    
+    // change format manusia to mesiin
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        }  
+    
 }

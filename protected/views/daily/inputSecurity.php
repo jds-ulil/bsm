@@ -10,10 +10,10 @@ $this->breadcrumbs=array(
 // declare form value
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     'id'=>'proposal-form',
-	'enableAjaxValidation'=>true,
+	//'enableAjaxValidation'=>true,
     'type'=>'horizontal',
 )); ?>            
-        <?php echo $form->textFieldRow($model,'nama_inputer',array('class'=>'span2','maxlength'=>50)); ?>
+        <?php echo $form->textFieldRow($model,'nama_inputer',array('class'=>'span5','maxlength'=>50)); ?>
 
         <?php echo $form->labelEx($model, "tanggal",  array('class'=>'control-label'));?>
         <div class="control-group">
@@ -25,12 +25,12 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
             'mode'=>'date', //use "time","date" or "datetime" (default)
             'options'=>
                     array(
-                        'dateFormat'=>'dd/mm/yy',
-                        //'changeMonth'=>true,
-                        //'changeYear'=>true,
-                        //'yearRange'=>'2010:2050',
+                        'dateFormat'=>'dd/mm/yy',                      
                         ),
-            'htmlOptions'=>array('class'=>'span2')// jquery plugin options                
+            'htmlOptions'=>array(
+                        'class'=>'span2',                               
+                        'value'=>date("d/m/Y")                
+                        )// jquery plugin options                
             ));
                 ?>
             <?php echo $form->error($model,'tanggal'); ?>
@@ -38,35 +38,22 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         </div>   
 
     <fieldset>
-        <legend>Nasabah Teler</legend>
-        <?php echo $form->textFieldRow($model,'teler_jumlah',array('class'=>'span2','maxlength'=>50)); ?>
-        <?php echo $form->textFieldRow($model,'teler_info',array('class'=>'span5','maxlength'=>50)); ?>
-    </fieldset>
-    <fieldset>
-        <legend>Nasabah <i>Customer Service</i></legend>
-        <?php echo $form->textFieldRow($model,'cs_jumlah',array('class'=>'span2','maxlength'=>50)); ?>
-        <?php echo $form->textFieldRow($model,'cs_info',array('class'=>'span5','maxlength'=>50)); ?>
-    </fieldset>
-    <fieldset>
-        <legend>Nasabah Marketing</legend>
-        <?php echo $form->textFieldRow($model,'marketing_jumlah',array('class'=>'span2','maxlength'=>50)); ?>
-        <?php echo $form->textFieldRow($model,'marketing_info',array('class'=>'span5','maxlength'=>50)); ?>
-    </fieldset>
-    <fieldset>
-        <legend>Nasabah Mikro</legend>
-        <?php echo $form->textFieldRow($model,'mikro_jumlah',array('class'=>'span2','maxlength'=>50)); ?>
-        <?php echo $form->textFieldRow($model,'mikro_info',array('class'=>'span5','maxlength'=>50)); ?>
-    </fieldset>
-    <fieldset>
-        <legend>Nasabah Gadai</legend>
-        <?php echo $form->textFieldRow($model,'gadai_jumlah',array('class'=>'span2','maxlength'=>50)); ?>
-        <?php echo $form->textFieldRow($model,'gadai_info',array('class'=>'span5','maxlength'=>50)); ?>
-    </fieldset>
-    <fieldset>
-        <legend>Lain - lain </legend>
-        <?php echo $form->textFieldRow($model,'lain_jumlah',array('class'=>'span2','maxlength'=>50)); ?>
-        <?php echo $form->textFieldRow($model,'lain_info',array('class'=>'span5','maxlength'=>50)); ?>
-    </fieldset>
+        <legend>Input Data</legend>
+        <?php echo $form->textFieldRow($model,'jenis_nasabah',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+        <?php echo $form->textFieldRow($model,'jumlah',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+        <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>
+    </fieldset>  
+
+    <?php
+    $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
+        'rowUrl' => Yii::app()->createUrl('daily/getRowSec'),
+        'defaultRowView'=>'_form_sec',
+        'title' => 'Input data jenis nasabah lainnya',
+    ));
+    echo $formDynamic->rowForm($model_); 
+    
+    ?>
+    <?php $this->endWidget(); ?>
 
     <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -76,3 +63,11 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 		)); ?>
     </div>
 <?php $this->endWidget(); ?>
+
+<script>
+    var checkForSelect = function(el) {                    
+            var val = $(el).val();
+            if (val == 0)
+                $(el).select();     
+    };
+</script>
