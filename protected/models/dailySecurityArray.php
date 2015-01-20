@@ -20,13 +20,8 @@
  * @property string $lain_info
  * @property string $tanggal
  */
-class dailySecurity extends CActiveRecord
+class dailySecurityArray extends CActiveRecord
 {
-    // digunakan untuk proses filtering searching
-    public $from_date;
-    public $to_date;
-    
-    public $record_row = 15;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -45,14 +40,14 @@ class dailySecurity extends CActiveRecord
 		return array(			
 			array('jumlah, jenis_nasabah', 'numerical', 'integerOnly'=>true),
 			array('info', 'length', 'max'=>100),			
-            array('nama_inputer, tanggal, jenis_nasabah','required'),
+            array('jenis_nasabah', 'required'),
             
             //tanggal validation
             array('tanggal', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
             
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('from_date, to_date, nama_inputer, tanggal, jumlah, info, jenis_nasabah', 'safe', 'on'=>'search'),
+			array('nama_inputer, tanggal, jumlah, info, jenis_nasabah', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +59,6 @@ class dailySecurity extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'rJen' => array(self::BELONGS_TO, 'dailySecurityJenisNasabah', 'jenis_nasabah'),
 		);
 	}
 
@@ -79,9 +73,7 @@ class dailySecurity extends CActiveRecord
             'tanggal' => 'Tanggal',
 			'jumlah' => 'Jumlah (Orang)',
 			'info' => 'Info',
-			'jenis_nasabah' => 'Jenis Nasabah', 
-            'from_date' => "Dari Tanggal",
-            'to_date' => "Sampai Dengan",
+			'jenis_nasabah' => 'Jenis Nasabah', 			
 		);
 	}
 
@@ -107,22 +99,10 @@ class dailySecurity extends CActiveRecord
 		$criteria->compare('nama_inputer',$this->nama_inputer,true);
         $criteria->compare('tanggal',$this->tanggal,true);
 		$criteria->compare('jenis_nasabah',$this->jenis_nasabah);
-//        $criteria->compare('jumlah',$this->jumlah);
-        $criteria->compare('info',$this->info,true);
-        
-        if (!empty($this->from_date)) {                
-            $reFromDate = $this->toDBDate($this->from_date);                
-            $criteria->addCondition('tanggal >= "'.$reFromDate.'" ');                
-        }
-        if (!empty($this->to_date)) {
-            $reToDate = $this->toDBDate($this->to_date);                
-            $criteria->addCondition('tanggal <= "'.$reToDate.'" ');		
-        }
-        
-        return new CActiveDataProvider($this, array(
-                        'pagination'=>array(
-                            'pageSize'=> $this->record_row,
-                        ),
+        $criteria->compare('jumlah',$this->jumlah);
+		$criteria->compare('info',$this->info,true);						
+
+		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}

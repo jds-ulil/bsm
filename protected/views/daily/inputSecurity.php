@@ -39,9 +39,12 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
     <fieldset>
         <legend>Input Data</legend>
-        <?php echo $form->textFieldRow($model,'jenis_nasabah',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+        <?php echo $form->dropDownListRow($model,'jenis_nasabah', $listJenisNasabah, array(
+                'empty'=>'Pilih Jenis Nasabah',
+                'class'=>'span3',
+		)); ?>          
         <?php echo $form->textFieldRow($model,'jumlah',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
-        <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>
+        <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>         
     </fieldset>  
 
     <?php
@@ -53,7 +56,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     echo $formDynamic->rowForm($model_); 
     
     ?>
-    <?php $this->endWidget(); ?>
+   
 
     <div class="form-actions">        	
         <?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -62,6 +65,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                 'label'=>'Simpan',
 		)); ?>
     </div>
+<?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
 
 <script>

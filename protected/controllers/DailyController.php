@@ -2,7 +2,7 @@
 /**
  * Description of DailyController
  *
- * @author oelhyl@gmail.com
+ * @author oelhil@gmail.com
  * 20150701 - 
  * class controller untuk fasilitas daily activity
  */
@@ -40,7 +40,7 @@ class DailyController extends Controller{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index', 'complete',
-                    'inputSecurity', 'laporanSecurity', 'getRowSec',
+                    'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity'
                     ),
 				'users'=>array('*'),
 			),			
@@ -71,22 +71,58 @@ class DailyController extends Controller{
         //set page title
         $this->setPageTitle("Input Security Data");
         
-        $model = new dailySecurity('create');
-        $model_ = array (new dailySecurity);   
+        $model = new dailySecurity; 
+        $model_ = array (new dailySecurityArray); 
+        
+        $listJenisNasabah = CHtml::listData(dailySecurityJenisNasabah::model()->findAll(),'jenis_nasabah_id','nama');
+        
+        $valid_data = false;
+        
         // jika form submit 
         if(isset($_POST['dailySecurity'])){
+                // init for valid data biar gak sma pas pertama
+                $valid_data = true;
                 $model->attributes = $_POST['dailySecurity'];   
                 // check input validasi
-                if($model->validate()){
-                    if($model->save()){
-                        $this->redirect(array('complete'));
-                    }
+                if(!$model->validate()){
+                   $valid_data = false;
                 };
          }
+        if(isset($_POST['dailySecurityArray'])){
+            // let false again
+            $valid_data = false;
+            $valid_array = true;
+            $model_ = array();
+            // add data from post to model
+            foreach ($_POST['dailySecurityArray'] as $key => $value) {                                                                          
+                        $model_securityEach = new dailySecurityArray('batchSave');
+                        $model_securityEach->attributes = $value;                    
+                        $model_securityEach->tanggal = $model->tanggal;
+                        $model_securityEach->nama_inputer = $model->nama_inputer;
+                        $model_[] = $model_securityEach;    
+                    }            
+            // validate each         
+            foreach ($model_ as $key => $model_securityEach) {                  
+                if(!$model_securityEach->validate()) {
+                    $valid_array = false;
+                };                 
+            }         
+            $valid_data = $valid_array;
+        }
+        if($valid_data) {            
+            //save main
+            $model->save();
+            
+            foreach ($model_ as $key => $model_securityEach) {                  
+                $model_securityEach->save();
+            }
+            $this->redirect(array('complete'));
+        }
         
         $this->render('inputSecurity',array(
 			'model' => $model,
 			'model_' => $model_,
+            'listJenisNasabah' => $listJenisNasabah,
 		));
     }
     
@@ -96,8 +132,57 @@ class DailyController extends Controller{
         $this->setPageTitle("Laporan Security Data");
         
         $model = new dailySecurity('search');
+        $model->unsetAttributes();
+        $listJenisNasabah = CHtml::listData(dailySecurityJenisNasabah::model()->findAll(),'jenis_nasabah_id','nama');
         
-        $this->render('searchSecurity');
+        if(isset($_GET['dailySecurity'])){
+            $model->attributes=$_GET['dailySecurity'];
+            }
+        
+        $this->render('searchSecurity',array(
+            'model' => $model,
+            'listJenisNasabah' => $listJenisNasabah,
+        ));
+    }
+    
+    // fungsi render print ke pdf untuk laporan security
+    public function actionPrintsecurity () {
+        $model = new dailySecurity('search');
+        $model->unsetAttributes();
+        
+        $model->record_row = 10000;   
+        $index = 0;
+        $total = 0;
+        $data = array();
+        
+        if(isset($_POST['dailySecurity'])){
+            $model->attributes = $_POST['dailySecurity'];
+            $dataProv = $model->search(); 
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total = $total + intval($record->jumlah);
+                $data[]=array(  'index'=>$index,
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
+                                'jenis_nasabah'=>$record->rJen->nama,                               
+                                'nama_inputer'=>$record->nama_inputer,                               
+                                'info'=>$record->info,                                                                                
+                                'jumlah'=>$record->jumlah,                                                                                
+                        );                        
+            }
+            
+        }
+                        
+        $model->jenis_nasabah = empty($model->jenis_nasabah)?' Semua Jenis ': $model->rJen->nama;
+        $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
+        $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        $this->render('printSecurity',array(
+            'model' => $model,
+            'data' => $data,
+            'total' => $total,            
+        ));
+        
+        
     }
     
     
@@ -112,7 +197,7 @@ class DailyController extends Controller{
             'getRowSec' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_sec',
-                'modelClass' => 'dailySecurity'
+                'modelClass' => 'dailySecurityArray'
             ),
         );
     } 

@@ -28,9 +28,25 @@ CREATE TABLE `daily_security` (
   `jumlah` int(5) DEFAULT '0',
   `info` varchar(100) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`daily_security_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_security` */
+
+insert  into `daily_security`(`daily_security_id`,`nama_inputer`,`tanggal`,`jenis_nasabah`,`jumlah`,`info`) values (1,'Anis','2015-01-20',1,12,'-'),(2,'Anis','2015-01-20',2,30,''),(3,'Anis','2015-01-20',4,3,'Ganti');
+
+/*Table structure for table `daily_security_jenis_nasabah` */
+
+DROP TABLE IF EXISTS `daily_security_jenis_nasabah`;
+
+CREATE TABLE `daily_security_jenis_nasabah` (
+  `jenis_nasabah_id` int(2) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`jenis_nasabah_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `daily_security_jenis_nasabah` */
+
+insert  into `daily_security_jenis_nasabah`(`jenis_nasabah_id`,`nama`) values (1,'Nasabah Teller'),(2,'Nasabah Customer Service (CS)'),(3,'Nasabah Marketing'),(4,'Nasabah Mikro'),(5,'Nasabah Gadai'),(6,'Lain - Lain');
 
 /*Table structure for table `error_nasabah` */
 
