@@ -40,7 +40,7 @@ class DailyController extends Controller{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index', 'complete',
-                    'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity'
+                    'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity'
                     ),
 				'users'=>array('*'),
 			),			
@@ -83,6 +83,7 @@ class DailyController extends Controller{
                 // init for valid data biar gak sma pas pertama
                 $valid_data = true;
                 $model->attributes = $_POST['dailySecurity'];   
+                $model->status = vC::APP_status_laporan_new;
                 // check input validasi
                 if(!$model->validate()){
                    $valid_data = false;
@@ -92,13 +93,14 @@ class DailyController extends Controller{
             // let false again
             $valid_data = false;
             $valid_array = true;
-            $model_ = array();
+            $model_ = array();            
             // add data from post to model
             foreach ($_POST['dailySecurityArray'] as $key => $value) {                                                                          
                         $model_securityEach = new dailySecurityArray('batchSave');
                         $model_securityEach->attributes = $value;                    
                         $model_securityEach->tanggal = $model->tanggal;
                         $model_securityEach->nama_inputer = $model->nama_inputer;
+                        $model_securityEach->status = vC::APP_status_laporan_new;
                         $model_[] = $model_securityEach;    
                     }            
             // validate each         
@@ -125,7 +127,29 @@ class DailyController extends Controller{
             'listJenisNasabah' => $listJenisNasabah,
 		));
     }
+
+    /**
+     * fungsi untuk menghapus security laporan
+     *  contoh penggunaan :
+     *                      pada laporan security tabel
+     * @param type $id dari laporan security yang akan di hapus
+     */
+    public function actionDeleteSecurity ($id) {
+        $model = dailySecurity::model()->findByPk($id);
+        $model->delete();       
+    }
     
+    /**
+     * fungsi untuk mengubah status security laporan jadi status ACC
+     *  contoh penggunaan :
+     *                      pada laporan security tabel
+     * @param type $id dari laporan security yang akan di ubha
+     */
+    public function actionAccSecurity ($id) {
+        $model = dailySecurity::model()->findByPk($id);
+        $model->status = vC::APP_status_laporan_approve;
+        $model->save();
+    }
     
     public function actionLaporanSecurity () {
          //set page title

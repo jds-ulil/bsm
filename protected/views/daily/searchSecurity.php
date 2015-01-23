@@ -23,8 +23,13 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-
-
+<?php
+if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('inputter')) {    
+    $user_type = vC::APP_daily_user_approval;
+} else {
+    $user_type = vC::APP_daily_user_inputter;
+}
+?>
 <h3 class="search-button"><a href="#">Kriteria Pencarian <img src = "<?php echo yii::app()->baseUrl."/images/dailymenu/filter.png"; ?>"  style="max-height: 30px;" /></a></h3>
 <div class="search-form"  style="display:none">
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -84,11 +89,12 @@ $('.search-form form').submit(function(){
     <?php $this->endWidget(); ?>
 </div><!-- search-form -->
 
-
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
+<?php if ($user_type == vC::APP_daily_user_approval)  {
+     // view for user approval
+    $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'securityreport-grid',
 	'dataProvider'=>$model->search(),	
-        'type'=>'bordered striped',
+    'type'=>'bordered striped',
 	'columns'=>array(
             'nama_inputer',
             array (
@@ -98,13 +104,59 @@ $('.search-form form').submit(function(){
             array (
                 'name'=>'Jenis Nasabah',
                 'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
+            ),            
+            'jumlah',
+            'info',
+            array (
+                'name'=>'Status',
+                'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
+            ),             
+            array (
+                'name'=>'Approve',
+                'type'=>'raw',
+                'value'=>'$data->status == 1? '
+                         . 'CHtml::ajaxLink("ACC", '
+                                        . 'Yii::app()->createUrl("/daily/accSecurity", array("id" =>$data[\'daily_security_id\'])),'
+                                        . 'array ('
+                                        .   '"type" => "POST",'
+                                        .   '"dataType" => "json",'
+                                        .   '"success" => "'.' $(\'#securityreport-grid\').yiiGridView(\'update\')'.'",'
+                                            . ')'
+                                            . ')'
+                . ': "Tolak"',
+            ), 
+            array (
+                'header' => 'Action',
+                'class' => 'bootstrap.widgets.TbDButtonColumn',
+                'template' => '{delete}',
+                'deleteButtonUrl'=>'Yii::app()->createUrl("/daily/deleteSecurity", array("id" =>$data[\'daily_security_id\']))',
+            )
+        )	
+    ));
+} else {
+    ?>
+<?php 
+    // view for user inputter
+    $this->widget('bootstrap.widgets.TbGridView', array(
+	'id'=>'securityreport-grid',
+	'dataProvider'=>$model->search(),	
+    'type'=>'bordered striped',
+	'columns'=>array(
+            'nama_inputer',
+            array (
+                'name'=>'Tgl Laporan',
+                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal)',
             ),
+            array (
+                'name'=>'Jenis Nasabah',
+                'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
+            ),            
             'jumlah',
             'info',
         )	
 )); ?>
 
-
+<?php } //end else ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'securityreport-print',

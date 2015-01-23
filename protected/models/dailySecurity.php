@@ -46,13 +46,14 @@ class dailySecurity extends CActiveRecord
 			array('jumlah, jenis_nasabah', 'numerical', 'integerOnly'=>true),
 			array('info', 'length', 'max'=>100),			
             array('nama_inputer, tanggal, jenis_nasabah','required'),
+            array('status','safe'),
             
             //tanggal validation
             array('tanggal', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
             
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('from_date, to_date, nama_inputer, tanggal, jumlah, info, jenis_nasabah', 'safe', 'on'=>'search'),
+			array('status, from_date, to_date, nama_inputer, tanggal, jumlah, info, jenis_nasabah', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +66,7 @@ class dailySecurity extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'rJen' => array(self::BELONGS_TO, 'dailySecurityJenisNasabah', 'jenis_nasabah'),
+            'rStat' => array(self::BELONGS_TO, 'dailySecurityStatus', 'status'),
 		);
 	}
 
@@ -82,6 +84,7 @@ class dailySecurity extends CActiveRecord
 			'jenis_nasabah' => 'Jenis Nasabah', 
             'from_date' => "Dari Tanggal",
             'to_date' => "Sampai Dengan",
+            'status' => "Status",
 		);
 	}
 
@@ -109,6 +112,7 @@ class dailySecurity extends CActiveRecord
 		$criteria->compare('jenis_nasabah',$this->jenis_nasabah);
 //        $criteria->compare('jumlah',$this->jumlah);
         $criteria->compare('info',$this->info,true);
+        $criteria->compare('status',$this->status);
         
         if (!empty($this->from_date)) {                
             $reFromDate = $this->toDBDate($this->from_date);                

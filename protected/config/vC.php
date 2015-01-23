@@ -44,6 +44,13 @@ class vC {
     
     const APP_header_csv_row = 7;
     
+    const APP_status_laporan_new = 1;
+    const APP_status_laporan_approve = 2;
+    const APP_status_laporan_tolak = 3;
+    
+    const APP_daily_user_approval = 1;
+    const APP_daily_user_inputter = 2;
+    
     static function getText(){
         $text = Yii::app()->db->createCommand()
                             ->setFetchMode(PDO::FETCH_COLUMN,0)

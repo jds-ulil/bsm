@@ -41,6 +41,7 @@ class dailySecurityArray extends CActiveRecord
 			array('jumlah, jenis_nasabah', 'numerical', 'integerOnly'=>true),
 			array('info', 'length', 'max'=>100),			
             array('jenis_nasabah', 'required'),
+            array('status','safe'),
             
             //tanggal validation
             array('tanggal', 'type', 'type' => 'date', 'message' => '{attribute} bukan format tanggal.', 'dateFormat' => 'dd/mm/yyyy', 'on'=>'create'),
