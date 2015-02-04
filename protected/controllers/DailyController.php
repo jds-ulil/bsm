@@ -40,7 +40,8 @@ class DailyController extends Controller{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index', 'complete',
-                    'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity'
+                    'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity',
+                    'inputCS', 'getRowCS',
                     ),
 				'users'=>array('*'),
 			),			
@@ -62,6 +63,27 @@ class DailyController extends Controller{
 		));
     }    
     
+    /**
+     * diakses ketika pertama mau input lap daily activity khusus CS
+     * 
+     */
+    public function actionInputCS () {
+        //set page title
+        $this->setPageTitle("Input Security Data");
+        
+        $model = new dailyCs;
+        $model_ = array (new dailyCs);
+        
+        $listKriteriaNasabah = CHtml::listData(dailyCsKriteriaNasabah::model()->findAll(), 'cs_kriteria_nasabah_id', 'nama');
+        
+        $valid_data = false;
+        
+        $this->render('inputCS',array(
+            'model' => $model,
+            'model_' => $model_,
+            'listKriteriaNasabah' => $listKriteriaNasabah,
+        ));
+    }
     
     /**
      * diakses ketika pertama mau input lap daily activity khusus security
@@ -148,7 +170,10 @@ class DailyController extends Controller{
     public function actionAccSecurity ($id) {
         $model = dailySecurity::model()->findByPk($id);
         $model->status = vC::APP_status_laporan_approve;
-        $model->save();
+        if ($model->save())        
+        echo 'sukses update';
+        else 
+            print_r($model->getErrors());
     }
     
     public function actionLaporanSecurity () {
@@ -222,6 +247,11 @@ class DailyController extends Controller{
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_sec',
                 'modelClass' => 'dailySecurityArray'
+            ),
+            'getRowCS' => array(
+                'class' => 'ext.ddynamictabularform.actions.GetRowForm',
+                'view' => '_form_cs',
+                'modelClass' => 'dailyCsArray'
             ),
         );
     } 

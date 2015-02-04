@@ -74,8 +74,8 @@
                 </a>                                                                                             
             </div>               
             <div class="dmenuitem">
-                <a href="#">Customer Service</a>
-                <a href="#">
+                <a href="<?php echo yii::app()->createUrl('daily/inputCS'); ?>">Customer Service</a>
+                <a href="<?php echo yii::app()->createUrl('daily/inputCS'); ?>">
                     <img class="inputan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/customer_service.png"; ?>" />
                 </a>
                 <a href="#">

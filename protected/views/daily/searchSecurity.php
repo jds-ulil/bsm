@@ -9,7 +9,6 @@ $('.search-button').click(function(){
 	$('.search-form').toggle();
 	return false;
 });    
-
 $('.search-form form').submit(function(){	
 
     $('#print_jenis_nasabah').val($('#dailySecurity_jenis_nasabah').val());
@@ -23,6 +22,15 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
+<script>
+    function updateGrid(){
+     //   $('#securityreport-grid').yiiGridView('update', {
+            $.fn.yiiGridView.update("securityreport-grid");
+           // $(fn.yiiGridView.update('securityreport-grid'));
+       // });
+    }
+</script>
+
 <?php
 if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('approval') || Yii::app()->user->checkAccess('inputter')) {    
     $user_type = vC::APP_daily_user_approval;
@@ -118,12 +126,12 @@ if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('appr
                          . 'CHtml::ajaxLink("ACC", '
                                         . 'Yii::app()->createUrl("/daily/accSecurity", array("id" =>$data[\'daily_security_id\'])),'
                                         . 'array ('
-                                        .   '"type" => "POST",'
+                                        .   '"type" => "GET",'
                                         .   '"dataType" => "json",'
-                                        .   '"success" => "'.' $(\'#securityreport-grid\').yiiGridView(\'update\')'.'",'
+                                        .   '"complete" => "'.'function(data){if(data.responseText==\'sukses update\') $.fn.yiiGridView.update(\'securityreport-grid\');}'.'",'
                                             . ')'
                                             . ')'
-                . ': "Tolak"',
+                . ': "-"',
             ), 
             array (
                 'header' => 'Action',
