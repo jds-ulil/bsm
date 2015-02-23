@@ -19,6 +19,7 @@ return array(
         'ext.yii-mail.YiiMailMessage',
         'ext.phoneValidator.PhoneValidator',
         'ext.DynamicTabularForm.*',
+        'ext.DDynamicTabularForm.*',
 	),
 
 	'modules'=>array(

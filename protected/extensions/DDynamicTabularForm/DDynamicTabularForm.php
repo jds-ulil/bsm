@@ -56,8 +56,7 @@ class DDynamicTabularForm extends CActiveForm {
      */
     public function rowForm($models = array(), $rowView=null, $htmlOptions = array()) {
         if($rowView==null)
-            $rowView = $this->defaultRowView;
-        
+            $rowView = $this->defaultRowView;        
         $htmlOptions = array_merge(array('id' => 'row-' . $this->rowViewCounter), $htmlOptions);
         $id = $htmlOptions['id'];
 
@@ -67,6 +66,7 @@ class DDynamicTabularForm extends CActiveForm {
             $content = false;
             foreach ($model->attributes as $name => $value) {
                 if ($value != '') { 
+                    echo("<script>alert('tes');</script>");
                     $content = true;
                 };
             }

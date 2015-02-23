@@ -1,9 +1,9 @@
-<?php $row_id = "dailyCsArray-" . $key ?>
-<?php $selectId = "dailyCsArray_".$key."_kriteria_nasabah"; ?>
-<?php $dataSelect = isset($model->kriteria_nasabah[$key])? $model->kriteria_nasabah[$key]:0; ?>
+<?php $row_id = "dailyTellerArray-" . $key ?>
+<?php $selectId = "dailyTellerArray_".$key."_kriteria_transaksi"; ?>
+<?php $dataSelect = isset($model->kriteria_transaksi[$key])? $model->kriteria_transaksi[$key]:0; ?>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyCsArray_'.$key.'_total',
+            'element'=>'#dailyTellerArray_'.$key.'_total',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,
@@ -23,9 +23,9 @@
         echo $form->updateTypeField($model, $key, "tanggal", array('key' => $key));
         ?>
         <div class="control-group ">
-            <label class="control-label required" for="dailyCs_kriteria_nasabah">Kriteria Nasabah <span class="required">*</span></label>
+            <label class="control-label required" for="dailyTeller_kriteria_transaksi">Kriteria Transaksi <span class="required">*</span></label>
             <div class="controls">
-                <select class="span3" name="dailyCsArray[<?php echo $key?>][kriteria_nasabah]" id="<?php echo $selectId; ?>" >
+                <select class="span3" name="dailyTellerArray[<?php echo $key?>][kriteria_transaksi]" id="<?php echo $selectId; ?>" >
                     <option value="">Pilih Kriteria Nasabah</option>
                     <option value="1" <?php echo $dataSelect==1?'selected':''?> >Tabungan BSM</option>
                     <option value="2" <?php echo $dataSelect==2?'selected':''?> >Tabungan Simpatik</option>
@@ -39,16 +39,9 @@
                     <option value="10" <?php echo $dataSelect==10?'selected':''?>>TabunganKu</option>
                     <option value="11" <?php echo $dataSelect==11?'selected':''?>>Giro</option>
                     <option value="12" <?php echo $dataSelect==12?'selected':''?>>BSM Mobile Banking</option>
-                    <option value="13" <?php echo $dataSelect==13?'selected':''?>>BSM Net Banking</option>
-                    <option value="14" <?php echo $dataSelect==14?'selected':''?>>Top-Up Nasabah Eksisting</option>
-                    <option value="15" <?php echo $dataSelect==15?'selected':''?>>Follow-Up Rekening Dormant</option>
-                    <option value="16" <?php echo $dataSelect==16?'selected':''?>>Follow-Up Past Due haji</option>
-                    <option value="17" <?php echo $dataSelect==17?'selected':''?>>Waktu Istirahat</option>
-                    <option value="18" <?php echo $dataSelect==18?'selected':''?>>SE yang dibaca & dipahami</option>
-                    <option value="19" <?php echo $dataSelect==19?'selected':''?>>Lain - Lain</option>
                 </select>
                 <span class="help-inline error">
-                <?php echo $form->error($model,"[$key]kriteria_nasabah"); ?>
+                <?php echo $form->error($model,"[$key]kriteria_transaksi"); ?>
                 </span>
             </div>
         </div>       

@@ -41,9 +41,16 @@ class DailyController extends Controller{
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index', 'complete',
                     'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity',
-                    'inputCS', 'getRowCS',
+                    'inputCS', 'getRowCS', 'laporanCS', 'printcs',
+                    'inputTeller', 'getRowTel',
                     ),
 				'users'=>array('*'),
+            ),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index', 'complete',
+                    'deleteCs', 'accCs'
+                    ),
+				'users'=>array('@'),
 			),			
             // deny for unidentified page and user
 			array('deny',  // deny all users
@@ -63,6 +70,42 @@ class DailyController extends Controller{
 		));
     }    
     
+     /**
+     * diakses ketika pertama mau input lap daily activity khusus Teller
+     * 
+     */
+    public function actionInputTeller () {
+        //set page title
+        $this->setPageTitle("Input Teller Data");
+        
+        $model = new dailyTeller;
+        $model_ = array(new dailyTellerArray); 
+        
+        $listKriteriaTransaksi = CHtml::listData(dailyTellerKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        
+        $valid_data = false;
+        
+        if(isset($_POST['dailyTeller'])) {
+            
+        }// end if post dailyTeller
+        
+        if(isset($_POST['dailyTellerArray'])) {
+            
+        }// end if post dailyTellerArray
+        
+        if($valid_data) {                        
+            $this->redirect(array('complete'));
+        }// end if valid_data
+        
+        $this->render('inputTeller',array(
+            'model' => $model,
+            'model_' => $model_,
+            'listKriteriaTransaksi' => $listKriteriaTransaksi,
+        ));
+        
+    }
+    
+    
     /**
      * diakses ketika pertama mau input lap daily activity khusus CS
      * 
@@ -72,11 +115,53 @@ class DailyController extends Controller{
         $this->setPageTitle("Input Security Data");
         
         $model = new dailyCs;
-        $model_ = array (new dailyCs);
+        $model_ = array (new dailyCsArray);
         
         $listKriteriaNasabah = CHtml::listData(dailyCsKriteriaNasabah::model()->findAll(), 'cs_kriteria_nasabah_id', 'nama');
         
         $valid_data = false;
+        
+        if(isset($_POST['dailyCs'])){
+            $valid_data = true;
+            $model->attributes = $_POST['dailyCs'];   
+            $model->status = vC::APP_status_laporan_new;
+                // check input validasi
+                if(!$model->validate()){
+                   $valid_data = false;
+                };                 
+        }
+        if(isset($_POST['dailyCsArray'])){
+             // let false again
+            $valid_data = false;
+            $valid_array = true;
+            $model_ = array();            
+            // add data from post to model
+            foreach ($_POST['dailyCsArray'] as $key => $value) {  
+                $model_each = new dailyCsArray('batchSave');
+                $model_each->attributes = $value;                    
+                $model_each->tanggal = $model->tanggal;
+                $model_each->nama_pegawai = $model->nama_pegawai;
+                $model_each->status = vC::APP_status_laporan_new;
+                $model_[] = $model_each;  
+            }
+            // validate each         
+            foreach ($model_ as $key => $model_Each) {                  
+                if(!$model_Each->validate()) {
+                    $valid_array = false;
+                };                 
+            }         
+            $valid_data = $valid_array;
+        }
+        
+        if($valid_data) {            
+            //save main
+            $model->save();
+            
+            foreach ($model_ as $key => $model_Each) {                  
+                $model_Each->save();
+            }
+            $this->redirect(array('complete'));
+        }
         
         $this->render('inputCS',array(
             'model' => $model,
@@ -84,6 +169,101 @@ class DailyController extends Controller{
             'listKriteriaNasabah' => $listKriteriaNasabah,
         ));
     }
+    
+     /**
+     * fungsi untuk menghapus customer service laporan
+     *  contoh penggunaan :
+     *                      pada laporan security tabel
+     * @param type $id dari laporan security yang akan di hapus
+     */
+    public function actionDeleteCs ($id) {
+        $model = dailyCs::model()->findByPk($id);
+        $model->delete();       
+    }
+    
+    /**
+     * ACC customer service from report page
+     * @param type $id
+     */
+    public function actionAccCs ($id) {
+        $model = dailyCs::model()->findByPk($id);
+        $model->status = vC::APP_status_laporan_approve;
+        if ($model->save())        
+        echo 'sukses update';
+        else 
+            print_r($model->getErrors());
+    }
+    
+    
+    /**
+     * controller fungsi untuk meload page laporan Customer Service
+     */
+    public function actionLaporanCS () {
+         //set page title
+        $this->setPageTitle("Laporan Customer Service");
+        
+        // new model daily with search as scenario
+        $model = new dailyCs('search');
+        $model->unsetAttributes();
+        
+        $listKriteriaNasabah = CHtml::listData(dailyCsKriteriaNasabah::model()->findAll(), 'cs_kriteria_nasabah_id', 'nama');
+        
+         if(isset($_GET['dailyCs'])){
+            $model->attributes=$_GET['dailyCs'];
+            }        
+        
+        $this->render('searchCS',array(
+            'model' => $model,  
+            'listKriteriaNasabah' => $listKriteriaNasabah,
+        ));
+    }
+    
+    
+     // fungsi render print ke pdf untuk laporan customer service
+    public function actionPrintcs () {
+        $model = new dailyCs('search');
+        $model->unsetAttributes();
+        
+        $model->record_row = 10000;   
+        $index = 0;
+        $total_nasabah = 0;
+        $total_setor = 0;
+        $data = array();
+        
+        if(isset($_POST['dailyCs'])){
+            $model->attributes = $_POST['dailyCs'];
+            $dataProv = $model->search();                         
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total_nasabah = $total_nasabah + intval($record->jumlah);
+                $total_setor = $total_setor + intval($record->total);
+                $data[]=array(  'index'=>$index,
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
+                                'kriteria_nasabah'=>$record->rKrit->nama,                               
+                                'nama_pegawai'=>$record->nama_pegawai,                               
+                                'info'=>$record->info,                                                                                
+                                'jumlah'=>$record->jumlah,                                                                                
+                                'total'=>Yii::app()->numberFormatter->formatCurrency($record->total ,""),                                              
+                        );                        
+            }
+            
+        }
+                        
+        $model->kriteria_nasabah = empty($model->kriteria_nasabah)?' Semua Jenis ': $model->rKrit->nama;
+        $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
+        $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        $this->render('printcs',array(
+            'model' => $model,
+            'data' => $data,
+            'total_nasabah'=>$total_nasabah,        
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+        ));
+        
+        
+    }
+    
     
     /**
      * diakses ketika pertama mau input lap daily activity khusus security
@@ -252,6 +432,11 @@ class DailyController extends Controller{
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_cs',
                 'modelClass' => 'dailyCsArray'
+            ),
+            'getRowTel' => array(
+                'class' => 'ext.ddynamictabularform.actions.GetRowForm',
+                'view' => '_form_teller',
+                'modelClass' => 'dailyTellerArray'
             ),
         );
     } 

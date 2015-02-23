@@ -1,14 +1,14 @@
 <?php
 // breadcrump 
 $this->breadcrumbs=array(	
-    "Input Data Customer Service"
+    "Input Data Teller"
 );
 ?>
 
 <?php 
 // declare form value
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-    'id'=>'inputCS-form',
+    'id'=>'inputTeller-form',
 	//'enableAjaxValidation'=>true,
     'type'=>'horizontal',
 )); ?>      
@@ -38,8 +38,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
 <fieldset>
     <legend>Input Data</legend>
-        <?php echo $form->dropDownListRow($model, 'kriteria_nasabah', $listKriteriaNasabah, array(
-                'empty'=>'Pilih Kriteria Nasabah',
+        <?php echo $form->dropDownListRow($model, 'kriteria_transaksi', $listKriteriaTransaksi, array(
+                'empty'=>'Pilih Kriteria Transaksi',
                 'class'=>'span3',
         )); ?>          
         <?php echo $form->textFieldRow($model,'jumlah',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
@@ -49,9 +49,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
   <?php
     $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
-        'rowUrl' => Yii::app()->createUrl('daily/getRowCS'),
-        'defaultRowView'=>'_form_cs',
-        'title' => 'Input data kriteria nasabah lainnya',
+        'rowUrl' => Yii::app()->createUrl('daily/getRowTel'),
+        'defaultRowView'=>'_form_teller',
+        'title' => 'Input data kriteria transaksi lainnya',
     ));
     echo $formDynamic->rowForm($model_); 
     
@@ -77,7 +77,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </script>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyCs_total, #dailyCsArray_0_total',
+            'element'=>'#dailyTeller_total, #dailyTellerArray_0_total',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,
