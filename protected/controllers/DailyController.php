@@ -42,13 +42,15 @@ class DailyController extends Controller{
 				'actions'=>array('index', 'complete',
                     'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity',
                     'inputCS', 'getRowCS', 'laporanCS', 'printcs',
-                    'inputTeller', 'getRowTel',
+                    'inputTeller', 'getRowTel', 'laporanTel', 'printtel',
+                    'inputBo'
                     ),
 				'users'=>array('*'),
             ),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index', 'complete',
-                    'deleteCs', 'accCs'
+                    'deleteCs', 'accCs',
+                    'deleteTel', 'accTel',
                     ),
 				'users'=>array('@'),
 			),			
@@ -74,6 +76,41 @@ class DailyController extends Controller{
      * diakses ketika pertama mau input lap daily activity khusus Teller
      * 
      */
+    public function actionInputBo () {
+        //set page title
+        $this->setPageTitle("Input Back Office");
+        
+        $model = new dailyBo;
+        $model_ = array(new dailyBoArray); 
+        
+        $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        
+        $valid_data = false;
+        
+        if(isset($_POST['dailyBo'])) {         
+            
+        }// end if post dailyTeller
+        
+        if(isset($_POST['dailyBoArray'])) {
+           
+        }// end if post dailyTellerArray
+        if($valid_data) {    
+         
+            $this->redirect(array('complete'));
+        }// end if valid_data
+        
+        $this->render('inputBo',array(
+            'model' => $model,
+            'model_' => $model_,
+            'listKriteriaTransaksi' => $listKriteriaTransaksi,
+        ));
+        
+    }
+    
+     /**
+     * diakses ketika pertama mau input lap daily activity khusus Teller
+     * 
+     */
     public function actionInputTeller () {
         //set page title
         $this->setPageTitle("Input Teller Data");
@@ -86,14 +123,44 @@ class DailyController extends Controller{
         $valid_data = false;
         
         if(isset($_POST['dailyTeller'])) {
+            $valid_data = true;
+            $model->attributes = $_POST['dailyTeller'];   
+            $model->status = vC::APP_status_laporan_new;
+                // check input validasi
+                if(!$model->validate()){
+                   $valid_data = false;
+                };                 
             
         }// end if post dailyTeller
         
         if(isset($_POST['dailyTellerArray'])) {
-            
+            $valid_data = false;
+            $valid_array = true;
+            $model_ = array();            
+            // add data from post to model
+            foreach ($_POST['dailyTellerArray'] as $key => $value) {  
+                $model_each = new dailyTellerArray;
+                $model_each->attributes = $value;                    
+                $model_each->tanggal = $model->tanggal;
+                $model_each->nama_pegawai = $model->nama_pegawai;
+                $model_each->status = vC::APP_status_laporan_new;
+                $model_[] = $model_each;  
+            }
+            // validate each         
+            foreach ($model_ as $key => $model_Each) {                  
+                if(!$model_Each->validate()) {
+                    $valid_array = false;
+                };                 
+            }         
+            $valid_data = $valid_array;
         }// end if post dailyTellerArray
-        
-        if($valid_data) {                        
+        if($valid_data) {    
+            //save main
+            $model->save();
+            
+            foreach ($model_ as $key => $model_Each) {                  
+                $model_Each->save();
+            }
             $this->redirect(array('complete'));
         }// end if valid_data
         
@@ -105,6 +172,108 @@ class DailyController extends Controller{
         
     }
     
+    
+    public function actionLaporanTel () {
+      //set page title
+        $this->setPageTitle("Laporan Teller");
+        
+        // new model daily with search as scenario
+        $model = new dailyTeller('search');
+        $model->unsetAttributes();
+        
+        $listKriteriaTransaksi = CHtml::listData(dailyTellerKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        
+         if(isset($_GET['dailyTeller'])){
+            $model->attributes=$_GET['dailyTeller'];
+            }        
+        
+        $this->render('searchTel',array(
+            'model' => $model,  
+            'listKriteriaTransaksi' => $listKriteriaTransaksi,
+        ));  
+    }
+    
+    /**
+     * fungsi untuk menghapus teler laporan
+     *  contoh penggunaan :
+     *                      pada laporan teler tabel
+     * @param type $id dari laporan teler yang akan di hapus
+     */
+    public function actionDeleteTel ($id) {
+        $model = dailyTeller::model()->findByPk($id);
+        $model->delete();       
+    }
+    
+    /**
+     * ACC teler from report page
+     * @param type $id
+     */
+    public function actionAccTel ($id) {
+        $model = dailyTeller::model()->findByPk($id);
+        $model->status = vC::APP_status_laporan_approve;
+        if ($model->save())        
+        echo 'sukses update';
+        else 
+            print_r($model->getErrors());
+    }
+     
+    
+    // fungsi render print ke pdf untuk laporan teller
+    public function actionPrinttel () {
+        $model = new dailyTeller('search');
+        $model->unsetAttributes();
+        
+        $model->record_row = 10000;   
+        $index = 0;
+        $total_nasabah = 0;
+        $total_setor = 0;
+        $data = array();
+        
+        if(isset($_POST['dailyTeller'])){
+            $model->attributes = $_POST['dailyTeller'];
+            $dataProv = $model->search();                         
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total_nasabah = $total_nasabah + intval($record->jumlah);
+                $total_setor = $total_setor + intval($record->total);
+                $data[]=array(  'index'=>$index,
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
+                                'kriteria_transaksi'=>$record->rKrit->nama,                               
+                                'nama_pegawai'=>$record->nama_pegawai,                               
+                                'info'=>$record->info,                                                                                
+                                'jumlah'=>$record->jumlah,                                                                                
+                                'total'=>Yii::app()->numberFormatter->formatCurrency($record->total ,""),                                              
+                        );                        
+            }
+            
+        }
+                        
+        $model->kriteria_transaksi = empty($model->kriteria_transaksi)?' Semua Jenis ': $model->rKrit->nama;
+        $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
+        $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        $this->render('printtel',array(
+            'model' => $model,
+            'data' => $data,
+            'total_nasabah'=>$total_nasabah,        
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+        ));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
     
     /**
      * diakses ketika pertama mau input lap daily activity khusus CS

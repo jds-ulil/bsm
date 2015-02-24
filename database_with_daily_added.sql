@@ -16,6 +16,52 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`nasdo` /*!40100 DEFAULT CHARACTER SET u
 
 USE `nasdo`;
 
+/*Table structure for table `daily_bo` */
+
+DROP TABLE IF EXISTS `daily_bo`;
+
+CREATE TABLE `daily_bo` (
+  `daily_bo_id` int(10) NOT NULL AUTO_INCREMENT,
+  `jt_status` int(3) DEFAULT NULL,
+  `kriteria_transaksi` int(2) DEFAULT NULL,
+  `total` float DEFAULT '0',
+  `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
+  `info` text COLLATE utf8_bin,
+  `tanggal` date DEFAULT NULL,
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`daily_bo_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `daily_bo` */
+
+/*Table structure for table `daily_bo_kriteria_transaksi` */
+
+DROP TABLE IF EXISTS `daily_bo_kriteria_transaksi`;
+
+CREATE TABLE `daily_bo_kriteria_transaksi` (
+  `jenis_transaksi_id` int(2) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`jenis_transaksi_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `daily_bo_kriteria_transaksi` */
+
+insert  into `daily_bo_kriteria_transaksi`(`jenis_transaksi_id`,`nama`) values (1,'Transaksi Biaya'),(2,'Transaksi SKN'),(3,'Transaksi RTGS'),(4,'Pembukaan Deposito'),(5,'Pencairan Deposito'),(6,'Pencairan Small & Konsumer'),(7,'Pelunasan Small & Konsumer'),(8,'Pencairan Mikro'),(9,'Pelunasan Mikro'),(10,'Pencairan Talangan Haji'),(11,'Pelunasan Talangan Haji'),(12,'Pencairan/Perpanjangan Gadai Emas'),(13,'Pelunasan Gadai Emas'),(14,'Penginputan BI Checking'),(15,'Pembayaran Biaya Bulanan'),(16,'Pembayaran Rekanan'),(17,'Transaksi Pembayaran Angsuran'),(18,'Transaksi Penyusutan Bulanan'),(19,'Pelaporan - SID'),(20,'Pelaporan - Pajak'),(21,'Pelaporan - Lembur Staff'),(22,'Pelaporan - Lembur Non-Staff'),(23,'Pelaporan - Proofsheet'),(24,'Rekap Absensi'),(25,'Aktivitas Kepegawaian'),(26,'Saldo Kas Kecil Akhir Hari'),(27,'Saldo Rekening Perantara Akhir Hari'),(28,'Saldo Materai Akhir Hari'),(29,'Waktu Istirahat'),(30,'SE yang dibaca & dipahami'),(31,'Lain - Lain');
+
+/*Table structure for table `daily_bo_progress` */
+
+DROP TABLE IF EXISTS `daily_bo_progress`;
+
+CREATE TABLE `daily_bo_progress` (
+  `dbo_progress_id` int(2) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`dbo_progress_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `daily_bo_progress` */
+
+insert  into `daily_bo_progress`(`dbo_progress_id`,`nama`) values (1,'DONE'),(2,'ON PROGRESS'),(3,'PENDING');
+
 /*Table structure for table `daily_cs` */
 
 DROP TABLE IF EXISTS `daily_cs`;
@@ -111,9 +157,11 @@ CREATE TABLE `daily_teller` (
   `tanggal` date DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_teller_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_teller` */
+
+insert  into `daily_teller`(`daily_teller_id`,`nama_pegawai`,`kriteria_transaksi`,`jumlah`,`total`,`info`,`tanggal`,`status`) values (1,'None',1,12,345000,'','2015-02-24',1),(3,'None',8,30,2500000,'Sip','2015-02-24',2);
 
 /*Table structure for table `daily_teller_kriteria_transaksi` */
 

@@ -26,19 +26,19 @@
             <label class="control-label required" for="dailyTeller_kriteria_transaksi">Kriteria Transaksi <span class="required">*</span></label>
             <div class="controls">
                 <select class="span3" name="dailyTellerArray[<?php echo $key?>][kriteria_transaksi]" id="<?php echo $selectId; ?>" >
-                    <option value="">Pilih Kriteria Nasabah</option>
-                    <option value="1" <?php echo $dataSelect==1?'selected':''?> >Tabungan BSM</option>
-                    <option value="2" <?php echo $dataSelect==2?'selected':''?> >Tabungan Simpatik</option>
-                    <option value="3" <?php echo $dataSelect==3?'selected':''?> >Tabungan Berencana</option>
-                    <option value="4" <?php echo $dataSelect==4?'selected':''?> >Tabungan Investa Cendikia</option>
-                    <option value="5" <?php echo $dataSelect==5?'selected':''?>>Tabungan Mabrur</option>
-                    <option value="6" <?php echo $dataSelect==6?'selected':''?>>TabunganKu</option>
-                    <option value="7" <?php echo $dataSelect==7?'selected':''?>>Giro</option>
-                    <option value="8" <?php echo $dataSelect==8?'selected':''?>>Deposito</option>
-                    <option value="9" <?php echo $dataSelect==9?'selected':''?>>Talangan Haji</option>
-                    <option value="10" <?php echo $dataSelect==10?'selected':''?>>TabunganKu</option>
-                    <option value="11" <?php echo $dataSelect==11?'selected':''?>>Giro</option>
-                    <option value="12" <?php echo $dataSelect==12?'selected':''?>>BSM Mobile Banking</option>
+                    <option value="">Pilih Kriteria Transaksi</option>
+                    <option value="1" <?php echo $dataSelect==1?'selected':''?> >Total Transaksi</option>
+                    <option value="2" <?php echo $dataSelect==2?'selected':''?> >Transaksi Setoran</option>
+                    <option value="3" <?php echo $dataSelect==3?'selected':''?> >Transaksi Penarikan</option>
+                    <option value="4" <?php echo $dataSelect==4?'selected':''?> >Transaksi Net Banking</option>
+                    <option value="5" <?php echo $dataSelect==5?'selected':''?>>Transaksi Transfer Tunai</option>
+                    <option value="6" <?php echo $dataSelect==6?'selected':''?>>Saldo Teller Akhir Hari</option>
+                    <option value="7" <?php echo $dataSelect==7?'selected':''?>>Saldo Khasanah Akhir Hari</option>
+                    <option value="8" <?php echo $dataSelect==8?'selected':''?>>Saldo ATM Akhir Hari</option>
+                    <option value="9" <?php echo $dataSelect==9?'selected':''?>>Cross Selling</option>
+                    <option value="10" <?php echo $dataSelect==10?'selected':''?>>Waktu Istirahat</option>
+                    <option value="11" <?php echo $dataSelect==11?'selected':''?>>SE yang dibaca & dipahami</option>
+                    <option value="12" <?php echo $dataSelect==12?'selected':''?>>Lain - Lain</option>
                 </select>
                 <span class="help-inline error">
                 <?php echo $form->error($model,"[$key]kriteria_transaksi"); ?>

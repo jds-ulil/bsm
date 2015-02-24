@@ -87,7 +87,16 @@
                 <a href="<?php echo yii::app()->createUrl('daily/inputTeller'); ?>">
                     <img class="inputan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/teller.png"; ?>" />
                 </a>
-                <a href="<?php echo yii::app()->createUrl('daily/laporanTeller'); ?>">
+                <a href="<?php echo yii::app()->createUrl('daily/laporanTel'); ?>">
+                    <img class="laporan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/report.png"; ?>" />
+                </a>                 
+            </div>                   
+            <div class="dmenuitem">
+                <a href="<?php echo yii::app()->createUrl('daily/inputBo'); ?>">Back Office</a>
+                <a href="<?php echo yii::app()->createUrl('daily/inputBo'); ?>">
+                    <img class="inputan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/bo.png"; ?>" />
+                </a>
+                <a href="<?php echo yii::app()->createUrl('daily/laporanBo'); ?>">
                     <img class="laporan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/report.png"; ?>" />
                 </a>                 
             </div>                   
