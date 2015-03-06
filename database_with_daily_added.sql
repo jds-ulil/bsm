@@ -22,13 +22,14 @@ DROP TABLE IF EXISTS `daily_bo`;
 
 CREATE TABLE `daily_bo` (
   `daily_bo_id` int(10) NOT NULL AUTO_INCREMENT,
-  `jt_status` int(3) DEFAULT NULL,
+  `jumlah_transaksi` int(3) DEFAULT NULL,
   `kriteria_transaksi` int(2) DEFAULT NULL,
   `total` float DEFAULT '0',
   `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `info` text COLLATE utf8_bin,
   `tanggal` date DEFAULT NULL,
   `status` int(1) DEFAULT '1',
+  `status_transaksi` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_bo_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

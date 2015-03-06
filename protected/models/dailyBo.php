@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'daily_bo':
  * @property integer $daily_bo_id
- * @property integer $jt_status
+ * @property integer $jumlah_transaksi
  * @property double $total
  * @property string $nama_pegawai
  * @property string $info
@@ -30,13 +30,13 @@ class dailyBo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('jt_status, status', 'numerical', 'integerOnly'=>true),
+			array('jumlah_transaksi, status', 'numerical', 'integerOnly'=>true),
 			array('total', 'numerical'),
 			array('nama_pegawai', 'length', 'max'=>70),
 			array('info, tanggal', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('daily_bo_id, jt_status, total, nama_pegawai, info, tanggal, status', 'safe', 'on'=>'search'),
+			array('daily_bo_id, jumlah_transaksi, total, nama_pegawai, info, tanggal, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,12 +58,13 @@ class dailyBo extends CActiveRecord
 	{
 		return array(
 			'daily_bo_id' => 'Daily Bo',
-			'jt_status' => 'Jt Status',
+			'jumlah_transaksi' => 'Jumlah Transaksi',
 			'total' => 'Total',
 			'nama_pegawai' => 'Nama Pegawai',
 			'info' => 'Info',
 			'tanggal' => 'Tanggal',
 			'status' => 'Status',
+			'status_transaksi' => 'Status Transaksi',
 		);
 	}
 
@@ -86,7 +87,7 @@ class dailyBo extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('daily_bo_id',$this->daily_bo_id);
-		$criteria->compare('jt_status',$this->jt_status);
+		$criteria->compare('jumlah_transaksi',$this->jumlah_transaksi);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('nama_pegawai',$this->nama_pegawai,true);
 		$criteria->compare('info',$this->info,true);

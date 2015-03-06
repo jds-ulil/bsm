@@ -84,6 +84,7 @@ class DailyController extends Controller{
         $model_ = array(new dailyBoArray); 
         
         $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        $listProgress = CHtml::listData(dailyBoProgress::model()->findAll(), 'dbo_progress_id', 'nama');
         
         $valid_data = false;
         
@@ -103,6 +104,7 @@ class DailyController extends Controller{
             'model' => $model,
             'model_' => $model_,
             'listKriteriaTransaksi' => $listKriteriaTransaksi,
+            'listProgress' => $listProgress,
         ));
         
     }

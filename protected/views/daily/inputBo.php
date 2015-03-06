@@ -42,7 +42,11 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                 'empty'=>'Pilih Kriteria Transaksi',
                 'class'=>'span3',
         )); ?>          
-        <?php echo $form->textFieldRow($model,'jt_status',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+        <?php echo $form->textFieldRow($model,'jumlah_transaksi',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+        <?php echo $form->dropDownListRow($model, 'status_transaksi', $listProgress, array(
+                'empty'=>'Pilih Status Transaksi',
+                'class'=>'span3',
+        )); ?> 
         <?php echo $form->textFieldRow($model,'total',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
         <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>         
 </fieldset>  
@@ -77,7 +81,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </script>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyCs_total, #dailyCsArray_0_total',
+            'element'=>'#dailyBo_total, #dailyBoArray_0_total, #dailyBo_jumlah_transaksi',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,
