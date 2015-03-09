@@ -43,7 +43,7 @@ class DailyController extends Controller{
                     'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity',
                     'inputCS', 'getRowCS', 'laporanCS', 'printcs',
                     'inputTeller', 'getRowTel', 'laporanTel', 'printtel',
-                    'inputBo'
+                    'inputBo','getRowBo',
                     ),
 				'users'=>array('*'),
             ),
@@ -89,17 +89,40 @@ class DailyController extends Controller{
         $valid_data = false;
         
         if(isset($_POST['dailyBo'])) {         
-            
+            $valid_data = true;
+            $model->attributes = $_POST['dailyBo'];   
+            $model->status = vC::APP_status_laporan_new;
+                // check input validasi
+                if(!$model->validate()){
+                   $valid_data = false;
+                };
         }// end if post dailyTeller
         
         if(isset($_POST['dailyBoArray'])) {
-           
+            $valid_data = false;
+            $valid_array = true;
+            $model_ = array();            
+            // add data from post to model
+            foreach ($_POST['dailyBoArray'] as $key => $value) {     
+                $model_each = new dailyBoArray;
+                $model_each->attributes = $value;    
+                $model_each->tanggal = $model->tanggal;
+                $model_each->nama_pegawai = $model->nama_pegawai;
+                $model_each->status = vC::APP_status_laporan_new;
+                $model_[] = $model_each;  
+            }
+            // validate each         
+            foreach ($model_ as $key => $model_Each) {                  
+                if(!$model_Each->validate()) {
+                    $valid_array = false;
+                };                 
+            }         
+            $valid_data = $valid_array;
         }// end if post dailyTellerArray
         if($valid_data) {    
          
-            $this->redirect(array('complete'));
-        }// end if valid_data
-        
+           // $this->redirect(array('complete'));
+        }// end if valid_data 
         $this->render('inputBo',array(
             'model' => $model,
             'model_' => $model_,
@@ -608,6 +631,11 @@ class DailyController extends Controller{
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_teller',
                 'modelClass' => 'dailyTellerArray'
+            ),
+            'getRowBo' => array(
+                'class' => 'ext.ddynamictabularform.actions.GetRowForm',
+                'view' => '_form_bo',
+                'modelClass' => 'dailyBoArray'
             ),
         );
     } 

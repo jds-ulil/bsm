@@ -52,12 +52,12 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </fieldset>  
 
   <?php
-//    $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
-//        'rowUrl' => Yii::app()->createUrl('daily/getRowCS'),
-//        'defaultRowView'=>'_form_cs',
-//        'title' => 'Input data kriteria nasabah lainnya',
-//    ));
-    //echo $formDynamic->rowForm($model_); 
+    $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
+        'rowUrl' => Yii::app()->createUrl('daily/getRowBo'),
+        'defaultRowView'=>'_form_bo',
+        'title' => 'Input data kriteria transaksi lainnya',
+    ));
+    echo $formDynamic->rowForm($model_); 
     
     ?>
    
@@ -69,7 +69,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                 'label'=>'Simpan',
 		)); ?>
     </div>
-<?php //$this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 <?php $this->endWidget(); ?>
 
 <script>

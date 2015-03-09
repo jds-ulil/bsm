@@ -5,12 +5,14 @@
  *
  * The followings are the available columns in table 'daily_bo':
  * @property integer $daily_bo_id
- * @property integer $jt_status
+ * @property integer $jumlah_transaksi
+ * @property integer $kriteria_transaksi
  * @property double $total
  * @property string $nama_pegawai
  * @property string $info
  * @property string $tanggal
  * @property integer $status
+ * @property integer $status_transaksi
  */
 class dailyBoArray extends CActiveRecord
 {
@@ -30,13 +32,13 @@ class dailyBoArray extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('jt_status, status', 'numerical', 'integerOnly'=>true),
+            array('jumlah_transaksi, kriteria_transaksi, status_transaksi', 'required'),
 			array('total', 'numerical'),
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('info, tanggal', 'safe'),
+			array('info, tanggal, status', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('daily_bo_id, jt_status, total, nama_pegawai, info, tanggal, status', 'safe', 'on'=>'search'),
+			array('daily_bo_id, jumlah_transaksi, kriteria_transaksi, total, nama_pegawai, info, tanggal, status, status_transaksi', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,12 +60,14 @@ class dailyBoArray extends CActiveRecord
 	{
 		return array(
 			'daily_bo_id' => 'Daily Bo',
-			'jt_status' => 'Jt Status',
+			'jumlah_transaksi' => 'Jumlah Transaksi',
+			'kriteria_transaksi' => 'Kriteria Transaksi',
 			'total' => 'Total',
 			'nama_pegawai' => 'Nama Pegawai',
 			'info' => 'Info',
 			'tanggal' => 'Tanggal',
 			'status' => 'Status',
+			'status_transaksi' => 'Status Transaksi',
 		);
 	}
 
@@ -86,12 +90,14 @@ class dailyBoArray extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('daily_bo_id',$this->daily_bo_id);
-		$criteria->compare('jt_status',$this->jt_status);
+		$criteria->compare('jumlah_transaksi',$this->jumlah_transaksi);
+		$criteria->compare('kriteria_transaksi',$this->kriteria_transaksi);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('nama_pegawai',$this->nama_pegawai,true);
 		$criteria->compare('info',$this->info,true);
 		$criteria->compare('tanggal',$this->tanggal,true);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('status_transaksi',$this->status_transaksi);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
