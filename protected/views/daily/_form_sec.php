@@ -1,6 +1,6 @@
 <?php $row_id = "dailySecurityArray-" . $key ?>
 <?php $selectId = "dailySecurityArray_".$key."_jenis_nasabah"; ?>
-<?php $dataSelect = isset($model->jenis_nasabah[$key])? $model->jenis_nasabah[$key]:0; ?>
+<?php $dataSelect = isset($model->jenis_nasabah)? $model->jenis_nasabah:0; ?>
 <div class='row-fluid' id="<?php echo $row_id ?>">    
     <fieldset>
             

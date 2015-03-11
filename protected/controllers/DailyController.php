@@ -43,7 +43,9 @@ class DailyController extends Controller{
                     'inputSecurity', 'laporanSecurity', 'getRowSec', 'printsecurity', 'deleteSecurity', 'accSecurity',
                     'inputCS', 'getRowCS', 'laporanCS', 'printcs',
                     'inputTeller', 'getRowTel', 'laporanTel', 'printtel',
-                    'inputBo','getRowBo',
+                    'inputBo','getRowBo','laporanBo', 'printBo',
+                    'inputWm', 'getRowWm', 'laporanWm', 'printwm',
+                    'inputSa','getRowSa','laporanSa', 'printsa',
                     ),
 				'users'=>array('*'),
             ),
@@ -51,6 +53,9 @@ class DailyController extends Controller{
 				'actions'=>array('index', 'complete',
                     'deleteCs', 'accCs',
                     'deleteTel', 'accTel',
+                    'deleteBo', 'accBo',
+                    'deleteWm', 'accWm',
+                    'deleteSa', 'accSa',
                     ),
 				'users'=>array('@'),
 			),			
@@ -71,7 +76,143 @@ class DailyController extends Controller{
 			
 		));
     }    
+    public function actionInputWm () {
+        //set page title
+        $this->setPageTitle("Input Warung Mikro");
+        
+        $model = new dailyWm;
+        $model_ = array(new dailyWmArray); 
+        
+        $listKriteriaNasabah = CHtml::listData(dailyWmKriteriaNasabah::model()->findAll(), 'wm_kriteria_nasabah_id', 'nama');        
+        
+        $valid_data = false;
+        
+        if(isset($_POST['dailyWm'])) {         
+            $valid_data = true;
+            $model->attributes = $_POST['dailyWm'];   
+            $model->status = vC::APP_status_laporan_new;
+                // check input validasi
+                if(!$model->validate()){
+                   $valid_data = false;
+                };
+        }// end if post dailyTeller
+        
+        if(isset($_POST['dailyWmArray'])) {            
+            $valid_array = true;
+            $model_ = array();            
+            // add data from post to model
+            foreach ($_POST['dailyWmArray'] as $key => $value) {     
+                $model_each = new dailyWmArray;
+                $model_each->attributes = $value;    
+                $model_each->tanggal = $model->tanggal;                
+                $model_each->nama_pegawai = $model->nama_pegawai;
+                $model_each->status = vC::APP_status_laporan_new;
+                $model_[] = $model_each;  
+            }
+            // validate each         
+            foreach ($model_ as $key => $model_Each) {                  
+                if(!$model_Each->validate()) {
+                    $valid_array = false;
+                };                 
+            }         
+            $valid_data = $valid_data == false ? $valid_data : $valid_array;
+        }// end if post dailyTellerArray
+        if($valid_data) {    
+//             $model->save();            
+//            foreach ($model_ as $key => $model_Each) {                  
+//                $model_Each->save();
+//            }
+//            $this->redirect(array('complete'));
+        }// end if valid_data 
+        $this->render('inputWm',array(
+            'model' => $model,
+            'model_' => $model_,
+            'listKriteriaNasabah' => $listKriteriaNasabah,
+        ));
+    }
+    public function actionLaporanWm () {}
+    public function actionDeleteWm ($id) {        
+        $model = dailyWm::model()->findByPk($id);
+        $model->delete(); 
+    }
+    public function actionAccWm ($id) {
+        $model = dailyWm::model()->findByPk($id);
+        $model->status = vC::APP_status_laporan_approve;
+        if ($model->save())        
+        echo 'sukses update';
+        else 
+            print_r($model->getErrors());
+    } 
+    public function actionPrintwm () {}
     
+    public function actionInputSa () {
+        //set page title
+        $this->setPageTitle("Input Sales Assistant");
+        
+        $model = new dailySa;
+        $model_ = array(new dailySaArray); 
+        
+        $listKriteriaNasabah = CHtml::listData(dailySaKriteriaNasabah::model()->findAll(), 'sa_kriteria_nasabah_id', 'nama');        
+        
+        $valid_data = false;
+        
+        if(isset($_POST['dailySa'])) {         
+            $valid_data = true;
+            $model->attributes = $_POST['dailySa'];   
+            $model->status = vC::APP_status_laporan_new;
+                // check input validasi
+                if(!$model->validate()){
+                   $valid_data = false;
+                };
+        }// end if post dailyTeller
+        
+        if(isset($_POST['dailySaArray'])) {            
+            $valid_array = true;
+            $model_ = array();            
+            // add data from post to model
+            foreach ($_POST['dailySaArray'] as $key => $value) {     
+                $model_each = new dailyWmArray;
+                $model_each->attributes = $value;    
+                $model_each->tanggal = $model->tanggal;                
+                $model_each->nama_pegawai = $model->nama_pegawai;
+                $model_each->status = vC::APP_status_laporan_new;
+                $model_[] = $model_each;  
+            }
+            // validate each         
+            foreach ($model_ as $key => $model_Each) {                  
+                if(!$model_Each->validate()) {
+                    $valid_array = false;
+                };                 
+            }         
+            $valid_data = $valid_data == false ? $valid_data : $valid_array;
+        }// end if post dailyTellerArray
+        if($valid_data) {    
+//             $model->save();            
+//            foreach ($model_ as $key => $model_Each) {                  
+//                $model_Each->save();
+//            }
+//            $this->redirect(array('complete'));
+        }// end if valid_data 
+        $this->render('inputSa',array(
+            'model' => $model,
+            'model_' => $model_,
+            'listKriteriaNasabah' => $listKriteriaNasabah,
+        ));
+    }
+    public function actionLaporanSa () {}
+    public function actionDeleteSa ($id) {
+        $model = dailySa::model()->findByPk($id);
+        $model->delete(); 
+    }
+    public function actionAccSa ($id) {
+        $model = dailySa::model()->findByPk($id);
+        $model->status = vC::APP_status_laporan_approve;
+        if ($model->save())        
+        echo 'sukses update';
+        else 
+            print_r($model->getErrors());
+    } 
+    public function actionPrintSa () {}
      /**
      * diakses ketika pertama mau input lap daily activity khusus Teller
      * 
@@ -99,14 +240,14 @@ class DailyController extends Controller{
         }// end if post dailyTeller
         
         if(isset($_POST['dailyBoArray'])) {
-            $valid_data = false;
+            
             $valid_array = true;
             $model_ = array();            
             // add data from post to model
             foreach ($_POST['dailyBoArray'] as $key => $value) {     
                 $model_each = new dailyBoArray;
                 $model_each->attributes = $value;    
-                $model_each->tanggal = $model->tanggal;
+                $model_each->tanggal = $model->tanggal;    
                 $model_each->nama_pegawai = $model->nama_pegawai;
                 $model_each->status = vC::APP_status_laporan_new;
                 $model_[] = $model_each;  
@@ -117,11 +258,14 @@ class DailyController extends Controller{
                     $valid_array = false;
                 };                 
             }         
-            $valid_data = $valid_array;
+            $valid_data = $valid_data == false ? $valid_data : $valid_array;
         }// end if post dailyTellerArray
         if($valid_data) {    
-         
-           // $this->redirect(array('complete'));
+             $model->save();            
+            foreach ($model_ as $key => $model_Each) {                  
+                $model_Each->save();
+            }
+            $this->redirect(array('complete'));
         }// end if valid_data 
         $this->render('inputBo',array(
             'model' => $model,
@@ -130,6 +274,87 @@ class DailyController extends Controller{
             'listProgress' => $listProgress,
         ));
         
+    }
+    
+     public function actionLaporanBo() {
+      //set page title
+        $this->setPageTitle("Laporan Back Office");
+        
+        // new model daily with search as scenario
+        $model = new dailyBo('search');
+        $model->unsetAttributes();
+        
+        $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        
+         if(isset($_GET['dailyBo'])){
+            $model->attributes=$_GET['dailyBo'];
+            }        
+        
+        $this->render('searchBo',array(
+            'model' => $model,  
+            'listKriteriaTransaksi' => $listKriteriaTransaksi,
+        ));  
+    }
+    
+    public function actionDeleteBo ($id) {
+        $model = dailyBo::model()->findByPk($id);
+        $model->delete();       
+    }
+    
+    /**
+     * ACC teler from report page
+     * @param type $id
+     */
+    public function actionAccBo ($id) {
+        $model = dailyBo::model()->findByPk($id);
+        $model->status = vC::APP_status_laporan_approve;
+        if ($model->save())        
+        echo 'sukses update';
+        else 
+            print_r($model->getErrors());
+    }
+    
+    public function actionPrintBo () {
+        $model = new dailyBo('search');
+        $model->unsetAttributes();
+        
+        $model->record_row = 10000;   
+        $index = 0;
+        $total_transaksi = 0;
+        $total_setor = 0;
+        $data = array();
+        
+        if(isset($_POST['dailyBo'])){
+            $model->attributes = $_POST['dailyBo'];
+            $dataProv = $model->search();                         
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total_transaksi = $total_transaksi + intval($record->jumlah_transaksi);
+                $total_setor = $total_setor + intval($record->total);
+                $data[]=array(  'index'=>$index,
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
+                                'kriteria_transaksi'=>$record->rKrit->nama,                               
+                                'nama_pegawai'=>$record->nama_pegawai,                               
+                                'info'=>$record->info,                                                                                
+                                'jumlah'=>$record->jumlah_transaksi,                                                                                
+                                'status_transaksi'=>$record->rStTr->nama,                                                                               
+                                'total'=>Yii::app()->numberFormatter->formatCurrency($record->total ,""),                                              
+                        );                        
+            }
+            
+        }
+                        
+        $model->kriteria_transaksi = empty($model->kriteria_transaksi)?' Semua Jenis ': $model->rKrit->nama;
+        $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
+        $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        $this->render('printbo',array(
+            'model' => $model,
+            'data' => $data,
+            'total_transaksi'=>$total_transaksi,        
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+        ));
     }
     
      /**
@@ -159,7 +384,6 @@ class DailyController extends Controller{
         }// end if post dailyTeller
         
         if(isset($_POST['dailyTellerArray'])) {
-            $valid_data = false;
             $valid_array = true;
             $model_ = array();            
             // add data from post to model
@@ -177,7 +401,7 @@ class DailyController extends Controller{
                     $valid_array = false;
                 };                 
             }         
-            $valid_data = $valid_array;
+            $valid_data = $valid_data == false ? $valid_data : $valid_array;
         }// end if post dailyTellerArray
         if($valid_data) {    
             //save main
@@ -284,19 +508,7 @@ class DailyController extends Controller{
             'total_nasabah'=>$total_nasabah,        
             'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
         ));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+   
         
     }
     
@@ -325,8 +537,7 @@ class DailyController extends Controller{
                 };                 
         }
         if(isset($_POST['dailyCsArray'])){
-             // let false again
-            $valid_data = false;
+             // let false again  
             $valid_array = true;
             $model_ = array();            
             // add data from post to model
@@ -344,7 +555,7 @@ class DailyController extends Controller{
                     $valid_array = false;
                 };                 
             }         
-            $valid_data = $valid_array;
+            $valid_data = $valid_data == false ? $valid_data : $valid_array;
         }
         
         if($valid_data) {            
@@ -486,8 +697,7 @@ class DailyController extends Controller{
                 };
          }
         if(isset($_POST['dailySecurityArray'])){
-            // let false again
-            $valid_data = false;
+            // let false again     
             $valid_array = true;
             $model_ = array();            
             // add data from post to model
@@ -505,7 +715,7 @@ class DailyController extends Controller{
                     $valid_array = false;
                 };                 
             }         
-            $valid_data = $valid_array;
+            $valid_data = $valid_data == false ? $valid_data : $valid_array;
         }
         if($valid_data) {            
             //save main
@@ -636,6 +846,16 @@ class DailyController extends Controller{
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_bo',
                 'modelClass' => 'dailyBoArray'
+            ),
+            'getRowSa' => array(
+                'class' => 'ext.ddynamictabularform.actions.GetRowForm',
+                'view' => '_form_sa',
+                'modelClass' => 'dailySaArray'
+            ),
+            'getRowWm' => array(
+                'class' => 'ext.ddynamictabularform.actions.GetRowForm',
+                'view' => '_form_wm',
+                'modelClass' => 'dailyWmArray'
             ),
         );
     } 

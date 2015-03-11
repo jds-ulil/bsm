@@ -100,6 +100,24 @@
                     <img class="laporan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/report.png"; ?>" />
                 </a>                 
             </div>                   
+            <div class="dmenuitem">
+                <a href="<?php echo yii::app()->createUrl('daily/inputWm'); ?>">Warung Mikro</a>
+                <a href="<?php echo yii::app()->createUrl('daily/inputWm'); ?>">
+                    <img class="inputan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/warungmikro.png"; ?>" />
+                </a>
+                <a href="<?php echo yii::app()->createUrl('daily/laporanWm'); ?>">
+                    <img class="laporan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/report.png"; ?>" />
+                </a>                 
+            </div>                   
+            <div class="dmenuitem">
+                <a href="<?php echo yii::app()->createUrl('daily/inputSa'); ?>">Sales Assistant</a>
+                <a href="<?php echo yii::app()->createUrl('daily/inputSa'); ?>">
+                    <img class="inputan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/salesasistant.png"; ?>" />
+                </a>
+                <a href="<?php echo yii::app()->createUrl('daily/laporanSa'); ?>">
+                    <img class="laporan" src = "<?php echo yii::app()->baseUrl."/images/dailymenu/report.png"; ?>" />
+                </a>                 
+            </div>                   
         </div>
     </div>
 </div>

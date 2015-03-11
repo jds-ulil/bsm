@@ -19,6 +19,14 @@ class dailyBo extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+    
+      // user for search by period
+    public $from_date;
+    public $to_date;
+    
+    public $record_row = 15;
+    
+    
 	public function tableName()
 	{
 		return 'daily_bo';
@@ -38,7 +46,7 @@ class dailyBo extends CActiveRecord
 			array('info, tanggal', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('daily_bo_id, jumlah_transaksi, kriteria_transaksi, total, nama_pegawai, info, tanggal, status, status_transaksi', 'safe', 'on'=>'search'),
+			array('from_date, to_date, daily_bo_id, jumlah_transaksi, kriteria_transaksi, total, nama_pegawai, info, tanggal, status, status_transaksi', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,6 +58,9 @@ class dailyBo extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'rKrit' => array(self::BELONGS_TO, 'dailyBoKriteriaTransaksi', 'kriteria_transaksi'),
+            'rStat' => array(self::BELONGS_TO, 'dailySecurityStatus', 'status'),
+            'rStTr' => array(self::BELONGS_TO, 'dailyBoProgress', 'status_transaksi'),
 		);
 	}
 
@@ -99,7 +110,19 @@ class dailyBo extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('status_transaksi',$this->status_transaksi);
 
-		return new CActiveDataProvider($this, array(
+		if (!empty($this->from_date)) {                
+            $reFromDate = $this->toDBDate($this->from_date);                
+            $criteria->addCondition('tanggal >= "'.$reFromDate.'" ');                
+        }
+        if (!empty($this->to_date)) {
+            $reToDate = $this->toDBDate($this->to_date);                
+            $criteria->addCondition('tanggal <= "'.$reToDate.'" ');		
+        }
+        
+        return new CActiveDataProvider($this, array(
+                        'pagination'=>array(
+                            'pageSize'=> $this->record_row,
+                        ),
 			'criteria'=>$criteria,
 		));
 	}
@@ -114,4 +137,35 @@ class dailyBo extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    public function beforeSave()
+	{
+        // ubah tanggal ke db version sebelum disimpan
+		if(parent::beforeSave())
+		{            
+            if(!empty($this->tanggal)){
+                $this->tanggal = $this->toDBDate($this->tanggal);
+            }
+            if (!empty($this->total)) {
+                $this->total = str_replace(".","",  $this->total);
+            }            
+		}
+	return true;
+	}
+    // change format manusia to mesiin
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        } 
 }

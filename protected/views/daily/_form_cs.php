@@ -1,6 +1,6 @@
 <?php $row_id = "dailyCsArray-" . $key ?>
 <?php $selectId = "dailyCsArray_".$key."_kriteria_nasabah"; ?>
-<?php $dataSelect = isset($model->kriteria_nasabah[$key])? $model->kriteria_nasabah[$key]:0; ?>
+<?php $dataSelect = isset($model->kriteria_nasabah)? $model->kriteria_nasabah:0; ?>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
             'element'=>'#dailyCsArray_'.$key.'_total',

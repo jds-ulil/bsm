@@ -1,6 +1,6 @@
 <?php $row_id = "dailyTellerArray-" . $key ?>
 <?php $selectId = "dailyTellerArray_".$key."_kriteria_transaksi"; ?>
-<?php $dataSelect = isset($model->kriteria_transaksi[$key])? $model->kriteria_transaksi[$key]:0; ?>
+<?php $dataSelect = isset($model->kriteria_transaksi)? $model->kriteria_transaksi:0; ?>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
             'element'=>'#dailyTellerArray_'.$key.'_total',

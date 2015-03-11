@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "daily_bo".
+ * This is the model class for table "daily_wm".
  *
- * The followings are the available columns in table 'daily_bo':
- * @property integer $daily_bo_id
- * @property integer $jumlah_transaksi
- * @property integer $kriteria_transaksi
+ * The followings are the available columns in table 'daily_wm':
+ * @property integer $daily_wm_id
+ * @property integer $jumlah_nasabah
+ * @property integer $kriteria_nasabah
+ * @property string $no_kontak
  * @property double $total
  * @property string $nama_pegawai
  * @property string $info
- * @property string $tanggal
  * @property integer $status
- * @property integer $status_transaksi
+ * @property string $tanggal
  */
-class dailyBoArray extends CActiveRecord
+class dailyWmArray extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'daily_bo';
+		return 'daily_wm';
 	}
 
 	/**
@@ -32,13 +32,14 @@ class dailyBoArray extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('jumlah_transaksi, kriteria_transaksi, status_transaksi', 'required'),
+			array('jumlah_nasabah, kriteria_nasabah, status', 'numerical', 'integerOnly'=>true),
 			array('total', 'numerical'),
+			array('no_kontak', 'length', 'max'=>25),
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('info, tanggal, status', 'safe'),
+			array('info, tanggal', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('daily_bo_id, jumlah_transaksi, kriteria_transaksi, total, nama_pegawai, info, tanggal, status, status_transaksi', 'safe', 'on'=>'search'),
+			array('daily_wm_id, jumlah_nasabah, kriteria_nasabah, no_kontak, total, nama_pegawai, info, status, tanggal', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,15 +60,15 @@ class dailyBoArray extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'daily_bo_id' => 'Daily Bo',
-			'jumlah_transaksi' => 'Jumlah Transaksi',
-			'kriteria_transaksi' => 'Kriteria Transaksi',
+			'daily_wm_id' => 'Daily Wm',
+			'jumlah_nasabah' => 'Jumlah Nasabah',
+			'kriteria_nasabah' => 'Kriteria Nasabah',
+			'no_kontak' => 'No Kontak',
 			'total' => 'Total',
 			'nama_pegawai' => 'Nama Pegawai',
 			'info' => 'Info',
-			'tanggal' => 'Tanggal',
 			'status' => 'Status',
-			'status_transaksi' => 'Status Transaksi',
+			'tanggal' => 'Tanggal',
 		);
 	}
 
@@ -89,15 +90,15 @@ class dailyBoArray extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('daily_bo_id',$this->daily_bo_id);
-		$criteria->compare('jumlah_transaksi',$this->jumlah_transaksi);
-		$criteria->compare('kriteria_transaksi',$this->kriteria_transaksi);
+		$criteria->compare('daily_wm_id',$this->daily_wm_id);
+		$criteria->compare('jumlah_nasabah',$this->jumlah_nasabah);
+		$criteria->compare('kriteria_nasabah',$this->kriteria_nasabah);
+		$criteria->compare('no_kontak',$this->no_kontak,true);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('nama_pegawai',$this->nama_pegawai,true);
 		$criteria->compare('info',$this->info,true);
-		$criteria->compare('tanggal',$this->tanggal,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('status_transaksi',$this->status_transaksi);
+		$criteria->compare('tanggal',$this->tanggal,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -108,41 +109,10 @@ class dailyBoArray extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return dailyBoArray the static model class
+	 * @return dailyWmArray the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-    
-    public function beforeSave()
-	{
-        // ubah tanggal ke db version sebelum disimpan
-		if(parent::beforeSave())
-		{            
-            if(!empty($this->tanggal)){
-                $this->tanggal = $this->toDBDate($this->tanggal);
-            }
-            if (!empty($this->total)) {
-                $this->total = str_replace(".","",  $this->total);
-            }            
-		}
-	return true;
-	}
-    // change format manusia to mesiin
-    function toDBDate($date){            
-            $data = explode('/',$date);
-            $value = '';
-            $lenght = count($data)-1;
-            if (!empty($data)) {                
-                for($i=$lenght;$i>=0;$i--) {                    
-                    if($i != 0){
-                        $value  .= $data[$i].'-';
-                    } else {
-                        $value  .= $data[$i];
-                    }
-                }
-            }    
-            return $value;
-        } 
 }

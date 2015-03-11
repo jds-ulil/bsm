@@ -1,12 +1,11 @@
 <?php $row_id = "dailyBoArray-" . $key ?>
 <?php $selectId = "dailyBoArray_".$key."_kriteria_transaksi"; ?>
-<?php $dataSelect = isset($model->kriteria_transaksi[$key])? $model->kriteria_transaksi[$key]:0; ?>
-
+<?php $dataSelect = isset($model->kriteria_transaksi)? $model->kriteria_transaksi:0; ?>
 <?php $selectId2 = "dailyBoArray_".$key."_status_transaksi"; ?>
-<?php $dataSelect2 = isset($model->status_transaksi[$key])? $model->status_transaksi[$key]:0; ?>
+<?php $dataSelect2 = isset($model->status_transaksi)? $model->status_transaksi:0; ?>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyBoArray_'.$key.'_total',
+            'element'=>'#dailyBoArray_'.$key.'_total,#dailyBoArray_'.$key.'_jumlah_transaksi',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,

@@ -1,14 +1,14 @@
 <?php
 // breadcrump 
 $this->breadcrumbs=array(	
-    "Input Data Back Office"
+    "Input Data Warung Mikro"
 );
 ?>
 
 <?php 
 // declare form value
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-    'id'=>'inputCS-form',
+    'id'=>'inputWm-form',
 	//'enableAjaxValidation'=>true,
     'type'=>'horizontal',
 )); ?>      
@@ -38,27 +38,21 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
 <fieldset>
     <legend>Input Data</legend>
-        <?php echo $form->dropDownListRow($model, 'kriteria_transaksi', $listKriteriaTransaksi, array(
-                'empty'=>'Pilih Kriteria Transaksi',
+        <?php echo $form->dropDownListRow($model, 'kriteria_nasabah', $listKriteriaNasabah, array(
+                'empty'=>'Pilih Kriteria Nasabah',
                 'class'=>'span3',
         )); ?>                  
-        <?php echo $form->dropDownListRow($model, 'status_transaksi', $listProgress, array(
-                'empty'=>'Pilih Status Transaksi',
-                'class'=>'span3',
-        )); ?> 
-        <?php echo $form->textFieldRow($model,'jumlah_transaksi',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
         <?php echo $form->textFieldRow($model,'total',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
         <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>         
 </fieldset>  
 
   <?php
     $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
-        'rowUrl' => Yii::app()->createUrl('daily/getRowBo'),
-        'defaultRowView'=>'_form_bo',
-        'title' => 'Input data kriteria transaksi lainnya',
+        'rowUrl' => Yii::app()->createUrl('daily/getRowWm'),
+        'defaultRowView'=>'_form_wm',
+        'title' => 'Input data kriteria nasabah lainnya',
     ));
-    echo $formDynamic->rowForm($model_); 
-    
+    echo $formDynamic->rowForm($model_);     
     ?>
    
 
@@ -81,7 +75,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </script>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyBo_total, #dailyBoArray_0_total',
+            'element'=>'#dailyWm_total, #dailyWmArray_0_total',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,
