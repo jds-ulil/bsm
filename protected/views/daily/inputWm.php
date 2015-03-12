@@ -42,6 +42,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                 'empty'=>'Pilih Kriteria Nasabah',
                 'class'=>'span3',
         )); ?>                  
+        <?php echo $form->textFieldRow($model,'no_kontak',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+        <?php echo $form->textFieldRow($model,'jumlah_nasabah',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
         <?php echo $form->textFieldRow($model,'total',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
         <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>         
 </fieldset>  
@@ -52,7 +54,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         'defaultRowView'=>'_form_wm',
         'title' => 'Input data kriteria nasabah lainnya',
     ));
-    echo $formDynamic->rowForm($model_);     
+    echo $formDynamic->rowForm($model_, $listKriteriaNasabah);     
     ?>
    
 

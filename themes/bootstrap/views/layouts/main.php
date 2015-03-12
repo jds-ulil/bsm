@@ -29,12 +29,8 @@
 						'activeCssClass'	=> 'active',
 
 						'items'=>array(
-//                            array('label'=>'LAPORAN HARIAN', 'url'=>array('#'),
-//								'items'=>array(
-//								    array('label'=>'Input', 'url'=>array('/daily/input',),'visible'=>TRUE, 'linkOptions'=>array('target'=>'_blank')),								   
-//								    array('label'=>'Cetak Laporan', 'url'=>array('/user/setting',),  'visible'=>TRUE),								    
-//								    )
-//								),
+                            array('label'=>'LAPORAN HARIAN', 'url'=>array('/daily'),'visible'=>TRUE, 'linkOptions'=>array('target'=>'_blank'),
+								),
 							array('label'=>'Administrasi User', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'),
 								'items'=>array(
 								    array('label'=>'Inputer', 'url'=>array('mguser/index', 'id'=> vc::APP_id_hak_akses_inputter),  'visible'=>Yii::app()->user->checkAccess('admin')) ,
@@ -81,6 +77,16 @@
 								    array('label'=>'Rekap Kuisioner', 'url'=>array('Question/report',)),								   
 								    )
 							),													
+							array('label'=>'Master Daily Activity', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('approval'), 
+								'items'=>array(
+								    array('label'=>'Security', 'url'=>array('dailysec/index',)),								    								    
+								    array('label'=>'Customer Service', 'url'=>array('dailycs/index',)),								    								    
+								    array('label'=>'Teller', 'url'=>array('dailytel/index',)),								    								    
+								    array('label'=>'Back Office', 'url'=>array('dailybo/index',)),								    								    
+								    array('label'=>'Warung Mikro', 'url'=>array('dailywm/index',)),								    								    
+								    array('label'=>'Sales Assistant', 'url'=>array('dailysa/index',)),								    								    
+								    )
+							),
 							array('label'=>'Master Data', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'), 
 								'items'=>array(
 								    array('label'=>'Pegawai/Marketing', 'url'=>array('pegawai/index',)),								    

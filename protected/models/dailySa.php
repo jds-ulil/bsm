@@ -38,10 +38,10 @@ class dailySa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('jumlah_nasabah', 'numerical', 'integerOnly'=>true),
 			array('tanggal, nama_pegawai, kriteria_nasabah', 'required'),
-			array('total', 'numerical'),
 			array('no_kontak, segmen', 'length', 'max'=>25),
-			array('info,jumlah_nasabah, status, total', 'safe'),
+			array('info, status, total', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_sa_id, jumlah_nasabah, no_kontak, total, segmen, nama_pegawai, info, status, tanggal, kriteria_nasabah', 'safe', 'on'=>'search'),
@@ -56,6 +56,8 @@ class dailySa extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'rKrit' => array(self::BELONGS_TO, 'dailySaKriteriaNasabah', 'kriteria_nasabah'),
+            'rStat' => array(self::BELONGS_TO, 'dailySecurityStatus', 'status'),
 		);
 	}
 
@@ -68,10 +70,10 @@ class dailySa extends CActiveRecord
 			'daily_sa_id' => 'Daily Sa',
 			'jumlah_nasabah' => 'Jumlah Nasabah',
 			'no_kontak' => 'No Kontak',
-			'total' => 'Total',
+			'total' => 'Total Nominal (Rp)',
 			'segmen' => 'Segmen',
 			'nama_pegawai' => 'Nama Pegawai',
-			'info' => 'Info',
+			'info' => 'Info Tambahan',
 			'status' => 'Status',
 			'tanggal' => 'Tanggal',
 			'kriteria_nasabah' => 'Kriteria Nasabah',
@@ -107,8 +109,23 @@ class dailySa extends CActiveRecord
 		$criteria->compare('tanggal',$this->tanggal,true);
 		$criteria->compare('kriteria_nasabah',$this->kriteria_nasabah);
 
-		return new CActiveDataProvider($this, array(
+		if (!empty($this->from_date)) {                
+            $reFromDate = $this->toDBDate($this->from_date);                
+            $criteria->addCondition('tanggal >= "'.$reFromDate.'" ');                
+        }
+        if (!empty($this->to_date)) {
+            $reToDate = $this->toDBDate($this->to_date);                
+            $criteria->addCondition('tanggal <= "'.$reToDate.'" ');		
+        }
+        
+        return new CActiveDataProvider($this, array(
+                        'pagination'=>array(
+                            'pageSize'=> $this->record_row,
+                        ),
 			'criteria'=>$criteria,
+            'sort'=>array(
+                    'defaultOrder'=>'tanggal DESC',
+                    ),
 		));
 	}
 
@@ -122,4 +139,37 @@ class dailySa extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    public function beforeSave()
+	{
+        // ubah tanggal ke db version sebelum disimpan
+		if(parent::beforeSave())
+		{            
+            if(!empty($this->tanggal)){
+                $this->tanggal = $this->toDBDate($this->tanggal);
+            }
+            if (!empty($this->total)) {
+                $this->total = str_replace(".","",  $this->total);
+            }            
+		}
+	return true;
+	}
+    
+    
+    // change format manusia to mesiin
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        } 
 }

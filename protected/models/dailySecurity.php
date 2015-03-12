@@ -80,7 +80,7 @@ class dailySecurity extends CActiveRecord
 			'nama_inputer' => 'Nama Inputer',
             'tanggal' => 'Tanggal',
 			'jumlah' => 'Jumlah (Orang)',
-			'info' => 'Info',
+			'info' => 'Info Tambahan',
 			'jenis_nasabah' => 'Jenis Nasabah', 
             'from_date' => "Dari Tanggal",
             'to_date' => "Sampai Dengan",
@@ -128,6 +128,9 @@ class dailySecurity extends CActiveRecord
                             'pageSize'=> $this->record_row,
                         ),
 			'criteria'=>$criteria,
+            'sort'=>array(
+                    'defaultOrder'=>'tanggal DESC',
+                    ),
 		));
 	}
 

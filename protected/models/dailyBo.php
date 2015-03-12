@@ -73,9 +73,9 @@ class dailyBo extends CActiveRecord
 			'daily_bo_id' => 'Daily Bo',
 			'jumlah_transaksi' => 'Jumlah Transaksi',
 			'kriteria_transaksi' => 'Kriteria Transaksi',
-			'total' => 'Total',
+			'total' => 'Total Nominal (Rp)',
 			'nama_pegawai' => 'Nama Pegawai',
-			'info' => 'Info',
+			'info' => 'Info Tambahan',
 			'tanggal' => 'Tanggal',
 			'status' => 'Status',
 			'status_transaksi' => 'Status Transaksi',
@@ -124,6 +124,9 @@ class dailyBo extends CActiveRecord
                             'pageSize'=> $this->record_row,
                         ),
 			'criteria'=>$criteria,
+            'sort'=>array(
+                    'defaultOrder'=>'tanggal DESC',
+                    ),
 		));
 	}
 

@@ -7,7 +7,7 @@
 ?>
 <style>
 .container-fluid{
-  height:100%;
+  height:90%;
   display:table;
   width: 100%;
   padding: 0;
@@ -18,6 +18,9 @@
 .centering {
   float:none;
   margin:0 auto;
+}
+.clear{
+    clear: both;
 }
 
 /*class for menu item on center page*/
@@ -119,6 +122,6 @@
                 </a>                 
             </div>                   
         </div>
-    </div>
+    </div>    
 </div>
 

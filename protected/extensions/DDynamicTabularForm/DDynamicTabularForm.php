@@ -54,7 +54,7 @@ class DDynamicTabularForm extends CActiveForm {
      * @param CModel[] $models 
      * @param array $htmlOptions
      */
-    public function rowForm($models = array(), $rowView=null, $htmlOptions = array()) {
+    public function rowForm($models = array(), $listData=null, $rowView=null, $htmlOptions = array()) {
         if($rowView==null)
             $rowView = $this->defaultRowView;
         
@@ -71,7 +71,7 @@ class DDynamicTabularForm extends CActiveForm {
                 };
             }
             if($content)
-            $this->controller->renderPartial($rowView, array('key' => $key, 'model' => $model, 'form' => $this));
+            $this->controller->renderPartial($rowView, array('key' => $key, 'model' => $model, 'form' => $this, 'listData' => $listData));
         }
         echo "</div>";
 

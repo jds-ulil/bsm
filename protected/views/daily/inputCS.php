@@ -48,12 +48,13 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </fieldset>  
 
   <?php
+    $listData = CHtml::listData(dailyCsKriteriaNasabah::model()->findAll(), 'cs_kriteria_nasabah_id', 'nama');
     $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
         'rowUrl' => Yii::app()->createUrl('daily/getRowCS'),
         'defaultRowView'=>'_form_cs',
         'title' => 'Input data kriteria nasabah lainnya',
     ));
-    echo $formDynamic->rowForm($model_); 
+    echo $formDynamic->rowForm($model_, $listData); 
     
     ?>
    

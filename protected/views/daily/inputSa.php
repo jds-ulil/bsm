@@ -51,11 +51,11 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
   <?php
     $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
-        'rowUrl' => Yii::app()->createUrl('daily/getRowWm'),
+        'rowUrl' => Yii::app()->createUrl('daily/getRowSa'),
         'defaultRowView'=>'_form_sa',
         'title' => 'Input data kriteria nasabah lainnya',
     ));
-    echo $formDynamic->rowForm($model_); 
+    echo $formDynamic->rowForm($model_, $listKriteriaNasabah); 
     
     ?>
    

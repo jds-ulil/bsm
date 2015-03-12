@@ -118,11 +118,11 @@ class DailyController extends Controller{
             $valid_data = $valid_data == false ? $valid_data : $valid_array;
         }// end if post dailyTellerArray
         if($valid_data) {    
-//             $model->save();            
-//            foreach ($model_ as $key => $model_Each) {                  
-//                $model_Each->save();
-//            }
-//            $this->redirect(array('complete'));
+             $model->save();            
+            foreach ($model_ as $key => $model_Each) {                  
+                $model_Each->save();
+            }
+            $this->redirect(array('complete'));
         }// end if valid_data 
         $this->render('inputWm',array(
             'model' => $model,
@@ -130,7 +130,25 @@ class DailyController extends Controller{
             'listKriteriaNasabah' => $listKriteriaNasabah,
         ));
     }
-    public function actionLaporanWm () {}
+    public function actionLaporanWm () {
+        //set page title
+        $this->setPageTitle("Laporan Warung Mikro");
+        
+        // new model daily with search as scenario
+        $model = new dailyWm('search');
+        $model->unsetAttributes();
+        
+        $listKriteriaNasabah = CHtml::listData(dailyWmKriteriaNasabah::model()->findAll(), 'wm_kriteria_nasabah_id', 'nama');
+        
+         if(isset($_GET['dailyWm'])){
+            $model->attributes=$_GET['dailyWm'];
+            }        
+        
+        $this->render('searchWm',array(
+            'model' => $model,  
+            'listKriteriaNasabah' => $listKriteriaNasabah,
+        ));
+    }
     public function actionDeleteWm ($id) {        
         $model = dailyWm::model()->findByPk($id);
         $model->delete(); 
@@ -143,7 +161,48 @@ class DailyController extends Controller{
         else 
             print_r($model->getErrors());
     } 
-    public function actionPrintwm () {}
+    public function actionPrintwm () {
+        $model = new dailyWm('search');
+        $model->unsetAttributes();
+        
+        $model->record_row = 10000;   
+        $index = 0;
+        $total_nasabah = 0;
+        $total_setor = 0;
+        $data = array();
+        
+        if(isset($_POST['dailyWm'])){
+            $model->attributes = $_POST['dailyWm'];
+            $dataProv = $model->search();                         
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total_nasabah = $total_nasabah + intval($record->jumlah_nasabah);
+                $total_setor = $total_setor + intval($record->total);
+                $data[]=array(  'index'=>$index,
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
+                                'kriteria_nasabah'=>$record->rKrit->nama,                               
+                                'nama_pegawai'=>$record->nama_pegawai,                               
+                                'no_kontak'=>$record->no_kontak,                                                               
+                                'info'=>$record->info,                                                                                
+                                'jumlah'=>$record->jumlah_nasabah,                                                                                
+                                'total'=>Yii::app()->numberFormatter->formatCurrency($record->total ,""),                                              
+                        );                        
+            }
+            
+        }
+                        
+        $model->kriteria_nasabah = empty($model->kriteria_nasabah)?' Semua Jenis ': $model->rKrit->nama;
+        $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
+        $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        $this->render('printwm',array(
+            'model' => $model,
+            'data' => $data,
+            'total_nasabah'=>$total_nasabah,        
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+        ));
+    }
     
     public function actionInputSa () {
         //set page title
@@ -171,7 +230,7 @@ class DailyController extends Controller{
             $model_ = array();            
             // add data from post to model
             foreach ($_POST['dailySaArray'] as $key => $value) {     
-                $model_each = new dailyWmArray;
+                $model_each = new dailySaArray;
                 $model_each->attributes = $value;    
                 $model_each->tanggal = $model->tanggal;                
                 $model_each->nama_pegawai = $model->nama_pegawai;
@@ -187,11 +246,11 @@ class DailyController extends Controller{
             $valid_data = $valid_data == false ? $valid_data : $valid_array;
         }// end if post dailyTellerArray
         if($valid_data) {    
-//             $model->save();            
-//            foreach ($model_ as $key => $model_Each) {                  
-//                $model_Each->save();
-//            }
-//            $this->redirect(array('complete'));
+             $model->save();            
+            foreach ($model_ as $key => $model_Each) {                  
+                $model_Each->save();
+            }
+            $this->redirect(array('complete'));
         }// end if valid_data 
         $this->render('inputSa',array(
             'model' => $model,
@@ -199,7 +258,25 @@ class DailyController extends Controller{
             'listKriteriaNasabah' => $listKriteriaNasabah,
         ));
     }
-    public function actionLaporanSa () {}
+    public function actionLaporanSa () {
+        //set page title
+        $this->setPageTitle("Laporan Sales Assistant");
+        
+        // new model daily with search as scenario
+        $model = new dailySa('search');
+        $model->unsetAttributes();
+        
+        $listKriteriaNasabah = CHtml::listData(dailySaKriteriaNasabah::model()->findAll(), 'sa_kriteria_nasabah_id', 'nama');
+        
+         if(isset($_GET['dailySa'])){
+            $model->attributes=$_GET['dailySa'];
+            }        
+        
+        $this->render('searchSa',array(
+            'model' => $model,  
+            'listKriteriaNasabah' => $listKriteriaNasabah,
+        ));
+    }
     public function actionDeleteSa ($id) {
         $model = dailySa::model()->findByPk($id);
         $model->delete(); 
@@ -212,7 +289,49 @@ class DailyController extends Controller{
         else 
             print_r($model->getErrors());
     } 
-    public function actionPrintSa () {}
+    public function actionPrintSa () {
+        $model = new dailySa('search');
+        $model->unsetAttributes();
+        
+        $model->record_row = 10000;   
+        $index = 0;
+        $total_nasabah = 0;
+        $total_setor = 0;
+        $data = array();
+        
+        if(isset($_POST['dailySa'])){
+            $model->attributes = $_POST['dailySa'];
+            $dataProv = $model->search();                         
+            
+            foreach($dataProv->getData() as $record) {
+                $index++;
+                $total_nasabah = $total_nasabah + intval($record->jumlah_nasabah);
+                $total_setor = $total_setor + intval($record->total);
+                $data[]=array(  'index'=>$index,
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
+                                'kriteria_nasabah'=>$record->rKrit->nama,                               
+                                'nama_pegawai'=>$record->nama_pegawai,                               
+                                'segmen'=>$record->segmen,                               
+                                'no_kontak'=>$record->no_kontak,                                                               
+                                'info'=>$record->info,                                                                                
+                                'jumlah'=>$record->jumlah_nasabah,                                                                                
+                                'total'=>Yii::app()->numberFormatter->formatCurrency($record->total ,""),                                              
+                        );                        
+            }
+            
+        }
+                        
+        $model->kriteria_nasabah = empty($model->kriteria_nasabah)?' Semua Jenis ': $model->rKrit->nama;
+        $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
+        $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        $this->render('printsa',array(
+            'model' => $model,
+            'data' => $data,
+            'total_nasabah'=>$total_nasabah,        
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+        ));
+    }
      /**
      * diakses ketika pertama mau input lap daily activity khusus Teller
      * 
@@ -830,31 +949,37 @@ class DailyController extends Controller{
             'getRowSec' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_sec',
+                'list' => 1,
                 'modelClass' => 'dailySecurityArray'
             ),
             'getRowCS' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_cs',
+                'list' => 2,
                 'modelClass' => 'dailyCsArray'
             ),
             'getRowTel' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_teller',
+                'list' => 3,
                 'modelClass' => 'dailyTellerArray'
             ),
             'getRowBo' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_bo',
+                'list' => 4,
                 'modelClass' => 'dailyBoArray'
             ),
             'getRowSa' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_sa',
+                'list' => 5,
                 'modelClass' => 'dailySaArray'
             ),
             'getRowWm' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_wm',
+                'list' => 6,
                 'modelClass' => 'dailyWmArray'
             ),
         );

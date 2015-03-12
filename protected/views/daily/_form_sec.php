@@ -9,24 +9,27 @@
      <?php
      // save for date
         echo $form->updateTypeField($model, $key, "tanggal", array('key' => $key));
-        ?>
+        ?>            
         <div class="control-group ">
             <label class="control-label required" for="dailySecurity_jenis_nasabah">Jenis Nasabah <span class="required">*</span></label>
             <div class="controls">
                 <select class="span3" name="dailySecurityArray[<?php echo $key?>][jenis_nasabah]" id="<?php echo $selectId; ?>" >
                     <option value="">Pilih Jenis Nasabah</option>
-                    <option value="1" <?php echo $dataSelect==1?'selected':''?> >Nasabah Teller</option>
-                    <option value="2" <?php echo $dataSelect==2?'selected':''?> >Nasabah Customer Service (CS)</option>
-                    <option value="3" <?php echo $dataSelect==3?'selected':''?> >Nasabah Marketing</option>
-                    <option value="4" <?php echo $dataSelect==4?'selected':''?> >Nasabah Mikro</option>
-                    <option value="5" <?php echo $dataSelect==5?'selected':''?>>Nasabah Gadai</option>
-                    <option value="6" <?php echo $dataSelect==6?'selected':''?>>Lain - Lain</option>
+                    <?php
+                           foreach ($listData as $key_l => $value) {
+                               if ($dataSelect == $key_l) {
+                                    echo "<option value='$key_l' selected='salected'>$value</option>";
+                               } else {
+                                    echo "<option value='$key_l'>$value</option>";
+                               }                               
+                           }
+                    ?>      
                 </select>
                 <span class="help-inline error">
                 <?php echo $form->error($model,"[$key]jenis_nasabah"); ?>
                 </span>
             </div>
-        </div>       
+        </div> 
     
         <div class="control-group">
             <?php echo $form->labelEx($model, "[$key]jumlah",  array('class'=>'control-label'));?>

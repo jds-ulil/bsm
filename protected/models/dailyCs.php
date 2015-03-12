@@ -120,6 +120,9 @@ class dailyCs extends CActiveRecord
                             'pageSize'=> $this->record_row,
                         ),
 			'criteria'=>$criteria,
+            'sort'=>array(
+                       'defaultOrder'=>'tanggal DESC',
+                   ),
 		));
 	}
 

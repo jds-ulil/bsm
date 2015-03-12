@@ -27,18 +27,15 @@
             <div class="controls">
                 <select class="span3" name="dailyTellerArray[<?php echo $key?>][kriteria_transaksi]" id="<?php echo $selectId; ?>" >
                     <option value="">Pilih Kriteria Transaksi</option>
-                    <option value="1" <?php echo $dataSelect==1?'selected':''?> >Total Transaksi</option>
-                    <option value="2" <?php echo $dataSelect==2?'selected':''?> >Transaksi Setoran</option>
-                    <option value="3" <?php echo $dataSelect==3?'selected':''?> >Transaksi Penarikan</option>
-                    <option value="4" <?php echo $dataSelect==4?'selected':''?> >Transaksi Net Banking</option>
-                    <option value="5" <?php echo $dataSelect==5?'selected':''?>>Transaksi Transfer Tunai</option>
-                    <option value="6" <?php echo $dataSelect==6?'selected':''?>>Saldo Teller Akhir Hari</option>
-                    <option value="7" <?php echo $dataSelect==7?'selected':''?>>Saldo Khasanah Akhir Hari</option>
-                    <option value="8" <?php echo $dataSelect==8?'selected':''?>>Saldo ATM Akhir Hari</option>
-                    <option value="9" <?php echo $dataSelect==9?'selected':''?>>Cross Selling</option>
-                    <option value="10" <?php echo $dataSelect==10?'selected':''?>>Waktu Istirahat</option>
-                    <option value="11" <?php echo $dataSelect==11?'selected':''?>>SE yang dibaca & dipahami</option>
-                    <option value="12" <?php echo $dataSelect==12?'selected':''?>>Lain - Lain</option>
+                     <?php
+                           foreach ($listData as $key_l => $value) {
+                               if ($dataSelect == $key_l) {
+                                    echo "<option value='$key_l' selected='salected'>$value</option>";
+                               } else {
+                                    echo "<option value='$key_l'>$value</option>";
+                               }                               
+                           }
+                    ?>  
                 </select>
                 <span class="help-inline error">
                 <?php echo $form->error($model,"[$key]kriteria_transaksi"); ?>

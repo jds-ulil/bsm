@@ -137,6 +137,31 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
            )	
        ));   
 } else {
+    $this->widget('bootstrap.widgets.TbGridView', array(
+       'id'=>'telreport-grid',
+       'dataProvider'=>$model->search(),	
+       'type'=>'bordered striped',
+       'columns'=>array(
+           'nama_pegawai',
+           array(
+            'name'=>'Tanggal',
+                'value'=>'Yii::app()->numberFormatter->formatDate($data->tanggal)',
+                ),	
+           array(
+               'name' => "Kriteria Transaksi",
+               'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
+           ),           
+           array(
+            'name'=>'Total',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',
+                ),	
+           'info',
+            array (
+                'name'=>'Status',
+                'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
+            ),         
+           )	
+       )); 
     
 } 
 ?>

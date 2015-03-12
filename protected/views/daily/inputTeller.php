@@ -47,13 +47,13 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>         
 </fieldset>  
 
-  <?php
+  <?php    
     $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
         'rowUrl' => Yii::app()->createUrl('daily/getRowTel'),
         'defaultRowView'=>'_form_teller',
         'title' => 'Input data kriteria transaksi lainnya',
     ));
-    echo $formDynamic->rowForm($model_); 
+    echo $formDynamic->rowForm($model_, $listKriteriaTransaksi); 
     
     ?>
    

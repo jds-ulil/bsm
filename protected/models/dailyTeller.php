@@ -70,9 +70,9 @@ class dailyTeller extends CActiveRecord
 			'daily_teller_id' => 'Daily Teller',
 			'nama_pegawai' => 'Nama Pegawai',
 			'kriteria_transaksi' => 'Kriteria Transaksi',
-			'jumlah' => 'Jumlah',
-			'total' => 'Total',
-			'info' => 'Info',
+			'jumlah' => 'Jumlah Nasabah (Orang)',
+			'total' => 'Total Nominal (Rp)',
+			'info' => 'Info Tambahan',
 			'tanggal' => 'Tanggal',
 			'status' => 'Status',
 		);
@@ -119,6 +119,9 @@ class dailyTeller extends CActiveRecord
                             'pageSize'=> $this->record_row,
                         ),
 			'criteria'=>$criteria,
+            'sort'=>array(
+                    'defaultOrder'=>'tanggal DESC',
+                    ),
 		));
 	}
 

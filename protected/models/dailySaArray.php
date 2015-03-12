@@ -33,10 +33,10 @@ class dailySaArray extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('jumlah_nasabah, status, kriteria_nasabah', 'numerical', 'integerOnly'=>true),
-			array('total', 'numerical'),
+			array('jumlah_nasabah', 'numerical', 'integerOnly'=>true),
+            array('kriteria_nasabah', 'required'),			
 			array('no_kontak, segmen, nama_pegawai', 'length', 'max'=>25),
-			array('info, tanggal', 'safe'),
+			array('info, tanggal, status, total', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('daily_sa_id, jumlah_nasabah, no_kontak, total, segmen, nama_pegawai, info, status, tanggal, kriteria_nasabah', 'safe', 'on'=>'search'),
@@ -117,4 +117,36 @@ class dailySaArray extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+      public function beforeSave()
+	{
+        // ubah tanggal ke db version sebelum disimpan
+		if(parent::beforeSave())
+		{            
+            if(!empty($this->tanggal)){
+                $this->tanggal = $this->toDBDate($this->tanggal);
+            }
+            if (!empty($this->total)) {
+                $this->total = str_replace(".","",  $this->total);
+            }            
+		}
+	return true;
+	}
+    
+    // change format manusia to mesiin
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        } 
 }

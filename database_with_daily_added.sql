@@ -21,21 +21,19 @@ USE `nasdo`;
 DROP TABLE IF EXISTS `daily_bo`;
 
 CREATE TABLE `daily_bo` (
-  `daily_bo_id` int(10) NOT NULL AUTO_INCREMENT,
+  `daily_bo_id` int(100) NOT NULL AUTO_INCREMENT,
   `jumlah_transaksi` int(10) DEFAULT NULL,
   `kriteria_transaksi` int(2) DEFAULT NULL,
-  `total` float DEFAULT '0',
+  `total` float DEFAULT NULL,
   `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `info` text COLLATE utf8_bin,
   `tanggal` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `status` int(1) DEFAULT NULL,
   `status_transaksi` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_bo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_bo` */
-
-insert  into `daily_bo`(`daily_bo_id`,`jumlah_transaksi`,`kriteria_transaksi`,`total`,`nama_pegawai`,`info`,`tanggal`,`status`,`status_transaksi`) values (2,2222,1,1111,'Juned','221','0000-00-00',2,1),(3,121,12,121,'Juned','122','0000-00-00',1,1),(4,12211,5,0,'Juned','','0000-00-00',1,1),(5,124,3,0,'Saripin','22','2015-03-11',1,3),(6,21222222,3,2121,'Saripin','122','2015-03-11',1,1),(7,1221,7,1221,'Saripin','21122','2015-03-11',1,1),(8,111122,1,0,'resi','','2015-03-11',1,1),(9,2147483647,7,0,'resi','','2015-03-11',1,1),(10,2147483647,1,1111,'resi','12','2015-03-11',1,1);
 
 /*Table structure for table `daily_bo_kriteria_transaksi` */
 
@@ -45,11 +43,11 @@ CREATE TABLE `daily_bo_kriteria_transaksi` (
   `jenis_transaksi_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`jenis_transaksi_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_bo_kriteria_transaksi` */
 
-insert  into `daily_bo_kriteria_transaksi`(`jenis_transaksi_id`,`nama`) values (1,'Transaksi Biaya'),(2,'Transaksi SKN'),(3,'Transaksi RTGS'),(4,'Pembukaan Deposito'),(5,'Pencairan Deposito'),(6,'Pencairan Small & Konsumer'),(7,'Pelunasan Small & Konsumer'),(8,'Pencairan Mikro'),(9,'Pelunasan Mikro'),(10,'Pencairan Talangan Haji'),(11,'Pelunasan Talangan Haji'),(12,'Pencairan/Perpanjangan Gadai Emas'),(13,'Pelunasan Gadai Emas'),(14,'Penginputan BI Checking'),(15,'Pembayaran Biaya Bulanan'),(16,'Pembayaran Rekanan'),(17,'Transaksi Pembayaran Angsuran'),(18,'Transaksi Penyusutan Bulanan'),(19,'Pelaporan - SID'),(20,'Pelaporan - Pajak'),(21,'Pelaporan - Lembur Staff'),(22,'Pelaporan - Lembur Non-Staff'),(23,'Pelaporan - Proofsheet'),(24,'Rekap Absensi'),(25,'Aktivitas Kepegawaian'),(26,'Saldo Kas Kecil Akhir Hari'),(27,'Saldo Rekening Perantara Akhir Hari'),(28,'Saldo Materai Akhir Hari'),(29,'Waktu Istirahat'),(30,'SE yang dibaca & dipahami'),(31,'Lain - Lain');
+insert  into `daily_bo_kriteria_transaksi`(`jenis_transaksi_id`,`nama`) values (1,'Transaksi Biaya'),(2,'Transaksi SKN'),(3,'Transaksi RTGS'),(4,'Pembukaan Deposito'),(5,'Pencairan Deposito'),(6,'Pencairan Small & Konsumer'),(7,'Pelunasan Small & Konsumer'),(8,'Pencairan Mikro'),(9,'Pelunasan Mikro'),(10,'Pencairan Talangan Haji'),(11,'Pelunasan Talangan Haji'),(12,'Pencairan/Perpanjangan Gadai Emas'),(13,'Pelunasan Gadai Emas'),(14,'Penginputan BI Checking'),(15,'Pembayaran Biaya Bulanan'),(16,'Pembayaran Rekanan'),(17,'Transaksi Pembayaran Angsuran'),(18,'Transaksi Penyusutan Bulanan'),(19,'Pelaporan - SID'),(20,'Pelaporan - Pajak'),(21,'Pelaporan - Lembur Staff'),(22,'Pelaporan - Lembur Non-Staff'),(23,'Pelaporan - Proofsheet'),(24,'Rekap Absensi'),(25,'Aktivitas Kepegawaian'),(26,'Saldo Kas Kecil Akhir Hari'),(27,'Saldo Rekening Perantara Akhir Hari'),(28,'Saldo Materai Akhir Hari'),(29,'Waktu Istirahat'),(30,'SE yang dibaca & dipahami'),(31,'Lain - Lain'),(33,'Krita');
 
 /*Table structure for table `daily_bo_progress` */
 
@@ -70,20 +68,18 @@ insert  into `daily_bo_progress`(`dbo_progress_id`,`nama`) values (1,'DONE'),(2,
 DROP TABLE IF EXISTS `daily_cs`;
 
 CREATE TABLE `daily_cs` (
-  `daily_cs_id` int(5) NOT NULL AUTO_INCREMENT,
+  `daily_cs_id` int(100) NOT NULL AUTO_INCREMENT,
   `kriteria_nasabah` int(2) DEFAULT NULL,
-  `jumlah` int(5) DEFAULT '0',
-  `total` float DEFAULT '0',
+  `jumlah` int(10) DEFAULT NULL,
+  `total` float DEFAULT NULL,
   `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `info` text COLLATE utf8_bin,
   `tanggal` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_cs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_cs` */
-
-insert  into `daily_cs`(`daily_cs_id`,`kriteria_nasabah`,`jumlah`,`total`,`nama_pegawai`,`info`,`tanggal`,`status`) values (1,2,12,22,'Ulil','Nice','0000-00-00',1),(2,3,56,120000,'Ulil','goode','0000-00-00',1),(4,1,12,111,'Raisa','','2015-02-05',2),(7,3,32,5000000,'Jacka','122','2015-02-23',2),(8,1,0,0,'','','2015-03-10',1),(9,7,0,0,'','','2015-03-10',1),(10,5,0,0,'','','2015-03-10',1),(11,4,0,0,'','','2015-03-10',1);
 
 /*Table structure for table `daily_cs_kriteria_nasabah` */
 
@@ -104,14 +100,14 @@ insert  into `daily_cs_kriteria_nasabah`(`cs_kriteria_nasabah_id`,`nama`) values
 DROP TABLE IF EXISTS `daily_sa`;
 
 CREATE TABLE `daily_sa` (
-  `daily_sa_id` int(10) NOT NULL AUTO_INCREMENT,
-  `jumlah_nasabah` int(10) DEFAULT '0',
-  `no_kontak` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `daily_sa_id` int(100) NOT NULL AUTO_INCREMENT,
+  `jumlah_nasabah` int(10) DEFAULT NULL,
+  `no_kontak` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `total` float DEFAULT NULL,
-  `segmen` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `nama_pegawai` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `segmen` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `info` text COLLATE utf8_bin,
-  `status` int(1) DEFAULT '1',
+  `status` int(1) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `kriteria_nasabah` int(2) DEFAULT NULL,
   PRIMARY KEY (`daily_sa_id`)
@@ -142,15 +138,15 @@ CREATE TABLE `daily_security` (
   `nama_inputer` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `jenis_nasabah` int(2) NOT NULL,
-  `jumlah` int(5) DEFAULT '0',
+  `jumlah` int(10) DEFAULT NULL,
   `info` varchar(100) COLLATE utf8_bin NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_security_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_security` */
 
-insert  into `daily_security`(`daily_security_id`,`nama_inputer`,`tanggal`,`jenis_nasabah`,`jumlah`,`info`,`status`) values (1,'Jono','2015-01-22',1,12,'Nice',2),(2,'hld','2015-02-02',1,3,'1',2),(3,'21','2015-01-22',5,14,'',2),(4,'aku','2015-02-04',1,13,'221',2),(5,'','2015-03-10',5,0,'',1);
+insert  into `daily_security`(`daily_security_id`,`nama_inputer`,`tanggal`,`jenis_nasabah`,`jumlah`,`info`,`status`) values (1,'Mario Balloteli','2015-03-12',1,25,'Selesai',1),(2,'Mario Balloteli','2015-03-12',2,10,'Finish',2);
 
 /*Table structure for table `daily_security_jenis_nasabah` */
 
@@ -185,20 +181,18 @@ insert  into `daily_security_status`(`status_id`,`nama`) values (1,'Baru'),(2,'A
 DROP TABLE IF EXISTS `daily_teller`;
 
 CREATE TABLE `daily_teller` (
-  `daily_teller_id` int(5) NOT NULL AUTO_INCREMENT,
+  `daily_teller_id` int(100) NOT NULL AUTO_INCREMENT,
   `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `kriteria_transaksi` int(2) DEFAULT NULL,
-  `jumlah` int(5) NOT NULL DEFAULT '0',
-  `total` float NOT NULL DEFAULT '0',
+  `jumlah` int(5) NOT NULL,
+  `total` float NOT NULL,
   `info` text COLLATE utf8_bin,
   `tanggal` date DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_teller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_teller` */
-
-insert  into `daily_teller`(`daily_teller_id`,`nama_pegawai`,`kriteria_transaksi`,`jumlah`,`total`,`info`,`tanggal`,`status`) values (1,'None',1,12,345000,'','2015-02-24',1),(3,'None',8,30,2500000,'Sip','2015-02-24',2),(4,'',12,0,0,'','2015-03-10',1),(5,'',2,0,0,'','2015-03-10',1),(6,'',2,0,0,'','2015-03-10',1);
 
 /*Table structure for table `daily_teller_kriteria_transaksi` */
 
@@ -219,14 +213,14 @@ insert  into `daily_teller_kriteria_transaksi`(`jenis_transaksi_id`,`nama`) valu
 DROP TABLE IF EXISTS `daily_wm`;
 
 CREATE TABLE `daily_wm` (
-  `daily_wm_id` int(10) NOT NULL AUTO_INCREMENT,
-  `jumlah_nasabah` int(10) DEFAULT '0',
+  `daily_wm_id` int(100) NOT NULL AUTO_INCREMENT,
+  `jumlah_nasabah` int(10) DEFAULT NULL,
   `kriteria_nasabah` int(2) DEFAULT NULL,
-  `no_kontak` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `no_kontak` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `total` float DEFAULT NULL,
   `nama_pegawai` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `info` text COLLATE utf8_bin,
-  `status` int(1) DEFAULT '1',
+  `status` int(1) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`daily_wm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -522,7 +516,7 @@ CREATE TABLE `mtb_user` (
 
 /*Data for the table `mtb_user` */
 
-insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (25,'Silvany Riza','sriza@bsm.co.id',20,'$2a$13$ZpEVPaz3OV2ks3AbHHQHvujkmxnroRMsFM9r0gDGewjIvFJaLyFSq',3,'118278205',14),(27,'Maria Gunarti','mgunarti@bsm.co.id',21,'$2a$13$rrSQT8Io7Oee4Nf81Y2v0.qAe2uVT97Rs//mn/nM9zV2w0Z8hF6Ce',3,'108676080',16),(28,'Alhuda Djannis','alhuda@bsm.co.id',8,'$2a$13$lzu2Wrp84b3mBpbt884jpOXnPv5egkZIUWACjz6bf3F8vH9RWQ.Vu',2,'007270489',12),(29,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$ItTVNFqT8IMemrgSITnnIuqo4SZovc9wleKxuRoi3hB2skCYsiH8K',2,'047871780',13),(30,'Administrator','drankoto25@gmail.com',9,'$2a$13$QxQ/Tw4kdL8XlFVyqsU8BuXnSUCnlv4931JJdHxx.nLlmZceYefZ.',1,'76102270',11),(31,'Nicko Gemayel','ngemayel@bsm.co.id',20,'$2a$13$qcFFssgxRRHTcc5D3jQchey8RnpSbvHM1gD7xaQm5tz/s5Z5jw4he',3,'148713908',15),(32,'Dedi Azmeli','dazmeli@bsm.co.id',9,'$2a$13$bI0hFP5M9eDhas7uaCwn5.zTZ/HwrwNWGTAObcjkfxsng7XxjO49y',2,'037571378',17),(33,'Risa Anggraini','ranggraini@bsm.co.id',19,'$2a$13$jZN8/fsW6GbtxNG3i9wY1uuw483YBIqHWMjsbs/H8cCt3AlSOiBcm',2,'118579247',18),(34,'Subhannoto','subhannoto@bsm.co.id',20,'$2a$13$KxYS223F/KBlVoV9L24tV.k2/6UHs6DQ6qGyNlHJQ0nDKjX9XjeJm',3,'108176697',19),(35,'Hendra Wahyudi','hwahyudi1064@bsm.co.id',20,'$2a$13$iqM9UcWAmsnYiXTlzqI/6u18nVAY.HtzdIEO6kuOferwW6IXmkoWq',3,'128412326',20),(36,'Aprizal','aprizal@bsm.co.id',21,'$2a$13$xH8L29Jle3K7DD/LLJKO3O2bDcfhSgK43AkuQZo5/9s/7lkt.obzS',3,'118179210',21),(37,'Ilma Ranita Sari','irsari7277@bsm.co.id',22,'$2a$13$9sUArLFWQ0Qjpn2hGsL1EOQHI1IRyGS1ZIepLZd58X8skEf00Qgrq',3,'108777277',22),(38,'Indrahman Syaiful','isyaiful@bsm.co.id',15,'$2a$13$QUrcWSSd6060SOgMSZeCNe.BTPM.pASA9rwyywZDoWARvWTKgWMii',3,'128771041',24),(39,'Donny Kurniawan','dkurniawan5410@bsm.co.id',16,'$2a$13$6KTlIyRM6Oz8BJMoYgNUZOOSPxR7c2ZF1urBEcIC4egMhaxaMiR0.',3,'108475410',25),(40,'Sri Maria Wahyuni','smwahyuni@bsm.co.id',20,'$2a$13$sC5KnB4G.6sXpR.4JPovAeKWRvL9.Q7nn8pYo2wmSn3JdSNRYDvea',3,'108675411',26),(41,'Arief Hidayat','ahidayat82@bsm.co.id',9,'$2a$13$Ns5stiGJYX.YTlwkHbCO0e0VG7.3yjoQl1XDJCnU7S/v1fBy4nhUm',2,'078272934',23),(42,'Zulveri','zulveri@bsm.co.id',9,'$2a$13$/swSMJZJRKswCUlKcI6g8eDOwFmPaamjPT7Sr0HkKCs1BEjRgSkWy',2,'057472638',27),(43,'Ii Iswandi','iiswandi@bsm.co.id',15,'$2a$13$mwQit2EZAyjcuIPZqbRbBuviu6cVbK1DtmEEE.tDfyZK8MMR5JK8e',3,'127911319',28),(44,'Fadli','fadli@bsm.co.id',20,'$2a$13$MxunaAih4g3ZVv9NXlUI4ed8E5SesjEsHEg0afQOgiurrA8r8PHLu',3,'118379211',29),(45,'Fauziah','fauziah9217@bsm.co.id',20,'$2a$13$wVsp8/XJhSrMApFbZuXPzueWR0R1yRC4TLvtPA85EQh88gaud/53G',3,'118979217',30),(46,'Yanche Dede Saputra','ydsaputra@bsm.co.id',20,'$2a$13$Z1Nd3.kFjliD718l89vpa.V8kgzJtHZeOPEbg425bPR7pWiiTkMBe',3,'108075069',31),(47,'Shefri Donaldy','sdonaldy@bsm.co.id',20,'$2a$13$2AV8RXlJHiZi4Lm2xSn4MuPOe63zqo0UEanpVEh/kbJbXiYkF4D0u',3,'108877571',34),(48,'Franky Diyedra','fdiyedra@bsm.co.id',20,'$2a$13$O1pT8o8xeAurgkCT4T403.2AXWLwu7QaA3uq9qxg6StXMOssRwCa2',3,'128912204',35),(50,'Arsyad Sani','asani1036@bsm.co.id',15,'$2a$13$sJD/6WHT64jhUdNkHys25OU.0Ph6Py8ob8nTBpX/9j8MA9r.driua',2,'128711036',33),(51,'Indra Febrian','ifebrian@bsm.co.id',21,'$2a$13$SUEJEOfGogaQ4tgrsSHDxucKSJDaerRgNeZaHVP3vUJRtkkPm64tu',3,'108777266',36),(52,'Ibnu Fadhli','ifadhli@bsm.co.id',9,'$2a$13$pwfKO4Eqt3wgeRUQgR4yG.o5Iz0dGK1z53ZrYsQVLN9bNu/JL5GZi',2,'108276695',32),(53,'Tasnim Firdaus','tfirdaus@bsm.co.id',20,'$2a$13$y2roEMqUm9jLw.BQLybtmua5Hl1OVBpdNdpP4m2qphaY6Im8C62WO',3,'108775137',37),(54,'Syamsu Rizal','srizal2725@bsm.co.id',23,'$2a$13$kRs05Csel/SpebZhaFrKLOmUNgaL1/FDa5p8BZbOUer38xI5wguwS',3,'138312725',38),(55,'Faizal Daus','fdaus@bsm.co.id',20,'$2a$13$N0d767m5pwZjfj7aaUNzuOWwJukrowYzfSv8IdQGsdXfH4c8DBdBy',3,'098574347',39),(56,'Jhonny Elda Fera','jefera@bsm.co.id',16,'$2a$13$qi2VOKQ5HC3YiCOyezWYxOuP359ZTDsvRPt8GDuj9uCWzD.W0bgt.',3,'108487167',40),(57,'Rahmon','rahmon@bsm.co.id',20,'$2a$13$t0gyZk192rBhkuhCOIhHBex7sYiZwYUVhEw/379yaQp6NqkFC6VIq',3,'118479196',41),(58,'Wellya Nurmathias ','wnurmathias@bsm.co.id',21,'$2a$13$hi/RxNT1C6d6wud1t/O4x.gLUGQCIx/VZSKj9cHztE6LVLwG5meni',3,'108875403',43),(59,'Suwatril Anton','santon@bsm.co.id',15,'$2a$13$7ad.ctIXfSNCXkJTbBMUo.lmXaq0VUCZu0oC3cBjZEhIm4dOSzmgm',2,'108576119',42),(60,'M. Hamdayon Yusuf Ultissio','mhyusuf@bsm.co.id',20,'$2a$13$In948PwKKpPjj1J51AxWC.T7wAaKU6WCqG/LOSqSeeO11Cva/FR3O',3,'118678301',44);
+insert  into `mtb_user`(`user_id`,`user_name`,`email_address`,`jabatan_id`,`password`,`hak_akses`,`NIP`,`id_pegawai`) values (25,'Silvany Riza','sriza@bsm.co.id',20,'$2a$13$ZpEVPaz3OV2ks3AbHHQHvujkmxnroRMsFM9r0gDGewjIvFJaLyFSq',2,'118278205',14),(27,'Maria Gunarti','mgunarti@bsm.co.id',21,'$2a$13$rrSQT8Io7Oee4Nf81Y2v0.qAe2uVT97Rs//mn/nM9zV2w0Z8hF6Ce',3,'108676080',16),(28,'Alhuda Djannis','alhuda@bsm.co.id',8,'$2a$13$lzu2Wrp84b3mBpbt884jpOXnPv5egkZIUWACjz6bf3F8vH9RWQ.Vu',2,'007270489',12),(29,'Ridwan Nur','rnur1780@bsm.co.id',9,'$2a$13$ItTVNFqT8IMemrgSITnnIuqo4SZovc9wleKxuRoi3hB2skCYsiH8K',2,'047871780',13),(30,'Administrator','drankoto25@gmail.com',9,'$2a$13$QxQ/Tw4kdL8XlFVyqsU8BuXnSUCnlv4931JJdHxx.nLlmZceYefZ.',1,'76102270',11),(31,'Nicko Gemayel','ngemayel@bsm.co.id',20,'$2a$13$qcFFssgxRRHTcc5D3jQchey8RnpSbvHM1gD7xaQm5tz/s5Z5jw4he',3,'148713908',15),(32,'Dedi Azmeli','dazmeli@bsm.co.id',9,'$2a$13$bI0hFP5M9eDhas7uaCwn5.zTZ/HwrwNWGTAObcjkfxsng7XxjO49y',2,'037571378',17),(33,'Risa Anggraini','ranggraini@bsm.co.id',19,'$2a$13$jZN8/fsW6GbtxNG3i9wY1uuw483YBIqHWMjsbs/H8cCt3AlSOiBcm',2,'118579247',18),(34,'Subhannoto','subhannoto@bsm.co.id',20,'$2a$13$KxYS223F/KBlVoV9L24tV.k2/6UHs6DQ6qGyNlHJQ0nDKjX9XjeJm',3,'108176697',19),(35,'Hendra Wahyudi','hwahyudi1064@bsm.co.id',20,'$2a$13$iqM9UcWAmsnYiXTlzqI/6u18nVAY.HtzdIEO6kuOferwW6IXmkoWq',3,'128412326',20),(36,'Aprizal','aprizal@bsm.co.id',21,'$2a$13$xH8L29Jle3K7DD/LLJKO3O2bDcfhSgK43AkuQZo5/9s/7lkt.obzS',3,'118179210',21),(37,'Ilma Ranita Sari','irsari7277@bsm.co.id',22,'$2a$13$9sUArLFWQ0Qjpn2hGsL1EOQHI1IRyGS1ZIepLZd58X8skEf00Qgrq',3,'108777277',22),(38,'Indrahman Syaiful','isyaiful@bsm.co.id',15,'$2a$13$QUrcWSSd6060SOgMSZeCNe.BTPM.pASA9rwyywZDoWARvWTKgWMii',3,'128771041',24),(39,'Donny Kurniawan','dkurniawan5410@bsm.co.id',16,'$2a$13$6KTlIyRM6Oz8BJMoYgNUZOOSPxR7c2ZF1urBEcIC4egMhaxaMiR0.',3,'108475410',25),(40,'Sri Maria Wahyuni','smwahyuni@bsm.co.id',20,'$2a$13$sC5KnB4G.6sXpR.4JPovAeKWRvL9.Q7nn8pYo2wmSn3JdSNRYDvea',3,'108675411',26),(41,'Arief Hidayat','ahidayat82@bsm.co.id',9,'$2a$13$Ns5stiGJYX.YTlwkHbCO0e0VG7.3yjoQl1XDJCnU7S/v1fBy4nhUm',2,'078272934',23),(42,'Zulveri','zulveri@bsm.co.id',9,'$2a$13$/swSMJZJRKswCUlKcI6g8eDOwFmPaamjPT7Sr0HkKCs1BEjRgSkWy',2,'057472638',27),(43,'Ii Iswandi','iiswandi@bsm.co.id',15,'$2a$13$mwQit2EZAyjcuIPZqbRbBuviu6cVbK1DtmEEE.tDfyZK8MMR5JK8e',3,'127911319',28),(44,'Fadli','fadli@bsm.co.id',20,'$2a$13$MxunaAih4g3ZVv9NXlUI4ed8E5SesjEsHEg0afQOgiurrA8r8PHLu',3,'118379211',29),(45,'Fauziah','fauziah9217@bsm.co.id',20,'$2a$13$wVsp8/XJhSrMApFbZuXPzueWR0R1yRC4TLvtPA85EQh88gaud/53G',3,'118979217',30),(46,'Yanche Dede Saputra','ydsaputra@bsm.co.id',20,'$2a$13$Z1Nd3.kFjliD718l89vpa.V8kgzJtHZeOPEbg425bPR7pWiiTkMBe',3,'108075069',31),(47,'Shefri Donaldy','sdonaldy@bsm.co.id',20,'$2a$13$2AV8RXlJHiZi4Lm2xSn4MuPOe63zqo0UEanpVEh/kbJbXiYkF4D0u',3,'108877571',34),(48,'Franky Diyedra','fdiyedra@bsm.co.id',20,'$2a$13$O1pT8o8xeAurgkCT4T403.2AXWLwu7QaA3uq9qxg6StXMOssRwCa2',3,'128912204',35),(50,'Arsyad Sani','asani1036@bsm.co.id',15,'$2a$13$sJD/6WHT64jhUdNkHys25OU.0Ph6Py8ob8nTBpX/9j8MA9r.driua',2,'128711036',33),(51,'Indra Febrian','ifebrian@bsm.co.id',21,'$2a$13$SUEJEOfGogaQ4tgrsSHDxucKSJDaerRgNeZaHVP3vUJRtkkPm64tu',3,'108777266',36),(52,'Ibnu Fadhli','ifadhli@bsm.co.id',9,'$2a$13$pwfKO4Eqt3wgeRUQgR4yG.o5Iz0dGK1z53ZrYsQVLN9bNu/JL5GZi',2,'108276695',32),(53,'Tasnim Firdaus','tfirdaus@bsm.co.id',20,'$2a$13$y2roEMqUm9jLw.BQLybtmua5Hl1OVBpdNdpP4m2qphaY6Im8C62WO',3,'108775137',37),(54,'Syamsu Rizal','srizal2725@bsm.co.id',23,'$2a$13$kRs05Csel/SpebZhaFrKLOmUNgaL1/FDa5p8BZbOUer38xI5wguwS',3,'138312725',38),(55,'Faizal Daus','fdaus@bsm.co.id',20,'$2a$13$N0d767m5pwZjfj7aaUNzuOWwJukrowYzfSv8IdQGsdXfH4c8DBdBy',3,'098574347',39),(56,'Jhonny Elda Fera','jefera@bsm.co.id',16,'$2a$13$qi2VOKQ5HC3YiCOyezWYxOuP359ZTDsvRPt8GDuj9uCWzD.W0bgt.',3,'108487167',40),(57,'Rahmon','rahmon@bsm.co.id',20,'$2a$13$t0gyZk192rBhkuhCOIhHBex7sYiZwYUVhEw/379yaQp6NqkFC6VIq',3,'118479196',41),(58,'Wellya Nurmathias ','wnurmathias@bsm.co.id',21,'$2a$13$hi/RxNT1C6d6wud1t/O4x.gLUGQCIx/VZSKj9cHztE6LVLwG5meni',3,'108875403',43),(59,'Suwatril Anton','santon@bsm.co.id',15,'$2a$13$7ad.ctIXfSNCXkJTbBMUo.lmXaq0VUCZu0oC3cBjZEhIm4dOSzmgm',2,'108576119',42),(60,'M. Hamdayon Yusuf Ultissio','mhyusuf@bsm.co.id',20,'$2a$13$In948PwKKpPjj1J51AxWC.T7wAaKU6WCqG/LOSqSeeO11Cva/FR3O',3,'118678301',44);
 
 /*Table structure for table `naspoma` */
 

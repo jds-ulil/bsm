@@ -57,7 +57,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         'defaultRowView'=>'_form_bo',
         'title' => 'Input data kriteria transaksi lainnya',
     ));
-    echo $formDynamic->rowForm($model_); 
+    echo $formDynamic->rowForm($model_, $listKriteriaTransaksi); 
     
     ?>
    

@@ -40,7 +40,8 @@ class dailyWm extends CActiveRecord
             array('nama_pegawai, tanggal, kriteria_nasabah', 'required'),
 			array('no_kontak', 'length', 'max'=>25),
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('total, info, jumlah_nasabah, status', 'safe'),
+            array('jumlah_nasabah', 'numerical', 'integerOnly'=>true),
+			array('total, info, , status', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_wm_id, jumlah_nasabah, kriteria_nasabah, no_kontak, total, nama_pegawai, info, status, tanggal', 'safe', 'on'=>'search'),
@@ -55,6 +56,8 @@ class dailyWm extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'rKrit' => array(self::BELONGS_TO, 'dailyWmKriteriaNasabah', 'kriteria_nasabah'),
+            'rStat' => array(self::BELONGS_TO, 'dailySecurityStatus', 'status'),
 		);
 	}
 
@@ -65,10 +68,10 @@ class dailyWm extends CActiveRecord
 	{
 		return array(
 			'daily_wm_id' => 'Daily Wm',
-			'jumlah_nasabah' => 'Jumlah Nasabah',
+			'jumlah_nasabah' => 'Jumlah Nasabah (Orang)',
 			'kriteria_nasabah' => 'Kriteria Nasabah',
 			'no_kontak' => 'No Kontak',
-			'total' => 'Total',
+			'total' => 'Total Nomial (Rp)',
 			'nama_pegawai' => 'Nama Pegawai',
 			'info' => 'Info',
 			'status' => 'Status',
@@ -104,8 +107,23 @@ class dailyWm extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('tanggal',$this->tanggal,true);
 
-		return new CActiveDataProvider($this, array(
+		if (!empty($this->from_date)) {                
+            $reFromDate = $this->toDBDate($this->from_date);                
+            $criteria->addCondition('tanggal >= "'.$reFromDate.'" ');                
+        }
+        if (!empty($this->to_date)) {
+            $reToDate = $this->toDBDate($this->to_date);                
+            $criteria->addCondition('tanggal <= "'.$reToDate.'" ');		
+        }
+        
+        return new CActiveDataProvider($this, array(
+                        'pagination'=>array(
+                            'pageSize'=> $this->record_row,
+                        ),
 			'criteria'=>$criteria,
+            'sort'=>array(
+                    'defaultOrder'=>'tanggal DESC',
+                    ),
 		));
 	}
 
@@ -119,4 +137,37 @@ class dailyWm extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    public function beforeSave()
+	{
+        // ubah tanggal ke db version sebelum disimpan
+		if(parent::beforeSave())
+		{            
+            if(!empty($this->tanggal)){
+                $this->tanggal = $this->toDBDate($this->tanggal);
+            }
+            if (!empty($this->total)) {
+                $this->total = str_replace(".","",  $this->total);
+            }            
+		}
+	return true;
+	}
+    
+    
+    // change format manusia to mesiin
+    function toDBDate($date){            
+            $data = explode('/',$date);
+            $value = '';
+            $lenght = count($data)-1;
+            if (!empty($data)) {                
+                for($i=$lenght;$i>=0;$i--) {                    
+                    if($i != 0){
+                        $value  .= $data[$i].'-';
+                    } else {
+                        $value  .= $data[$i];
+                    }
+                }
+            }    
+            return $value;
+        } 
 }
