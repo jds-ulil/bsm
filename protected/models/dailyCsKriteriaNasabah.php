@@ -25,7 +25,7 @@ class dailyCsKriteriaNasabah extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cs_kriteria_nasabah_id', 'required'),
+			array('nama', 'required'),
 			array('cs_kriteria_nasabah_id', 'numerical', 'integerOnly'=>true),
 			array('nama', 'length', 'max'=>70),
 			// The following rule is used by search().

@@ -38,7 +38,7 @@ class DailytelController extends Controller{
         // semua dapat mengakses halaman input
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index',
+				'actions'=>array('index', 'create', 'view', 'update', 'delete',
                     ),
 				'roles'=>array('approval'),
             ),
@@ -67,7 +67,81 @@ class DailytelController extends Controller{
 		$this->render('index',array(
 			'model'=>$model,
 		));
-    }       
+    }
+    
+     public function actionCreate()
+	{
+		$model=new dailyTellerKriteriaTransaksi;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['dailyTellerKriteriaTransaksi']))
+		{
+			$model->attributes=$_POST['dailyTellerKriteriaTransaksi'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->jenis_transaksi_id));
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+    
+    public function actionView($id)
+	{
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
+    
+    public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['dailyTellerKriteriaTransaksi']))
+		{
+			$model->attributes=$_POST['dailyTellerKriteriaTransaksi'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->jenis_transaksi_id));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
+
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+    
+    
+    public function loadModel($id)
+	{
+		$model= dailyTellerKriteriaTransaksi::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
     
 }
 

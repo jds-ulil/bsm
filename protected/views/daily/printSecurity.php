@@ -18,6 +18,9 @@ $pdf->Cell(0,0,$model->jenis_nasabah,0,1,'L');
 $pdf->Cell(40,10,'Periode :',0,0,'R');
 $pdf->Cell(40,10,$model->from_date . ' SD '. $model->to_date,0,1,'L');
 
+$pdf->Cell(40,10,'Status Laporan :',0,0,'R');
+$pdf->Cell(40,10,'Approve',0,1,'L');
+
 
 $columns = array();      
    

@@ -15,7 +15,7 @@ $this->menu=array(
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
-    'header'=>'DETAIL KRITERIA TRANSAKSI',
+    'header'=>'DETAIL KRITERIA TRANSAKSI BACK OFFICE',
 	'attributes'=>array(
 		//'kolektabilitas_id',
 		'nama',

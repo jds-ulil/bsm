@@ -123,11 +123,11 @@ CREATE TABLE `daily_sa_kriteria_nasabah` (
   `sa_kriteria_nasabah_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`sa_kriteria_nasabah_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_sa_kriteria_nasabah` */
 
-insert  into `daily_sa_kriteria_nasabah`(`sa_kriteria_nasabah_id`,`nama`) values (1,'Lending - Sosialisasi'),(2,'Lending - Solisit'),(3,'Lending - Pengumpulan Data'),(4,'Lending - BI Checking'),(5,'Lending - Taksasi Agunan'),(6,'Lending - Investigasi'),(7,'Lending - Analisa'),(8,'Lending - SP3'),(9,'Lending - Akad'),(10,'Lending - Pencairan'),(11,'Perpanjangan - Pengumpulan Data'),(12,'Perpanjangan - BI Checking'),(13,'Perpanjangan - Taksasi Agunan'),(14,'Perpanjangan - Investigasi'),(15,'Perpanjangan - Analisa'),(16,'Perpanjangan - SP3'),(17,'Perpanjangan - Akad'),(18,'Perpanjangan - Eksekusi Perpanjangan'),(19,'Pick-up Angsuran Nasabah'),(20,'Tagih Past Due Bulan Sebelumnya'),(21,'Peringatan Nasabah - SPMK'),(22,'Peringatan Nasabah - SP1'),(23,'Peringatan Nasabah - SP2'),(24,'Peringatan Nasabah - SP3'),(25,'Funding - Sosialisasi'),(26,'Funding - Solisit'),(27,'Funding - Follow Up'),(28,'Funding - Closing'),(29,'Pick-up Tabungan Nasabah'),(30,'SE yang dibaca & dipahami'),(31,'Waktu Istirahat'),(32,'Lain - Lain'),(33,NULL);
+insert  into `daily_sa_kriteria_nasabah`(`sa_kriteria_nasabah_id`,`nama`) values (1,'Lending - Sosialisasi'),(2,'Lending - Solisit'),(3,'Lending - Pengumpulan Data'),(4,'Lending - BI Checking'),(5,'Lending - Taksasi Agunan'),(6,'Lending - Investigasi'),(7,'Lending - Analisa'),(8,'Lending - SP3'),(9,'Lending - Akad'),(10,'Lending - Pencairan'),(11,'Perpanjangan - Pengumpulan Data'),(12,'Perpanjangan - BI Checking'),(13,'Perpanjangan - Taksasi Agunan'),(14,'Perpanjangan - Investigasi'),(15,'Perpanjangan - Analisa'),(16,'Perpanjangan - SP3'),(17,'Perpanjangan - Akad'),(18,'Perpanjangan - Eksekusi Perpanjangan'),(19,'Pick-up Angsuran Nasabah'),(20,'Tagih Past Due Bulan Sebelumnya'),(21,'Peringatan Nasabah - SPMK'),(22,'Peringatan Nasabah - SP1'),(23,'Peringatan Nasabah - SP2'),(24,'Peringatan Nasabah - SP3'),(25,'Funding - Sosialisasi'),(26,'Funding - Solisit'),(27,'Funding - Follow Up'),(28,'Funding - Closing'),(29,'Pick-up Tabungan Nasabah'),(30,'SE yang dibaca & dipahami'),(31,'Waktu Istirahat'),(32,'Lain - Lain');
 
 /*Table structure for table `daily_security` */
 
@@ -142,11 +142,9 @@ CREATE TABLE `daily_security` (
   `info` varchar(100) COLLATE utf8_bin NOT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_security_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_security` */
-
-insert  into `daily_security`(`daily_security_id`,`nama_inputer`,`tanggal`,`jenis_nasabah`,`jumlah`,`info`,`status`) values (1,'Mario Balloteli','2015-03-12',1,25,'Selesai',1),(2,'Mario Balloteli','2015-03-12',2,10,'Finish',2);
 
 /*Table structure for table `daily_security_jenis_nasabah` */
 
@@ -156,7 +154,7 @@ CREATE TABLE `daily_security_jenis_nasabah` (
   `jenis_nasabah_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`jenis_nasabah_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_security_jenis_nasabah` */
 
@@ -202,7 +200,7 @@ CREATE TABLE `daily_teller_kriteria_transaksi` (
   `jenis_transaksi_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`jenis_transaksi_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_teller_kriteria_transaksi` */
 
@@ -235,7 +233,7 @@ CREATE TABLE `daily_wm_kriteria_nasabah` (
   `wm_kriteria_nasabah_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`wm_kriteria_nasabah_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_wm_kriteria_nasabah` */
 

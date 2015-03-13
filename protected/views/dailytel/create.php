@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Kriteria Transaksi'=>array('index'),
+	'Kriteria Transaksi Teller'=>array('index'),
 	'Tambah',
 );
 
@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1 class="loginHead">Kriteria Transaksi Baru Back Office</h1>
+<h1 class="loginHead">Kriteria Transaksi Baru Teller</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

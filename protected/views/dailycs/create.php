@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1 class="loginHead">Kriteria Transaksi Baru</h1>
+<h1 class="loginHead">Kriteria Nasabah Baru Customer Service</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

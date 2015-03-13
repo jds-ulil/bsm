@@ -173,6 +173,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyWm'])){
             $model->attributes = $_POST['dailyWm'];
+            $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -181,7 +182,7 @@ class DailyController extends Controller{
                 $total_setor = $total_setor + intval($record->total);
                 $data[]=array(  'index'=>$index,
                                 'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
-                                'kriteria_nasabah'=>$record->rKrit->nama,                               
+                                'kriteria_nasabah'=>  empty($record->rKrit->nama)?"Deleted" : $record->rKrit->nama,                               
                                 'nama_pegawai'=>$record->nama_pegawai,                               
                                 'no_kontak'=>$record->no_kontak,                                                               
                                 'info'=>$record->info,                                                                                
@@ -301,6 +302,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailySa'])){
             $model->attributes = $_POST['dailySa'];
+            $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -309,7 +311,7 @@ class DailyController extends Controller{
                 $total_setor = $total_setor + intval($record->total);
                 $data[]=array(  'index'=>$index,
                                 'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
-                                'kriteria_nasabah'=>$record->rKrit->nama,                               
+                                'kriteria_nasabah'=>  empty($record->rKrit->nama)?"Deleted":$record->rKrit->nama,                               
                                 'nama_pegawai'=>$record->nama_pegawai,                               
                                 'segmen'=>$record->segmen,                               
                                 'no_kontak'=>$record->no_kontak,                                                               
@@ -445,6 +447,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyBo'])){
             $model->attributes = $_POST['dailyBo'];
+            $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -452,8 +455,8 @@ class DailyController extends Controller{
                 $total_transaksi = $total_transaksi + intval($record->jumlah_transaksi);
                 $total_setor = $total_setor + intval($record->total);
                 $data[]=array(  'index'=>$index,
-                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
-                                'kriteria_transaksi'=>$record->rKrit->nama,                               
+                                'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),                    
+                                'kriteria_transaksi'=>  empty($record->rKrit->nama)?"Deleted":$record->rKrit->nama,                               
                                 'nama_pegawai'=>$record->nama_pegawai,                               
                                 'info'=>$record->info,                                                                                
                                 'jumlah'=>$record->jumlah_transaksi,                                                                                
@@ -588,7 +591,7 @@ class DailyController extends Controller{
     
     // fungsi render print ke pdf untuk laporan teller
     public function actionPrinttel () {
-        $model = new dailyTeller('search');
+        $model = new dailyTeller('search');        
         $model->unsetAttributes();
         
         $model->record_row = 10000;   
@@ -599,6 +602,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyTeller'])){
             $model->attributes = $_POST['dailyTeller'];
+            $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -607,7 +611,7 @@ class DailyController extends Controller{
                 $total_setor = $total_setor + intval($record->total);
                 $data[]=array(  'index'=>$index,
                                 'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
-                                'kriteria_transaksi'=>$record->rKrit->nama,                               
+                                'kriteria_transaksi'=> empty($record->rKrit->nama)?"Deleted":$record->rKrit->nama,                               
                                 'nama_pegawai'=>$record->nama_pegawai,                               
                                 'info'=>$record->info,                                                                                
                                 'jumlah'=>$record->jumlah,                                                                                
@@ -756,6 +760,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyCs'])){
             $model->attributes = $_POST['dailyCs'];
+            $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -764,7 +769,7 @@ class DailyController extends Controller{
                 $total_setor = $total_setor + intval($record->total);
                 $data[]=array(  'index'=>$index,
                                 'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
-                                'kriteria_nasabah'=>$record->rKrit->nama,                               
+                                'kriteria_nasabah'=>  empty($record->rKrit->nama)?"Deleted" : $record->rKrit->nama,                               
                                 'nama_pegawai'=>$record->nama_pegawai,                               
                                 'info'=>$record->info,                                                                                
                                 'jumlah'=>$record->jumlah,                                                                                
@@ -909,6 +914,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailySecurity'])){
             $model->attributes = $_POST['dailySecurity'];
+            $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search(); 
             
             foreach($dataProv->getData() as $record) {
@@ -916,7 +922,7 @@ class DailyController extends Controller{
                 $total = $total + intval($record->jumlah);
                 $data[]=array(  'index'=>$index,
                                 'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),
-                                'jenis_nasabah'=>$record->rJen->nama,                               
+                                'jenis_nasabah'=>empty($record->rJen->nama)?"Deleted":$record->rJen->nama,                               
                                 'nama_inputer'=>$record->nama_inputer,                               
                                 'info'=>$record->info,                                                                                
                                 'jumlah'=>$record->jumlah,                                                                                

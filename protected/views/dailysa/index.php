@@ -7,7 +7,7 @@ $this->menu=array(
 	array('label'=>'Kriteria Nasabah Baru','url'=>array('create')),	
 );
 ?>
-<h2 class="loginHead">Kriteria Nasabah</h2>
+<h2 class="loginHead">Kriteria Nasabah Sales Assistant</h2>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'kolektabilitas-grid',
 	'dataProvider'=>$model->search(),

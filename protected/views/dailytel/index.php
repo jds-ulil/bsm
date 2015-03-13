@@ -7,7 +7,7 @@ $this->menu=array(
 	array('label'=>'Kriteria Transaksi Baru','url'=>array('create')),	
 );
 ?>
-<h2 class="loginHead">Kriteria Transaksi</h2>
+<h2 class="loginHead">Kriteria Transaksi Teller</h2>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'kolektabilitas-grid',
 	'dataProvider'=>$model->search(),

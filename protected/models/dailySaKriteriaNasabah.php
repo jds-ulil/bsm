@@ -25,6 +25,7 @@ class dailySaKriteriaNasabah extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('nama', 'required'),
 			array('nama', 'length', 'max'=>70),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

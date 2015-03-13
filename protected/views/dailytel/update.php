@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Kriteria Transaksi'=>array('index'),
+	'Kriteria Nasabah Customer Service'=>array('index'),
 	$model->jenis_transaksi_id=>array('view','id'=>$model->jenis_transaksi_id),
 	'Update',
 );
@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1 class="loginHead">Update Transaksi Back Office</h1>
+<h1 class="loginHead">Update Kriteria Nasabah Teller</h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
