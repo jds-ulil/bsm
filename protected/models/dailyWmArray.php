@@ -61,10 +61,10 @@ class dailyWmArray extends CActiveRecord
 	{
 		return array(
 			'daily_wm_id' => 'Daily Wm',
-			'jumlah_nasabah' => 'Jumlah Nasabah',
+			'jumlah_nasabah' => 'Jumlah Nasabah (Orang)',
 			'kriteria_nasabah' => 'Kriteria Nasabah',
 			'no_kontak' => 'No Kontak',
-			'total' => 'Total',
+			'total' => 'Total Nominal (Rp)',
 			'nama_pegawai' => 'Nama Pegawai',
 			'info' => 'Info',
 			'status' => 'Status',

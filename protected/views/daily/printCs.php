@@ -21,8 +21,6 @@ $pdf->Cell(40,10,$model->from_date . ' SD '. $model->to_date,0,1,'L');
 $pdf->Cell(40,0,'Nama Pegawai :',0,0,'R');
 $pdf->Cell(40,0,$model->nama_pegawai,0,1,'L');
 
-$pdf->Cell(40,10,'Status Laporan :',0,0,'R');
-$pdf->Cell(40,10,'Approve',0,1,'L');
 
 
 $columns = array();    
@@ -36,7 +34,7 @@ $col[] = array('text' => 'Nama Pegawai', 'width' => '30', 'height' => '5', 'alig
 $col[] = array('text' => 'Kriteria Nasabah', 'width' => '30', 'height' => '5', 'align' => 'C', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => 'B', 'fillcolor' => '2,93,68', 'textcolor' => '255,255,255', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');
 $col[] = array('text' => 'Info', 'width' => '30', 'height' => '5', 'align' => 'C', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => 'B', 'fillcolor' => '2,93,68', 'textcolor' => '255,255,255', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');
 $col[] = array('text' => 'Jumlah Nasabah', 'width' => '25', 'height' => '5', 'align' => 'C', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => 'B', 'fillcolor' => '2,93,68', 'textcolor' => '255,255,255', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');
-$col[] = array('text' => 'Total Setor', 'width' => '30', 'height' => '5', 'align' => 'C', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => 'B', 'fillcolor' => '2,93,68', 'textcolor' => '255,255,255', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');
+$col[] = array('text' => 'Nominal (Rp)', 'width' => '30', 'height' => '5', 'align' => 'C', 'font_name' => 'Arial', 'font_size' => '8', 'font_style' => 'B', 'fillcolor' => '2,93,68', 'textcolor' => '255,255,255', 'drawcolor' => '0,0,0', 'linewidth' => '0.4', 'linearea' => 'LTBR');
 $columns[] = $col;
 
 foreach ($data as $key => $value) {    

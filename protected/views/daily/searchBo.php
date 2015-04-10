@@ -109,6 +109,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 'name'=>'Status Trans',
                 'value'=>'empty($data->rStTr->nama)?"Deleted":$data->rStTr->nama',
             ), 
+           'jumlah_transaksi',
            array(
             'name'=>'Total',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',
@@ -159,6 +160,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 'name'=>'Status Trans',
                 'value'=>'empty($data->rStTr->nama)?"Deleted":$data->rStTr->nama',
             ), 
+            'jumlah_transaksi',
            array(
             'name'=>'Total',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',

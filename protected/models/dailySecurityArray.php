@@ -73,7 +73,7 @@ class dailySecurityArray extends CActiveRecord
 			'nama_inputer' => 'Nama Inputer',
             'tanggal' => 'Tanggal',
 			'jumlah' => 'Jumlah (Orang)',
-			'info' => 'Info',
+			'info' => 'Info Tambahan',
 			'jenis_nasabah' => 'Jenis Nasabah', 			
 		);
 	}

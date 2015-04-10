@@ -173,7 +173,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyWm'])){
             $model->attributes = $_POST['dailyWm'];
-            $model->status = vc::APP_status_laporan_approve;
+            //$model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -302,10 +302,11 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailySa'])){
             $model->attributes = $_POST['dailySa'];
-            $model->status = vc::APP_status_laporan_approve;
-            $dataProv = $model->search();                         
+           // $model->status = vc::APP_status_laporan_approve;
+            $dataProv = $model->search();           
+ 
             
-            foreach($dataProv->getData() as $record) {
+            foreach($dataProv->getData() as $record) {                                
                 $index++;
                 $total_nasabah = $total_nasabah + intval($record->jumlah_nasabah);
                 $total_setor = $total_setor + intval($record->total);
@@ -447,7 +448,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyBo'])){
             $model->attributes = $_POST['dailyBo'];
-            $model->status = vc::APP_status_laporan_approve;
+            //$model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -602,7 +603,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyTeller'])){
             $model->attributes = $_POST['dailyTeller'];
-            $model->status = vc::APP_status_laporan_approve;
+           // $model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -641,7 +642,7 @@ class DailyController extends Controller{
      */
     public function actionInputCS () {
         //set page title
-        $this->setPageTitle("Input Security Data");
+        $this->setPageTitle("Input Customer Service Data");
         
         $model = new dailyCs;
         $model_ = array (new dailyCsArray);
@@ -760,7 +761,7 @@ class DailyController extends Controller{
         
         if(isset($_POST['dailyCs'])){
             $model->attributes = $_POST['dailyCs'];
-            $model->status = vc::APP_status_laporan_approve;
+            //$model->status = vc::APP_status_laporan_approve;
             $dataProv = $model->search();                         
             
             foreach($dataProv->getData() as $record) {
@@ -913,8 +914,7 @@ class DailyController extends Controller{
         $data = array();
         
         if(isset($_POST['dailySecurity'])){
-            $model->attributes = $_POST['dailySecurity'];
-            $model->status = vc::APP_status_laporan_approve;
+            $model->attributes = $_POST['dailySecurity'];            
             $dataProv = $model->search(); 
             
             foreach($dataProv->getData() as $record) {

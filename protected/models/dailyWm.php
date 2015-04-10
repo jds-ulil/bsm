@@ -71,7 +71,7 @@ class dailyWm extends CActiveRecord
 			'jumlah_nasabah' => 'Jumlah Nasabah (Orang)',
 			'kriteria_nasabah' => 'Kriteria Nasabah',
 			'no_kontak' => 'No Kontak',
-			'total' => 'Total Nomial (Rp)',
+			'total' => 'Total Nominal (Rp)',
 			'nama_pegawai' => 'Nama Pegawai',
 			'info' => 'Info',
 			'status' => 'Status',

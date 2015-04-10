@@ -108,6 +108,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
            ),   
            'no_kontak',
+           'jumlah_nasabah',
            array(
             'name'=>'Total',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',
@@ -154,7 +155,9 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
            array(
                'name' => "Kriteria Nasabah",
                'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
-           ),           
+           ),   
+           'no_kontak',
+           'jumlah_nasabah',
            array(
             'name'=>'Total',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',

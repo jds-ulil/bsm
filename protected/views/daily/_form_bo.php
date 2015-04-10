@@ -27,7 +27,7 @@
             <label class="control-label required" for="dailyBo_kriteria_transaksi">Kriteria Transaksi <span class="required">*</span></label>
             <div class="controls">
                 <select class="span4" name="dailyBoArray[<?php echo $key?>][kriteria_transaksi]" id="<?php echo $selectId; ?>" >
-                    <option value="">Pilih Kriteria Nasabah</option>
+                    <option value="">Pilih Kriteria Transaksi</option>
                     <?php
                       foreach ($listData as $key_l => $value) {
                           if ($dataSelect == $key_l) {
