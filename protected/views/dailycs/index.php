@@ -17,6 +17,7 @@ $this->menu=array(
 	'columns'=>array(
 		//'kolektabilitas_id',
 		'nama',
+		'rank',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

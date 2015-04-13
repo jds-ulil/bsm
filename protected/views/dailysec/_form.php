@@ -8,6 +8,7 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<?php echo $form->textFieldRow($model,'nama',array('class'=>'span5','maxlength'=>50)); ?>
+	<?php echo $form->textFieldRow($model,'rank',array('class'=>'span5','maxlength'=>2)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

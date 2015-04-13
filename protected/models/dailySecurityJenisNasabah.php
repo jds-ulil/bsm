@@ -26,6 +26,9 @@ class dailySecurityJenisNasabah extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nama', 'length', 'max'=>100),
+            array('rank', 'unique'),
+            array('rank, nama', 'required'),
+            array('rank', 'numerical'),            
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('jenis_nasabah_id, nama', 'safe', 'on'=>'search'),
@@ -74,6 +77,8 @@ class dailySecurityJenisNasabah extends CActiveRecord
 
 		$criteria->compare('jenis_nasabah_id',$this->jenis_nasabah_id);
 		$criteria->compare('nama',$this->nama,true);
+        
+        $criteria->order = 'rank ASC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

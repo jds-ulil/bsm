@@ -83,7 +83,7 @@ class DailyController extends Controller{
         $model = new dailyWm;
         $model_ = array(new dailyWmArray); 
         
-        $listKriteriaNasabah = CHtml::listData(dailyWmKriteriaNasabah::model()->findAll(), 'wm_kriteria_nasabah_id', 'nama');        
+        $listKriteriaNasabah = CHtml::listData(dailyWmKriteriaNasabah::model()->findAll('true order by rank asc'), 'wm_kriteria_nasabah_id', 'nama');        
         
         $valid_data = false;
         
@@ -212,7 +212,7 @@ class DailyController extends Controller{
         $model = new dailySa;
         $model_ = array(new dailySaArray); 
         
-        $listKriteriaNasabah = CHtml::listData(dailySaKriteriaNasabah::model()->findAll(), 'sa_kriteria_nasabah_id', 'nama');        
+        $listKriteriaNasabah = CHtml::listData(dailySaKriteriaNasabah::model()->findAll('true order by rank asc'), 'sa_kriteria_nasabah_id', 'nama');        
         
         $valid_data = false;
         
@@ -346,7 +346,7 @@ class DailyController extends Controller{
         $model = new dailyBo;
         $model_ = array(new dailyBoArray); 
         
-        $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll('true order by rank asc'), 'jenis_transaksi_id', 'nama');
         $listProgress = CHtml::listData(dailyBoProgress::model()->findAll(), 'dbo_progress_id', 'nama');
         
         $valid_data = false;
@@ -491,7 +491,7 @@ class DailyController extends Controller{
         $model = new dailyTeller;
         $model_ = array(new dailyTellerArray); 
         
-        $listKriteriaTransaksi = CHtml::listData(dailyTellerKriteriaTransaksi::model()->findAll(), 'jenis_transaksi_id', 'nama');
+        $listKriteriaTransaksi = CHtml::listData(dailyTellerKriteriaTransaksi::model()->findAll('true order by rank asc'), 'jenis_transaksi_id', 'nama');
         
         $valid_data = false;
         
@@ -647,7 +647,7 @@ class DailyController extends Controller{
         $model = new dailyCs;
         $model_ = array (new dailyCsArray);
         
-        $listKriteriaNasabah = CHtml::listData(dailyCsKriteriaNasabah::model()->findAll(), 'cs_kriteria_nasabah_id', 'nama');
+        $listKriteriaNasabah = CHtml::listData(dailyCsKriteriaNasabah::model()->findAll('true order by rank asc'), 'cs_kriteria_nasabah_id', 'nama');
         
         $valid_data = false;
         
@@ -806,7 +806,7 @@ class DailyController extends Controller{
         $model = new dailySecurity; 
         $model_ = array (new dailySecurityArray); 
         
-        $listJenisNasabah = CHtml::listData(dailySecurityJenisNasabah::model()->findAll(),'jenis_nasabah_id','nama');
+        $listJenisNasabah = CHtml::listData(dailySecurityJenisNasabah::model()->findAll('true order by rank asc'),'jenis_nasabah_id','nama');
         
         $valid_data = false;
         
@@ -979,13 +979,13 @@ class DailyController extends Controller{
             'getRowSa' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_sa',
-                'list' => 5,
+                'list' => 6,
                 'modelClass' => 'dailySaArray'
             ),
             'getRowWm' => array(
                 'class' => 'ext.ddynamictabularform.actions.GetRowForm',
                 'view' => '_form_wm',
-                'list' => 6,
+                'list' => 5,
                 'modelClass' => 'dailyWmArray'
             ),
         );

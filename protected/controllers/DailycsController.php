@@ -102,9 +102,9 @@ class DailycsController extends Controller{
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['dailyBoKriteriaTransaksi']))
+		if(isset($_POST['dailyCsKriteriaNasabah']))
 		{
-			$model->attributes=$_POST['dailyBoKriteriaTransaksi'];
+			$model->attributes=$_POST['dailyCsKriteriaNasabah'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->cs_kriteria_nasabah_id));
 		}

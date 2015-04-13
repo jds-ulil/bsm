@@ -25,8 +25,11 @@ class dailySaKriteriaNasabah extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('nama', 'required'),
+            array('nama, rank', 'required'),
 			array('nama', 'length', 'max'=>70),
+            array('rank', 'length', 'max'=>2),
+            array('rank', 'numerical'),
+            array('rank', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('sa_kriteria_nasabah_id, nama', 'safe', 'on'=>'search'),
@@ -75,6 +78,8 @@ class dailySaKriteriaNasabah extends CActiveRecord
 
 		$criteria->compare('sa_kriteria_nasabah_id',$this->sa_kriteria_nasabah_id);
 		$criteria->compare('nama',$this->nama,true);
+        
+        $criteria->order = 'rank ASC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

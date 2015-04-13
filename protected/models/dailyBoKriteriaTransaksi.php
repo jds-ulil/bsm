@@ -25,8 +25,11 @@ class dailyBoKriteriaTransaksi extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('nama','required'),
+            array('nama, rank','required'),
 			array('nama', 'length', 'max'=>70),
+            array('rank', 'length', 'max'=>2),
+            array('rank', 'numerical'),
+            array('rank', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('jenis_transaksi_id, nama', 'safe', 'on'=>'search'),
@@ -52,6 +55,7 @@ class dailyBoKriteriaTransaksi extends CActiveRecord
 		return array(
 			'jenis_transaksi_id' => 'Jenis Transaksi',
 			'nama' => 'Nama',
+            'rank' => 'Rank',
 		);
 	}
 
@@ -75,6 +79,8 @@ class dailyBoKriteriaTransaksi extends CActiveRecord
 
 		$criteria->compare('jenis_transaksi_id',$this->jenis_transaksi_id);
 		$criteria->compare('nama',$this->nama,true);
+        
+        $criteria->order = 'rank ASC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
