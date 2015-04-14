@@ -85,6 +85,8 @@
 								    array('label'=>'Back Office', 'url'=>array('dailybo/index',)),								    								    
 								    array('label'=>'Warung Mikro', 'url'=>array('dailywm/index',)),								    								    
 								    array('label'=>'Sales Assistant', 'url'=>array('dailysa/index',)),								    								    
+								    array('label'=>'Reset Data', 'url'=>array('dailydata/reset',)),								    								    
+								    array('label'=>'Master KCP', 'url'=>array('kcp/set',)),								    								    
 								    )
 							),
 							array('label'=>'Master Data', 'url'=>array('#'), 'visible'=> Yii::app()->user->checkAccess('admin'), 

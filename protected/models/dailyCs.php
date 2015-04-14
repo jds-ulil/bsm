@@ -125,6 +125,25 @@ class dailyCs extends CActiveRecord
                    ),
 		));
 	}
+    
+     
+    public function getTotalNasabah($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(jumlah) FROM `daily_cs` where daily_cs_id in ($ids)");
+                return "<b>".$amount = $command->queryScalar()."</b>";
+        }
+        
+    public function getTotalRupiah($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(total) FROM `daily_cs` where daily_cs_id in ($ids)");
+                return $amount = $command->queryScalar();
+        }
 
 	/**
 	 * Returns the static model of the specified AR class.

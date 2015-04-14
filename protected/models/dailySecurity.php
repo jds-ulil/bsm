@@ -133,6 +133,15 @@ class dailySecurity extends CActiveRecord
                     ),
 		));
 	}
+    
+    public function getTotals($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(jumlah) FROM `daily_security` where daily_security_id in ($ids)");
+                return "<b>".$amount = $command->queryScalar()."</b>";
+        }
 
 	/**
 	 * Returns the static model of the specified AR class.

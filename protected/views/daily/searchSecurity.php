@@ -112,8 +112,12 @@ if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('appr
             array (
                 'name'=>'Jenis Nasabah',
                 'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
-            ),            
-            'jumlah',
+            ), 
+            array(
+                'name'=>'Jumlah(Orang)',
+                'value'=>'$data->jumlah',
+                'footer'=>$model->getTotals($model->search()->getKeys()),
+                ),
             'info',
             array (
                 'name'=>'Status',
@@ -159,7 +163,11 @@ if(Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('appr
                 'name'=>'Jenis Nasabah',
                 'value'=>'empty($data->rJen->nama)?"Deleted":$data->rJen->nama',
             ),            
-            'jumlah',
+            array(
+                'name'=>'Jumlah(Orang)',
+                'value'=>'$data->jumlah',
+                'footer'=>$model->getTotals($model->search()->getKeys()),
+                ),
             'info',
         )	
 )); ?>

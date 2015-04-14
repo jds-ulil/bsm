@@ -126,6 +126,24 @@ class dailyWm extends CActiveRecord
                     ),
 		));
 	}
+    
+     public function getTotalNasabah($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(jumlah_nasabah) FROM `daily_wm` where daily_wm_id in ($ids)");
+                return "<b>".$amount = $command->queryScalar()."</b>";
+        }
+        
+    public function getTotalRupiah($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(total) FROM `daily_wm` where daily_wm_id in ($ids)");
+                return $amount = $command->queryScalar();
+        }
 
 	/**
 	 * Returns the static model of the specified AR class.

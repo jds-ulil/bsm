@@ -129,6 +129,24 @@ class dailyBo extends CActiveRecord
                     ),
 		));
 	}
+    
+     public function getTotalTransaksi($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(jumlah_transaksi) FROM `daily_bo` where daily_bo_id in ($ids)");
+                return "<b>".$amount = $command->queryScalar()."</b>";
+        }
+        
+    public function getTotalRupiah($ids)
+        {
+                $ids = implode(",",$ids);
+                
+                $connection=Yii::app()->db;
+                $command=$connection->createCommand("SELECT SUM(total) FROM `daily_bo` where daily_bo_id in ($ids)");
+                return $amount = $command->queryScalar();
+        }
 
 	/**
 	 * Returns the static model of the specified AR class.

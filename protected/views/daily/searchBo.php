@@ -109,10 +109,15 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 'name'=>'Status Trans',
                 'value'=>'empty($data->rStTr->nama)?"Deleted":$data->rStTr->nama',
             ), 
-           'jumlah_transaksi',
            array(
-            'name'=>'Total',
+                'name'=>'Jumlah(Orang)',
+                'value'=>'$data->jumlah_transaksi',
+                'footer'=>$model->getTotalTransaksi($model->search()->getKeys()),
+                ),           
+           array(
+                'name'=>'Total',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',
+                'footer'=> "<b>" . Yii::app()->numberFormatter->formatCurrency($model->getTotalRupiah($model->search()->getKeys()),"Rp ") . "</b>",
                 ),	
            'info',
             array (
@@ -160,10 +165,15 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 'name'=>'Status Trans',
                 'value'=>'empty($data->rStTr->nama)?"Deleted":$data->rStTr->nama',
             ), 
-            'jumlah_transaksi',
+            array(
+                'name'=>'Jumlah(Orang)',
+                'value'=>'$data->jumlah_transaksi',
+                'footer'=>$model->getTotalTransaksi($model->search()->getKeys()),
+                ),           
            array(
-            'name'=>'Total',
+                'name'=>'Total',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->total, "Rp ")',
+                'footer'=> "<b>" . Yii::app()->numberFormatter->formatCurrency($model->getTotalRupiah($model->search()->getKeys()),"Rp ") . "</b>",
                 ),	
            'info',
             array (
