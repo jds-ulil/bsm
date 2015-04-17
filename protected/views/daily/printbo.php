@@ -7,6 +7,7 @@ Yii::import('application.extensions.fpdf.*');
 //$pdf->Output();
 $pdf = new PDF_laporan_bo('P','mm','A4');
 $pdf->setDivisi('CS');
+$pdf->setKcp($kcp);
 $pdf->AliasNbPages();
 $pdf->AddPage();
 

@@ -197,11 +197,15 @@ class DailyController extends Controller{
         $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
         $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
         $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        
+        $kcp = mtbKcp::model()->find('id = 1');
+        
         $this->render('printwm',array(
             'model' => $model,
             'data' => $data,
             'total_nasabah'=>$total_nasabah,        
-            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),  
+            'kcp' => $kcp->nama,
         ));
     }
     
@@ -328,11 +332,15 @@ class DailyController extends Controller{
         $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
         $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
         $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        
+        $kcp = mtbKcp::model()->find('id = 1');
+        
         $this->render('printsa',array(
             'model' => $model,
             'data' => $data,
             'total_nasabah'=>$total_nasabah,        
             'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+            'kcp' => $kcp->nama,
         ));
     }
      /**
@@ -472,11 +480,15 @@ class DailyController extends Controller{
         $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
         $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
         $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        
+        $kcp = mtbKcp::model()->find('id = 1');
+        
         $this->render('printbo',array(
             'model' => $model,
             'data' => $data,
             'total_transaksi'=>$total_transaksi,        
-            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),  
+            'kcp' => $kcp->nama,
         ));
     }
     
@@ -626,11 +638,15 @@ class DailyController extends Controller{
         $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
         $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
         $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        
+        $kcp = mtbKcp::model()->find('id = 1');
+        
         $this->render('printtel',array(
             'model' => $model,
             'data' => $data,
             'total_nasabah'=>$total_nasabah,        
-            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),  
+            'kcp' => $kcp->nama,
         ));
    
         
@@ -784,11 +800,15 @@ class DailyController extends Controller{
         $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
         $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
         $model->nama_pegawai = empty($model->nama_pegawai)?' Semua Pegawai ': $model->nama_pegawai;
+        
+        $kcp = mtbKcp::model()->find('id = 1');
+        
         $this->render('printcs',array(
             'model' => $model,
             'data' => $data,
             'total_nasabah'=>$total_nasabah,        
-            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),             
+            'total_setor'=>Yii::app()->numberFormatter->formatCurrency($total_setor ,""),     
+            'kcp' => $kcp->nama,
         ));
         
         
@@ -934,10 +954,14 @@ class DailyController extends Controller{
         $model->jenis_nasabah = empty($model->jenis_nasabah)?' Semua Jenis ': $model->rJen->nama;
         $model->from_date = empty($model->from_date)?' - ':Yii::app()->numberFormatter->formatDate($model->from_date);
         $model->to_date = empty($model->to_date)?' - ':Yii::app()->numberFormatter->formatDate($model->to_date);        
+        
+        $kcp = mtbKcp::model()->find('id = 1');
+        
         $this->render('printSecurity',array(
             'model' => $model,
             'data' => $data,
-            'total' => $total,            
+            'total' => $total,
+            'kcp' => $kcp->nama,
         ));
         
         

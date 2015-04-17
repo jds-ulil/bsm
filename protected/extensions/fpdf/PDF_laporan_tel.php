@@ -25,6 +25,9 @@ class PDF_laporan_tel extends FPDF{
     //            kekanan       kebawah      Isi          garis                    star dalam kotak 
     $this->SetFont('Arial','B',12);
     $this->Cell(0,8,'Laporan ' .$this->divisi,0,1,'L');   
+    $this->Cell(5);         
+    $this->SetFont('Arial','B',10);
+    $this->Cell(0,8,$this->kcp,0,1,'L'); 
     $this->Cell(5);        
     
     $this->Line(200,25,10,25);
@@ -33,6 +36,9 @@ class PDF_laporan_tel extends FPDF{
 }
     function setDivisi($unk) {
         $this->unitDivisi = $unk;
+    }
+     function setKcp($unk) {
+        $this->kcp = $unk;
     }
 
     // Page footer

@@ -1,3 +1,0 @@
-1. Bang untuk yg daily activity database ditambahi....jalankan se file yg dailyactivy.sql di database lamo, jan lupo dibackup dlu yang lamo tuak jago2...
-2. Trus file yang lamo ganti yo yang baru ko beko ado menu LAPORAN HARIAN tuk akses ke daily activty
-3. Untuk edit2 kriteri nasabah/transaksi harus login sebagai apporval beko mncul menu 'Master daily activity'
