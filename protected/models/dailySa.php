@@ -133,6 +133,9 @@ class dailySa extends CActiveRecord
         {
                 $ids = implode(",",$ids);
                 
+                if(empty($ids))
+                    return "<b>0</b>";
+                
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(jumlah_nasabah) FROM `daily_sa` where daily_sa_id in ($ids)");
                 return "<b>".$amount = $command->queryScalar()."</b>";
@@ -141,6 +144,9 @@ class dailySa extends CActiveRecord
     public function getTotalRupiah($ids)
         {
                 $ids = implode(",",$ids);
+                
+                if(empty($ids))
+                    return "<b>0</b>";
                 
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(total) FROM `daily_sa` where daily_sa_id in ($ids)");

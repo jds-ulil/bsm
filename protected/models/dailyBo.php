@@ -43,7 +43,7 @@ class dailyBo extends CActiveRecord
             array('tanggal, nama_pegawai, kriteria_transaksi, jumlah_transaksi,status_transaksi', 'required'),
 			array('jumlah_transaksi, kriteria_transaksi, status, status_transaksi', 'numerical'),
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('info, tanggal', 'safe'),
+			array('info, tanggal, total', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_bo_id, jumlah_transaksi, kriteria_transaksi, total, nama_pegawai, info, tanggal, status, status_transaksi', 'safe', 'on'=>'search'),
@@ -134,6 +134,9 @@ class dailyBo extends CActiveRecord
         {
                 $ids = implode(",",$ids);
                 
+                if(empty($ids))
+                    return "<b>0</b>";
+                
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(jumlah_transaksi) FROM `daily_bo` where daily_bo_id in ($ids)");
                 return "<b>".$amount = $command->queryScalar()."</b>";
@@ -142,6 +145,9 @@ class dailyBo extends CActiveRecord
     public function getTotalRupiah($ids)
         {
                 $ids = implode(",",$ids);
+                
+                if(empty($ids))
+                    return "<b>0</b>";
                 
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(total) FROM `daily_bo` where daily_bo_id in ($ids)");

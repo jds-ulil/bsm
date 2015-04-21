@@ -138,6 +138,9 @@ class dailySecurity extends CActiveRecord
         {
                 $ids = implode(",",$ids);
                 
+                if(empty($ids))
+                    return "<b>0</b>";
+                
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(jumlah) FROM `daily_security` where daily_security_id in ($ids)");
                 return "<b>".$amount = $command->queryScalar()."</b>";

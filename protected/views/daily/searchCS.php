@@ -105,7 +105,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 ),	
            array(
                'name' => "Kriteria Nasabah",
-               'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
+               'value'=>'empty($data->rKrit->nama)?"--":$data->rKrit->nama',
            ),  
            array(
                 'name'=>'Jumlah(Orang)',
@@ -158,7 +158,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 ),	
            array(
                'name' => "Kriteria Nasabah",
-               'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
+               'value'=>'empty($data->rKrit->nama)?"--":$data->rKrit->nama',
            ),  
            array(
                 'name'=>'Jumlah(Orang)',

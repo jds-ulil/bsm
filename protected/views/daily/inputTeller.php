@@ -28,7 +28,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         ),
             'htmlOptions'=>array(
                         'class'=>'span2',                               
-                        'value'=>date("d/m/Y")                
+                        'value'=>  empty($model->tanggal)?date("d/m/Y"):$model->tanggal,                  
                         )// jquery plugin options                
             ));
         ?>

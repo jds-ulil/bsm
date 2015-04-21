@@ -22,6 +22,10 @@ class dailyCs extends CActiveRecord
     
     public $record_row = 15;
     
+    public $start_rest = 0;
+    public $end_rest = 0;
+    public $se_read = '';
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -41,7 +45,7 @@ class dailyCs extends CActiveRecord
 			array('nama_pegawai, tanggal, kriteria_nasabah', 'required'),			
 			array('daily_cs_id, kriteria_nasabah, jumlah, status', 'numerical', 'integerOnly'=>true),			
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('info, total', 'safe'),
+			array('info, total, start_rest, end_rest, se_read', 'safe'),
 			array('from_date,to_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -76,6 +80,7 @@ class dailyCs extends CActiveRecord
 			'info' => 'Info Tambahan',
 			'tanggal' => 'Tanggal',
 			'status' => 'Status',
+            'se_read' => 'SE yang dibaca'
 		);
 	}
 
@@ -121,7 +126,7 @@ class dailyCs extends CActiveRecord
                         ),
 			'criteria'=>$criteria,
             'sort'=>array(
-                       'defaultOrder'=>'tanggal DESC',
+                       'defaultOrder'=>'tanggal DESC, kriteria_nasabah ASC',
                    ),
 		));
 	}
@@ -131,14 +136,20 @@ class dailyCs extends CActiveRecord
         {
                 $ids = implode(",",$ids);
                 
+                if(empty($ids))
+                    return "<b>0</b>";
+                
                 $connection=Yii::app()->db;
-                $command=$connection->createCommand("SELECT SUM(jumlah) FROM `daily_cs` where daily_cs_id in ($ids)");
+                $command=$connection->createCommand("SELECT SUM(jumlah) FROM `daily_cs` where daily_cs_id in ($ids)");                
                 return "<b>".$amount = $command->queryScalar()."</b>";
         }
         
     public function getTotalRupiah($ids)
         {
                 $ids = implode(",",$ids);
+                
+                if(empty($ids))
+                    return "<b>0</b>";
                 
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(total) FROM `daily_cs` where daily_cs_id in ($ids)");

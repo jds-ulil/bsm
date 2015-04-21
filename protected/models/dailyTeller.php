@@ -129,6 +129,9 @@ class dailyTeller extends CActiveRecord
         {
                 $ids = implode(",",$ids);
                 
+                if(empty($ids))
+                    return "<b>0</b>";
+                
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(jumlah) FROM `daily_teller` where daily_teller_id in ($ids)");
                 return "<b>".$amount = $command->queryScalar()."</b>";
@@ -137,6 +140,9 @@ class dailyTeller extends CActiveRecord
     public function getTotalRupiah($ids)
         {
                 $ids = implode(",",$ids);
+                
+                if(empty($ids))
+                    return "<b>0</b>";
                 
                 $connection=Yii::app()->db;
                 $command=$connection->createCommand("SELECT SUM(total) FROM `daily_teller` where daily_teller_id in ($ids)");
