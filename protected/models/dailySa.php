@@ -22,6 +22,10 @@ class dailySa extends CActiveRecord
     public $to_date;
     
     public $record_row = 15;
+    
+    public $start_rest = 0;
+    public $end_rest = 0;
+    public $se_read = '';
 	/**
 	 * @return string the associated database table name
 	 */
@@ -41,7 +45,7 @@ class dailySa extends CActiveRecord
             array('jumlah_nasabah', 'numerical', 'integerOnly'=>true),
 			array('tanggal, nama_pegawai, kriteria_nasabah', 'required'),
 			array('no_kontak, segmen', 'length', 'max'=>25),
-			array('info, status, total', 'safe'),
+			array('info, status, total, start_rest, end_rest, se_read', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_sa_id, jumlah_nasabah, no_kontak, total, segmen, nama_pegawai, info, status, tanggal, kriteria_nasabah', 'safe', 'on'=>'search'),
@@ -77,6 +81,7 @@ class dailySa extends CActiveRecord
 			'status' => 'Status',
 			'tanggal' => 'Tanggal',
 			'kriteria_nasabah' => 'Kriteria Nasabah',
+            'se_read' => 'SE yang dibaca'
 		);
 	}
 
@@ -124,7 +129,7 @@ class dailySa extends CActiveRecord
                         ),
 			'criteria'=>$criteria,
             'sort'=>array(
-                    'defaultOrder'=>'tanggal DESC',
+                    'defaultOrder'=>'tanggal DESC, kriteria_nasabah ASC',
                     ),
 		));
 	}

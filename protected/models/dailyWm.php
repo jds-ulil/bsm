@@ -20,6 +20,10 @@ class dailyWm extends CActiveRecord
     public $from_date;
     public $to_date;
     
+    public $start_rest = 0;
+    public $end_rest = 0;
+    public $se_read = '';
+    
     public $record_row = 15;
 	/**
 	 * @return string the associated database table name
@@ -41,7 +45,7 @@ class dailyWm extends CActiveRecord
 			array('no_kontak', 'length', 'max'=>25),
 			array('nama_pegawai', 'length', 'max'=>70),
             array('jumlah_nasabah', 'numerical', 'integerOnly'=>true),
-			array('total, info, , status', 'safe'),
+			array('total, info, status, start_rest, end_rest, se_read', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_wm_id, jumlah_nasabah, kriteria_nasabah, no_kontak, total, nama_pegawai, info, status, tanggal', 'safe', 'on'=>'search'),
@@ -76,6 +80,7 @@ class dailyWm extends CActiveRecord
 			'info' => 'Info',
 			'status' => 'Status',
 			'tanggal' => 'Tanggal',
+            'se_read' => 'SE yang dibaca'
 		);
 	}
 
@@ -122,7 +127,7 @@ class dailyWm extends CActiveRecord
                         ),
 			'criteria'=>$criteria,
             'sort'=>array(
-                    'defaultOrder'=>'tanggal DESC',
+                    'defaultOrder'=>'tanggal DESC, kriteria_nasabah ASC',
                     ),
 		));
 	}
