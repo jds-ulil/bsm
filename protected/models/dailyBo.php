@@ -26,6 +26,10 @@ class dailyBo extends CActiveRecord
     
     public $record_row = 15;
     
+    public $start_rest = 0;
+    public $end_rest = 0;
+    public $se_read = '';
+    
     
 	public function tableName()
 	{
@@ -43,7 +47,7 @@ class dailyBo extends CActiveRecord
             array('tanggal, nama_pegawai, kriteria_transaksi, jumlah_transaksi,status_transaksi', 'required'),
 			array('jumlah_transaksi, kriteria_transaksi, status, status_transaksi', 'numerical'),
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('info, tanggal, total', 'safe'),
+			array('info, tanggal, total, start_rest, end_rest, se_read', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_bo_id, jumlah_transaksi, kriteria_transaksi, total, nama_pegawai, info, tanggal, status, status_transaksi', 'safe', 'on'=>'search'),
@@ -125,7 +129,7 @@ class dailyBo extends CActiveRecord
                         ),
 			'criteria'=>$criteria,
             'sort'=>array(
-                    'defaultOrder'=>'tanggal DESC',
+                    'defaultOrder'=>'tanggal DESC, kriteria_transaksi ASC',
                     ),
 		));
 	}

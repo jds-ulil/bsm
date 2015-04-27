@@ -36,6 +36,48 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         </div>    
     </div> 
 
+    <div class="control-group ">
+        <label class="control-label" for="dailyCs_waktu_istrahat">Waktu Istirahat</label>
+            <div class="controls">                            
+                <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                    $this->widget('CJuiDateTimePicker',array(
+                    'model'=>$model, //Model object   
+                    'attribute'=>"start_rest", //attribute name
+                    'mode'=>'time', //use "time","date" or "datetime" (default)
+                    'options'=>
+                        array(
+                            'dateFormat'=>'dd/mm/yy',                      
+                                ),
+                    'htmlOptions'=>array(
+                            'class'=>'span1',                               
+                            'value'=> empty($model->start_rest)?'':$model->start_rest,                
+                            )// jquery plugin options                
+                        ));
+                ?>
+                &nbsp;sd&nbsp;
+                <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                        $this->widget('CJuiDateTimePicker',array(
+                        'model'=>$model, //Model object   
+                        'attribute'=>"end_rest", //attribute name
+                        'mode'=>'time', //use "time","date" or "datetime" (default)
+                        'options'=>
+                            array(
+                                'dateFormat'=>'dd/mm/yy',                      
+                                ),
+                        'htmlOptions'=>array(
+                            'class'=>'span1',                               
+                            'value'=> empty($model->end_rest)?'':$model->end_rest,                
+                                )// jquery plugin options                
+                    ));
+                ?>
+                <span class="help-inline error">
+                    <?php echo $form->error($model,"start_rest"); ?>
+                </span>
+            </div>
+            
+        </div>      
+<?php echo $form->textFieldRow($model,'se_read',array('class'=>'span5','maxlength'=>50)); ?> 
+
 <fieldset>
     <legend>Input Data</legend>
         <?php echo $form->dropDownListRow($model, 'kriteria_transaksi', $listKriteriaTransaksi, array(

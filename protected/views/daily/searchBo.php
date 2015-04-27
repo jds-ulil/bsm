@@ -103,7 +103,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 ),	
            array(
                'name' => "Kriteria Transaksi",
-               'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
+               'value'=>'empty($data->rKrit->nama)?"--":$data->rKrit->nama',
            ),  
            array (
                 'name'=>'Status Trans',
@@ -124,20 +124,20 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 'name'=>'Status',
                 'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
             ), 
-           array (
-                'name'=>'Approve',
-                'type'=>'raw',
-                'value'=>'$data->status == 1? '
-                         . 'CHtml::ajaxLink("ACC", '
-                                        . 'Yii::app()->createUrl("/daily/accBo", array("id" =>$data[\'daily_bo_id\'])),'
-                                        . 'array ('
-                                        .   '"type" => "GET",'
-                                        .   '"dataType" => "json",'
-                                        .   '"complete" => "'.'function(data){if(data.responseText==\'sukses update\') $.fn.yiiGridView.update(\'boreport-grid\');}'.'",'
-                                            . ')'
-                                            . ')'
-                . ': "-"',
-            ), 
+//           array (
+//                'name'=>'Approve',
+//                'type'=>'raw',
+//                'value'=>'$data->status == 1? '
+//                         . 'CHtml::ajaxLink("ACC", '
+//                                        . 'Yii::app()->createUrl("/daily/accBo", array("id" =>$data[\'daily_bo_id\'])),'
+//                                        . 'array ('
+//                                        .   '"type" => "GET",'
+//                                        .   '"dataType" => "json",'
+//                                        .   '"complete" => "'.'function(data){if(data.responseText==\'sukses update\') $.fn.yiiGridView.update(\'boreport-grid\');}'.'",'
+//                                            . ')'
+//                                            . ')'
+//                . ': "-"',
+//            ), 
             array (
                 'header' => 'Action',
                 'class' => 'bootstrap.widgets.TbDButtonColumn',
@@ -159,7 +159,7 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 ),	
            array(
                'name' => "Kriteria Transaksi",
-               'value'=>'empty($data->rKrit->nama)?"Deleted":$data->rKrit->nama',
+               'value'=>'empty($data->rKrit->nama)?"--":$data->rKrit->nama',
            ),  
            array (
                 'name'=>'Status Trans',

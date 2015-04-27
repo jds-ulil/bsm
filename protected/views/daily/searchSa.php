@@ -124,20 +124,20 @@ if (Yii::app()->user->checkAccess('admin') || Yii::app()->user->checkAccess('app
                 'name'=>'Status',
                 'value'=>'empty($data->rStat->nama)?"Deleted":$data->rStat->nama',
             ), 
-           array (
-                'name'=>'Approve',
-                'type'=>'raw',
-                'value'=>'$data->status == 1? '
-                         . 'CHtml::ajaxLink("ACC", '
-                                        . 'Yii::app()->createUrl("/daily/accSa", array("id" =>$data[\'daily_sa_id\'])),'
-                                        . 'array ('
-                                        .   '"type" => "GET",'
-                                        .   '"dataType" => "json",'
-                                        .   '"complete" => "'.'function(data){if(data.responseText==\'sukses update\') $.fn.yiiGridView.update(\'sareport-grid\');}'.'",'
-                                            . ')'
-                                            . ')'
-                . ': "-"',
-            ), 
+//           array (
+//                'name'=>'Approve',
+//                'type'=>'raw',
+//                'value'=>'$data->status == 1? '
+//                         . 'CHtml::ajaxLink("ACC", '
+//                                        . 'Yii::app()->createUrl("/daily/accSa", array("id" =>$data[\'daily_sa_id\'])),'
+//                                        . 'array ('
+//                                        .   '"type" => "GET",'
+//                                        .   '"dataType" => "json",'
+//                                        .   '"complete" => "'.'function(data){if(data.responseText==\'sukses update\') $.fn.yiiGridView.update(\'sareport-grid\');}'.'",'
+//                                            . ')'
+//                                            . ')'
+//                . ': "-"',
+//            ), 
             array (
                 'header' => 'Action',
                 'class' => 'bootstrap.widgets.TbDButtonColumn',

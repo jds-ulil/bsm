@@ -438,6 +438,14 @@ class DailyController extends Controller{
                 if(!$model->validate()){
                    $valid_data = false;
                 };
+                
+            if (!empty($model->start_rest) || !empty($model->end_rest)) {
+                    if (empty($model->start_rest) || empty($model->end_rest)) {    
+                            $model->addError('start_rest', 'Waktu harus di isi semua');
+                            $model->addError('end_rest', 'Waktu harus di isi semua');
+                            $valid_data = false;
+                    }
+                   }
         }// end if post dailyTeller
         
         if(isset($_POST['dailyBoArray'])) {
@@ -466,7 +474,36 @@ class DailyController extends Controller{
             foreach ($model_ as $key => $model_Each) {                  
                 $model_Each->save();
             }
-            $this->redirect(array('complete'));
+            
+            if(!empty($model->start_rest) && !empty($model->end_rest)) {
+                $model_rest = new dailyBo;
+                $model_rest->tanggal = $model->tanggal;
+                $model_rest->nama_pegawai = $model->nama_pegawai;
+                $model_rest->jumlah_transaksi = 0;
+                $model_rest->total = 0;
+                $model_rest->kriteria_transaksi = 0;
+                $model_rest->status_transaksi = 1;
+                $model_rest->status = vC::APP_status_laporan_new;
+                $model_rest->info = 'Waktu istirahat : '.$model->start_rest . ' SD ' . $model->end_rest;                
+                if (
+                $model_rest->save()){;}
+                    else {print_r($model_rest->getErrors());}
+            }
+            
+            if(!empty($model->se_read)) {
+                $model_se = new dailyBo;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah_transaksi = 0;
+                $model_se->total = 0;
+                $model_se->kriteria_transaksi = 0;                
+                $model_se->status_transaksi = 1;
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = 'SE yang dipahami/baca : '.$model->se_read;                
+                $model_se->save();
+            }
+            //$this->redirect(array('complete'));
         }// end if valid_data 
         $this->render('inputBo',array(
             'model' => $model,
@@ -536,14 +573,14 @@ class DailyController extends Controller{
                 $total_setor = $total_setor + intval($record->total);
                 $data[]=array(  'index'=>$index,
                                 'tanggal'=>Yii::app()->numberFormatter->formatDate($record->tanggal),                    
-                                'kriteria_transaksi'=>  empty($record->rKrit->nama)?"Deleted":$record->rKrit->nama,                               
+                                'kriteria_transaksi'=>  empty($record->rKrit->nama)?"--":$record->rKrit->nama,                               
                                 'nama_pegawai'=>$record->nama_pegawai,                               
                                 'info'=>$record->info,                                                                                
                                 'jumlah'=>$record->jumlah_transaksi,                                                                                
                                 'status_transaksi'=>$record->rStTr->nama,                                                                               
                                 'total'=>Yii::app()->numberFormatter->formatCurrency($record->total ,""),                                              
                         );                        
-            }
+            }            
             
         }
                         
