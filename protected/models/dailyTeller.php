@@ -25,6 +25,8 @@ class dailyTeller extends CActiveRecord
     
     public $record_row = 15;
     
+    public $teller_akhir, $atm_akhir, $khasanah_akhir;
+    
 	public function tableName()
 	{
 		return 'daily_teller';
@@ -41,7 +43,7 @@ class dailyTeller extends CActiveRecord
             array('kriteria_transaksi, nama_pegawai', 'required'),
 			array('kriteria_transaksi, jumlah, status', 'numerical', 'integerOnly'=>true),
 			array('nama_pegawai', 'length', 'max'=>70),
-			array('info, tanggal, total', 'safe'),
+			array('info, tanggal, total, teller_akhir, atm_akhir, khasanah_akhir', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('from_date, to_date, daily_teller_id, nama_pegawai, kriteria_transaksi, jumlah, total, info, tanggal, status', 'safe', 'on'=>'search'),
@@ -75,6 +77,10 @@ class dailyTeller extends CActiveRecord
 			'info' => 'Info Tambahan',
 			'tanggal' => 'Tanggal',
 			'status' => 'Status',
+			'teller_akhir' => 'Teller',
+			'atm_akhir' => 'ATM',
+			'khasanah_akhir' => 'Khasanah',
+            
 		);
 	}
 
@@ -120,7 +126,7 @@ class dailyTeller extends CActiveRecord
                         ),
 			'criteria'=>$criteria,
             'sort'=>array(
-                    'defaultOrder'=>'tanggal DESC',
+                    'defaultOrder'=>'tanggal DESC, kriteria_transaksi ASC',
                     ),
 		));
 	}

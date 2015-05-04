@@ -425,7 +425,7 @@ class DailyController extends Controller{
         $model = new dailyBo;
         $model_ = array(new dailyBoArray); 
         
-        $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll('true order by rank asc'), 'jenis_transaksi_id', 'nama');
+        $listKriteriaTransaksi = CHtml::listData(dailyBoKriteriaTransaksi::model()->findAll('hidden <> 1 order by rank asc'), 'jenis_transaksi_id', 'nama');
         $listProgress = CHtml::listData(dailyBoProgress::model()->findAll(), 'dbo_progress_id', 'nama');
         
         $valid_data = false;
@@ -503,7 +503,51 @@ class DailyController extends Controller{
                 $model_se->info = 'SE yang dipahami/baca : '.$model->se_read;                
                 $model_se->save();
             }
-            //$this->redirect(array('complete'));
+            
+            
+                    
+            if(!empty($model->kas_akhir)) {
+                $model_se = new dailyBo;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah_transaksi = 0;
+                $model_se->total = $model->kas_akhir;
+                $model_se->kriteria_transaksi = 1;  
+                 $model_se->status_transaksi = 1;
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = '';                
+                $model_se->save();
+            }
+            if(!empty($model->mat_akhir)) {
+                $model_se = new dailyBo;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah_transaksi = 0;
+                $model_se->total = $model->mat_akhir;
+                $model_se->kriteria_transaksi = 2;                
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = '';    
+                 $model_se->status_transaksi = 1;
+                $model_se->save();
+            }
+            if(!empty($model->rek_akhir)) {
+                $model_se = new dailyBo;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah_transaksi = 0;
+                $model_se->total = $model->rek_akhir;
+                $model_se->kriteria_transaksi = 3;                
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = '';      
+                $model_se->status_transaksi = 1;
+                $model_se->save();
+            }
+            
+            
+            $this->redirect(array('complete'));
         }// end if valid_data 
         $this->render('inputBo',array(
             'model' => $model,
@@ -611,7 +655,7 @@ class DailyController extends Controller{
         $model = new dailyTeller;
         $model_ = array(new dailyTellerArray); 
         
-        $listKriteriaTransaksi = CHtml::listData(dailyTellerKriteriaTransaksi::model()->findAll('true order by rank asc'), 'jenis_transaksi_id', 'nama');
+        $listKriteriaTransaksi = CHtml::listData(dailyTellerKriteriaTransaksi::model()->findAll('hidden <> 1 order by rank asc'), 'jenis_transaksi_id', 'nama');
         
         $valid_data = false;
         
@@ -653,6 +697,44 @@ class DailyController extends Controller{
             foreach ($model_ as $key => $model_Each) {                  
                 $model_Each->save();
             }
+            
+            if(!empty($model->teller_akhir)) {
+                $model_se = new dailyTeller;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah = 0;
+                $model_se->total = $model->teller_akhir;
+                $model_se->kriteria_transaksi = 1;                
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = '';                
+                $model_se->save();
+            }
+            if(!empty($model->atm_akhir)) {
+                $model_se = new dailyTeller;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah = 0;
+                $model_se->total = $model->atm_akhir;
+                $model_se->kriteria_transaksi = 3;                
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = '';                
+                $model_se->save();
+            }
+            if(!empty($model->khasanah_akhir)) {
+                $model_se = new dailyTeller;
+                $model_se->tanggal = $model->tanggal;
+                $model_se->nama_pegawai = $model->nama_pegawai;
+                $model_se->status = vC::APP_status_laporan_new;
+                $model_se->jumlah = 0;
+                $model_se->total = $model->khasanah_akhir;
+                $model_se->kriteria_transaksi = 2;                
+                $model_se->status = vc::APP_status_laporan_new;
+                $model_se->info = '';                
+                $model_se->save();
+            }
+            
             $this->redirect(array('complete'));
         }// end if valid_data
         

@@ -31,11 +31,11 @@ CREATE TABLE `daily_bo` (
   `status` int(1) DEFAULT NULL,
   `status_transaksi` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_bo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_bo` */
 
-insert  into `daily_bo`(`daily_bo_id`,`jumlah_transaksi`,`kriteria_transaksi`,`total`,`nama_pegawai`,`info`,`tanggal`,`status`,`status_transaksi`) values (1,12,9,100000000,'Ulil','Sip','2015-04-10',2,2);
+insert  into `daily_bo`(`daily_bo_id`,`jumlah_transaksi`,`kriteria_transaksi`,`total`,`nama_pegawai`,`info`,`tanggal`,`status`,`status_transaksi`) values (1,1234,4,NULL,'Ulil','','2015-05-04',1,2),(2,0,0,0,'Ulil','Waktu istirahat : 07:00 SD 10:00','2015-05-04',1,1),(3,0,0,0,'Ulil','SE yang dipahami/baca : Jakarta ','2015-05-04',1,1),(4,0,1,1452,'Ulil','','2015-05-04',1,1),(5,0,2,345555,'Ulil','','2015-05-04',1,1);
 
 /*Table structure for table `daily_bo_kriteria_transaksi` */
 
@@ -45,12 +45,13 @@ CREATE TABLE `daily_bo_kriteria_transaksi` (
   `jenis_transaksi_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `rank` int(2) NOT NULL,
+  `hidden` int(2) DEFAULT '0',
   PRIMARY KEY (`jenis_transaksi_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_bo_kriteria_transaksi` */
 
-insert  into `daily_bo_kriteria_transaksi`(`jenis_transaksi_id`,`nama`,`rank`) values (1,'Transaksi Biaya',2),(2,'Transaksi SKN',0),(3,'Transaksi RTGS',0),(4,'Pembukaan Deposito',0),(5,'Pencairan Deposito',0),(6,'Pencairan Small & Konsumer',0),(7,'Pelunasan Small & Konsumer',0),(8,'Pencairan Mikro',0),(9,'Pelunasan Mikro',0),(10,'Pencairan Talangan Haji',0),(11,'Pelunasan Talangan Haji',0),(12,'Pencairan/Perpanjangan Gadai Emas',0),(13,'Pelunasan Gadai Emas',0),(14,'Penginputan BI Checking',0),(15,'Pembayaran Biaya Bulanan',0),(16,'Pembayaran Rekanan',0),(17,'Transaksi Pembayaran Angsuran',0),(18,'Transaksi Penyusutan Bulanan',0),(19,'Pelaporan - SID',0),(20,'Pelaporan - Pajak',0),(21,'Pelaporan - Lembur Staff',0),(22,'Pelaporan - Lembur Non-Staff',0),(23,'Pelaporan - Proofsheet',0),(24,'Rekap Absensi',0),(25,'Aktivitas Kepegawaian',0),(26,'Saldo Kas Kecil Akhir Hari',0),(27,'Saldo Rekening Perantara Akhir Hari',0),(28,'Saldo Materai Akhir Hari',0),(29,'Waktu Istirahat',0),(30,'SE yang dibaca & dipahami',0),(31,'Lain - Lain',0),(33,'Krita',0),(35,'tes satu',1),(36,'tes tiga',3);
+insert  into `daily_bo_kriteria_transaksi`(`jenis_transaksi_id`,`nama`,`rank`,`hidden`) values (1,'Saldo Kas Kecil Akhir Hari',0,1),(2,'Saldo Rekening Perantara Akhir Hari',0,1),(3,'Saldo Materai Akhir Hari',0,1),(4,'Transaksi Biaya',2,0),(5,'Transaksi SKN',0,0),(6,'Transaksi RTGS',0,0),(7,'Pembukaan Deposito',0,0),(8,'Pencairan Deposito',0,0),(9,'Pencairan Small & Konsumer',0,0),(10,'Pelunasan Small & Konsumer',0,0),(11,'Pencairan Mikro',0,0),(12,'Pelunasan Mikro',0,0),(13,'Pencairan Talangan Haji',0,0),(14,'Pelunasan Talangan Haji',0,0),(15,'Pencairan/Perpanjangan Gadai Emas',0,0),(16,'Pelunasan Gadai Emas',0,0),(17,'Penginputan BI Checking',0,0),(18,'Pembayaran Biaya Bulanan',0,0),(19,'Pembayaran Rekanan',0,0),(20,'Transaksi Pembayaran Angsuran',0,0),(21,'Transaksi Penyusutan Bulanan',0,0),(22,'Pelaporan - SID',0,0),(23,'Pelaporan - Pajak',0,0),(24,'Pelaporan - Lembur Staff',0,0),(25,'Pelaporan - Lembur Non-Staff',0,0),(26,'Pelaporan - Proofsheet',0,0),(27,'Rekap Absensi',0,0),(28,'Aktivitas Kepegawaian',0,0),(29,'Waktu Istirahat',0,0),(30,'SE yang dibaca & dipahami',0,0),(31,'Lain - Lain',0,0);
 
 /*Table structure for table `daily_bo_progress` */
 
@@ -80,11 +81,11 @@ CREATE TABLE `daily_cs` (
   `tanggal` date DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_cs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_cs` */
 
-insert  into `daily_cs`(`daily_cs_id`,`kriteria_nasabah`,`jumlah`,`total`,`nama_pegawai`,`info`,`tanggal`,`status`) values (1,1,3,45,'Customer Service1','Yuuu','2015-04-10',1);
+insert  into `daily_cs`(`daily_cs_id`,`kriteria_nasabah`,`jumlah`,`total`,`nama_pegawai`,`info`,`tanggal`,`status`) values (1,14,45,4500000,'Ulil','Lancar','2015-04-01',1),(2,0,0,0,'Ulil','Waktu istirahat : 13:00 SD 14:00','2015-04-01',1),(3,0,0,0,'Ulil','SE yang dipahami/baca : Kitab Pajak','2015-04-01',1),(4,7,1,500000,'Ulil','Giro ','2015-04-01',1);
 
 /*Table structure for table `daily_cs_kriteria_nasabah` */
 
@@ -117,11 +118,11 @@ CREATE TABLE `daily_sa` (
   `tanggal` date DEFAULT NULL,
   `kriteria_nasabah` int(2) DEFAULT NULL,
   PRIMARY KEY (`daily_sa_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_sa` */
 
-insert  into `daily_sa`(`daily_sa_id`,`jumlah_nasabah`,`no_kontak`,`total`,`segmen`,`nama_pegawai`,`info`,`status`,`tanggal`,`kriteria_nasabah`) values (1,2,'56456456456456',1500000000,'Small','Vany','',2,'2015-04-09',15),(2,2,'5456456464',200000000,'Konsumer','Vany','',1,'2015-04-09',3);
+insert  into `daily_sa`(`daily_sa_id`,`jumlah_nasabah`,`no_kontak`,`total`,`segmen`,`nama_pegawai`,`info`,`status`,`tanggal`,`kriteria_nasabah`) values (3,23,'',NULL,'','Ulil','',1,'2015-04-22',1),(4,0,NULL,0,NULL,'Ulil','Waktu istirahat : 11:13 SD 09:04',1,'2015-04-22',0),(5,0,NULL,0,NULL,'Ulil','SE yang dipahami/baca : SE read',1,'2015-04-22',0),(6,11,'',NULL,'','Ulil','',1,'2015-04-22',1);
 
 /*Table structure for table `daily_sa_kriteria_nasabah` */
 
@@ -132,11 +133,11 @@ CREATE TABLE `daily_sa_kriteria_nasabah` (
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `rank` int(2) NOT NULL,
   PRIMARY KEY (`sa_kriteria_nasabah_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_sa_kriteria_nasabah` */
 
-insert  into `daily_sa_kriteria_nasabah`(`sa_kriteria_nasabah_id`,`nama`,`rank`) values (1,'Lending - Sosialisasi',2),(2,'Lending - Solisit',0),(3,'Lending - Pengumpulan Data',0),(4,'Lending - BI Checking',0),(5,'Lending - Taksasi Agunan',0),(6,'Lending - Investigasi',0),(7,'Lending - Analisa',0),(8,'Lending - SP3',0),(9,'Lending - Akad',0),(10,'Lending - Pencairan',0),(11,'Perpanjangan - Pengumpulan Data',0),(12,'Perpanjangan - BI Checking',0),(13,'Perpanjangan - Taksasi Agunan',0),(14,'Perpanjangan - Investigasi',0),(15,'Perpanjangan - Analisa',0),(16,'Perpanjangan - SP3',0),(17,'Perpanjangan - Akad',0),(18,'Perpanjangan - Eksekusi Perpanjangan',0),(19,'Pick-up Angsuran Nasabah',0),(20,'Tagih Past Due Bulan Sebelumnya',0),(21,'Peringatan Nasabah - SPMK',0),(22,'Peringatan Nasabah - SP1',0),(23,'Peringatan Nasabah - SP2',0),(24,'Peringatan Nasabah - SP3',0),(25,'Funding - Sosialisasi',0),(26,'Funding - Solisit',0),(27,'Funding - Follow Up',0),(28,'Funding - Closing',0),(29,'Pick-up Tabungan Nasabah',0),(30,'SE yang dibaca & dipahami',0),(31,'Waktu Istirahat',0),(32,'Lain - Lain',0),(34,'tes satu',1),(35,'tes tiga',3);
+insert  into `daily_sa_kriteria_nasabah`(`sa_kriteria_nasabah_id`,`nama`,`rank`) values (1,'Lending - Sosialisasi',2),(2,'Lending - Solisit',0),(3,'Lending - Pengumpulan Data',0),(4,'Lending - BI Checking',0),(5,'Lending - Taksasi Agunan',0),(6,'Lending - Investigasi',0),(7,'Lending - Analisa',0),(8,'Lending - SP3',0),(9,'Lending - Akad',0),(10,'Lending - Pencairan',0),(11,'Perpanjangan - Pengumpulan Data',0),(12,'Perpanjangan - BI Checking',0),(13,'Perpanjangan - Taksasi Agunan',0),(14,'Perpanjangan - Investigasi',0),(15,'Perpanjangan - Analisa',0),(16,'Perpanjangan - SP3',0),(17,'Perpanjangan - Akad',0),(18,'Perpanjangan - Eksekusi Perpanjangan',0),(19,'Pick-up Angsuran Nasabah',0),(20,'Tagih Past Due Bulan Sebelumnya',0),(21,'Peringatan Nasabah - SPMK',0),(22,'Peringatan Nasabah - SP1',0),(23,'Peringatan Nasabah - SP2',0),(24,'Peringatan Nasabah - SP3',0),(25,'Funding - Sosialisasi',0),(26,'Funding - Solisit',0),(27,'Funding - Follow Up',0),(28,'Funding - Closing',0),(29,'Pick-up Tabungan Nasabah',0),(30,'Lain - Lain',0);
 
 /*Table structure for table `daily_security` */
 
@@ -151,11 +152,11 @@ CREATE TABLE `daily_security` (
   `info` varchar(100) COLLATE utf8_bin NOT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_security_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_security` */
 
-insert  into `daily_security`(`daily_security_id`,`nama_inputer`,`tanggal`,`jenis_nasabah`,`jumlah`,`info`,`status`) values (1,'Ulil','2015-04-10',1,3,'OK',1),(2,'Ulil','2015-04-10',5,4,'Suip',1),(3,'tes','2015-04-13',1,12,'122',1);
+insert  into `daily_security`(`daily_security_id`,`nama_inputer`,`tanggal`,`jenis_nasabah`,`jumlah`,`info`,`status`) values (1,'Ulil','2015-04-10',1,3,'OK',1),(2,'Ulil','2015-04-10',5,4,'Suip',1),(3,'tes','2015-04-13',1,12,'122',1),(4,'Ulil','2015-04-14',3,2,'23',1),(5,'Ulil','2015-04-14',4,4,'sep',1);
 
 /*Table structure for table `daily_security_jenis_nasabah` */
 
@@ -200,11 +201,11 @@ CREATE TABLE `daily_teller` (
   `tanggal` date DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`daily_teller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_teller` */
 
-insert  into `daily_teller`(`daily_teller_id`,`nama_pegawai`,`kriteria_transaksi`,`jumlah`,`total`,`info`,`tanggal`,`status`) values (1,'Ulil',2,12,4000000,'Sip','2015-04-10',1);
+insert  into `daily_teller`(`daily_teller_id`,`nama_pegawai`,`kriteria_transaksi`,`jumlah`,`total`,`info`,`tanggal`,`status`) values (1,'Ulil',2,12,4000000,'Sip','2015-04-10',1),(3,'Ulil ',4,3,340000,'Sip','2015-05-04',1),(4,'Ulil ',1,0,345555,'','2015-05-04',1);
 
 /*Table structure for table `daily_teller_kriteria_transaksi` */
 
@@ -214,12 +215,13 @@ CREATE TABLE `daily_teller_kriteria_transaksi` (
   `jenis_transaksi_id` int(2) NOT NULL AUTO_INCREMENT,
   `nama` varchar(70) COLLATE utf8_bin DEFAULT NULL,
   `rank` int(2) NOT NULL,
+  `hidden` int(11) DEFAULT '0',
   PRIMARY KEY (`jenis_transaksi_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_teller_kriteria_transaksi` */
 
-insert  into `daily_teller_kriteria_transaksi`(`jenis_transaksi_id`,`nama`,`rank`) values (1,'Total Transaksi',2),(2,'Transaksi Setoran',0),(3,'Transaksi Penarikan',0),(4,'Transaksi Net Banking',0),(5,'Transaksi Transfer Tunai',0),(6,'Saldo Teller Akhir Hari',0),(7,'Saldo Khasanah Akhir Hari',0),(8,'Saldo ATM Akhir Hari',0),(9,'Cross Selling',0),(10,'Waktu Istirahat',0),(11,'SE yang dibaca & dipahami',0),(12,'Lain - Lain',0),(14,'tes sat',1),(15,'tes tiga',3);
+insert  into `daily_teller_kriteria_transaksi`(`jenis_transaksi_id`,`nama`,`rank`,`hidden`) values (1,'Saldo Teller Akhir Hari',0,1),(2,'Saldo Khasanah Akhir Hari',0,1),(3,'Saldo ATM Akhir Hari',0,1),(4,'Total Transaksi',2,0),(5,'Transaksi Setoran',0,0),(6,'Transaksi Penarikan',0,0),(7,'Transaksi Net Banking',0,0),(8,'Transaksi Transfer Tunai',0,0),(9,'Cross Selling',0,0),(10,'Lain - Lain',0,0);
 
 /*Table structure for table `daily_wm` */
 
@@ -236,9 +238,11 @@ CREATE TABLE `daily_wm` (
   `status` int(1) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   PRIMARY KEY (`daily_wm_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `daily_wm` */
+
+insert  into `daily_wm`(`daily_wm_id`,`jumlah_nasabah`,`kriteria_nasabah`,`no_kontak`,`total`,`nama_pegawai`,`info`,`status`,`tanggal`) values (1,4,15,'123',450000,'Ulil','',1,'2015-04-14'),(2,34,17,'885',122343,'Ulil','',1,'2015-04-14'),(3,NULL,19,'',NULL,'Coe Ing','',1,'2015-04-22'),(4,0,0,NULL,0,'Coe Ing','SE yang dipahami/baca : se boy',1,'2015-04-22');
 
 /*Table structure for table `daily_wm_kriteria_nasabah` */
 
@@ -338,6 +342,20 @@ CREATE TABLE `mtb_jenis_identitas` (
 /*Data for the table `mtb_jenis_identitas` */
 
 insert  into `mtb_jenis_identitas`(`identitas_id`,`nama`) values (1,'KTP'),(2,'SIM'),(3,'Passport');
+
+/*Table structure for table `mtb_kcp` */
+
+DROP TABLE IF EXISTS `mtb_kcp`;
+
+CREATE TABLE `mtb_kcp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `mtb_kcp` */
+
+insert  into `mtb_kcp`(`id`,`nama`) values (1,'Lubuk Mato Kuciang');
 
 /*Table structure for table `mtb_kolektabilitas` */
 

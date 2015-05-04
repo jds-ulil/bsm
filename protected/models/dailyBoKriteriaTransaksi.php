@@ -79,8 +79,13 @@ class dailyBoKriteriaTransaksi extends CActiveRecord
 
 		$criteria->compare('jenis_transaksi_id',$this->jenis_transaksi_id);
 		$criteria->compare('nama',$this->nama,true);
-        
-        $criteria->order = 'rank ASC';
+             
+        if (empty($this->nama)) {
+            $criteria->condition = ' hidden <> 1';
+        } else {
+            $criteria->condition .= ' and hidden <> 1';
+        }        
+        $criteria->order = 'rank ASC,  jenis_transaksi_id ASC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

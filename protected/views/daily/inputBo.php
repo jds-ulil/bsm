@@ -79,6 +79,14 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 <?php echo $form->textFieldRow($model,'se_read',array('class'=>'span5','maxlength'=>50)); ?> 
 
 <fieldset>
+    <legend>Saldo Akhir Hari</legend>
+    <?php echo $form->textFieldRow($model,'kas_akhir',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+    <?php echo $form->textFieldRow($model,'mat_akhir',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+    <?php echo $form->textFieldRow($model,'rek_akhir',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+</fieldset>
+
+
+<fieldset>
     <legend>Input Data</legend>
         <?php echo $form->dropDownListRow($model, 'kriteria_transaksi', $listKriteriaTransaksi, array(
                 'empty'=>'Pilih Kriteria Transaksi',
@@ -123,7 +131,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </script>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyBo_total, #dailyBoArray_0_total',
+            'element'=>'#dailyBo_total, #dailyBoArray_0_total, #dailyBo_kas_akhir, #dailyBo_mat_akhir, #dailyBo_rek_akhir',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,

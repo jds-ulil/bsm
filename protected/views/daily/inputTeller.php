@@ -37,6 +37,14 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     </div> 
 
 <fieldset>
+    <legend>Saldo Akhir Hari</legend>
+    <?php echo $form->textFieldRow($model,'teller_akhir',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+    <?php echo $form->textFieldRow($model,'atm_akhir',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+    <?php echo $form->textFieldRow($model,'khasanah_akhir',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
+</fieldset>
+
+
+<fieldset>
     <legend>Input Data</legend>
         <?php echo $form->dropDownListRow($model, 'kriteria_transaksi', $listKriteriaTransaksi, array(
                 'empty'=>'Pilih Kriteria Transaksi',
@@ -46,7 +54,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         <?php echo $form->textFieldRow($model,'total',array('class'=>'span2','maxlength'=>50, 'onClick'=>'checkForSelect(this);')); ?>
         <?php echo $form->textFieldRow($model,'info',array('class'=>'span5','maxlength'=>50)); ?>         
 </fieldset>  
-
   <?php    
     $formDynamic = $this->beginWidget('DDynamicTabularForm', array(
         'rowUrl' => Yii::app()->createUrl('daily/getRowTel'),
@@ -77,7 +84,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 </script>
 <?php
         $this->widget('application.extensions.moneymask.MMask',array(
-            'element'=>'#dailyTeller_total, #dailyTellerArray_0_total',
+            'element'=>'#dailyTeller_total, #dailyTellerArray_0_total, #dailyTeller_teller_akhir, #dailyTeller_atm_akhir, #dailyTeller_khasanah_akhir',
             'currency'=>'PHP',
             'config'=>array(
                 'symbolStay'=>true,

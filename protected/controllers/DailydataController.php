@@ -50,6 +50,14 @@ class DailydataController extends Controller
                 if ($model->teller == 1) {
                    $change = true; 
                    Yii::app()->db->createCommand()->truncateTable(dailyTellerKriteriaTransaksi::model()->tableName()); 
+                   
+                    $sql = "insert into daily_teller_kriteria_transaksi (jenis_transaksi_id, nama, rank, hidden) "
+                           . "values "
+                            . "(1,'Saldo Teller Akhir Hari',0,1),"
+                            . "(2,'Saldo Khasanah Akhir Hari',0,1),"
+                            . "(3,'Saldo ATM Akhir Hari',0,1)";
+                    Yii::app()->db->createCommand($sql)->execute();
+                   
                 }
                 if ($model->customer_service == 1) {
                     $change = true;
@@ -58,6 +66,13 @@ class DailydataController extends Controller
                 if ($model->back_office == 1) {
                     $change = true;
                     Yii::app()->db->createCommand()->truncateTable(dailyBoKriteriaTransaksi::model()->tableName()); 
+                    
+                    $sql = "insert into daily_bo_kriteria_transaksi (jenis_transaksi_id, nama, rank, hidden) "
+                           . "values "
+                            . "(1,'Saldo Kas Kecil Akhir Hari',0,1),"
+                            . "(2,'Saldo Rekening Perantara Akhir Hari',0,1),"
+                            . "(3,'Saldo Materai Akhir Hari',0,1)";
+                    Yii::app()->db->createCommand($sql)->execute();
                 }
                 if ($model->warung_mikro == 1) {                    
                     $change = true;

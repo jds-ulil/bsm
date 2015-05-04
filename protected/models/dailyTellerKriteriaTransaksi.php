@@ -79,6 +79,12 @@ class dailyTellerKriteriaTransaksi extends CActiveRecord
 		$criteria->compare('jenis_transaksi_id',$this->jenis_transaksi_id);
 		$criteria->compare('nama',$this->nama,true);
         
+        if (empty($this->nama)) {
+            $criteria->condition = ' hidden <> 1';
+        } else {
+            $criteria->condition .= ' and hidden <> 1';
+        }  
+        
         $criteria->order = 'rank ASC';
 
 		return new CActiveDataProvider($this, array(
